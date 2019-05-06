@@ -34,6 +34,7 @@ typedef NS_ENUM(NSUInteger, lgf_FreePageLineAnimationType) {
     lgf_PageLineAnimationDefult,// 标底部线平滑改变大小
     // 后续推出下面的 仿爱奇艺底部线动画效果 现暂时不可用 请勿设置
     lgf_PageLineAnimationSmallToBig,// 标底部线先右边伸出变宽致标和下一个标的总宽度, 再左边收回恢复到下一个标的宽度
+    lgf_PageLineAnimationTortoise,// 乌龟效果，标底部线向下隐藏，再在下一个标的底部向上出现（暂未实现）
 };
 
 typedef NS_ENUM(NSUInteger, lgf_FreeTitleScrollFollowType) {
@@ -121,7 +122,7 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_TitleCornerRadius;
 
 //------------------- 特殊标设置
-// 要替换的特殊标数组（数组中元素 view 的 tag 即为要替换 title 的 index）（设置此项将不支持 lgf_LineWidthType 的 lgf_EqualTitleSTR 和 lgf_EqualTitleSTRAndImage）（记住这只是替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
+// 要替换的特殊标数组（数组中元素 view 的 lgf_FreePTSpecialTitleArray（值格式：@"0/80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
 @property (nonatomic, copy) NSArray <UIView *> *lgf_FreePTSpecialTitleArray;
 
 //------------------- 标图片设置

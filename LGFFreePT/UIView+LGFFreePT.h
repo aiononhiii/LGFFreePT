@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat lgfpt_Height;
 @property (assign, nonatomic) CGPoint lgfpt_Origin;
 @property (assign, nonatomic) CGSize lgfpt_Size;
+#pragma mark - 用于特殊 title 赋值属性用
+@property (copy, nonatomic) IBInspectable NSString *lgf_FreePTSpecialTitleProperty;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -354,7 +354,7 @@
                 self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_LineWidth > unSelectTitle.lgfpt_Width + wDistance * progress ? unSelectTitle.lgfpt_X + xxDistance * progress : un_select_title_x + xDistance * progress;
                 self.lgf_TitleLine.lgfpt_Width = MIN(self.lgf_Style.lgf_LineWidth, unSelectTitle.lgfpt_Width + wDistance * progress);
             }
-        } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
+        } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoise) {
             CGFloat selectX = 0.0;
             CGFloat selectWidth = 0.0;
             CGFloat unSelectX = 0.0;
@@ -384,27 +384,32 @@
                 unSelectX = unSelectTitle.lgfpt_X + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
                 unSelectWidth = self.lgf_Style.lgf_LineWidth;
             }
-            CGFloat space = self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR ? ((selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) / 2 - (unSelectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - unSelectTitle.lgf_TitleWidth.constant) / 2) : 0.0;
-            CGFloat scaleWidth = ((selectTitle.lgfpt_Width - selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX)) + ((unSelectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX));
             
-            CGFloat differenceWidth = self.lgf_Style.lgf_LineWidthType == lgf_FixedWith ? (unSelectTitle.lgfpt_Width - selectTitle.lgfpt_Width) : 0.0;
-            if (progress > 0.5) {
-                if (unselectIndex < selectIndex) {
-                    self.lgf_TitleLine.lgfpt_X = selectX - (unSelectTitle.lgfpt_Width * 2 - scaleWidth - differenceWidth - space) * (1.0 - progress);
+            if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
+                CGFloat space = self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR ? ((selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) / 2 - (unSelectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - unSelectTitle.lgf_TitleWidth.constant) / 2) : 0.0;
+                CGFloat scaleWidth = ((selectTitle.lgfpt_Width - selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX)) + ((unSelectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX));
+                
+                CGFloat differenceWidth = self.lgf_Style.lgf_LineWidthType == lgf_FixedWith ? (unSelectTitle.lgfpt_Width - selectTitle.lgfpt_Width) : 0.0;
+                if (progress > 0.5) {
+                    if (unselectIndex < selectIndex) {
+                        self.lgf_TitleLine.lgfpt_X = selectX - (unSelectTitle.lgfpt_Width * 2 - scaleWidth - differenceWidth - space) * (1.0 - progress);
+                    } else {
+                        self.lgf_TitleLine.lgfpt_X = selectX;
+                    }
                 } else {
-                    self.lgf_TitleLine.lgfpt_X = selectX;
+                    if (unselectIndex > selectIndex) {
+                        self.lgf_TitleLine.lgfpt_X = unSelectX - (selectTitle.lgfpt_Width * 2 - scaleWidth + differenceWidth + space) * progress;
+                    } else {
+                        self.lgf_TitleLine.lgfpt_X = unSelectX;
+                    }
                 }
-            } else {
-                if (unselectIndex > selectIndex) {
-                    self.lgf_TitleLine.lgfpt_X = unSelectX - (selectTitle.lgfpt_Width * 2 - scaleWidth + differenceWidth + space) * progress;
+                if (progress > 0.5) {
+                    self.lgf_TitleLine.lgfpt_Width = selectWidth + (unSelectTitle.lgfpt_Width * 2 - scaleWidth - differenceWidth - space) * (1.0 - progress);
                 } else {
-                    self.lgf_TitleLine.lgfpt_X = unSelectX;
+                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth + (selectTitle.lgfpt_Width * 2 - scaleWidth + differenceWidth + space) * progress;
                 }
-            }
-            if (progress > 0.5) {
-                self.lgf_TitleLine.lgfpt_Width = selectWidth + (unSelectTitle.lgfpt_Width * 2 - scaleWidth - differenceWidth - space) * (1.0 - progress);
-            } else {
-                self.lgf_TitleLine.lgfpt_Width = unSelectWidth + (selectTitle.lgfpt_Width * 2 - scaleWidth + differenceWidth + space) * progress;
+            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoise) {
+                
             }
         }
     }
@@ -481,19 +486,23 @@
         }
         // 标底部滚动条 更新位置
         if (self.lgf_TitleLine && self.lgf_Style.lgf_IsShowLine) {
-            if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
-                self.lgf_TitleLine.lgfpt_X = selectTitle.lgfpt_X;
-                self.lgf_TitleLine.lgfpt_Width = selectTitle.lgfpt_Width;
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
-                self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_X : (self.lgf_Style.lgf_TitleLeftRightSpace * self.lgf_Style.lgf_TitleBigScale + selectTitle.lgfpt_X);
-                self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_Width : ((self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_LeftImageWidth + selectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_RightImageWidth + self.lgf_Style.lgf_RightImageSpace) * self.lgf_Style.lgf_TitleBigScale);
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-                CGFloat space = (selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) * self.lgf_Style.lgf_TitleBigScale / 2;
-                self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_X : ((self.lgf_Style.lgf_TitleLeftRightSpace + self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_LeftImageWidth) * self.lgf_Style.lgf_TitleBigScale - space + selectTitle.lgfpt_X);
-                self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_Width : (selectTitle.lgf_Title.lgfpt_Width * self.lgf_Style.lgf_TitleBigScale);
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith){
-                self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_LineWidth > selectTitle.lgfpt_Width ? selectTitle.lgfpt_X : selectTitle.lgfpt_X + ((selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0);
-                self.lgf_TitleLine.lgfpt_Width = MIN(self.lgf_Style.lgf_LineWidth, selectTitle.lgfpt_Width);
+            if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoise) {
+                
+            } else {
+                if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
+                    self.lgf_TitleLine.lgfpt_X = selectTitle.lgfpt_X;
+                    self.lgf_TitleLine.lgfpt_Width = selectTitle.lgfpt_Width;
+                } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
+                    self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_X : (self.lgf_Style.lgf_TitleLeftRightSpace * self.lgf_Style.lgf_TitleBigScale + selectTitle.lgfpt_X);
+                    self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_Width : ((self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_LeftImageWidth + selectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_RightImageWidth + self.lgf_Style.lgf_RightImageSpace) * self.lgf_Style.lgf_TitleBigScale);
+                } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
+                    CGFloat space = (selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) * self.lgf_Style.lgf_TitleBigScale / 2;
+                    self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_X : ((self.lgf_Style.lgf_TitleLeftRightSpace + self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_LeftImageWidth) * self.lgf_Style.lgf_TitleBigScale - space + selectTitle.lgfpt_X);
+                    self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_Width : (selectTitle.lgf_Title.lgfpt_Width * self.lgf_Style.lgf_TitleBigScale);
+                } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith){
+                    self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_LineWidth > selectTitle.lgfpt_Width ? selectTitle.lgfpt_X : selectTitle.lgfpt_X + ((selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0);
+                    self.lgf_TitleLine.lgfpt_Width = MIN(self.lgf_Style.lgf_LineWidth, selectTitle.lgfpt_Width);
+                }
             }
         }
     } completion:^(BOOL finished) {

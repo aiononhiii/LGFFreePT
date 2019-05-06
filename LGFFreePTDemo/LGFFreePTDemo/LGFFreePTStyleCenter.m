@@ -243,9 +243,9 @@
     style.lgf_TitleLeftRightSpace = 15.0;
     style.lgf_PageLeftRightSpace = 15.0;
     style.lgf_TitleCornerRadius = 1.0;
-    style.lgf_MainTitleBigScale = 1.8;
+    style.lgf_MainTitleBigScale = 1.5;
     style.lgf_SubTitleBigScale = 0.0;
-    style.lgf_MainTitleUpDownScale = 4.0;
+    style.lgf_MainTitleUpDownScale = 5.0;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_LineColor = LGFPTHexColor(@"333333");
@@ -319,13 +319,13 @@
 + (LGFFreePTStyle *)sixteen {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
     specialTitle * sviewOne = [specialTitle lgf];
-    sviewOne.tag = 2;
+    sviewOne.lgf_FreePTSpecialTitleProperty = @"2/100";
     specialImageTitle * sviewTwo = [specialImageTitle lgf];
-    sviewTwo.tag = 5;
+    sviewTwo.lgf_FreePTSpecialTitleProperty = @"5/90";
     style.lgf_FreePTSpecialTitleArray = @[sviewOne, sviewTwo];
     style.lgf_LineWidthType = lgf_FixedWith;
     style.lgf_LineWidth = 10.0;
-    style.lgf_TitleLeftRightSpace = 20.0;
+    style.lgf_TitleLeftRightSpace = 10.0;
     style.lgf_PageLeftRightSpace = 15.0;
     style.lgf_LineHeight = 10.0;
     style.lgf_LineBottom = -5;

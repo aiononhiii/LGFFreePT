@@ -7,8 +7,21 @@
 //
 
 #import "UIView+LGFFreePT.h"
+#import <objc/runtime.h>
+
+static const char *lgf_FreePTSpecialTitlePropertyKey = "lgf_FreePTSpecialTitlePropertyKey";
 
 @implementation UIView (LGFFreePT)
+
+@dynamic lgf_FreePTSpecialTitleProperty;
+
+- (NSString *)lgf_FreePTSpecialTitleProperty {
+    return objc_getAssociatedObject(self, &lgf_FreePTSpecialTitlePropertyKey);
+}
+
+- (void)setLgf_FreePTSpecialTitleProperty:(NSString *)lgf_FreePTSpecialTitleProperty {
+    objc_setAssociatedObject(self, &lgf_FreePTSpecialTitlePropertyKey, lgf_FreePTSpecialTitleProperty, OBJC_ASSOCIATION_COPY);
+}
 
 - (void)setLgfpt_X:(CGFloat)lgfpt_X {
     CGRect frame = self.frame;

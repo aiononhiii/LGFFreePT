@@ -64,8 +64,11 @@
     // 根据特殊 title 数组 和 特殊 title 的 tag 判断某个 index 是否要替换特殊 title
     if (style.lgf_FreePTSpecialTitleArray.count > 0) {
         for (UIView *specialTitle in style.lgf_FreePTSpecialTitleArray) {
-            if (index == specialTitle.tag) {
+            NSArray *propertyArray = [specialTitle.lgf_FreePTSpecialTitleProperty componentsSeparatedByString:@"/"];
+            NSInteger specialTitleIndex = [propertyArray.firstObject integerValue];
+            if (index == specialTitleIndex) {
                 [title.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                title.lgfpt_Width = [propertyArray.lastObject floatValue];
                 specialTitle.frame = title.bounds;
                 [title addSubview:specialTitle];
             }
