@@ -329,16 +329,11 @@
                 self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_X + xDistance * progress : (self.lgf_Style.lgf_TitleLeftRightSpace * self.lgf_Style.lgf_TitleBigScale + unSelectTitle.lgfpt_X + xDistance * progress);
                 self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_Width + (selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width) * progress : ((unSelectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_RightImageSpace + self.lgf_Style.lgf_LeftImageWidth + self.lgf_Style.lgf_RightImageWidth) * self.lgf_Style.lgf_TitleBigScale + wDistance * progress);
             } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-                
                 CGFloat space = (selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) * self.lgf_Style.lgf_TitleBigScale / 2;
-                
                 CGFloat xDistance = selectTitle.lgfpt_X - unSelectTitle.lgfpt_X - space;
                 CGFloat wDistance = (selectTitle.lgf_Title.lgfpt_Width - unSelectTitle.lgf_Title.lgfpt_Width) * self.lgf_Style.lgf_TitleBigScale;
-                
                 self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_X + xDistance * progress : (unSelectTitle.lgf_Title.lgfpt_X) * self.lgf_Style.lgf_TitleBigScale + unSelectTitle.lgfpt_X + xDistance * progress;
-                
                 self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_Width + (selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width) * progress : (unSelectTitle.lgf_Title.lgfpt_Width * self.lgf_Style.lgf_TitleBigScale) + wDistance * progress;
-                
             } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith) {
                 CGFloat select_title_x = selectTitle.lgfpt_X + ((selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0);
                 CGFloat un_select_title_x = unSelectTitle.lgfpt_X + ((unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0);
@@ -353,7 +348,6 @@
             CGFloat selectWidth = 0.0;
             CGFloat unSelectX = 0.0;
             CGFloat unSelectWidth = 0.0;
-            
             if (self.lgf_Style.lgf_TitleFixedWidth > 0.0) {
                 self.lgf_Style.lgf_LineWidthType = lgf_FixedWith;
                 self.lgf_Style.lgf_LineWidth = self.lgf_Style.lgf_LineWidth > 0.0 ? self.lgf_Style.lgf_LineWidth : self.lgf_Style.lgf_TitleFixedWidth;
@@ -379,9 +373,7 @@
                 unSelectX = unSelectTitle.lgfpt_X + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
                 unSelectWidth = self.lgf_Style.lgf_LineWidth;
             }
-            
             CGFloat space = self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR ? ((selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) / 2 - (unSelectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - unSelectTitle.lgf_TitleWidth.constant) / 2) : 0.0;
-            
             CGFloat scaleWidth = ((selectTitle.lgfpt_Width - selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX)) + ((unSelectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX));
             
             CGFloat differenceWidth = self.lgf_Style.lgf_LineWidthType == lgf_FixedWith ? (unSelectTitle.lgfpt_Width - selectTitle.lgfpt_Width) : 0.0;
