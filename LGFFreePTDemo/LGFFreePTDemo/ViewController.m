@@ -10,9 +10,10 @@
 #import "LGFFreePTStyleCenter.h"
 #import "ChildViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <LGFFreePTDelegate>
 @property (strong, nonatomic) LGFFreePTView *fptView;
 @property (weak, nonatomic) IBOutlet UIView *pageSuperView;
+@property (weak, nonatomic) IBOutlet UIView *pageSuperViewSuperView;
 @property (weak, nonatomic) IBOutlet UICollectionView *pageCollectionView;
 @property (strong, nonatomic) NSMutableArray *chlidVCs;
 @end
@@ -42,6 +43,12 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     } else {
         [self.fptView lgf_ReloadTitle];
     }
+    
+    [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        self.pageSuperViewSuperView.transform = CGAffineTransformMakeTranslation(0, 80);
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 #pragma mark - Collection View DataSource And Delegate
@@ -62,6 +69,14 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     [cell addSubview:vc.view];
     vc.view.backgroundColor = lgf_RandomColor;
     return cell;
+}
+
+#pragma mark - LGFFreePTView Delegate
+
+- (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex {
+    [self.view lgf_ShowMessage:[NSString stringWithFormat:@"第 %ld 页", (long)selectIndex] completion:^{
+        
+    }];
 }
 
 #pragma mark - 懒加载
@@ -114,8 +129,14 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
             style = [LGFFreePTStyleCenter thirteen];
         } else if ([self.type isEqualToString:@"line 占满-图片-毛毛虫"]) {
             style = [LGFFreePTStyleCenter fourteen];
+        } else if ([self.type isEqualToString:@"模拟系统 UISegmentedControl"]) {
+            self.pageSuperView.layer.borderWidth = 1.0;
+            style = [LGFFreePTStyleCenter fifteen];
+        } else if ([self.type isEqualToString:@"指定部分 index 添加特殊 title"]) {
+            style = [LGFFreePTStyleCenter sixteen];
         }
         _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:style SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
+        _fptView.lgf_FreePTDelegate = self;
     }
     return _fptView;
 }

@@ -32,6 +32,8 @@
         self.lgf_TitleBigScale = 1.0;
         self.lgf_MainTitleBigScale = 1.0;
         self.lgf_SubTitleBigScale = 1.0;
+        self.lgf_MainTitleUpDownScale = 0.0;
+        self.lgf_SubTitleUpDownScale = 0.0;
         self.lgf_TitleHaveAnimation = YES;
         self.lgf_TitleBackgroundColor = [UIColor clearColor];
         self.lgf_TitleBorderColor = [UIColor whiteColor];

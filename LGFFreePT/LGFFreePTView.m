@@ -49,7 +49,9 @@
     [SV layoutIfNeeded];
     self.lgf_Style = style;
     self.lgf_PageView = PV;
-    self.backgroundColor = SV.backgroundColor;
+    // 部分基础 UI 配置
+    self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV.backgroundColor;
+    
     if (@available(iOS 11.0, *)) {
         if (self.lgf_PageView) self.lgf_PageView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -205,27 +207,27 @@
     // 标颜色渐变
     if (self.lgf_Style.lgf_TitleSelectColor != self.lgf_Style.lgf_UnTitleSelectColor) {
         unSelectTitle.lgf_Title.textColor = [UIColor
-                                           colorWithRed:[self.lgf_SelectColorRGBA[0] floatValue] + [self.lgf_DeltaRGBA[0] floatValue] * progress
-                                           green:[self.lgf_SelectColorRGBA[1] floatValue] + [self.lgf_DeltaRGBA[1] floatValue] * progress
-                                           blue:[self.lgf_SelectColorRGBA[2] floatValue] + [self.lgf_DeltaRGBA[2] floatValue] * progress
-                                           alpha:[self.lgf_SelectColorRGBA[3] floatValue] + [self.lgf_DeltaRGBA[3] floatValue] * progress];
+                                             colorWithRed:[self.lgf_SelectColorRGBA[0] floatValue] + [self.lgf_DeltaRGBA[0] floatValue] * progress
+                                             green:[self.lgf_SelectColorRGBA[1] floatValue] + [self.lgf_DeltaRGBA[1] floatValue] * progress
+                                             blue:[self.lgf_SelectColorRGBA[2] floatValue] + [self.lgf_DeltaRGBA[2] floatValue] * progress
+                                             alpha:[self.lgf_SelectColorRGBA[3] floatValue] + [self.lgf_DeltaRGBA[3] floatValue] * progress];
         selectTitle.lgf_Title.textColor = [UIColor
-                                        colorWithRed:[self.lgf_UnSelectColorRGBA[0] floatValue] - [self.lgf_DeltaRGBA[0] floatValue] * progress
-                                        green:[self.lgf_UnSelectColorRGBA[1] floatValue] - [self.lgf_DeltaRGBA[1] floatValue] * progress
-                                        blue:[self.lgf_UnSelectColorRGBA[2] floatValue] - [self.lgf_DeltaRGBA[2] floatValue] * progress
-                                        alpha:[self.lgf_UnSelectColorRGBA[3] floatValue] - [self.lgf_DeltaRGBA[3] floatValue] * progress];
+                                           colorWithRed:[self.lgf_UnSelectColorRGBA[0] floatValue] - [self.lgf_DeltaRGBA[0] floatValue] * progress
+                                           green:[self.lgf_UnSelectColorRGBA[1] floatValue] - [self.lgf_DeltaRGBA[1] floatValue] * progress
+                                           blue:[self.lgf_UnSelectColorRGBA[2] floatValue] - [self.lgf_DeltaRGBA[2] floatValue] * progress
+                                           alpha:[self.lgf_UnSelectColorRGBA[3] floatValue] - [self.lgf_DeltaRGBA[3] floatValue] * progress];
     }
     if (self.lgf_Style.lgf_IsDoubleTitle && self.lgf_Style.lgf_SubTitleSelectColor != self.lgf_Style.lgf_UnSubTitleSelectColor) {
         unSelectTitle.lgf_SubTitle.textColor = [UIColor
-                                              colorWithRed:[self.lgf_SubSelectColorRGBA[0] floatValue] + [self.lgf_SubDeltaRGBA[0] floatValue] * progress
-                                              green:[self.lgf_SubSelectColorRGBA[1] floatValue] + [self.lgf_SubDeltaRGBA[1] floatValue] * progress
-                                              blue:[self.lgf_SubSelectColorRGBA[2] floatValue] + [self.lgf_SubDeltaRGBA[2] floatValue] * progress
-                                              alpha:[self.lgf_SubSelectColorRGBA[3] floatValue] + [self.lgf_SubDeltaRGBA[3] floatValue] * progress];
+                                                colorWithRed:[self.lgf_SubSelectColorRGBA[0] floatValue] + [self.lgf_SubDeltaRGBA[0] floatValue] * progress
+                                                green:[self.lgf_SubSelectColorRGBA[1] floatValue] + [self.lgf_SubDeltaRGBA[1] floatValue] * progress
+                                                blue:[self.lgf_SubSelectColorRGBA[2] floatValue] + [self.lgf_SubDeltaRGBA[2] floatValue] * progress
+                                                alpha:[self.lgf_SubSelectColorRGBA[3] floatValue] + [self.lgf_SubDeltaRGBA[3] floatValue] * progress];
         selectTitle.lgf_SubTitle.textColor = [UIColor
-                                           colorWithRed:[self.lgf_SubUnSelectColorRGBA[0] floatValue] - [self.lgf_SubDeltaRGBA[0] floatValue] * progress
-                                           green:[self.lgf_SubUnSelectColorRGBA[1] floatValue] - [self.lgf_SubDeltaRGBA[1] floatValue] * progress
-                                           blue:[self.lgf_SubUnSelectColorRGBA[2] floatValue] - [self.lgf_SubDeltaRGBA[2] floatValue] * progress
-                                           alpha:[self.lgf_SubUnSelectColorRGBA[3] floatValue] - [self.lgf_SubDeltaRGBA[3] floatValue] * progress];
+                                              colorWithRed:[self.lgf_SubUnSelectColorRGBA[0] floatValue] - [self.lgf_SubDeltaRGBA[0] floatValue] * progress
+                                              green:[self.lgf_SubUnSelectColorRGBA[1] floatValue] - [self.lgf_SubDeltaRGBA[1] floatValue] * progress
+                                              blue:[self.lgf_SubUnSelectColorRGBA[2] floatValue] - [self.lgf_SubDeltaRGBA[2] floatValue] * progress
+                                              alpha:[self.lgf_SubUnSelectColorRGBA[3] floatValue] - [self.lgf_SubDeltaRGBA[3] floatValue] * progress];
     }
     // 字体改变
     if (![self.lgf_Style.lgf_TitleSelectFont isEqual:self.lgf_Style.lgf_UnTitleSelectFont]) {
@@ -296,31 +298,40 @@
             }
         }
     }
+    
     // 标缩放大小改变
     CGFloat deltaScale = self.lgf_Style.lgf_TitleBigScale - 1.0;
     unSelectTitle.lgf_CurrentTransformSX = self.lgf_Style.lgf_TitleBigScale - deltaScale * progress;
     selectTitle.lgf_CurrentTransformSX = 1.0 + deltaScale * progress;
     
-    CGFloat mainTitleDeltaScale = self.lgf_Style.lgf_MainTitleBigScale - 1.0;
-    unSelectTitle.lgf_MainTitleCurrentTransformSX = self.lgf_Style.lgf_MainTitleBigScale - mainTitleDeltaScale * progress;
-    selectTitle.lgf_MainTitleCurrentTransformSX = 1.0 + mainTitleDeltaScale * progress;
+    if (self.lgf_Style.lgf_MainTitleBigScale != 1.0) {
+        CGFloat mainTitleDeltaScale = self.lgf_Style.lgf_MainTitleBigScale - 1.0;
+        unSelectTitle.lgf_MainTitleCurrentTransformSX = self.lgf_Style.lgf_MainTitleBigScale - mainTitleDeltaScale * progress;
+        selectTitle.lgf_MainTitleCurrentTransformSX = 1.0 + mainTitleDeltaScale * progress;
+    }
     
-    CGFloat subTitleDeltaScale = self.lgf_Style.lgf_SubTitleBigScale - 1.0;
-    unSelectTitle.lgf_SubTitleCurrentTransformSX = self.lgf_Style.lgf_SubTitleBigScale - subTitleDeltaScale * progress;
-    selectTitle.lgf_SubTitleCurrentTransformSX = 1.0 + subTitleDeltaScale * progress;
+    if (self.lgf_Style.lgf_SubTitleBigScale != 1.0) {
+        CGFloat subTitleDeltaScale = self.lgf_Style.lgf_SubTitleBigScale - 1.0;
+        unSelectTitle.lgf_SubTitleCurrentTransformSX = self.lgf_Style.lgf_SubTitleBigScale - subTitleDeltaScale * progress;
+        selectTitle.lgf_SubTitleCurrentTransformSX = 1.0 + subTitleDeltaScale * progress;
+    }
     
-    unSelectTitle.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleUpDownScale - self.lgf_Style.lgf_MainTitleUpDownScale * progress;
-    selectTitle.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleUpDownScale * progress;
+    if (self.lgf_Style.lgf_MainTitleUpDownScale != 0.0) {
+        unSelectTitle.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleUpDownScale - self.lgf_Style.lgf_MainTitleUpDownScale * progress;
+        selectTitle.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleUpDownScale * progress;
+    }
     
-    unSelectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale - self.lgf_Style.lgf_SubTitleUpDownScale * progress;
-    selectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale * progress;
+    if (self.lgf_Style.lgf_SubTitleUpDownScale != 0.0) {
+        unSelectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale - self.lgf_Style.lgf_SubTitleUpDownScale * progress;
+        selectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale * progress;
+    }
     
     // 标底部滚动条 更新位置
     if (self.lgf_TitleLine && self.lgf_Style.lgf_IsShowLine) {
         if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationDefult) {
             if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
                 CGFloat xDistance = selectTitle.lgfpt_X - unSelectTitle.lgfpt_X;
-                CGFloat wDistance = (selectTitle.lgf_Title.lgfpt_Width - unSelectTitle.lgf_Title.lgfpt_Width) * self.lgf_Style.lgf_TitleBigScale;
+                CGFloat wDistance = selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width;
                 self.lgf_TitleLine.lgfpt_X = unSelectTitle.lgfpt_X + xDistance * progress;
                 self.lgf_TitleLine.lgfpt_Width = unSelectTitle.lgfpt_Width + wDistance * progress;
             } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
@@ -424,7 +435,6 @@
         unSelectTitle.lgf_SubTitleCurrentTransformTY = 0.0;
         selectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale;
         
-
         // 标颜色渐变
         unSelectTitle.lgf_Title.textColor = self.lgf_Style.lgf_UnTitleSelectColor;
         selectTitle.lgf_Title.textColor = self.lgf_Style.lgf_TitleSelectColor;

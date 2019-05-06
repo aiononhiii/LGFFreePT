@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="specialTitle">
+            <rect key="frame" x="0.0" y="0.0" width="111" height="61"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完美假期" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9i-mO-crA">
+                    <rect key="frame" x="10" y="6" width="91" height="24.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                    <color key="textColor" red="1" green="0.6588235294" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特殊" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7a-lC-FWT">
+                    <rect key="frame" x="10" y="33.5" width="43.5" height="21.5"/>
+                    <color key="backgroundColor" red="0.1647058824" green="0.38431372549999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
+                            <real key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标签" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sp-w8-Rxl">
+                    <rect key="frame" x="57.5" y="33.5" width="43.5" height="21.5"/>
+                    <color key="backgroundColor" red="0.1647058824" green="0.38431372549999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
+                            <real key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="X7a-lC-FWT" firstAttribute="top" secondItem="M9i-mO-crA" secondAttribute="bottom" constant="3" id="0yN-Xj-x5y"/>
+                <constraint firstItem="X7a-lC-FWT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="7gP-ot-DrQ"/>
+                <constraint firstItem="0Sp-w8-Rxl" firstAttribute="top" secondItem="M9i-mO-crA" secondAttribute="bottom" constant="3" id="Ds3-HY-vgt"/>
+                <constraint firstItem="0Sp-w8-Rxl" firstAttribute="width" secondItem="X7a-lC-FWT" secondAttribute="width" id="GeX-4w-99p"/>
+                <constraint firstAttribute="bottom" secondItem="0Sp-w8-Rxl" secondAttribute="bottom" constant="6" id="Iot-6w-INq"/>
+                <constraint firstItem="X7a-lC-FWT" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" constant="-12" id="JLe-n5-MHI"/>
+                <constraint firstItem="M9i-mO-crA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="Joj-Lm-4ol"/>
+                <constraint firstAttribute="bottom" secondItem="X7a-lC-FWT" secondAttribute="bottom" constant="6" id="Nyw-Vr-q8A"/>
+                <constraint firstItem="M9i-mO-crA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Uaq-AO-gYQ"/>
+                <constraint firstAttribute="trailing" secondItem="M9i-mO-crA" secondAttribute="trailing" constant="10" id="VfB-px-Yh4"/>
+                <constraint firstItem="M9i-mO-crA" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.4" id="cJz-wG-VQs"/>
+                <constraint firstAttribute="trailing" secondItem="0Sp-w8-Rxl" secondAttribute="trailing" constant="10" id="hrP-c9-zn6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-13.6" y="183.05847076461771"/>
+        </view>
+    </objects>
+</document>

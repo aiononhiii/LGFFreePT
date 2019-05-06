@@ -7,6 +7,8 @@
 //
 
 #import "LGFFreePTStyleCenter.h"
+#import "specialTitle.h"
+#import "specialImageTitle.h"
 
 @implementation LGFFreePTStyleCenter
 
@@ -56,7 +58,7 @@
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;// 毛毛虫效果
+    style.lgf_LineAnimation = lgf_PageLineAnimationDefult;// 毛毛虫效果
     return style;
 }
 
@@ -237,17 +239,13 @@
 
 + (LGFFreePTStyle *)twelve {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
-    style.lgf_LineWidthType = lgf_FixedWith;
-    style.lgf_LineWidth = 10.0;
-    style.lgf_TitleLeftRightSpace = 25.0;
-    style.lgf_PageLeftRightSpace = 20.0;
+    style.lgf_IsShowLine = NO;
+    style.lgf_TitleLeftRightSpace = 15.0;
+    style.lgf_PageLeftRightSpace = 15.0;
     style.lgf_TitleCornerRadius = 1.0;
-    style.lgf_LineHeight = 4.0;
-    style.lgf_LineBottom = 1.0;
-    style.lgf_LineCornerRadius = 2.0;
     style.lgf_MainTitleBigScale = 1.8;
     style.lgf_SubTitleBigScale = 0.0;
-    style.lgf_MainTitleUpDownScale = 2.0;
+    style.lgf_MainTitleUpDownScale = 4.0;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_LineColor = LGFPTHexColor(@"333333");
@@ -297,4 +295,50 @@
     style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;
     return style;
 }
+
++ (LGFFreePTStyle *)fifteen {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_LineWidthType = lgf_FixedWith;
+    style.lgf_TitleFixedWidth = (lgf_ScreenWidth - 40) / 4;
+    style.lgf_LineWidth = style.lgf_TitleFixedWidth;
+    style.lgf_LineHeight = 44.0;
+    style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
+    style.lgf_TitleBorderColor = LGFPTHexColor(@"FFFFFF");
+    style.lgf_TitleBorderWidth = 0.5;
+    style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"8656E3");
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:14];
+    style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"8656E3");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"F0F0F0");
+    style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
+    style.lgf_TitleHaveAnimation = NO;
+    return style;
+}
+
++ (LGFFreePTStyle *)sixteen {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    specialTitle * sviewOne = [specialTitle lgf];
+    sviewOne.tag = 2;
+    specialImageTitle * sviewTwo = [specialImageTitle lgf];
+    sviewTwo.tag = 5;
+    style.lgf_FreePTSpecialTitleArray = @[sviewOne, sviewTwo];
+    style.lgf_LineWidthType = lgf_FixedWith;
+    style.lgf_LineWidth = 10.0;
+    style.lgf_TitleLeftRightSpace = 20.0;
+    style.lgf_PageLeftRightSpace = 15.0;
+    style.lgf_LineHeight = 10.0;
+    style.lgf_LineBottom = -5;
+    style.lgf_LineCornerRadius = 5.0;
+    style.lgf_TitleBigScale = 1.1;
+    style.lgf_LineColor = LGFPTHexColor(@"FF2A52");
+    style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"FFFFFF");
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:16];
+    style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:16];
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"8656E3");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"F0F0F0");
+    style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
+    return style;
+}
+
 @end

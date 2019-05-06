@@ -13,6 +13,7 @@
 @implementation LGFFreePTTitle
 
 + (instancetype)lgf_AllocTitle:(NSString *)titleText index:(NSInteger)index style:(LGFFreePTStyle *)style {
+    
     // 初始化标
     LGFFreePTTitle *title = [LGFPTBundle loadNibNamed:NSStringFromClass([LGFFreePTTitle class]) owner:self options:nil].firstObject;
     title.tag = index;
@@ -59,6 +60,17 @@
                              title.lgf_Style.lgf_PVTitleView.lgfpt_Height);
     
     [title.lgf_Style.lgf_PVTitleView addSubview:title];
+    
+    // 根据特殊 title 数组 和 特殊 title 的 tag 判断某个 index 是否要替换特殊 title
+    if (style.lgf_FreePTSpecialTitleArray.count > 0) {
+        for (UIView *specialTitle in style.lgf_FreePTSpecialTitleArray) {
+            if (index == specialTitle.tag) {
+                [title.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                specialTitle.frame = title.bounds;
+                [title addSubview:specialTitle];
+            }
+        }
+    }
     return title;
 }
 
@@ -71,6 +83,7 @@
     self.lgf_Title.textColor = lgf_Style.lgf_UnTitleSelectColor;
     self.lgf_Title.font = lgf_Style.lgf_UnTitleSelectFont;
     self.lgf_Title.textAlignment = NSTextAlignmentCenter;
+    self.backgroundColor = lgf_Style.lgf_TitleBackgroundColor;
     
     // 副标 Label 配置
     if (lgf_Style.lgf_IsDoubleTitle) {

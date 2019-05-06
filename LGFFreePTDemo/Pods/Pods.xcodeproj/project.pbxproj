@@ -480,7 +480,7 @@
 		37DA8D59584D8A3389CB1E9F2C9461F3 /* SDWebImageCompat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCompat.h; path = SDWebImage/SDWebImageCompat.h; sourceTree = "<group>"; };
 		38049B24B343742B19AACF3D68728AB9 /* LGFWaterLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGFWaterLayout.m; path = LGFOCTool/LGFView/LGFWaterLayout/LGFWaterLayout.m; sourceTree = "<group>"; };
 		3864CE49249EEB3684FC840224767E19 /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
-		386635F27067E62946E7E174F8878741 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSDWebImage.a; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		386635F27067E62946E7E174F8878741 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F649590A77D9DBBC6DD5590C7690D2 /* NSNotificationCenter+OnMainThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+OnMainThread.h"; path = "LGFOCTool/NSNotificationCenter+LGFCategory/NSNotificationCenter+OnMainThread.h"; sourceTree = "<group>"; };
 		39349C7EF3C0F79F5CC012A600C86306 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+AFNetworking.h"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		39C070A58C7A42DAD0C763B87CA946EA /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
@@ -513,7 +513,7 @@
 		48BAAAF6BB966791D6CEFC7321F94D80 /* SDAnimatedImageRep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageRep.h; path = SDWebImage/SDAnimatedImageRep.h; sourceTree = "<group>"; };
 		48C72D3FD566D30F956F303B5AA2F948 /* UIGestureRecognizer+LGFBlockGestureRecognizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+LGFBlockGestureRecognizer.m"; path = "LGFOCTool/UIGestureRecognizer+LGFCategory/UIGestureRecognizer+LGFBlockGestureRecognizer.m"; sourceTree = "<group>"; };
 		496E577B0787C1B04CA767AB62CE6898 /* NSString+LGFPinyin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+LGFPinyin.m"; path = "LGFOCTool/NSString+LGFCategory/NSString+LGFPinyin.m"; sourceTree = "<group>"; };
-		49A8563D12D8F937C004498E0A25D819 /* libLGFOCTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLGFOCTool.a; path = libLGFOCTool.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A8563D12D8F937C004498E0A25D819 /* libLGFOCTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLGFOCTool.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A354B393FE05EAC00A87C8A71F6ABD6 /* NSButton+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSButton+WebCache.h"; path = "SDWebImage/NSButton+WebCache.h"; sourceTree = "<group>"; };
 		4B88A04C2BF3034315CC887CF407BB95 /* UIView+LGFTopBarMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+LGFTopBarMessage.h"; path = "LGFOCTool/UIView+LGFCategory/UIView+LGFTopBarMessage.h"; sourceTree = "<group>"; };
 		4C9C569A2B8FE0FF097CDAA92F48D073 /* UIWebView+LGFClearCookies.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+LGFClearCookies.h"; path = "LGFOCTool/UIWebView+LGFCategory/UIWebView+LGFClearCookies.h"; sourceTree = "<group>"; };
@@ -592,7 +592,7 @@
 		7D4DF6E2AF72DB1D0547BA92CAF19BCF /* UIView+LGFExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+LGFExtension.h"; path = "LGFOCTool/UIView+LGFCategory/UIView+LGFExtension.h"; sourceTree = "<group>"; };
 		7D82D7DB4ECF81DA78E4D8FDDD40729D /* FLAnimatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLAnimatedImage.m; path = FLAnimatedImage/FLAnimatedImage.m; sourceTree = "<group>"; };
 		7DF73DAED71F12BFF4725E72D940AD7B /* UIView+LGFToast.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LGFToast.m"; path = "LGFOCTool/UIView+LGFCategory/UIView+LGFToast.m"; sourceTree = "<group>"; };
-		7E374A9ED506F9DC1DE2AE186263CDB5 /* libFLAnimatedImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFLAnimatedImage.a; path = libFLAnimatedImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E374A9ED506F9DC1DE2AE186263CDB5 /* libFLAnimatedImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFLAnimatedImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EBE72E65A533E24C1F267DEC29613B3 /* SDWebImageTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageTransition.m; path = SDWebImage/SDWebImageTransition.m; sourceTree = "<group>"; };
 		7F0AD61DB1EEC50868D28EF1DC56BF07 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
 		7F7F474F7A822A0C7BB0C90EDC574E82 /* LGFNetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGFNetwork.h; path = LGFOCTool/LGFNetworking/LGFNetwork.h; sourceTree = "<group>"; };
@@ -601,7 +601,7 @@
 		843CF9C279D7A983DCF8CCF7EE779982 /* NSObject+LGFRuntime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+LGFRuntime.m"; path = "LGFOCTool/NSObject+LGFCategory/NSObject+LGFRuntime.m"; sourceTree = "<group>"; };
 		863DDB1B2FEA7EC5C2FAF42FA1ADD6CB /* UIApplication+LGFApplication.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+LGFApplication.h"; path = "LGFOCTool/UIApplication+LGFCategory/UIApplication+LGFApplication.h"; sourceTree = "<group>"; };
 		865064BE48332263A7A5B301D5C9030E /* NSMutableArray+LGFMutableArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+LGFMutableArray.h"; path = "LGFOCTool/NSArray+LGFCategory/NSMutableArray+LGFMutableArray.h"; sourceTree = "<group>"; };
-		86D71C591024B2427EE0D3718E16DB67 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMJRefresh.a; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		86D71C591024B2427EE0D3718E16DB67 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CBFA758BA679E0872701FAB48D3630 /* SDWebImageCodersManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCodersManager.h; path = SDWebImage/SDWebImageCodersManager.h; sourceTree = "<group>"; };
 		894BBC36E1386979EC8EA237E06FCB48 /* Pods-LGFFreePTDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LGFFreePTDemo-dummy.m"; sourceTree = "<group>"; };
 		89E50B607AA8EFFEBE2AC3A2C61BE0A9 /* UIView+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+MJExtension.m"; path = "MJRefresh/UIView+MJExtension.m"; sourceTree = "<group>"; };
@@ -620,7 +620,7 @@
 		9CB7E7CAA2B80CA27E28AE8A5B90A108 /* LGFImageCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGFImageCell.m; path = LGFOCTool/LGFView/LGFImageCell/LGFImageCell.m; sourceTree = "<group>"; };
 		9D35BF970A5B534E4E441A88584DA788 /* LGFFPSLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGFFPSLabel.h; path = LGFOCTool/LGFView/LGFFPSLabel/LGFFPSLabel.h; sourceTree = "<group>"; };
 		9D45E2D40D71EC5C4655D99F21FF4021 /* UIDevice+LGFDevice.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+LGFDevice.m"; path = "LGFOCTool/UIDevice+LGFCategory/UIDevice+LGFDevice.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9EB5E03FCA5220D82E3460E356C29409 /* LGFImageCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGFImageCell.h; path = LGFOCTool/LGFView/LGFImageCell/LGFImageCell.h; sourceTree = "<group>"; };
 		A105EC7E055B9DA4C27D39D17E170AE0 /* MJRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-prefix.pch"; sourceTree = "<group>"; };
 		A10CAA012FBAAE730AE62BD04FF32EDF /* UIBezierPath+LGFBezierPath.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBezierPath+LGFBezierPath.m"; path = "LGFOCTool/UIBezierPath+LGFCategory/UIBezierPath+LGFBezierPath.m"; sourceTree = "<group>"; };
@@ -634,7 +634,7 @@
 		A986C85348EC6F956D6F04F5851C8CB5 /* LGFAlertView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = LGFAlertView.xib; path = LGFOCTool/LGFView/LGFAlertView/LGFAlertView.xib; sourceTree = "<group>"; };
 		AA25C17B224FA64C81204CD6C39D2DC2 /* UIGestureRecognizer+LGFBlockGestureRecognizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIGestureRecognizer+LGFBlockGestureRecognizer.h"; path = "LGFOCTool/UIGestureRecognizer+LGFCategory/UIGestureRecognizer+LGFBlockGestureRecognizer.h"; sourceTree = "<group>"; };
 		AD061427A11CBBD6799ED15B8DFE4F7F /* NSMutableDictionary+LGFMutableDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+LGFMutableDictionary.h"; path = "LGFOCTool/NSDictionary+LGFCategory/NSMutableDictionary+LGFMutableDictionary.h"; sourceTree = "<group>"; };
-		AD31308EECE017575B35DC5A7E9F9FCB /* LGFOCTool.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LGFOCTool.bundle; path = "LGFOCTool-LGFOCTool.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD31308EECE017575B35DC5A7E9F9FCB /* LGFOCTool.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGFOCTool.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA74D47A9AEEFC15146ABE656F21FFD /* Pods-LGFFreePTDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LGFFreePTDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		AE9170F02FD0D2712F4C9C52645A9145 /* UIButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+WebCache.m"; path = "SDWebImage/UIButton+WebCache.m"; sourceTree = "<group>"; };
 		AE9CBBC8A57673E2A57BE653DE279821 /* NSArray+LGFToJSONString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+LGFToJSONString.m"; path = "LGFOCTool/NSArray+LGFCategory/NSArray+LGFToJSONString.m"; sourceTree = "<group>"; };
@@ -654,7 +654,7 @@
 		B93412A9D16AA15CCA8646FDD26478E3 /* NSObject+LGFKVOBlocks.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+LGFKVOBlocks.h"; path = "LGFOCTool/NSObject+LGFCategory/NSObject+LGFKVOBlocks.h"; sourceTree = "<group>"; };
 		B9B89AA184214C3E441EC2CC9073ADCE /* NSDate+LGFDate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+LGFDate.h"; path = "LGFOCTool/NSDate+LGFCategory/NSDate+LGFDate.h"; sourceTree = "<group>"; };
 		BA5D600613153A43D172B73F2FA59A5E /* MJRefreshConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshConst.h; path = MJRefresh/MJRefreshConst.h; sourceTree = "<group>"; };
-		BA7CE340AEDABBB49A39FFEC779128C4 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAFNetworking.a; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7CE340AEDABBB49A39FFEC779128C4 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD77EFC340BC6DC8066C84666871ACD6 /* UIViewController+LGFVCLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+LGFVCLog.m"; path = "LGFOCTool/UIViewController+LGFCategory/UIViewController+LGFVCLog.m"; sourceTree = "<group>"; };
 		BDFE06441740E45DE2C76391E17D111D /* LGFImageAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGFImageAlertView.h; path = LGFOCTool/LGFView/LGFAlertView/LGFImageAlertView.h; sourceTree = "<group>"; };
 		C0B1BAFC2CAFD5AB5AD81B35F549B5B2 /* NSString+LGFString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+LGFString.m"; path = "LGFOCTool/NSString+LGFCategory/NSString+LGFString.m"; sourceTree = "<group>"; };
@@ -689,7 +689,7 @@
 		DAC9076FC8759E0DC7E97E67EC31141F /* UIImage+ForceDecode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ForceDecode.h"; path = "SDWebImage/UIImage+ForceDecode.h"; sourceTree = "<group>"; };
 		DB869106B5572D471900223356CE8753 /* SDWebImageCoderHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoderHelper.m; path = SDWebImage/SDWebImageCoderHelper.m; sourceTree = "<group>"; };
 		DB9776C34082C63111A369EB485D0378 /* NSData+LGFHash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+LGFHash.m"; path = "LGFOCTool/NSData+LGFCategory/NSData+LGFHash.m"; sourceTree = "<group>"; };
-		DBBDDE96B3F11A8425A783BBA0EED5AB /* libPods-LGFFreePTDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-LGFFreePTDemo.a"; path = "libPods-LGFFreePTDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBBDDE96B3F11A8425A783BBA0EED5AB /* libPods-LGFFreePTDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGFFreePTDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC27858922B4CA66EF0FB621EEB065C7 /* LGFLightTextLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGFLightTextLabel.h; path = LGFOCTool/LGFView/LGFLightTextLabel/LGFLightTextLabel.h; sourceTree = "<group>"; };
 		DD9035BB217439E45538B36F4E3D0A87 /* LGFOCTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LGFOCTool.xcconfig; sourceTree = "<group>"; };
 		DEE0CAA7884A6B7B095808E969D11DF5 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+WebCache.m"; path = "SDWebImage/UIImageView+WebCache.m"; sourceTree = "<group>"; };
@@ -857,7 +857,6 @@
 				2796B9B47F89215006570FBA383E9F6D /* Resources */,
 				C3E0D459DABBB47EA58DC45E904089D2 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -881,7 +880,6 @@
 				6A8F8B80E54463FC38369D4A41175BBC /* FLAnimatedImageView.m */,
 				537A8EA8E6A82D76F784BBCA8C9C6A1E /* Support Files */,
 			);
-			name = FLAnimatedImage;
 			path = FLAnimatedImage;
 			sourceTree = "<group>";
 		};
@@ -1064,7 +1062,6 @@
 				5E0AA68C835B8AE94C091D62523583CA /* Core */,
 				187A0208234CC33D3CE411B2F6773390 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -1107,7 +1104,6 @@
 				05B9428ACE72F82E9B59DF8DA567AD02 /* Support Files */,
 				3605C338B1DFB67E8AAAA97091AF10E3 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -1313,7 +1309,6 @@
 				28608F067CDC799554EE579DE9DDF5FD /* Resources */,
 				5F2E5F7B5C9C435FFEFD09C2091C58E9 /* Support Files */,
 			);
-			name = LGFOCTool;
 			path = LGFOCTool;
 			sourceTree = "<group>";
 		};
@@ -1687,7 +1682,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1010;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -2009,7 +2004,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MJRefresh/MJRefresh-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2033,7 +2028,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2120,7 +2115,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2144,7 +2139,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2191,7 +2186,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2336,7 +2331,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MJRefresh/MJRefresh-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2375,7 +2370,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2398,7 +2393,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";

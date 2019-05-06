@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, lgf_FreePageLineAnimationType) {
 };
 
 typedef NS_ENUM(NSUInteger, lgf_FreeTitleScrollFollowType) {
-    lgf_TitleScrollFollowDefult,// 在可滚动的情况下, 选中标默认滚动到 page_title_view 中间
+    lgf_TitleScrollFollowDefult,// 在可滚动的情况下, 选中标默认滚动到 lgf_PVTitleView 中间
     // 后续推出下面的 仿腾讯新闻, 天天快报选中标滚动效果 现暂时不可用 请勿设置
     lgf_TitleScrollFollowLeftRight,// 向左滚动选中标永远出现在最右边可见位置, 反之向右滚动选中标永远出现在最左边可见位置（此效果不会像上面的效果那样滚到中间）
 };
@@ -58,17 +58,19 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 标数组
 @property (copy, nonatomic) NSArray *lgf_Titles;
 
-//------------------- 主page_title_view
+//------------------- 主 lgf_PVTitleView
+// lgf_PVTitleView
 @property (weak, nonatomic) UIScrollView *lgf_PVTitleView;
-
-//------------------- 主page_title_view在父控件上的frame 默认等于父控件
+// lgf_PVTitleView 父视图背景色
+@property (strong, nonatomic) UIColor *lgf_PVTitleViewBackgroundColor;
+// 主 lgf_PVTitleView 在父控件上的frame 默认等于父控件
 @property (assign, nonatomic) CGRect lgf_PVTitleViewFrame;
 
 //------------------- 分页控件是否带分页动画
 @property (assign, nonatomic) lgf_FreePageViewAnimationType lgf_PVAnimationType;
 
 //------------------- 整体序列设置
-// 当所有标总宽度加起来小于 page_title_view 宽度时 是否居中显示 默认 NO - 不居中(从左边开始显示)
+// 当所有标总宽度加起来小于 lgf_PVTitleView 宽度时 是否居中显示 默认 NO - 不居中(从左边开始显示)
 @property (assign, nonatomic) BOOL lgf_IsTitleCenter;
 // 选中标滚动类型 默认 LGFTitleScrollFollowDefult
 @property (assign, nonatomic) lgf_FreeTitleScrollFollowType lgf_TitleScrollFollowType;
@@ -79,11 +81,11 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 支持副标题
 @property (assign, nonatomic) BOOL lgf_IsDoubleTitle;
 // 标固定宽度 默认等于 0.0 如果此属性大于 0.0 那么标宽度将为固定值
-// 如果设置此项（title_fixed_width） LGFTitleLineWidthType 将只支持 FixedWith 固定底部线宽度
+// 如果设置此项（lgf_TitleFixedWidth） LGFTitleLineWidthType 将只支持 FixedWith 固定底部线宽度
 @property (assign, nonatomic) CGFloat lgf_TitleFixedWidth;
-// 选中标 字体颜色 默认 blackColor 黑色 (对应lgf_TitleUnSelectColor两个颜色一样则取消渐变效果)
+// 选中标 字体颜色 默认 blackColor 黑色 (对应 lgf_TitleUnSelectColor 两个颜色一样则取消渐变效果)
 @property (strong, nonatomic) UIColor *lgf_TitleSelectColor;
-// 未选中标 字体颜色 默认 lightGrayColor 淡灰色 (对应lgf_TitleSelectColor两个颜色一样则取消渐变效果)
+// 未选中标 字体颜色 默认 lightGrayColor 淡灰色 (对应 lgf_TitleSelectColor 两个颜色一样则取消渐变效果)
 @property (strong, nonatomic) UIColor *lgf_UnTitleSelectColor;
 // 标 选中字体 默认 [UIFont systemFontOfSize:14]
 @property (strong, nonatomic) UIFont *lgf_TitleSelectFont;
@@ -118,10 +120,14 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 标圆角
 @property (assign, nonatomic) CGFloat lgf_TitleCornerRadius;
 
+//------------------- 特殊标设置
+// 要替换的特殊标数组（数组中元素 view 的 tag 即为要替换 title 的 index）（设置此项将不支持 lgf_LineWidthType 的 lgf_EqualTitleSTR 和 lgf_EqualTitleSTRAndImage）（记住这只是替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
+@property (nonatomic, copy) NSArray <UIView *> *lgf_FreePTSpecialTitleArray;
+
 //------------------- 标图片设置
 // 图片Bundle 如果图片不在本控件bundel里请设置
 @property (strong, nonatomic) NSBundle *lgf_TitleImageBundel;
-// title_images 和 same_title_image 设置一个就行 如果都设置了默认取 same_title_image
+// lgf_SelectImageNames 和 lgf_SameSelectImageName 设置一个就行 如果都设置了默认取 lgf_SameSelectImageName
 // 设置不同图标数组（必须和titles数组count保持一致,如果某一个标不想设置图标名字传空即可）
 // 选中图标数组和未选中图标数组如果只传了其中一个,将没有选中效果
 @property (strong, nonatomic) NSMutableArray *lgf_SelectImageNames;
