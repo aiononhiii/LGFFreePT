@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LGFImageTitleCell">
+            <rect key="frame" x="0.0" y="0.0" width="69" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="69" height="88"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ycR-S0-KQM">
+                        <rect key="frame" x="12.5" y="16" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="B3b-CW-7A7"/>
+                            <constraint firstAttribute="width" secondItem="ycR-S0-KQM" secondAttribute="height" multiplier="1:1" id="wvT-GD-DCO"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
+                                <real key="value" value="22.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9p-8n-mAo">
+                        <rect key="frame" x="5" y="65" width="59" height="9"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="9" id="evu-LE-FIi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                        <color key="textColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ycR-S0-KQM" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-6" id="AbY-Ce-VuX"/>
+                <constraint firstItem="ycR-S0-KQM" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ECK-TD-JMW"/>
+                <constraint firstItem="S9p-8n-mAo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="hO7-tm-lbL"/>
+                <constraint firstAttribute="trailing" secondItem="S9p-8n-mAo" secondAttribute="trailing" constant="5" id="wpk-sb-RKT"/>
+                <constraint firstItem="S9p-8n-mAo" firstAttribute="top" secondItem="ycR-S0-KQM" secondAttribute="bottom" constant="5" id="xAT-Eu-SEe"/>
+                <constraint firstItem="S9p-8n-mAo" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="yEM-Gw-amT"/>
+            </constraints>
+            <size key="customSize" width="69" height="88"/>
+            <connections>
+                <outlet property="lgf_Image" destination="ycR-S0-KQM" id="vbj-Xi-YDI"/>
+                <outlet property="lgf_ImageWidth" destination="B3b-CW-7A7" id="SHc-m9-aEa"/>
+                <outlet property="lgf_Title" destination="S9p-8n-mAo" id="edP-8q-hah"/>
+            </connections>
+            <point key="canvasLocation" x="152.80000000000001" y="92.653673163418304"/>
+        </collectionViewCell>
+    </objects>
+</document>

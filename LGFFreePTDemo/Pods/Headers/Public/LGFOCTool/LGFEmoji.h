@@ -1,0 +1,1 @@
+../../../LGFOCTool/LGFOCTool/LGFView/LGFEmoji/LGFEmoji.h

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LGFImageCell" id="gTV-IL-0wX" customClass="LGFImageCell">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CT2-oT-6uc">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="CT2-oT-6uc" secondAttribute="trailing" id="Jkk-DA-1R1"/>
+                <constraint firstItem="CT2-oT-6uc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="WIW-Qk-Tyh"/>
+                <constraint firstItem="CT2-oT-6uc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XST-rp-yPi"/>
+                <constraint firstAttribute="bottom" secondItem="CT2-oT-6uc" secondAttribute="bottom" id="js4-ZS-cqL"/>
+            </constraints>
+            <connections>
+                <outlet property="lgf_Image" destination="CT2-oT-6uc" id="mTy-Pc-nSI"/>
+                <outlet property="lgf_ImageBottom" destination="js4-ZS-cqL" id="GOA-pG-oL2"/>
+                <outlet property="lgf_ImageLeft" destination="XST-rp-yPi" id="gMe-1G-eHA"/>
+                <outlet property="lgf_ImageRight" destination="Jkk-DA-1R1" id="rEE-U2-OXo"/>
+                <outlet property="lgf_ImageTop" destination="WIW-Qk-Tyh" id="CFF-3t-jhH"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -1,0 +1,48 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
+  - LGFOCTool (1.5.4):
+    - AFNetworking
+    - FLAnimatedImage (~> 1.0)
+    - MJRefresh
+    - SDWebImage (= 4.4.1)
+  - MJRefresh (3.1.16)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
+
+DEPENDENCIES:
+  - LGFOCTool
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - FLAnimatedImage
+    - LGFOCTool
+    - MJRefresh
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  LGFOCTool: 188dea3aef3eb71af42c6d223f0aad89d644b4fd
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
+
+PODFILE CHECKSUM: 72d87f751452c28aec8b3153c0fb4f0bd194f93a
+
+COCOAPODS: 1.7.0.beta.3

@@ -1,0 +1,1 @@
+../../../LGFOCTool/LGFOCTool/NSString+LGFCategory/NSString+LGFString.h

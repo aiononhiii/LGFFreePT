@@ -1,0 +1,769 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18193C0C2276E1ED003108FB /* MainViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18193C0B2276E1ED003108FB /* MainViewControllerCell.m */; };
+		18193C0E2276EAF6003108FB /* tupian.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C0D2276EAF5003108FB /* tupian.png */; };
+		18193C102276EB72003108FB /* tupian_un.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C0F2276EB72003108FB /* tupian_un.png */; };
+		18193C23227FC72D003108FB /* line_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C22227FC72D003108FB /* line_image.png */; };
+		18193C25227FCC23003108FB /* line_maomaochong.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C24227FCC23003108FB /* line_maomaochong.png */; };
+		18458F7322756AF8001F1CCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458F7222756AF8001F1CCC /* AppDelegate.m */; };
+		18458F7622756AF8001F1CCC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458F7522756AF8001F1CCC /* ViewController.m */; };
+		18458F7922756AF8001F1CCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18458F7722756AF8001F1CCC /* Main.storyboard */; };
+		18458F7B22756AF9001F1CCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18458F7A22756AF9001F1CCC /* Assets.xcassets */; };
+		18458F7E22756AF9001F1CCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18458F7C22756AF9001F1CCC /* LaunchScreen.storyboard */; };
+		18458F8122756AF9001F1CCC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458F8022756AF9001F1CCC /* main.m */; };
+		18458F8B22756AF9001F1CCC /* LGFFreePTDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458F8A22756AF9001F1CCC /* LGFFreePTDemoTests.m */; };
+		18458F9622756AF9001F1CCC /* LGFFreePTDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458F9522756AF9001F1CCC /* LGFFreePTDemoUITests.m */; };
+		18458FB622756B95001F1CCC /* LGFFreePTFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FA422756B95001F1CCC /* LGFFreePTFlowLayout.m */; };
+		18458FB722756B95001F1CCC /* UIView+LGFFreePT.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FA722756B95001F1CCC /* UIView+LGFFreePT.m */; };
+		18458FB822756B95001F1CCC /* LGFFreePTTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18458FA822756B95001F1CCC /* LGFFreePTTitle.xib */; };
+		18458FB922756B95001F1CCC /* LGFFreePTTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FAA22756B95001F1CCC /* LGFFreePTTitle.m */; };
+		18458FBA22756B95001F1CCC /* LGFFreePTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FAB22756B95001F1CCC /* LGFFreePTStyle.m */; };
+		18458FBB22756B95001F1CCC /* LGFFreePTMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FAE22756B95001F1CCC /* LGFFreePTMethod.m */; };
+		18458FBC22756B95001F1CCC /* LGFFreePTView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18458FAF22756B95001F1CCC /* LGFFreePTView.xib */; };
+		18458FBD22756B95001F1CCC /* LGFFreePTView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FB022756B95001F1CCC /* LGFFreePTView.m */; };
+		18458FBE22756B95001F1CCC /* LGFFreePTLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FB322756B95001F1CCC /* LGFFreePTLine.m */; };
+		18458FBF22756B95001F1CCC /* LGFFreePTLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18458FB422756B95001F1CCC /* LGFFreePTLine.xib */; };
+		18458FC52276A5FB001F1CCC /* LGFFreePTStyleCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FC42276A5FB001F1CCC /* LGFFreePTStyleCenter.m */; };
+		18458FC72276A96B001F1CCC /* LGFFreePT.h in Sources */ = {isa = PBXBuildFile; fileRef = 18458FC62276A78A001F1CCC /* LGFFreePT.h */; };
+		18458FCA2276ABB7001F1CCC /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FC92276ABB7001F1CCC /* ChildViewController.m */; };
+		18458FCD2276CCC3001F1CCC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FCC2276CCC3001F1CCC /* MainViewController.m */; };
+		B0AE91678DE4F3B260F9D38D /* libPods-LGFFreePTDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18458F8722756AF9001F1CCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18458F6622756AF8001F1CCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18458F6D22756AF8001F1CCC;
+			remoteInfo = LGFFreePTDemo;
+		};
+		18458F9222756AF9001F1CCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18458F6622756AF8001F1CCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18458F6D22756AF8001F1CCC;
+			remoteInfo = LGFFreePTDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGFFreePTDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18193C0A2276E1ED003108FB /* MainViewControllerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewControllerCell.h; sourceTree = "<group>"; };
+		18193C0B2276E1ED003108FB /* MainViewControllerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewControllerCell.m; sourceTree = "<group>"; };
+		18193C0D2276EAF5003108FB /* tupian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tupian.png; sourceTree = "<group>"; };
+		18193C0F2276EB72003108FB /* tupian_un.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tupian_un.png; sourceTree = "<group>"; };
+		18193C22227FC72D003108FB /* line_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line_image.png; sourceTree = "<group>"; };
+		18193C24227FCC23003108FB /* line_maomaochong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line_maomaochong.png; sourceTree = "<group>"; };
+		18458F6E22756AF8001F1CCC /* LGFFreePTDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGFFreePTDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18458F7122756AF8001F1CCC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		18458F7222756AF8001F1CCC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		18458F7422756AF8001F1CCC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		18458F7522756AF8001F1CCC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		18458F7822756AF8001F1CCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18458F7A22756AF9001F1CCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18458F7D22756AF9001F1CCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18458F7F22756AF9001F1CCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18458F8022756AF9001F1CCC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18458F8622756AF9001F1CCC /* LGFFreePTDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGFFreePTDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18458F8A22756AF9001F1CCC /* LGFFreePTDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTDemoTests.m; sourceTree = "<group>"; };
+		18458F8C22756AF9001F1CCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18458F9122756AF9001F1CCC /* LGFFreePTDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGFFreePTDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18458F9522756AF9001F1CCC /* LGFFreePTDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTDemoUITests.m; sourceTree = "<group>"; };
+		18458F9722756AF9001F1CCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18458FA422756B95001F1CCC /* LGFFreePTFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTFlowLayout.m; sourceTree = "<group>"; };
+		18458FA522756B95001F1CCC /* LGFFreePTView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFFreePTView.h; sourceTree = "<group>"; };
+		18458FA622756B95001F1CCC /* LGFFreePTMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFFreePTMethod.h; sourceTree = "<group>"; };
+		18458FA722756B95001F1CCC /* UIView+LGFFreePT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFFreePT.m"; sourceTree = "<group>"; };
+		18458FA822756B95001F1CCC /* LGFFreePTTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFFreePTTitle.xib; sourceTree = "<group>"; };
+		18458FA922756B95001F1CCC /* LGFFreePTLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFFreePTLine.h; sourceTree = "<group>"; };
+		18458FAA22756B95001F1CCC /* LGFFreePTTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTTitle.m; sourceTree = "<group>"; };
+		18458FAB22756B95001F1CCC /* LGFFreePTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTStyle.m; sourceTree = "<group>"; };
+		18458FAC22756B95001F1CCC /* LGFFreePTFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFFreePTFlowLayout.h; sourceTree = "<group>"; };
+		18458FAE22756B95001F1CCC /* LGFFreePTMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTMethod.m; sourceTree = "<group>"; };
+		18458FAF22756B95001F1CCC /* LGFFreePTView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFFreePTView.xib; sourceTree = "<group>"; };
+		18458FB022756B95001F1CCC /* LGFFreePTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTView.m; sourceTree = "<group>"; };
+		18458FB122756B95001F1CCC /* LGFFreePTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFFreePTStyle.h; sourceTree = "<group>"; };
+		18458FB222756B95001F1CCC /* LGFFreePTTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFFreePTTitle.h; sourceTree = "<group>"; };
+		18458FB322756B95001F1CCC /* LGFFreePTLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTLine.m; sourceTree = "<group>"; };
+		18458FB422756B95001F1CCC /* LGFFreePTLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFFreePTLine.xib; sourceTree = "<group>"; };
+		18458FB522756B95001F1CCC /* UIView+LGFFreePT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFFreePT.h"; sourceTree = "<group>"; };
+		18458FC32276A5FB001F1CCC /* LGFFreePTStyleCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFFreePTStyleCenter.h; sourceTree = "<group>"; };
+		18458FC42276A5FB001F1CCC /* LGFFreePTStyleCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFFreePTStyleCenter.m; sourceTree = "<group>"; };
+		18458FC62276A78A001F1CCC /* LGFFreePT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFFreePT.h; sourceTree = "<group>"; };
+		18458FC82276ABB7001F1CCC /* ChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
+		18458FC92276ABB7001F1CCC /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
+		18458FCB2276CCC3001F1CCC /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		18458FCC2276CCC3001F1CCC /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		7A2DCE3390351753B24B8B2A /* Pods-LGFFreePTDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.release.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.release.xcconfig"; sourceTree = "<group>"; };
+		A4F4048A1649EACFADD120D2 /* Pods-LGFFreePTDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.debug.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18458F6B22756AF8001F1CCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0AE91678DE4F3B260F9D38D /* libPods-LGFFreePTDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18458F8322756AF9001F1CCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18458F8E22756AF9001F1CCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18193C092276E1D0003108FB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				18193C24227FCC23003108FB /* line_maomaochong.png */,
+				18193C22227FC72D003108FB /* line_image.png */,
+				18193C0F2276EB72003108FB /* tupian_un.png */,
+				18193C0D2276EAF5003108FB /* tupian.png */,
+				18193C0A2276E1ED003108FB /* MainViewControllerCell.h */,
+				18193C0B2276E1ED003108FB /* MainViewControllerCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		18458F6522756AF8001F1CCC = {
+			isa = PBXGroup;
+			children = (
+				18458FA322756B95001F1CCC /* LGFFreePT */,
+				18458F7022756AF8001F1CCC /* LGFFreePTDemo */,
+				18458F8922756AF9001F1CCC /* LGFFreePTDemoTests */,
+				18458F9422756AF9001F1CCC /* LGFFreePTDemoUITests */,
+				18458F6F22756AF8001F1CCC /* Products */,
+				7BE90DE956E68450581DD5E2 /* Pods */,
+				202CE253919F21E46B8159B7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		18458F6F22756AF8001F1CCC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18458F6E22756AF8001F1CCC /* LGFFreePTDemo.app */,
+				18458F8622756AF9001F1CCC /* LGFFreePTDemoTests.xctest */,
+				18458F9122756AF9001F1CCC /* LGFFreePTDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18458F7022756AF8001F1CCC /* LGFFreePTDemo */ = {
+			isa = PBXGroup;
+			children = (
+				18193C092276E1D0003108FB /* Cell */,
+				18458FC32276A5FB001F1CCC /* LGFFreePTStyleCenter.h */,
+				18458FC42276A5FB001F1CCC /* LGFFreePTStyleCenter.m */,
+				18458FCB2276CCC3001F1CCC /* MainViewController.h */,
+				18458FCC2276CCC3001F1CCC /* MainViewController.m */,
+				18458F7422756AF8001F1CCC /* ViewController.h */,
+				18458F7522756AF8001F1CCC /* ViewController.m */,
+				18458FC82276ABB7001F1CCC /* ChildViewController.h */,
+				18458FC92276ABB7001F1CCC /* ChildViewController.m */,
+				18458F7722756AF8001F1CCC /* Main.storyboard */,
+				18458F7122756AF8001F1CCC /* AppDelegate.h */,
+				18458F7222756AF8001F1CCC /* AppDelegate.m */,
+				18458F7A22756AF9001F1CCC /* Assets.xcassets */,
+				18458F7C22756AF9001F1CCC /* LaunchScreen.storyboard */,
+				18458F7F22756AF9001F1CCC /* Info.plist */,
+				18458F8022756AF9001F1CCC /* main.m */,
+			);
+			path = LGFFreePTDemo;
+			sourceTree = "<group>";
+		};
+		18458F8922756AF9001F1CCC /* LGFFreePTDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				18458F8A22756AF9001F1CCC /* LGFFreePTDemoTests.m */,
+				18458F8C22756AF9001F1CCC /* Info.plist */,
+			);
+			path = LGFFreePTDemoTests;
+			sourceTree = "<group>";
+		};
+		18458F9422756AF9001F1CCC /* LGFFreePTDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				18458F9522756AF9001F1CCC /* LGFFreePTDemoUITests.m */,
+				18458F9722756AF9001F1CCC /* Info.plist */,
+			);
+			path = LGFFreePTDemoUITests;
+			sourceTree = "<group>";
+		};
+		18458FA322756B95001F1CCC /* LGFFreePT */ = {
+			isa = PBXGroup;
+			children = (
+				18458FC62276A78A001F1CCC /* LGFFreePT.h */,
+				18458FB122756B95001F1CCC /* LGFFreePTStyle.h */,
+				18458FAB22756B95001F1CCC /* LGFFreePTStyle.m */,
+				18458FA522756B95001F1CCC /* LGFFreePTView.h */,
+				18458FB022756B95001F1CCC /* LGFFreePTView.m */,
+				18458FAF22756B95001F1CCC /* LGFFreePTView.xib */,
+				18458FB222756B95001F1CCC /* LGFFreePTTitle.h */,
+				18458FAA22756B95001F1CCC /* LGFFreePTTitle.m */,
+				18458FA822756B95001F1CCC /* LGFFreePTTitle.xib */,
+				18458FA922756B95001F1CCC /* LGFFreePTLine.h */,
+				18458FB322756B95001F1CCC /* LGFFreePTLine.m */,
+				18458FB422756B95001F1CCC /* LGFFreePTLine.xib */,
+				18458FAC22756B95001F1CCC /* LGFFreePTFlowLayout.h */,
+				18458FA422756B95001F1CCC /* LGFFreePTFlowLayout.m */,
+				18458FB522756B95001F1CCC /* UIView+LGFFreePT.h */,
+				18458FA722756B95001F1CCC /* UIView+LGFFreePT.m */,
+				18458FA622756B95001F1CCC /* LGFFreePTMethod.h */,
+				18458FAE22756B95001F1CCC /* LGFFreePTMethod.m */,
+			);
+			name = LGFFreePT;
+			path = ../LGFFreePT;
+			sourceTree = "<group>";
+		};
+		202CE253919F21E46B8159B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7BE90DE956E68450581DD5E2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A4F4048A1649EACFADD120D2 /* Pods-LGFFreePTDemo.debug.xcconfig */,
+				7A2DCE3390351753B24B8B2A /* Pods-LGFFreePTDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18458F6D22756AF8001F1CCC /* LGFFreePTDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18458F9A22756AF9001F1CCC /* Build configuration list for PBXNativeTarget "LGFFreePTDemo" */;
+			buildPhases = (
+				1AB27A38EA21F5F412DA5C1F /* [CP] Check Pods Manifest.lock */,
+				18458F6A22756AF8001F1CCC /* Sources */,
+				18458F6B22756AF8001F1CCC /* Frameworks */,
+				18458F6C22756AF8001F1CCC /* Resources */,
+				F09E8DF31C5C466F7D29F327 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LGFFreePTDemo;
+			productName = LGFFreePTDemo;
+			productReference = 18458F6E22756AF8001F1CCC /* LGFFreePTDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18458F8522756AF9001F1CCC /* LGFFreePTDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18458F9D22756AF9001F1CCC /* Build configuration list for PBXNativeTarget "LGFFreePTDemoTests" */;
+			buildPhases = (
+				18458F8222756AF9001F1CCC /* Sources */,
+				18458F8322756AF9001F1CCC /* Frameworks */,
+				18458F8422756AF9001F1CCC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18458F8822756AF9001F1CCC /* PBXTargetDependency */,
+			);
+			name = LGFFreePTDemoTests;
+			productName = LGFFreePTDemoTests;
+			productReference = 18458F8622756AF9001F1CCC /* LGFFreePTDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		18458F9022756AF9001F1CCC /* LGFFreePTDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18458FA022756AF9001F1CCC /* Build configuration list for PBXNativeTarget "LGFFreePTDemoUITests" */;
+			buildPhases = (
+				18458F8D22756AF9001F1CCC /* Sources */,
+				18458F8E22756AF9001F1CCC /* Frameworks */,
+				18458F8F22756AF9001F1CCC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18458F9322756AF9001F1CCC /* PBXTargetDependency */,
+			);
+			name = LGFFreePTDemoUITests;
+			productName = LGFFreePTDemoUITests;
+			productReference = 18458F9122756AF9001F1CCC /* LGFFreePTDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18458F6622756AF8001F1CCC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "来国锋";
+				TargetAttributes = {
+					18458F6D22756AF8001F1CCC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					18458F8522756AF9001F1CCC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 18458F6D22756AF8001F1CCC;
+					};
+					18458F9022756AF9001F1CCC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 18458F6D22756AF8001F1CCC;
+					};
+				};
+			};
+			buildConfigurationList = 18458F6922756AF8001F1CCC /* Build configuration list for PBXProject "LGFFreePTDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18458F6522756AF8001F1CCC;
+			productRefGroup = 18458F6F22756AF8001F1CCC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18458F6D22756AF8001F1CCC /* LGFFreePTDemo */,
+				18458F8522756AF9001F1CCC /* LGFFreePTDemoTests */,
+				18458F9022756AF9001F1CCC /* LGFFreePTDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18458F6C22756AF8001F1CCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18458FB822756B95001F1CCC /* LGFFreePTTitle.xib in Resources */,
+				18193C0E2276EAF6003108FB /* tupian.png in Resources */,
+				18458FBF22756B95001F1CCC /* LGFFreePTLine.xib in Resources */,
+				18193C102276EB72003108FB /* tupian_un.png in Resources */,
+				18458F7E22756AF9001F1CCC /* LaunchScreen.storyboard in Resources */,
+				18458FBC22756B95001F1CCC /* LGFFreePTView.xib in Resources */,
+				18458F7B22756AF9001F1CCC /* Assets.xcassets in Resources */,
+				18193C25227FCC23003108FB /* line_maomaochong.png in Resources */,
+				18193C23227FC72D003108FB /* line_image.png in Resources */,
+				18458F7922756AF8001F1CCC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18458F8422756AF9001F1CCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18458F8F22756AF9001F1CCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1AB27A38EA21F5F412DA5C1F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LGFFreePTDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F09E8DF31C5C466F7D29F327 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18458F6A22756AF8001F1CCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18458FC72276A96B001F1CCC /* LGFFreePT.h in Sources */,
+				18458FCA2276ABB7001F1CCC /* ChildViewController.m in Sources */,
+				18458F7622756AF8001F1CCC /* ViewController.m in Sources */,
+				18458FBA22756B95001F1CCC /* LGFFreePTStyle.m in Sources */,
+				18458FB722756B95001F1CCC /* UIView+LGFFreePT.m in Sources */,
+				18458FC52276A5FB001F1CCC /* LGFFreePTStyleCenter.m in Sources */,
+				18458FBE22756B95001F1CCC /* LGFFreePTLine.m in Sources */,
+				18458FBD22756B95001F1CCC /* LGFFreePTView.m in Sources */,
+				18193C0C2276E1ED003108FB /* MainViewControllerCell.m in Sources */,
+				18458FB922756B95001F1CCC /* LGFFreePTTitle.m in Sources */,
+				18458FBB22756B95001F1CCC /* LGFFreePTMethod.m in Sources */,
+				18458FB622756B95001F1CCC /* LGFFreePTFlowLayout.m in Sources */,
+				18458FCD2276CCC3001F1CCC /* MainViewController.m in Sources */,
+				18458F8122756AF9001F1CCC /* main.m in Sources */,
+				18458F7322756AF8001F1CCC /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18458F8222756AF9001F1CCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18458F8B22756AF9001F1CCC /* LGFFreePTDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18458F8D22756AF9001F1CCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18458F9622756AF9001F1CCC /* LGFFreePTDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18458F8822756AF9001F1CCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18458F6D22756AF8001F1CCC /* LGFFreePTDemo */;
+			targetProxy = 18458F8722756AF9001F1CCC /* PBXContainerItemProxy */;
+		};
+		18458F9322756AF9001F1CCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18458F6D22756AF8001F1CCC /* LGFFreePTDemo */;
+			targetProxy = 18458F9222756AF9001F1CCC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18458F7722756AF8001F1CCC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18458F7822756AF8001F1CCC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18458F7C22756AF9001F1CCC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18458F7D22756AF9001F1CCC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18458F9822756AF9001F1CCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		18458F9922756AF9001F1CCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18458F9B22756AF9001F1CCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4F4048A1649EACFADD120D2 /* Pods-LGFFreePTDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
+				INFOPLIST_FILE = LGFFreePTDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		18458F9C22756AF9001F1CCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A2DCE3390351753B24B8B2A /* Pods-LGFFreePTDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
+				INFOPLIST_FILE = LGFFreePTDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		18458F9E22756AF9001F1CCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
+				INFOPLIST_FILE = LGFFreePTDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LGFFreePTDemo.app/LGFFreePTDemo";
+			};
+			name = Debug;
+		};
+		18458F9F22756AF9001F1CCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
+				INFOPLIST_FILE = LGFFreePTDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LGFFreePTDemo.app/LGFFreePTDemo";
+			};
+			name = Release;
+		};
+		18458FA122756AF9001F1CCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
+				INFOPLIST_FILE = LGFFreePTDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LGFFreePTDemo;
+			};
+			name = Debug;
+		};
+		18458FA222756AF9001F1CCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HLNNLAB64S;
+				INFOPLIST_FILE = LGFFreePTDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LGFFreePTDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18458F6922756AF8001F1CCC /* Build configuration list for PBXProject "LGFFreePTDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18458F9822756AF9001F1CCC /* Debug */,
+				18458F9922756AF9001F1CCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18458F9A22756AF9001F1CCC /* Build configuration list for PBXNativeTarget "LGFFreePTDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18458F9B22756AF9001F1CCC /* Debug */,
+				18458F9C22756AF9001F1CCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18458F9D22756AF9001F1CCC /* Build configuration list for PBXNativeTarget "LGFFreePTDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18458F9E22756AF9001F1CCC /* Debug */,
+				18458F9F22756AF9001F1CCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18458FA022756AF9001F1CCC /* Build configuration list for PBXNativeTarget "LGFFreePTDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18458FA122756AF9001F1CCC /* Debug */,
+				18458FA222756AF9001F1CCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18458F6622756AF8001F1CCC /* Project object */;
+}
