@@ -49,6 +49,7 @@
     [SV layoutIfNeeded];
     self.lgf_Style = style;
     self.lgf_PageView = PV;
+    
     // 部分基础 UI 配置
     self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV.backgroundColor;
     
@@ -57,6 +58,7 @@
     } else {
         SVC.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
     // 是否有点击动画
     if (!self.lgf_Style.lgf_TitleHaveAnimation && self.lgf_PageView) {
         self.lgf_PageView.scrollEnabled = NO;

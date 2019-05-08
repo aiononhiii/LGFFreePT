@@ -139,6 +139,8 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
             style = [LGFFreePTStyleCenter fifteen];
         } else if ([self.type isEqualToString:@"指定部分 index 添加特殊 title"]) {
             style = [LGFFreePTStyleCenter sixteen];
+        } else if ([self.type isEqualToString:@"部分需求效果"]) {
+            style = [LGFFreePTStyleCenter seventeen];
         }
         _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:style SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
         _fptView.lgf_FreePTDelegate = self;
