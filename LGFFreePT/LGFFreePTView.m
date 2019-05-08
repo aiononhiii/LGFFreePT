@@ -74,10 +74,16 @@
 
 #pragma mark - 添加所有标
 - (void)lgf_ReloadTitle {
-    [self lgf_ReloadTitleAndSelectIndex:self.lgf_SelectIndex];
+    [self lgf_ReloadTitleAndExecutionDelegate:YES];
 }
-- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)index {
-    if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles) {
+- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution {
+    [self lgf_ReloadTitleAndExecutionDelegate:isExecution selectIndex:self.lgf_SelectIndex];
+}
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex {
+    [self lgf_ReloadTitleAndExecutionDelegate:YES selectIndex:selectIndex];
+}
+- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution selectIndex:(NSInteger)selectIndex {
+    if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (selectIndex >  self.lgf_Style.lgf_Titles.count - 1)) {
         return;
     }
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -88,13 +94,25 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
         self.lgf_UnSelectIndex = 0;
-        self.lgf_SelectIndex = index;
+        self.lgf_SelectIndex = selectIndex;
         // 配置标
         [self lgf_AddTitles];
         // 添加底部滚动线
         [self lgf_AddLine];
         // 默认选中
-        [self lgf_AdjustUIWhenBtnOnClickWithAnimate:NO];
+        [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:isExecution duration:0.0];
+    });
+}
+- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration {
+    if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (index >  self.lgf_Style.lgf_Titles.count - 1) || self.lgf_SelectIndex == index) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 初始化选中值
+        self.lgf_UnSelectIndex = self.lgf_SelectIndex;
+        self.lgf_SelectIndex = index;
+        // 默认选中
+        [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:NO duration:duration];
     });
 }
 
@@ -139,7 +157,7 @@
     }
     self.lgf_UnSelectIndex = self.lgf_SelectIndex;
     self.lgf_SelectIndex = nowSelectIndex;
-    [self lgf_AdjustUIWhenBtnOnClickWithAnimate:YES];
+    [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:YES duration:self.lgf_Style.lgf_TitleClickAnimationDuration];
 }
 
 #pragma mark - 标自动滚动
@@ -150,22 +168,24 @@
     }
     self.lgf_UnSelectIndex = self.lgf_SelectIndex;
     self.lgf_SelectIndex = nowSelectIndex;
-    [self LGF_TitleAutoScrollToTheMiddle:self.lgf_SelectIndex animated:YES];
+    [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES];
 }
 
 #pragma mark - 调整title位置 使其滚动到中间
-- (void)LGF_TitleAutoScrollToTheMiddle:(NSInteger)selectIndex animated:(BOOL)animated {
+- (void)lgf_TitleAutoScrollToTheMiddleExecutionDelegate:(BOOL)isExecution {
     if (self.lgf_SelectIndex > self.lgf_TitleButtons.count - 1 || self.lgf_TitleButtons.count == 0) { return;
     }
     if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowDefult) {
-        LGFFreePTTitle *select_title = (LGFFreePTTitle *)self.lgf_TitleButtons[selectIndex];
+        LGFFreePTTitle *select_title = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_SelectIndex];
         CGFloat offSetx = select_title.center.x - self.lgfpt_Width * 0.5;
         if (offSetx < 0.0) { offSetx = 0.0; }
         CGFloat maxOffSetX = self.contentSize.width - self.lgfpt_Width;
         if (maxOffSetX < 0.0) { maxOffSetX = 0.0; }
         if (offSetx > maxOffSetX) { offSetx = maxOffSetX; }
-        [self setContentOffset:CGPointMake(offSetx, 0.0) animated:animated];
-        if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SelectFreePTTitle:)]) {
+        [UIView animateWithDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration animations:^{
+            [self setContentOffset:CGPointMake(offSetx, 0.0)];
+        }];
+        if (isExecution && self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SelectFreePTTitle:)]) {
             LGFPTLog(@"当前选中:%@", self.lgf_Style.lgf_Titles[self.lgf_SelectIndex]);
             [self.lgf_FreePTDelegate lgf_SelectFreePTTitle:self.lgf_SelectIndex];
         }
@@ -416,7 +436,7 @@
 }
 
 #pragma mark - 更新标view的UI(用于点击标的时候)
-- (void)lgf_AdjustUIWhenBtnOnClickWithAnimate:(BOOL)animated {
+- (void)lgf_AdjustUIWhenBtnOnClickExecutionDelegate:(BOOL)isExecution duration:(CGFloat)duration {
     self.lgf_IsSelectTitle = YES;
     self.lgf_Enabled = NO;
     if (self.lgf_Style.lgf_TitleHaveAnimation && self.lgf_PageView) self.lgf_PageView.scrollEnabled = NO;
@@ -426,7 +446,7 @@
     LGFFreePTTitle *unSelectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_UnSelectIndex];
     LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_SelectIndex];
     // 动画时间
-    CGFloat animatedTime = self.lgf_Style.lgf_TitleHaveAnimation ? animated ? 0.3 : 0.0 : 0.0;
+    CGFloat animatedTime = self.lgf_Style.lgf_TitleHaveAnimation ? duration : 0.0;
     [UIView animateWithDuration:animatedTime animations:^{
         // 标缩放大小改变
         unSelectTitle.lgf_CurrentTransformSX = 1.0;
@@ -506,7 +526,7 @@
             }
         }
     } completion:^(BOOL finished) {
-        [self LGF_TitleAutoScrollToTheMiddle:self.lgf_SelectIndex animated:YES];
+        [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:isExecution];
         self.lgf_IsSelectTitle = NO;
         self.lgf_Enabled = YES;
     }];

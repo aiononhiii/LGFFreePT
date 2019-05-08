@@ -35,10 +35,10 @@
         title.lgf_SubTitleHeight.constant = subTitleSize.height;
         title.lgf_TitleCenterY.constant = title.lgf_TitleCenterY.constant - subTitleSize.height / 2.0;
         title.lgf_SubTitleTop.constant = title.lgf_Style.lgf_SubTitleTopSpace;
-        CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.01;
+        CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.05;
         title.lgf_SubTitleWidth.constant = maxWidth;
     }
-    CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.01;
+    CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.05;
     title.lgf_TitleWidth.constant = maxWidth;
     title.lgf_TitleHeight.constant = titleSize.height;
     

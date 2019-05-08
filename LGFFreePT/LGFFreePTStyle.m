@@ -49,6 +49,8 @@
         self.lgf_IsTitleCenter = NO;
         self.lgf_IsDoubleTitle = NO;
         self.lgf_SubTitleTopSpace = 0.0;
+        self.lgf_TitleClickAnimationDuration = 0.2;
+        self.lgf_TitleScrollToTheMiddleAnimationDuration = 0.25;
     }
     return self;
 }

@@ -21,10 +21,19 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)lgf;
 #pragma mark - 刷新所有标
 /**
- @param index 需要默认选中的下标
+ @param isExecution 是否走代理
+ @param selectIndex 需要默认选中的下标
  */
-- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)index;
+- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution selectIndex:(NSInteger)selectIndex;
+- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution;
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex;
 - (void)lgf_ReloadTitle;
+#pragma mark - 选中某个下标
+/**
+ @param index 要选中的下标
+ @param duration 选中动画的时间
+ */
+- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration;
 #pragma mark - 初始化配置
 /**
  @param style 配置用模型

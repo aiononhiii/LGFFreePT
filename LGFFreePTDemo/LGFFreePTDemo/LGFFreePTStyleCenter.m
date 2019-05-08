@@ -305,11 +305,11 @@
     style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
     style.lgf_TitleBorderColor = LGFPTHexColor(@"FFFFFF");
     style.lgf_TitleBorderWidth = 0.5;
-    style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"8656E3");
+    style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"2A48C2");
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:14];
     style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
-    style.lgf_TitleSelectColor = LGFPTHexColor(@"8656E3");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"2A48C2");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"F0F0F0");
     style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
     style.lgf_TitleHaveAnimation = NO;
@@ -326,17 +326,17 @@
     style.lgf_LineWidthType = lgf_FixedWith;
     style.lgf_LineWidth = 10.0;
     style.lgf_TitleLeftRightSpace = 10.0;
-    style.lgf_PageLeftRightSpace = 15.0;
+    style.lgf_PageLeftRightSpace = 10.0;
     style.lgf_LineHeight = 10.0;
     style.lgf_LineBottom = -5;
     style.lgf_LineCornerRadius = 5.0;
-    style.lgf_TitleBigScale = 1.1;
+    style.lgf_TitleBigScale = 1.2;
     style.lgf_LineColor = LGFPTHexColor(@"FF2A52");
-    style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"FFFFFF");
+    style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"000000");
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:16];
     style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:16];
-    style.lgf_TitleSelectColor = LGFPTHexColor(@"8656E3");
-    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"F0F0F0");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"0DA4F3");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"FFFFFF");
     style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
     return style;
 }

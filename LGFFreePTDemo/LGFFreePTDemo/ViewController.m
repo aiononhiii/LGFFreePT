@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 #import "LGFFreePTStyleCenter.h"
+#import "LGFFreePT.h"
 #import "ChildViewController.h"
 
 @interface ViewController () <LGFFreePTDelegate>
 @property (strong, nonatomic) LGFFreePTView *fptView;
+@property (weak, nonatomic) IBOutlet UILabel *naviTitle;
 @property (weak, nonatomic) IBOutlet UIView *pageSuperView;
 @property (weak, nonatomic) IBOutlet UIView *pageSuperViewSuperView;
 @property (weak, nonatomic) IBOutlet UICollectionView *pageCollectionView;
@@ -29,7 +31,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.naviTitle.text = self.type;
     [self.titles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ChildViewController *vc = [ChildViewController lgf];
         [self addChildViewController:vc];
@@ -44,10 +46,9 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
         [self.fptView lgf_ReloadTitle];
     }
     
-    [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         self.pageSuperViewSuperView.transform = CGAffineTransformMakeTranslation(0, 80);
     } completion:^(BOOL finished) {
-        
     }];
 }
 
@@ -74,7 +75,11 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
 #pragma mark - LGFFreePTView Delegate
 
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex {
-    [self.view lgf_ShowMessage:[NSString stringWithFormat:@"第 %ld 页", (long)selectIndex] completion:^{
+    LGFToastStyle *style = [LGFToastStyle lgf];
+    style.lgf_SuperEnabled = YES;
+    style.lgf_BackBtnEnabled = YES;
+    style.lgf_ToastMessage = [NSString stringWithFormat:@"第 %ld 页", (long)selectIndex];
+    [self.view lgf_ShowMessageStyle:style animated:NO completion:^{
         
     }];
 }

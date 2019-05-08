@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "ViewController.h"
 #import "MainViewControllerCell.h"
+#import "VerticalViewController.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *listCV;
@@ -60,7 +61,9 @@
   @{@"title" : @"模拟系统 UISegmentedControl",
     @"array" : @[@"第一项", @"第二项", @"第三项", @"第四项"]},
   @{@"title" : @"指定部分 index 添加特殊 title",
-    @"array" : @[@"第一项", @"第二项", @"特殊占位用字符串可设置为空字符串", @"第四项", @"第一项", @"特殊占位用字符串可设置为空字符串", @"第三项", @"第四项"]}
+    @"array" : @[@"第一项", @"第二项", @"特殊占位用字符串可设置为空字符串", @"第四项", @"第一项", @"特殊占位用字符串可设置为空字符串", @"第三项", @"第四项"]},
+  @{@"title" : @"模拟支付宝编辑页效果",
+    @"array" : @[@"便民生活", @"财富管理", @"资金往来", @"购物娱乐", @"教育公益", @"第三方服务"]}
   ];
     [self.listCV reloadData];
 }
@@ -82,10 +85,17 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    ViewController *vc = [ViewController lgf];
-    vc.type = self.listArray[indexPath.item][@"title"];
-    vc.titles = self.listArray[indexPath.item][@"array"];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.item == self.listArray.count - 1) {
+        VerticalViewController *vc = [VerticalViewController lgf];
+        vc.type = self.listArray[indexPath.item][@"title"];
+        vc.titles = self.listArray[indexPath.item][@"array"];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ViewController *vc = [ViewController lgf];
+        vc.type = self.listArray[indexPath.item][@"title"];
+        vc.titles = self.listArray[indexPath.item][@"array"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

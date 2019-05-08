@@ -120,7 +120,10 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_TitleBorderWidth;
 // 标圆角
 @property (assign, nonatomic) CGFloat lgf_TitleCornerRadius;
-
+// 点击标移动动画时间 默认 0.2
+@property (assign, nonatomic) CGFloat lgf_TitleClickAnimationDuration;
+// 点击标后移动标居中动画时间 默认 0.2
+@property (assign, nonatomic) CGFloat lgf_TitleScrollToTheMiddleAnimationDuration;
 //------------------- 特殊标设置
 // 要替换的特殊标数组（数组中元素 view 的 lgf_FreePTSpecialTitleArray（值格式：@"0/80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
 @property (nonatomic, copy) NSArray <UIView *> *lgf_FreePTSpecialTitleArray;
