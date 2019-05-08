@@ -40,6 +40,7 @@
 @property (strong, nonatomic) NSMutableArray *pageSelectYArray;
 // 是否编辑
 @property (assign, nonatomic) BOOL isEdit;
+@property (assign, nonatomic) BOOL isSelectTitle;
 @end
 
 @implementation VerticalViewController
@@ -258,7 +259,7 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
         self.pageSuperViewSuperView.lgf_y = MAX(-18.0, self.isEdit ?  (scrollView.contentOffset.y + 250.0) : (scrollView.contentOffset.y - 8.0));
         // 我的应用 view 因为是添加在 CV 上因此也需要做悬停处理，加上 MIN 防止下拉时跟随，就和支付宝首页的效果差不多
         self.collectionViewFiveBack.lgf_y = MIN(MAX(-self.headerHeight, scrollView.contentOffset.y), scrollView.contentOffset.y);
-        if (scrollView.isDragging) {// 是否是手指滚动触发
+        if (!self.isSelectTitle) {// 是否是手指滚动触发
             [self.pageSelectYArray enumerateObjectsUsingBlock:^(NSArray *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 CGFloat realY = self.isEdit ? (scrollView.contentOffset.y + 250.0 + 8.0) : scrollView.contentOffset.y;
                 if (realY > [obj.firstObject floatValue] && realY < [obj.lastObject floatValue]) {
@@ -278,7 +279,14 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
 #pragma mark - LGFFreePTView Delegate
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex {
     // 选中滚动
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(configIsSelectTitle) object:nil];
+    self.isSelectTitle = YES;
     [self.collectionViewFour setContentOffset:CGPointMake(0, [[self.pageSelectYArray[selectIndex] firstObject] floatValue] - (self.isEdit ? 250.0 + 8.0 : 0.0)) animated:YES];
+    [self performSelector:@selector(configIsSelectTitle) withObject:nil afterDelay:0.3];
+}
+
+- (void)configIsSelectTitle {
+    self.isSelectTitle = NO;
 }
 
 #pragma mark - 懒加载
