@@ -278,7 +278,7 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
 #pragma mark - LGFFreePTView Delegate
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex {
     // 选中滚动
-    [self.collectionViewFour setContentOffset:CGPointMake(0, [[self.pageSelectYArray[selectIndex] firstObject] floatValue]) animated:YES];
+    [self.collectionViewFour setContentOffset:CGPointMake(0, [[self.pageSelectYArray[selectIndex] firstObject] floatValue] - (self.isEdit ? 250.0 + 8.0 : 0.0)) animated:YES];
 }
 
 #pragma mark - 懒加载
