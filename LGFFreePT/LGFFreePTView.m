@@ -21,6 +21,8 @@
 @property (assign, nonatomic) NSInteger lgf_UnSelectIndex;// 前一个选中下标
 @property (assign, nonatomic) BOOL lgf_IsSelectTitle;// 点击了顶部标
 @property (assign, nonatomic) BOOL lgf_Enabled;// 操作中是否禁用手势
+@property (assign, nonatomic) BOOL lgf_FreePTViewEnabled;// 操作中是否禁用手势
+@property (assign, nonatomic) BOOL lgf_PageViewEnabled;// 操作中是否禁用手势
 // 标字体渐变色用数组
 @property (copy, nonatomic) NSArray *lgf_DeltaRGBA;
 @property (copy, nonatomic) NSArray *lgf_SelectColorRGBA;
@@ -35,6 +37,8 @@
 + (instancetype)lgf {
     LGFFreePTView *freePT = [LGFPTBundle loadNibNamed:NSStringFromClass([LGFFreePTView class]) owner:self options:nil].firstObject;
     freePT.delegate = freePT;
+    freePT.lgf_PageViewEnabled = YES;
+    freePT.lgf_FreePTViewEnabled = YES;
     return freePT;
 }
 
@@ -59,10 +63,6 @@
         SVC.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    // 是否有点击动画
-    if (!self.lgf_Style.lgf_TitleHaveAnimation && self.lgf_PageView) {
-        self.lgf_PageView.scrollEnabled = NO;
-    }
     // 是否有固定 Frame
     if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
         self.frame = SV.bounds;
@@ -198,7 +198,6 @@
 
 #pragma mark -  外层分页控制器 contentOffset 转化
 - (void)lgf_ConvertToProgress:(CGFloat)contentOffsetX {
-    if (contentOffsetX < 0) { return; }
     CGFloat tempProgress = contentOffsetX / self.lgf_PageView.lgfpt_Width;
     CGFloat progress = tempProgress - floor(tempProgress);
     CGPoint delta = [self.lgf_PageView.panGestureRecognizer translationInView:self.lgf_PageView.superview];
@@ -362,7 +361,7 @@
                 self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_X + xDistance * progress : (self.lgf_Style.lgf_TitleLeftRightSpace * self.lgf_Style.lgf_TitleBigScale + unSelectTitle.lgfpt_X + xDistance * progress);
                 self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_Width + (selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width) * progress : ((unSelectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_RightImageSpace + self.lgf_Style.lgf_LeftImageWidth + self.lgf_Style.lgf_RightImageWidth) * self.lgf_Style.lgf_TitleBigScale + wDistance * progress);
             } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-                CGFloat space = (selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) * self.lgf_Style.lgf_TitleBigScale / 2;
+                CGFloat space = (selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) * self.lgf_Style.lgf_TitleBigScale / 2.0;
                 CGFloat xDistance = selectTitle.lgfpt_X - unSelectTitle.lgfpt_X - space;
                 CGFloat wDistance = (selectTitle.lgf_Title.lgfpt_Width - unSelectTitle.lgf_Title.lgfpt_Width) * self.lgf_Style.lgf_TitleBigScale;
                 self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_X + xDistance * progress : (unSelectTitle.lgf_Title.lgfpt_X) * self.lgf_Style.lgf_TitleBigScale + unSelectTitle.lgfpt_X + xDistance * progress;
@@ -408,7 +407,7 @@
             }
             
             if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
-                CGFloat space = self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR ? ((selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) / 2 - (unSelectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - unSelectTitle.lgf_TitleWidth.constant) / 2) : 0.0;
+                CGFloat space = self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR ? ((selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) / 2.0 - (unSelectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - unSelectTitle.lgf_TitleWidth.constant) / 2.0) : 0.0;
                 CGFloat scaleWidth = ((selectTitle.lgfpt_Width - selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX)) + ((unSelectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX));
                 
                 CGFloat differenceWidth = self.lgf_Style.lgf_LineWidthType == lgf_FixedWith ? (unSelectTitle.lgfpt_Width - selectTitle.lgfpt_Width) : 0.0;
@@ -420,15 +419,15 @@
                     }
                 } else {
                     if (unselectIndex > selectIndex) {
-                        self.lgf_TitleLine.lgfpt_X = unSelectX - (selectTitle.lgfpt_Width * 2 - scaleWidth + differenceWidth + space) * progress;
+                        self.lgf_TitleLine.lgfpt_X = unSelectX - (selectTitle.lgfpt_Width * 2.0 - scaleWidth + differenceWidth + space) * progress;
                     } else {
                         self.lgf_TitleLine.lgfpt_X = unSelectX;
                     }
                 }
                 if (progress > 0.5) {
-                    self.lgf_TitleLine.lgfpt_Width = selectWidth + (unSelectTitle.lgfpt_Width * 2 - scaleWidth - differenceWidth - space) * (1.0 - progress);
+                    self.lgf_TitleLine.lgfpt_Width = selectWidth + (unSelectTitle.lgfpt_Width * 2.0 - scaleWidth - differenceWidth - space) * (1.0 - progress);
                 } else {
-                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth + (selectTitle.lgfpt_Width * 2 - scaleWidth + differenceWidth + space) * progress;
+                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth + (selectTitle.lgfpt_Width * 2.0 - scaleWidth + differenceWidth + space) * progress;
                 }
             } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoise) {
                 
@@ -439,9 +438,7 @@
 
 #pragma mark - 更新标view的UI(用于点击标的时候)
 - (void)lgf_AdjustUIWhenBtnOnClickExecutionDelegate:(BOOL)isExecution duration:(CGFloat)duration {
-    self.lgf_IsSelectTitle = YES;
-    self.lgf_Enabled = NO;
-    if (self.lgf_Style.lgf_TitleHaveAnimation && self.lgf_PageView) self.lgf_PageView.scrollEnabled = NO;
+    self.lgf_PageViewEnabled = NO;
     // 外部分页控制器 滚动到对应下标
     if (self.lgf_PageView) [self.lgf_PageView setContentOffset:CGPointMake(self.lgf_PageView.lgfpt_Width * self.lgf_SelectIndex, 0)];
     // 取得 前一个选中的标 和 将要选中的标
@@ -529,21 +526,21 @@
         }
     } completion:^(BOOL finished) {
         [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:isExecution];
-        self.lgf_IsSelectTitle = NO;
-        self.lgf_Enabled = YES;
+        self.lgf_PageViewEnabled = YES;
     }];
 }
 
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentOffset"]) {
-        self.lgf_Enabled = NO;
-        if (!self.lgf_IsSelectTitle) {
-            [self lgf_ConvertToProgress:self.lgf_PageView.contentOffset.x];
-        }
-        if ((NSInteger)self.lgf_PageView.contentOffset.x % (NSInteger)self.lgf_PageView.lgfpt_Width == 0) {
-            self.lgf_Enabled = YES;
-            [self lgf_AutoScrollTitle];
+        // setContentOffset 方法触发的不算
+        if (self.lgf_PageView.isTracking || self.lgf_PageView.isDragging || self.lgf_PageView.isDecelerating) {
+            self.lgf_FreePTViewEnabled = NO;
+            [self lgf_ConvertToProgress:self.lgf_PageView.contentOffset.x < 0.0 ? 0.0 : self.lgf_PageView.contentOffset.x];
+            if ((NSInteger)self.lgf_PageView.contentOffset.x % (NSInteger)self.lgf_PageView.lgfpt_Width == 0.0) {
+                self.lgf_FreePTViewEnabled = YES;
+                [self lgf_AutoScrollTitle];
+            }
         }
     }
 }
@@ -555,18 +552,26 @@
 }
 
 #pragma mark - 懒加载
-- (void)setLgf_Enabled:(BOOL)lgf_Enabled {
-    _lgf_Enabled = lgf_Enabled;
-    if (self.lgf_PageView){
-        if (lgf_Enabled) {
-            self.userInteractionEnabled = YES;
-            if (self.lgf_Style.lgf_TitleHaveAnimation) self.lgf_PageView.scrollEnabled = YES;
-            self.lgf_PageView.userInteractionEnabled = YES;
-            self.lgf_PageView.panGestureRecognizer.view.userInteractionEnabled = YES;
+- (void)setLgf_FreePTViewEnabled:(BOOL)lgf_FreePTViewEnabled {
+    _lgf_FreePTViewEnabled = lgf_FreePTViewEnabled;
+    [self setViewEnabled:_lgf_FreePTViewEnabled view:self];
+}
+
+- (void)setLgf_PageViewEnabled:(BOOL)lgf_PageViewEnabled {
+    _lgf_PageViewEnabled = lgf_PageViewEnabled;
+    [self setViewEnabled:_lgf_PageViewEnabled view:self.lgf_PageView];
+}
+
+- (void)setViewEnabled:(BOOL)enabled view:(UIScrollView *)view  {
+    if (view){
+        if (enabled) {
+            view.scrollEnabled = YES;
+            view.userInteractionEnabled = YES;
+            view.panGestureRecognizer.view.userInteractionEnabled = YES;
         } else {
-            self.userInteractionEnabled = NO;
-            self.lgf_PageView.userInteractionEnabled = NO;
-            self.lgf_PageView.panGestureRecognizer.view.userInteractionEnabled = NO;
+            view.scrollEnabled = NO;
+            view.userInteractionEnabled = NO;
+            view.panGestureRecognizer.view.userInteractionEnabled = NO;
         }
     }
 }

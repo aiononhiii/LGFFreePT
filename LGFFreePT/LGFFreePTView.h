@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)lgf;
 #pragma mark - 刷新所有标
 /**
- @param isExecution 是否走代理
+ @param isExecution 是否走点击代理
  @param selectIndex 需要默认选中的下标
  */
 - (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution selectIndex:(NSInteger)selectIndex;

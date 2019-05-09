@@ -33,10 +33,11 @@
     if (title.lgf_Style.lgf_IsDoubleTitle) {
         subTitleSize = [LGFFreePTMethod lgf_SizeWithString:title.lgf_SubTitle.text font:title.lgf_Style.lgf_SubTitleSelectFont maxSize:CGSizeMake(CGFLOAT_MAX, title.lgf_Style.lgf_PVTitleView.lgfpt_Height)];
         title.lgf_SubTitleHeight.constant = subTitleSize.height;
-        title.lgf_TitleCenterY.constant = title.lgf_TitleCenterY.constant - subTitleSize.height / 2.0;
+        title.lgf_TitleCenterY.constant = title.lgf_TitleCenterY.constant - subTitleSize.height / 2.0 - title.lgf_Style.lgf_SubTitleTopSpace / 2;
         title.lgf_SubTitleTop.constant = title.lgf_Style.lgf_SubTitleTopSpace;
         CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.05;
         title.lgf_SubTitleWidth.constant = maxWidth;
+        [title layoutIfNeeded];
     }
     CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.05;
     title.lgf_TitleWidth.constant = maxWidth;

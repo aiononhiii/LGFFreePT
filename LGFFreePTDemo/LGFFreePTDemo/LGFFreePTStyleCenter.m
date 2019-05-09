@@ -347,11 +347,11 @@
     style.lgf_TitleLeftRightSpace = 20.0;
     style.lgf_PageLeftRightSpace = 10.0;
     style.lgf_LineHeight = 16.0;
-    style.lgf_LineBottom = 6.0;
+    style.lgf_LineBottom = 4.0;
     style.lgf_LineCornerRadius = 3.0;
-    style.lgf_MainTitleBigScale = 1.2;
-    style.lgf_SubTitleTopSpace = 10;
-    style.lgf_MainTitleUpDownScale = -2;
+    style.lgf_MainTitleBigScale = 1.4;
+    style.lgf_SubTitleTopSpace = 2.0;
+    style.lgf_MainTitleUpDownScale = -1;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_PVTitleViewBackgroundColor = lgf_RGBColor(219, 23, 25, 1.0);
@@ -365,7 +365,6 @@
     style.lgf_SubTitleSelectColor = lgf_RGBColor(219, 23, 25, 1.0);
     style.lgf_UnSubTitleSelectColor = [LGFPTHexColor(@"FFFFFF") colorWithAlphaComponent:0.6];
     style.lgf_IsDoubleTitle = YES;
-    style.lgf_SubTitleTopSpace = -1;
     return style;
 }
 
