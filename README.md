@@ -1,3 +1,10 @@
+## LGFFreePT
+可自由添加到指定位置的分页标控件
+
+## 制作目的
+* 想要把分页标放在视图任意位置
+* 把分页用的子控制器 Page 留给大家自己定义（传一个自己初始化的 UICollectionView，实现其代理，并在 cell 上添加子控制器就行）
+
 ## 部分效果展示
 * 毛毛虫底部线对准title
 
@@ -28,13 +35,6 @@
 ![](https://upload-images.jianshu.io/upload_images/2857609-aa7f7cc85184b13e.gif?imageMogr2/auto-orient/strip)
 
 * 还有更多效果，详件Demo ([LGFFreePT](https://github.com/aiononhiii/LGFFreePT))
-
-## LGFFreePT
-可自由添加到指定位置的分页标控件
-
-## 制作目的
-* 想要把分页标放在任意位置
-* 把分页用的子控制器 Page 留给你们自己定义
 
 ## 功能
 * 实现了市面上大部分的效果，如果有新的需求请留言我
