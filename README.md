@@ -16,4 +16,18 @@
 如果提示错误，请更新你的 cocoaPods ~>1.7.0
 
 # 部分效果展示
-* gif 制作中
+* 毛毛虫底部线对准title
+![](https://upload-images.jianshu.io/upload_images/2857609-1db8aa8c93410d10.gif?imageMogr2/auto-orient/strip)
+* 普通底部线对准title
+![](https://upload-images.jianshu.io/upload_images/2857609-adb88914f96167a5.gif?imageMogr2/auto-orient/strip)
+* 模仿系统UISegment
+![](https://upload-images.jianshu.io/upload_images/2857609-60cc01dde1dfdf12.gif?imageMogr2/auto-orient/strip)
+* 指定index添加特殊title
+![](https://upload-images.jianshu.io/upload_images/2857609-bcb9d1b342705ba7.gif?imageMogr2/auto-orient/strip)
+* 主副title
+![](https://upload-images.jianshu.io/upload_images/2857609-ede5b8402fa3aaca.gif?imageMogr2/auto-orient/strip)
+* 主副title放大缩小
+![](https://upload-images.jianshu.io/upload_images/2857609-a46a248a8044238b.gif?imageMogr2/auto-orient/strip)
+* 支付宝滚动更新title
+![](https://upload-images.jianshu.io/upload_images/2857609-aa7f7cc85184b13e.gif?imageMogr2/auto-orient/strip)
+* 还有更多效果，详件Demo ([LGFFreePT](https://github.com/aiononhiii/LGFFreePT))
