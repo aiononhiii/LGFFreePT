@@ -10,9 +10,21 @@
 
 ![](https://upload-images.jianshu.io/upload_images/2857609-1db8aa8c93410d10.gif?imageMogr2/auto-orient/strip)
 
+* 向下隐藏-底部线对准 title(自定义)
+
+![](https://upload-images.jianshu.io/upload_images/2857609-46c396c7d99abab0.gif?imageMogr2/auto-orient/strip)
+
+* 向上隐藏
+
+![](https://upload-images.jianshu.io/upload_images/2857609-65ebbe94bedea5be.gif?imageMogr2/auto-orient/strip)
+
 * 普通底部线对准title
 
 ![](https://upload-images.jianshu.io/upload_images/2857609-adb88914f96167a5.gif?imageMogr2/auto-orient/strip)
+
+* 渐隐效果
+
+![](https://upload-images.jianshu.io/upload_images/2857609-04c51bb9779ea427.gif?imageMogr2/auto-orient/strip)
 
 * 模仿系统UISegment
 
@@ -20,7 +32,7 @@
 
 * 指定index添加特殊title
 
-![](https://upload-images.jianshu.io/upload_images/2857609-bcb9d1b342705ba7.gif?imageMogr2/auto-orient/strip)
+![](https://upload-images.jianshu.io/upload_images/2857609-399c4ece9794bc2e.gif?imageMogr2/auto-orient/strip)
 
 * 主副title
 
