@@ -193,12 +193,10 @@
 		18458F7022756AF8001F1CCC /* LGFFreePTDemo */ = {
 			isa = PBXGroup;
 			children = (
-				185879BE228BD8B4001B1BAB /* 自定义StyleVC */,
-				18458FC32276A5FB001F1CCC /* LGFFreePTStyleCenter.h */,
-				18458FC42276A5FB001F1CCC /* LGFFreePTStyleCenter.m */,
 				18458FCB2276CCC3001F1CCC /* MainViewController.h */,
 				18458FCC2276CCC3001F1CCC /* MainViewController.m */,
-				18AD2F1322841AD700772CD7 /* 效果展示VC */,
+				185879BE228BD8B4001B1BAB /* 自定义StyleVC */,
+				18AD2F1322841AD700772CD7 /* 实际使用效果展示VC */,
 				18AD2F1022841AA900772CD7 /* 支付宝编辑页效果VC */,
 				18458F7722756AF8001F1CCC /* Main.storyboard */,
 				18458F7122756AF8001F1CCC /* AppDelegate.h */,
@@ -321,18 +319,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		18AD2F1322841AD700772CD7 /* 效果展示VC */ = {
+		18AD2F1322841AD700772CD7 /* 实际使用效果展示VC */ = {
 			isa = PBXGroup;
 			children = (
 				18AD2F1622841B9D00772CD7 /* View */,
 				18AD2F1422841AEA00772CD7 /* VC */,
 			);
-			path = "效果展示VC";
+			path = "实际使用效果展示VC";
 			sourceTree = "<group>";
 		};
 		18AD2F1422841AEA00772CD7 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				18458FC32276A5FB001F1CCC /* LGFFreePTStyleCenter.h */,
+				18458FC42276A5FB001F1CCC /* LGFFreePTStyleCenter.m */,
 				18458F7422756AF8001F1CCC /* ViewController.h */,
 				18458F7522756AF8001F1CCC /* ViewController.m */,
 				18458FC82276ABB7001F1CCC /* ChildViewController.h */,

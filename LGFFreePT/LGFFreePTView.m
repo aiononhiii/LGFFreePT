@@ -306,6 +306,9 @@
             } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
                 if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:line:progress:)]) {
                     [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle line:self.lgf_TitleLine progress:progress];
+                    LGFPTLog(@"自定义动画用 progress 值:%f", progress);
+                } else {
+                    LGFPTLog(@"要使用自定义效果请实现 lgf_FreePTViewCustomizeLineAnimationConfig 代理, 并在代理中配置动画");
                 }
             }
         } selectTitle:selectTitle unSelectTitle:unSelectTitle];
