@@ -158,55 +158,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 
 #pragma mark - 生成 LGFFreePTStyle 配置 Demo
 - (IBAction)getLGFFreePTStyleDemo:(id)sender {
-    NSMutableDictionary *styleDefultDict = [[NSMutableDictionary alloc] initWithDictionary:[lgf_Defaults objectForKey:@"LGFStyleDefultDict"]];
-    NSMutableDictionary *styleDict = [[NSMutableDictionary alloc] initWithDictionary:[lgf_Defaults objectForKey:@"LGFStyleDict"]];
-    
-    NSMutableArray *demoArray = [NSMutableArray arrayWithArray:@[@"LGFFreePTStyle *style = [LGFFreePTStyle lgf];\n"]];
-
-    if (![styleDict[@"lgf_IsDoubleTitle"] boolValue]) {
-        NSString *demo = @"style.lgf_Titles = @[@\"我的\", @\"邮箱:\", @\"452354033@qq.com\", @\"正在\", @\"寻求好的\", @\"团队\", @\"从事过 IOS 开发 And Android 开发\", @\"主要从事\", @\"IOS 开发\", @\"5\", @\"年开发经验\"].copy;\n";
-        [demoArray addObject:demo];
-    }
-    
-    [styleDefultDict.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull defultKey, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![[styleDefultDict valueForKey:defultKey] isEqualToString:[styleDict valueForKey:defultKey]] && ![defultKey isEqualToString:@"LGFFreePTSuperViewHeight"]) {
-            NSString *demo = @"";
-            if ([defultKey isEqualToString:@"setlgf_ImageNames"]) {
-                demo = @"style.lgf_SelectImageNames = @[@\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\"].mutableCopy;\nstyle.lgf_UnSelectImageNames = @[@\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\"].mutableCopy;\nstyle.lgf_TitleImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");\n";
-            } else if ([defultKey isEqualToString:@"setlgf_LineBackImage"]) {
-                demo = @"style.lgf_LineBackImage = lgf_Image(@\"line_image\");\n";
-            } else if ([defultKey isEqualToString:@"lgf_IsDoubleTitle"]) {
-                if ([styleDict[defultKey] boolValue]) {
-                    demo = @"style.lgf_Titles = @[@\"我的/我的\", @\"邮箱:/邮箱\", @\"452354033@qq.com/452354033@qq.com\", @\"正在/正在\", @\"寻求好的/寻求好的\", @\"团队/团队\", @\"从事过 IOS 开发 And Android 开发/从事过 IOS 开发 And Android 开发\", @\"主要从事/主要从事\", @\"IOS 开发/IOS 开发\", @\"5/5\", @\"年半开发经验/年半开发经验\"].copy;\n";
-                } else {
-                    demo = @"style.lgf_Titles = @[@\"我的\", @\"邮箱:\", @\"452354033@qq.com\", @\"正在\", @\"寻求好的\", @\"团队\", @\"从事过 IOS 开发 And Android 开发\", @\"主要从事\", @\"IOS 开发\", @\"5\", @\"年开发经验\"].copy;\n";
-                }
-            } else if ([defultKey isEqualToString:@"lgf_TitleSelectColor"] || [defultKey isEqualToString:@"lgf_UnSubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_SubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_TitleBackgroundColor"] || [defultKey isEqualToString:@"lgf_LineColor"] || [defultKey isEqualToString:@"lgf_TitleBorderColor"] || [defultKey isEqualToString:@"lgf_PVTitleViewBackgroundColor"]) {
-                demo = [NSString stringWithFormat:@"style.%@ = @\"%@\";\n", defultKey, [styleDict valueForKey:defultKey]];
-            } else {
-                demo = [NSString stringWithFormat:@"style.%@ = %@;\n", defultKey, [styleDict valueForKey:defultKey]];
-            }
-            [demoArray addObject:demo];
-        }
-    }];
-    
-    if (![styleDict[@"setlgf_ImageNames"] boolValue]) {
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_TopImageSpace", [styleDict valueForKey:@"lgf_TopImageSpace"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_TopImageWidth", [styleDict valueForKey:@"lgf_TopImageWidth"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_TopImageHeight", [styleDict valueForKey:@"lgf_TopImageHeight"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_BottomImageSpace", [styleDict valueForKey:@"lgf_BottomImageSpace"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_BottomImageWidth", [styleDict valueForKey:@"lgf_BottomImageWidth"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_BottomImageHeight", [styleDict valueForKey:@"lgf_BottomImageHeight"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_LeftImageSpace", [styleDict valueForKey:@"lgf_LeftImageSpace"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_LeftImageWidth", [styleDict valueForKey:@"lgf_LeftImageWidth"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_LeftImageHeight", [styleDict valueForKey:@"lgf_LeftImageHeight"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_RightImageSpace", [styleDict valueForKey:@"lgf_RightImageSpace"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_RightImageWidth", [styleDict valueForKey:@"lgf_RightImageWidth"]]];
-        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;\n", @"lgf_RightImageHeight", [styleDict valueForKey:@"lgf_RightImageHeight"]]];
-    }
-    
     StyleDemoViewController *vc = [StyleDemoViewController lgf];
-    vc.demoArray = demoArray.copy;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

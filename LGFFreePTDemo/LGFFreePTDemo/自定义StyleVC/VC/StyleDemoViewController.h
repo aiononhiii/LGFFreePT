@@ -12,7 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface StyleDemoViewController : UIViewController
-@property (nonatomic, copy) NSArray *demoArray;
 lgf_SBViewControllerForH;
 @end
 
