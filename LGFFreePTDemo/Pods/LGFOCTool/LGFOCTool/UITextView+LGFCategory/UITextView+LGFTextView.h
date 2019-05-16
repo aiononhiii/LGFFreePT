@@ -33,4 +33,5 @@
  */
 - (void)lgf_KeywordHighlightColor:(UIColor *)color font:(UIFont *)font text:(NSString *)text;
 
+- (void)lgf_KeywordHighlightTexts:(NSArray *)texts;
 @end

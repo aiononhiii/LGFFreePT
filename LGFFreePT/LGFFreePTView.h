@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "LGFFreePTStyle.h"
+#import "LGFFreePTLine.h"
+#import "LGFFreePTTitle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol LGFFreePTDelegate <NSObject>
+@required
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex;// 返回选中的标
+@optional
+// 自定义 line 动画
+- (void)lgf_FreePTViewCustomizeLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress;
 @end
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;
@@ -21,19 +27,23 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)lgf;
 #pragma mark - 刷新所有标
 /**
- @param isExecution 是否走点击代理
+ @param isExecutionDelegate 是否执行点击代理
+ @param isReloadPageCV 是否刷新外部子控制器分页容器（CV）
  @param selectIndex 需要默认选中的下标
+ @param animated 默认选中的下标是否需要动画
  */
-- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution selectIndex:(NSInteger)selectIndex;
-- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution;
-- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex;
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex isExecutionDelegate:(BOOL)isExecutionDelegate isReloadPageCV:(BOOL)isReloadPageCV animated:(BOOL)animated;
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex isExecutionDelegate:(BOOL)isExecutionDelegate animated:(BOOL)animated;
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex animated:(BOOL)animated;
 - (void)lgf_ReloadTitle;
-#pragma mark - 选中某个下标
+#pragma mark - 手动选中某个标（如果关联外部 CV 外部 CV 请手动滚动）
 /**
  @param index 要选中的下标
  @param duration 选中动画的时间
+ @param autoScrollDuration 跟随动画的时间
  */
-- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration;
+- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration;
+- (void)lgf_SelectIndex:(NSInteger)index;
 #pragma mark - 初始化配置
 /**
  @param style 配置用模型

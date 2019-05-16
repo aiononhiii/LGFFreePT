@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18193C0C2276E1ED003108FB /* MainViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18193C0B2276E1ED003108FB /* MainViewControllerCell.m */; };
-		18193C0E2276EAF6003108FB /* tupian.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C0D2276EAF5003108FB /* tupian.png */; };
-		18193C102276EB72003108FB /* tupian_un.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C0F2276EB72003108FB /* tupian_un.png */; };
-		18193C23227FC72D003108FB /* line_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C22227FC72D003108FB /* line_image.png */; };
-		18193C25227FCC23003108FB /* line_maomaochong.png in Resources */ = {isa = PBXBuildFile; fileRef = 18193C24227FCC23003108FB /* line_maomaochong.png */; };
 		182A8E3A22813040006FFDE6 /* VerticalViewControllerOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */; };
 		182A8E3D2281304E006FFDE6 /* VerticalViewControllerThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3C2281304E006FFDE6 /* VerticalViewControllerThreeCell.m */; };
 		18311EE4227FFCF300F9999C /* specialTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18311EE3227FFCF300F9999C /* specialTitle.m */; };
@@ -44,6 +40,12 @@
 		18458FC72276A96B001F1CCC /* LGFFreePT.h in Sources */ = {isa = PBXBuildFile; fileRef = 18458FC62276A78A001F1CCC /* LGFFreePT.h */; };
 		18458FCA2276ABB7001F1CCC /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FC92276ABB7001F1CCC /* ChildViewController.m */; };
 		18458FCD2276CCC3001F1CCC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18458FCC2276CCC3001F1CCC /* MainViewController.m */; };
+		185879C3228BD939001B1BAB /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185879C2228BD939001B1BAB /* CustomViewController.m */; };
+		185879C6228BE3FA001B1BAB /* StyleDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185879C5228BE3FA001B1BAB /* StyleDemoViewController.m */; };
+		185F09AA228ADFD4004CDEDA /* colorSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09A9228ADFD4004CDEDA /* colorSelectView.m */; };
+		185F09AC228ADFDB004CDEDA /* colorSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F09AB228ADFDB004CDEDA /* colorSelectView.xib */; };
+		185F09AE228AE216004CDEDA /* colorSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 185F09AD228AE216004CDEDA /* colorSelect.png */; };
+		185F09B1228AEE68004CDEDA /* LGFColorSelectImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */; };
 		B0AE91678DE4F3B260F9D38D /* libPods-LGFFreePTDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -68,10 +70,6 @@
 		15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGFFreePTDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18193C0A2276E1ED003108FB /* MainViewControllerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewControllerCell.h; sourceTree = "<group>"; };
 		18193C0B2276E1ED003108FB /* MainViewControllerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewControllerCell.m; sourceTree = "<group>"; };
-		18193C0D2276EAF5003108FB /* tupian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tupian.png; sourceTree = "<group>"; };
-		18193C0F2276EB72003108FB /* tupian_un.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tupian_un.png; sourceTree = "<group>"; };
-		18193C22227FC72D003108FB /* line_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line_image.png; sourceTree = "<group>"; };
-		18193C24227FCC23003108FB /* line_maomaochong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line_maomaochong.png; sourceTree = "<group>"; };
 		182A8E3822813040006FFDE6 /* VerticalViewControllerOneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerticalViewControllerOneCell.h; sourceTree = "<group>"; };
 		182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerticalViewControllerOneCell.m; sourceTree = "<group>"; };
 		182A8E3B2281304E006FFDE6 /* VerticalViewControllerThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerticalViewControllerThreeCell.h; sourceTree = "<group>"; };
@@ -129,6 +127,16 @@
 		18458FC92276ABB7001F1CCC /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		18458FCB2276CCC3001F1CCC /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		18458FCC2276CCC3001F1CCC /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		185879C1228BD939001B1BAB /* CustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
+		185879C2228BD939001B1BAB /* CustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		185879C4228BE3FA001B1BAB /* StyleDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleDemoViewController.h; sourceTree = "<group>"; };
+		185879C5228BE3FA001B1BAB /* StyleDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StyleDemoViewController.m; sourceTree = "<group>"; };
+		185F09A8228ADFD4004CDEDA /* colorSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = colorSelectView.h; sourceTree = "<group>"; };
+		185F09A9228ADFD4004CDEDA /* colorSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = colorSelectView.m; sourceTree = "<group>"; };
+		185F09AB228ADFDB004CDEDA /* colorSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = colorSelectView.xib; sourceTree = "<group>"; };
+		185F09AD228AE216004CDEDA /* colorSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorSelect.png; sourceTree = "<group>"; };
+		185F09AF228AEE68004CDEDA /* LGFColorSelectImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFColorSelectImageView.h; sourceTree = "<group>"; };
+		185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFColorSelectImageView.m; sourceTree = "<group>"; };
 		7A2DCE3390351753B24B8B2A /* Pods-LGFFreePTDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.release.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A4F4048A1649EACFADD120D2 /* Pods-LGFFreePTDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.debug.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,41 +167,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18193C092276E1D0003108FB /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				18193C24227FCC23003108FB /* line_maomaochong.png */,
-				18193C22227FC72D003108FB /* line_image.png */,
-				18193C0F2276EB72003108FB /* tupian_un.png */,
-				18193C0D2276EAF5003108FB /* tupian.png */,
-				18193C0A2276E1ED003108FB /* MainViewControllerCell.h */,
-				18193C0B2276E1ED003108FB /* MainViewControllerCell.m */,
-				18311EF12281180B00F9999C /* VerticalViewControllerCell.h */,
-				18311EF22281180B00F9999C /* VerticalViewControllerCell.m */,
-				18311EF42281186100F9999C /* VerticalViewControllerReusableView.h */,
-				18311EF52281186100F9999C /* VerticalViewControllerReusableView.m */,
-				182A8E3822813040006FFDE6 /* VerticalViewControllerOneCell.h */,
-				182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */,
-				182A8E3B2281304E006FFDE6 /* VerticalViewControllerThreeCell.h */,
-				182A8E3C2281304E006FFDE6 /* VerticalViewControllerThreeCell.m */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		18311EE1227FFCD900F9999C /* view */ = {
-			isa = PBXGroup;
-			children = (
-				18311EE7228007E500F9999C /* special_image.png */,
-				18311EE2227FFCF300F9999C /* specialTitle.h */,
-				18311EE3227FFCF300F9999C /* specialTitle.m */,
-				18311EE5227FFCFA00F9999C /* specialTitle.xib */,
-				18311EE9228007F500F9999C /* specialImageTitle.h */,
-				18311EEA228007F500F9999C /* specialImageTitle.m */,
-				18311EEC228007FA00F9999C /* specialImageTitle.xib */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
 		18458F6522756AF8001F1CCC = {
 			isa = PBXGroup;
 			children = (
@@ -220,18 +193,13 @@
 		18458F7022756AF8001F1CCC /* LGFFreePTDemo */ = {
 			isa = PBXGroup;
 			children = (
-				18311EE1227FFCD900F9999C /* view */,
-				18193C092276E1D0003108FB /* Cell */,
+				185879BE228BD8B4001B1BAB /* 自定义StyleVC */,
 				18458FC32276A5FB001F1CCC /* LGFFreePTStyleCenter.h */,
 				18458FC42276A5FB001F1CCC /* LGFFreePTStyleCenter.m */,
 				18458FCB2276CCC3001F1CCC /* MainViewController.h */,
 				18458FCC2276CCC3001F1CCC /* MainViewController.m */,
-				18458F7422756AF8001F1CCC /* ViewController.h */,
-				18458F7522756AF8001F1CCC /* ViewController.m */,
-				18458FC82276ABB7001F1CCC /* ChildViewController.h */,
-				18458FC92276ABB7001F1CCC /* ChildViewController.m */,
-				18311EEE228116C700F9999C /* VerticalViewController.h */,
-				18311EEF228116C700F9999C /* VerticalViewController.m */,
+				18AD2F1322841AD700772CD7 /* 效果展示VC */,
+				18AD2F1022841AA900772CD7 /* 支付宝编辑页效果VC */,
 				18458F7722756AF8001F1CCC /* Main.storyboard */,
 				18458F7122756AF8001F1CCC /* AppDelegate.h */,
 				18458F7222756AF8001F1CCC /* AppDelegate.m */,
@@ -285,6 +253,108 @@
 			);
 			name = LGFFreePT;
 			path = ../LGFFreePT;
+			sourceTree = "<group>";
+		};
+		185879BE228BD8B4001B1BAB /* 自定义StyleVC */ = {
+			isa = PBXGroup;
+			children = (
+				185879C0228BD8D0001B1BAB /* View */,
+				185879BF228BD8CB001B1BAB /* VC */,
+			);
+			path = "自定义StyleVC";
+			sourceTree = "<group>";
+		};
+		185879BF228BD8CB001B1BAB /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				185879C1228BD939001B1BAB /* CustomViewController.h */,
+				185879C2228BD939001B1BAB /* CustomViewController.m */,
+				185879C4228BE3FA001B1BAB /* StyleDemoViewController.h */,
+				185879C5228BE3FA001B1BAB /* StyleDemoViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		185879C0228BD8D0001B1BAB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				185F09AD228AE216004CDEDA /* colorSelect.png */,
+				185F09A8228ADFD4004CDEDA /* colorSelectView.h */,
+				185F09A9228ADFD4004CDEDA /* colorSelectView.m */,
+				185F09AB228ADFDB004CDEDA /* colorSelectView.xib */,
+				185F09AF228AEE68004CDEDA /* LGFColorSelectImageView.h */,
+				185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18AD2F1022841AA900772CD7 /* 支付宝编辑页效果VC */ = {
+			isa = PBXGroup;
+			children = (
+				18AD2F1222841AC800772CD7 /* View */,
+				18AD2F1122841ABB00772CD7 /* VC */,
+			);
+			path = "支付宝编辑页效果VC";
+			sourceTree = "<group>";
+		};
+		18AD2F1122841ABB00772CD7 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				18311EEE228116C700F9999C /* VerticalViewController.h */,
+				18311EEF228116C700F9999C /* VerticalViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		18AD2F1222841AC800772CD7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18311EF12281180B00F9999C /* VerticalViewControllerCell.h */,
+				18311EF22281180B00F9999C /* VerticalViewControllerCell.m */,
+				18311EF42281186100F9999C /* VerticalViewControllerReusableView.h */,
+				18311EF52281186100F9999C /* VerticalViewControllerReusableView.m */,
+				182A8E3822813040006FFDE6 /* VerticalViewControllerOneCell.h */,
+				182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */,
+				182A8E3B2281304E006FFDE6 /* VerticalViewControllerThreeCell.h */,
+				182A8E3C2281304E006FFDE6 /* VerticalViewControllerThreeCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18AD2F1322841AD700772CD7 /* 效果展示VC */ = {
+			isa = PBXGroup;
+			children = (
+				18AD2F1622841B9D00772CD7 /* View */,
+				18AD2F1422841AEA00772CD7 /* VC */,
+			);
+			path = "效果展示VC";
+			sourceTree = "<group>";
+		};
+		18AD2F1422841AEA00772CD7 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				18458F7422756AF8001F1CCC /* ViewController.h */,
+				18458F7522756AF8001F1CCC /* ViewController.m */,
+				18458FC82276ABB7001F1CCC /* ChildViewController.h */,
+				18458FC92276ABB7001F1CCC /* ChildViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		18AD2F1622841B9D00772CD7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18193C0A2276E1ED003108FB /* MainViewControllerCell.h */,
+				18193C0B2276E1ED003108FB /* MainViewControllerCell.m */,
+				18311EE7228007E500F9999C /* special_image.png */,
+				18311EE2227FFCF300F9999C /* specialTitle.h */,
+				18311EE3227FFCF300F9999C /* specialTitle.m */,
+				18311EE5227FFCFA00F9999C /* specialTitle.xib */,
+				18311EE9228007F500F9999C /* specialImageTitle.h */,
+				18311EEA228007F500F9999C /* specialImageTitle.m */,
+				18311EEC228007FA00F9999C /* specialImageTitle.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		202CE253919F21E46B8159B7 /* Frameworks */ = {
@@ -410,17 +480,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				18458FB822756B95001F1CCC /* LGFFreePTTitle.xib in Resources */,
-				18193C0E2276EAF6003108FB /* tupian.png in Resources */,
 				18458FBF22756B95001F1CCC /* LGFFreePTLine.xib in Resources */,
-				18193C102276EB72003108FB /* tupian_un.png in Resources */,
 				18458F7E22756AF9001F1CCC /* LaunchScreen.storyboard in Resources */,
 				18458FBC22756B95001F1CCC /* LGFFreePTView.xib in Resources */,
 				18311EE6227FFCFA00F9999C /* specialTitle.xib in Resources */,
 				18458F7B22756AF9001F1CCC /* Assets.xcassets in Resources */,
-				18193C25227FCC23003108FB /* line_maomaochong.png in Resources */,
-				18193C23227FC72D003108FB /* line_image.png in Resources */,
 				18458F7922756AF8001F1CCC /* Main.storyboard in Resources */,
+				185F09AE228AE216004CDEDA /* colorSelect.png in Resources */,
 				18311EE8228007E500F9999C /* special_image.png in Resources */,
+				185F09AC228ADFDB004CDEDA /* colorSelectView.xib in Resources */,
 				18311EED228007FA00F9999C /* specialImageTitle.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,7 +565,9 @@
 				18458FB722756B95001F1CCC /* UIView+LGFFreePT.m in Sources */,
 				18458FC52276A5FB001F1CCC /* LGFFreePTStyleCenter.m in Sources */,
 				18311EF62281186100F9999C /* VerticalViewControllerReusableView.m in Sources */,
+				185F09AA228ADFD4004CDEDA /* colorSelectView.m in Sources */,
 				18458FBE22756B95001F1CCC /* LGFFreePTLine.m in Sources */,
+				185879C3228BD939001B1BAB /* CustomViewController.m in Sources */,
 				18458FBD22756B95001F1CCC /* LGFFreePTView.m in Sources */,
 				18311EF0228116C700F9999C /* VerticalViewController.m in Sources */,
 				18311EF32281180B00F9999C /* VerticalViewControllerCell.m in Sources */,
@@ -510,6 +580,8 @@
 				18458FCD2276CCC3001F1CCC /* MainViewController.m in Sources */,
 				18458F8122756AF9001F1CCC /* main.m in Sources */,
 				18458F7322756AF8001F1CCC /* AppDelegate.m in Sources */,
+				185F09B1228AEE68004CDEDA /* LGFColorSelectImageView.m in Sources */,
+				185879C6228BE3FA001B1BAB /* StyleDemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

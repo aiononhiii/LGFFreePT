@@ -7,8 +7,6 @@
 //
 
 #import "LGFFreePTView.h"
-#import "LGFFreePTTitle.h"
-#import "LGFFreePTLine.h"
 #import "LGFFreePTFlowLayout.h"
 #import "LGFFreePTMethod.h"
 #import "UIView+LGFFreePT.h"
@@ -23,13 +21,6 @@
 @property (assign, nonatomic) BOOL lgf_Enabled;// 操作中是否禁用手势
 @property (assign, nonatomic) BOOL lgf_FreePTViewEnabled;// 操作中是否禁用手势
 @property (assign, nonatomic) BOOL lgf_PageViewEnabled;// 操作中是否禁用手势
-// 标字体渐变色用数组
-@property (copy, nonatomic) NSArray *lgf_DeltaRGBA;
-@property (copy, nonatomic) NSArray *lgf_SelectColorRGBA;
-@property (copy, nonatomic) NSArray *lgf_UnSelectColorRGBA;
-@property (copy, nonatomic) NSArray *lgf_SubDeltaRGBA;
-@property (copy, nonatomic) NSArray *lgf_SubSelectColorRGBA;
-@property (copy, nonatomic) NSArray *lgf_SubUnSelectColorRGBA;
 @end
 @implementation LGFFreePTView
 
@@ -74,24 +65,30 @@
     return self;
 }
 
-#pragma mark - 添加所有标
+#pragma mark - 刷新所有标
 - (void)lgf_ReloadTitle {
-    [self lgf_ReloadTitleAndExecutionDelegate:YES];
+    [self lgf_ReloadTitleAndSelectIndex:0 animated:NO];
 }
-- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution {
-    [self lgf_ReloadTitleAndExecutionDelegate:isExecution selectIndex:self.lgf_SelectIndex];
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex animated:(BOOL)animated {
+    [self lgf_ReloadTitleAndSelectIndex:selectIndex isExecutionDelegate:YES animated:animated];
 }
-- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex {
-    [self lgf_ReloadTitleAndExecutionDelegate:YES selectIndex:selectIndex];
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex isExecutionDelegate:(BOOL)isExecutionDelegate animated:(BOOL)animated {
+    [self lgf_ReloadTitleAndSelectIndex:selectIndex isExecutionDelegate:isExecutionDelegate isReloadPageCV:YES animated:animated];
 }
-- (void)lgf_ReloadTitleAndExecutionDelegate:(BOOL)isExecution selectIndex:(NSInteger)selectIndex {
+- (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex isExecutionDelegate:(BOOL)isExecutionDelegate isReloadPageCV:(BOOL)isReloadPageCV animated:(BOOL)animated {
     if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (selectIndex >  self.lgf_Style.lgf_Titles.count - 1)) {
         return;
     }
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.lgf_TitleButtons enumerateObjectsUsingBlock:^(LGFFreePTTitle * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+        obj = nil;
+    }];
     [self.lgf_TitleLine removeFromSuperview];
+    self.lgf_TitleLine = nil;
     [self.lgf_TitleButtons removeAllObjects];
-    if (self.lgf_PageView) [self.lgf_PageView reloadData];
+    
+    if (self.lgf_PageView && isReloadPageCV) [self.lgf_PageView reloadData];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
@@ -102,10 +99,19 @@
         // 添加底部滚动线
         [self lgf_AddLine];
         // 默认选中
-        [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:isExecution duration:0.0];
+        if (animated) {
+            [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:isExecutionDelegate duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
+        } else {
+            [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:isExecutionDelegate duration:0.0 autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
+        }
     });
 }
-- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration {
+
+#pragma mark - 手动选中某个标（如果关联外部 CV 外部 CV 请手动滚动）
+- (void)lgf_SelectIndex:(NSInteger)index {
+    [self lgf_SelectIndex:index duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
+}
+- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration {
     if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (index >  self.lgf_Style.lgf_Titles.count - 1) || self.lgf_SelectIndex == index) {
         return;
     }
@@ -114,7 +120,7 @@
         self.lgf_UnSelectIndex = self.lgf_SelectIndex;
         self.lgf_SelectIndex = index;
         // 默认选中
-        [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:NO duration:duration];
+        [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:NO duration:duration autoScrollDuration:autoScrollDuration];
     });
 }
 
@@ -159,7 +165,7 @@
     }
     self.lgf_UnSelectIndex = self.lgf_SelectIndex;
     self.lgf_SelectIndex = nowSelectIndex;
-    [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:YES duration:self.lgf_Style.lgf_TitleClickAnimationDuration];
+    [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:YES duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
 }
 
 #pragma mark - 标自动滚动
@@ -170,51 +176,67 @@
     }
     self.lgf_UnSelectIndex = self.lgf_SelectIndex;
     self.lgf_SelectIndex = nowSelectIndex;
-    [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES];
+    [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
 }
 
 #pragma mark - 调整title位置 使其滚动到中间
-- (void)lgf_TitleAutoScrollToTheMiddleExecutionDelegate:(BOOL)isExecution {
+- (void)lgf_TitleAutoScrollToTheMiddleExecutionDelegate:(BOOL)isExecution autoScrollDuration:(CGFloat)autoScrollDuration {
     if (self.lgf_SelectIndex > self.lgf_TitleButtons.count - 1 || self.lgf_TitleButtons.count == 0) { return;
     }
     if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowDefult) {
-        LGFFreePTTitle *select_title = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_SelectIndex];
-        CGFloat offSetx = select_title.center.x - self.lgfpt_Width * 0.5;
-        if (offSetx < 0.0) { offSetx = 0.0; }
-        CGFloat maxOffSetX = self.contentSize.width - self.lgfpt_Width;
-        if (maxOffSetX < 0.0) { maxOffSetX = 0.0; }
-        if (offSetx > maxOffSetX) { offSetx = maxOffSetX; }
-        [UIView animateWithDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration animations:^{
+        LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_SelectIndex];
+        CGFloat offSetx = MIN(MAX(selectTitle.center.x - self.lgfpt_Width * 0.5, 0.0), MAX(self.contentSize.width - self.lgfpt_Width, 0.0));
+        [UIView animateWithDuration:autoScrollDuration animations:^{
             [self setContentOffset:CGPointMake(offSetx, 0.0)];
         }];
-        if (isExecution && self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SelectFreePTTitle:)]) {
-            LGFPTLog(@"当前选中:%@", self.lgf_Style.lgf_Titles[self.lgf_SelectIndex]);
-            [self.lgf_FreePTDelegate lgf_SelectFreePTTitle:self.lgf_SelectIndex];
-        }
     } else if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowLeftRight) {
-        NSAssert(self.lgf_Style.lgf_TitleScrollFollowType != lgf_TitleScrollFollowDefult, @"LGFTitleScrollFollowLeftRight -- 改方法暂时未实现功能 现不可用");
+        BOOL isRight = self.lgf_SelectIndex > self.lgf_UnSelectIndex;
+        LGFFreePTTitle *title = (LGFFreePTTitle *)self.lgf_TitleButtons[isRight ? MIN(self.lgf_SelectIndex + 1, self.lgf_TitleButtons.count - 1) : MAX(self.lgf_SelectIndex - 1, 0)];
+        [UIView animateWithDuration:autoScrollDuration animations:^{
+            if (isRight) {
+                if (self.lgf_SelectIndex == (self.lgf_TitleButtons.count - 1)) {
+                    [self setContentOffset:CGPointMake(self.contentSize.width - self.lgfpt_Width, 0.0)];
+                } else {
+                    if ((title.lgfpt_X + title.lgfpt_Width) >= (self.contentOffset.x + self.lgfpt_Width)) {
+                        [self setContentOffset:CGPointMake(title.lgfpt_X + title.lgfpt_Width - self.lgfpt_Width + (((self.lgf_SelectIndex + 1) == (self.lgf_TitleButtons.count - 1)) ? self.lgf_Style.lgf_PageLeftRightSpace : 0.0), 0.0)];
+                    }
+                }
+            } else {
+                if (self.lgf_SelectIndex == 0) {
+                    [self setContentOffset:CGPointMake(0.0, 0.0)];
+                } else {
+                    if (title.lgfpt_X < self.contentOffset.x) {
+                        [self setContentOffset:CGPointMake(title.lgfpt_X - (((self.lgf_SelectIndex - 1) == 0) ? self.lgf_Style.lgf_PageLeftRightSpace : 0.0), 0.0)];
+                    }
+                }
+                
+            }
+        }];
+    }
+    if (isExecution && self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SelectFreePTTitle:)]) {
+        LGFPTLog(@"当前选中:%@", self.lgf_Style.lgf_Titles[self.lgf_SelectIndex]);
+        [self.lgf_FreePTDelegate lgf_SelectFreePTTitle:self.lgf_SelectIndex];
     }
 }
 
 #pragma mark -  外层分页控制器 contentOffset 转化
 - (void)lgf_ConvertToProgress:(CGFloat)contentOffsetX {
-    CGFloat tempProgress = contentOffsetX / self.lgf_PageView.lgfpt_Width;
-    CGFloat progress = tempProgress - floor(tempProgress);
+    CGFloat selectProgress = contentOffsetX / self.lgf_PageView.lgfpt_Width;
+    CGFloat progress = selectProgress - floor(selectProgress);
     CGPoint delta = [self.lgf_PageView.panGestureRecognizer translationInView:self.lgf_PageView.superview];
     NSInteger selectIndex;
     NSInteger unselectIndex;
-    NSInteger tempIndex = tempProgress;
     if (delta.x > 0.0) {
-        selectIndex = tempIndex + 1;
-        unselectIndex = tempIndex;
+        selectIndex = selectProgress + 1;
+        unselectIndex = selectProgress;
     } else if (delta.x < 0.0) {
         progress = 1.0 - progress;
-        unselectIndex = tempIndex + 1;
-        selectIndex = tempIndex;
+        unselectIndex = selectProgress + 1;
+        selectIndex = selectProgress;
     } else {
         return;
     }
-    if (unselectIndex > self.lgf_TitleButtons.count - 1 || selectIndex > self.lgf_TitleButtons.count - 1 || self.lgf_TitleButtons.count == 0) {
+    if ((unselectIndex > self.lgf_TitleButtons.count - 1) || (selectIndex > self.lgf_TitleButtons.count - 1 ) || (self.lgf_TitleButtons.count == 0)) {
         return;
     }
     [self lgf_AdjustUIWithProgress:progress unselectIndex:unselectIndex selectIndex:selectIndex];
@@ -223,317 +245,160 @@
 #pragma mark - 更新标view的UI(用于滚动外部分页控制器的时候)
 - (void)lgf_AdjustUIWithProgress:(CGFloat)progress unselectIndex:(NSInteger)unselectIndex selectIndex:(NSInteger)selectIndex {
     // 取得 前一个选中的标 和将要选中的标
-    LGFFreePTTitle *unSelectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[unselectIndex];
-    LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[selectIndex];
-    // 标颜色渐变
-    if (self.lgf_Style.lgf_TitleSelectColor != self.lgf_Style.lgf_UnTitleSelectColor) {
-        unSelectTitle.lgf_Title.textColor = [UIColor
-                                             colorWithRed:[self.lgf_SelectColorRGBA[0] floatValue] + [self.lgf_DeltaRGBA[0] floatValue] * progress
-                                             green:[self.lgf_SelectColorRGBA[1] floatValue] + [self.lgf_DeltaRGBA[1] floatValue] * progress
-                                             blue:[self.lgf_SelectColorRGBA[2] floatValue] + [self.lgf_DeltaRGBA[2] floatValue] * progress
-                                             alpha:[self.lgf_SelectColorRGBA[3] floatValue] + [self.lgf_DeltaRGBA[3] floatValue] * progress];
-        selectTitle.lgf_Title.textColor = [UIColor
-                                           colorWithRed:[self.lgf_UnSelectColorRGBA[0] floatValue] - [self.lgf_DeltaRGBA[0] floatValue] * progress
-                                           green:[self.lgf_UnSelectColorRGBA[1] floatValue] - [self.lgf_DeltaRGBA[1] floatValue] * progress
-                                           blue:[self.lgf_UnSelectColorRGBA[2] floatValue] - [self.lgf_DeltaRGBA[2] floatValue] * progress
-                                           alpha:[self.lgf_UnSelectColorRGBA[3] floatValue] - [self.lgf_DeltaRGBA[3] floatValue] * progress];
-    }
-    if (self.lgf_Style.lgf_IsDoubleTitle && self.lgf_Style.lgf_SubTitleSelectColor != self.lgf_Style.lgf_UnSubTitleSelectColor) {
-        unSelectTitle.lgf_SubTitle.textColor = [UIColor
-                                                colorWithRed:[self.lgf_SubSelectColorRGBA[0] floatValue] + [self.lgf_SubDeltaRGBA[0] floatValue] * progress
-                                                green:[self.lgf_SubSelectColorRGBA[1] floatValue] + [self.lgf_SubDeltaRGBA[1] floatValue] * progress
-                                                blue:[self.lgf_SubSelectColorRGBA[2] floatValue] + [self.lgf_SubDeltaRGBA[2] floatValue] * progress
-                                                alpha:[self.lgf_SubSelectColorRGBA[3] floatValue] + [self.lgf_SubDeltaRGBA[3] floatValue] * progress];
-        selectTitle.lgf_SubTitle.textColor = [UIColor
-                                              colorWithRed:[self.lgf_SubUnSelectColorRGBA[0] floatValue] - [self.lgf_SubDeltaRGBA[0] floatValue] * progress
-                                              green:[self.lgf_SubUnSelectColorRGBA[1] floatValue] - [self.lgf_SubDeltaRGBA[1] floatValue] * progress
-                                              blue:[self.lgf_SubUnSelectColorRGBA[2] floatValue] - [self.lgf_SubDeltaRGBA[2] floatValue] * progress
-                                              alpha:[self.lgf_SubUnSelectColorRGBA[3] floatValue] - [self.lgf_SubDeltaRGBA[3] floatValue] * progress];
-    }
-    // 字体改变
-    if (![self.lgf_Style.lgf_TitleSelectFont isEqual:self.lgf_Style.lgf_UnTitleSelectFont]) {
-        if (progress > 0.5) {
-            unSelectTitle.lgf_Title.font = self.lgf_Style.lgf_UnTitleSelectFont;
-            selectTitle.lgf_Title.font = self.lgf_Style.lgf_TitleSelectFont ?: self.lgf_Style.lgf_UnTitleSelectFont;
-        } else {
-            unSelectTitle.lgf_Title.font = self.lgf_Style.lgf_TitleSelectFont ?: self.lgf_Style.lgf_UnTitleSelectFont;
-            selectTitle.lgf_Title.font = self.lgf_Style.lgf_UnTitleSelectFont;
-        }
-    }
-    if (self.lgf_Style.lgf_IsDoubleTitle) {
-        if (![self.lgf_Style.lgf_SubTitleSelectFont isEqual:self.lgf_Style.lgf_UnSubTitleSelectFont]) {
-            if (progress > 0.5) {
-                unSelectTitle.lgf_SubTitle.font = self.lgf_Style.lgf_UnSubTitleSelectFont;
-                selectTitle.lgf_SubTitle.font = self.lgf_Style.lgf_SubTitleSelectFont ?: self.lgf_Style.lgf_UnSubTitleSelectFont;
-            } else {
-                unSelectTitle.lgf_SubTitle.font = self.lgf_Style.lgf_SubTitleSelectFont ?: self.lgf_Style.lgf_UnSubTitleSelectFont;
-                selectTitle.lgf_SubTitle.font = self.lgf_Style.lgf_UnSubTitleSelectFont;
-            }
-        }
-    }
-    // 左边图标选中
-    if (self.lgf_Style.lgf_LeftImageWidth > 0.0) {
-        if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-            if (progress > 0.5) {
-                [unSelectTitle.lgf_LeftImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_LeftImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            } else {
-                [unSelectTitle.lgf_LeftImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_LeftImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
-    }
-    // 右边图标选中
-    if (self.lgf_Style.lgf_RightImageWidth > 0.0) {
-        if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-            if (progress > 0.5) {
-                [unSelectTitle.lgf_RightImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_RightImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            } else {
-                [unSelectTitle.lgf_RightImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_RightImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
-    }
-    // 顶部图标选中
-    if (self.lgf_Style.lgf_TopImageHeight > 0.0) {
-        if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-            if (progress > 0.5) {
-                [unSelectTitle.lgf_TopImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_TopImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            } else {
-                [unSelectTitle.lgf_TopImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_TopImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
-    }
-    // 底部图标选中
-    if (self.lgf_Style.lgf_BottomImageHeight > 0.0) {
-        if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-            if (progress > 0.5) {
-                [unSelectTitle.lgf_BottomImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_BottomImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            } else {
-                [unSelectTitle.lgf_BottomImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[unselectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_BottomImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[selectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
-    }
+    __block LGFFreePTTitle *unSelectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[unselectIndex];
+    __block LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[selectIndex];
     
-    // 标缩放大小改变
-    CGFloat deltaScale = self.lgf_Style.lgf_TitleBigScale - 1.0;
-    unSelectTitle.lgf_CurrentTransformSX = self.lgf_Style.lgf_TitleBigScale - deltaScale * progress;
-    selectTitle.lgf_CurrentTransformSX = 1.0 + deltaScale * progress;
-    
-    if (self.lgf_Style.lgf_MainTitleBigScale != 1.0) {
-        CGFloat mainTitleDeltaScale = self.lgf_Style.lgf_MainTitleBigScale - 1.0;
-        unSelectTitle.lgf_MainTitleCurrentTransformSX = self.lgf_Style.lgf_MainTitleBigScale - mainTitleDeltaScale * progress;
-        selectTitle.lgf_MainTitleCurrentTransformSX = 1.0 + mainTitleDeltaScale * progress;
-    }
-    
-    if (self.lgf_Style.lgf_SubTitleBigScale != 1.0) {
-        CGFloat subTitleDeltaScale = self.lgf_Style.lgf_SubTitleBigScale - 1.0;
-        unSelectTitle.lgf_SubTitleCurrentTransformSX = self.lgf_Style.lgf_SubTitleBigScale - subTitleDeltaScale * progress;
-        selectTitle.lgf_SubTitleCurrentTransformSX = 1.0 + subTitleDeltaScale * progress;
-    }
-    
-    if (self.lgf_Style.lgf_MainTitleUpDownScale != 0.0) {
-        unSelectTitle.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleUpDownScale - self.lgf_Style.lgf_MainTitleUpDownScale * progress;
-        selectTitle.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleUpDownScale * progress;
-    }
-    
-    if (self.lgf_Style.lgf_SubTitleUpDownScale != 0.0) {
-        unSelectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale - self.lgf_Style.lgf_SubTitleUpDownScale * progress;
-        selectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale * progress;
-    }
+    // 标整体状态改变
+    [unSelectTitle lgf_SetMainTitleTransform:progress isSelectTitle:NO selectIndex:unselectIndex unselectIndex:selectIndex];
+    [selectTitle lgf_SetMainTitleTransform:progress isSelectTitle:YES selectIndex:unselectIndex unselectIndex:selectIndex];
     
     // 标底部滚动条 更新位置
     if (self.lgf_TitleLine && self.lgf_Style.lgf_IsShowLine) {
-        if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationDefult) {
-            if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
-                CGFloat xDistance = selectTitle.lgfpt_X - unSelectTitle.lgfpt_X;
-                CGFloat wDistance = selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width;
-                self.lgf_TitleLine.lgfpt_X = unSelectTitle.lgfpt_X + xDistance * progress;
-                self.lgf_TitleLine.lgfpt_Width = unSelectTitle.lgfpt_Width + wDistance * progress;
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
-                CGFloat xDistance = selectTitle.lgfpt_X - unSelectTitle.lgfpt_X;
-                CGFloat wDistance = (selectTitle.lgf_Title.lgfpt_Width - unSelectTitle.lgf_Title.lgfpt_Width) * self.lgf_Style.lgf_TitleBigScale;
-                self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_X + xDistance * progress : (self.lgf_Style.lgf_TitleLeftRightSpace * self.lgf_Style.lgf_TitleBigScale + unSelectTitle.lgfpt_X + xDistance * progress);
-                self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_Width + (selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width) * progress : ((unSelectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_RightImageSpace + self.lgf_Style.lgf_LeftImageWidth + self.lgf_Style.lgf_RightImageWidth) * self.lgf_Style.lgf_TitleBigScale + wDistance * progress);
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-                CGFloat space = (selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) * self.lgf_Style.lgf_TitleBigScale / 2.0;
-                CGFloat xDistance = selectTitle.lgfpt_X - unSelectTitle.lgfpt_X - space;
-                CGFloat wDistance = (selectTitle.lgf_Title.lgfpt_Width - unSelectTitle.lgf_Title.lgfpt_Width) * self.lgf_Style.lgf_TitleBigScale;
-                self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_X + xDistance * progress : (unSelectTitle.lgf_Title.lgfpt_X) * self.lgf_Style.lgf_TitleBigScale + unSelectTitle.lgfpt_X + xDistance * progress;
-                self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? unSelectTitle.lgfpt_Width + (selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width) * progress : (unSelectTitle.lgf_Title.lgfpt_Width * self.lgf_Style.lgf_TitleBigScale) + wDistance * progress;
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith) {
-                CGFloat select_title_x = selectTitle.lgfpt_X + ((selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0);
-                CGFloat un_select_title_x = unSelectTitle.lgfpt_X + ((unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0);
-                CGFloat xDistance = select_title_x - un_select_title_x;
-                CGFloat xxDistance = selectTitle.lgfpt_X - unSelectTitle.lgfpt_X;
-                CGFloat wDistance = selectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width;
-                self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_LineWidth > unSelectTitle.lgfpt_Width + wDistance * progress ? unSelectTitle.lgfpt_X + xxDistance * progress : un_select_title_x + xDistance * progress;
-                self.lgf_TitleLine.lgfpt_Width = MIN(self.lgf_Style.lgf_LineWidth, unSelectTitle.lgfpt_Width + wDistance * progress);
-            }
-        } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoise) {
-            CGFloat selectX = 0.0;
-            CGFloat selectWidth = 0.0;
-            CGFloat unSelectX = 0.0;
-            CGFloat unSelectWidth = 0.0;
-            if (self.lgf_Style.lgf_TitleFixedWidth > 0.0) {
-                self.lgf_Style.lgf_LineWidthType = lgf_FixedWith;
-                self.lgf_Style.lgf_LineWidth = self.lgf_Style.lgf_LineWidth > 0.0 ? self.lgf_Style.lgf_LineWidth : self.lgf_Style.lgf_TitleFixedWidth;
-            }
-            if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
-                selectX = selectTitle.lgfpt_X;
-                selectWidth = selectTitle.lgfpt_Width;
-                unSelectX = unSelectTitle.lgfpt_X;
-                unSelectWidth = unSelectTitle.lgfpt_Width;
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
-                selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_TitleLeftRightSpace * selectTitle.lgf_CurrentTransformSX;
-                selectWidth = (self.lgf_Style.lgf_LeftImageWidth + self.lgf_Style.lgf_LeftImageSpace + selectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_RightImageSpace + self.lgf_Style.lgf_RightImageWidth) * selectTitle.lgf_CurrentTransformSX;
-                unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_TitleLeftRightSpace * unSelectTitle.lgf_CurrentTransformSX;
-                unSelectWidth = (self.lgf_Style.lgf_LeftImageWidth + self.lgf_Style.lgf_LeftImageSpace + unSelectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_RightImageSpace + self.lgf_Style.lgf_RightImageWidth) * unSelectTitle.lgf_CurrentTransformSX;
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-                selectX = selectTitle.lgfpt_X + (selectTitle.lgf_Title.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
-                selectWidth = selectTitle.lgf_Title.lgfpt_Width * selectTitle.lgf_CurrentTransformSX;
-                unSelectX = unSelectTitle.lgfpt_X + (unSelectTitle.lgf_Title.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
-                unSelectWidth = unSelectTitle.lgf_Title.lgfpt_Width * unSelectTitle.lgf_CurrentTransformSX;
-            } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith) {
-                selectX = selectTitle.lgfpt_X + (selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
-                selectWidth = self.lgf_Style.lgf_LineWidth;
-                unSelectX = unSelectTitle.lgfpt_X + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
-                unSelectWidth = self.lgf_Style.lgf_LineWidth;
-            }
-            
-            if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
-                CGFloat space = self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR ? ((selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) / 2.0 - (unSelectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - unSelectTitle.lgf_TitleWidth.constant) / 2.0) : 0.0;
-                CGFloat scaleWidth = ((selectTitle.lgfpt_Width - selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX)) + ((unSelectTitle.lgfpt_Width - unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX));
-                
-                CGFloat differenceWidth = self.lgf_Style.lgf_LineWidthType == lgf_FixedWith ? (unSelectTitle.lgfpt_Width - selectTitle.lgfpt_Width) : 0.0;
+        @LGFPTWeak(self);
+        [self lgf_GetXAndW:^(CGFloat selectX, CGFloat selectWidth, CGFloat unSelectX, CGFloat unSelectWidth) {
+            @LGFPTStrong(self);
+            if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationDefult) {
+                self.lgf_TitleLine.lgfpt_X = selectX * progress + unSelectX * (1.0 - progress);
+                self.lgf_TitleLine.lgfpt_Width = selectWidth * progress + unSelectWidth * (1.0 - progress);
+            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
+                CGFloat space = (unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX - unSelectWidth) / 2 + (selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX - selectWidth) / 2;
                 if (progress > 0.5) {
                     if (unselectIndex < selectIndex) {
-                        self.lgf_TitleLine.lgfpt_X = selectX - (unSelectTitle.lgfpt_Width * 2 - scaleWidth - differenceWidth - space) * (1.0 - progress);
+                        self.lgf_TitleLine.lgfpt_X = selectX - (space + unSelectWidth) * 2 * (1.0 - progress);
                     } else {
                         self.lgf_TitleLine.lgfpt_X = selectX;
                     }
                 } else {
                     if (unselectIndex > selectIndex) {
-                        self.lgf_TitleLine.lgfpt_X = unSelectX - (selectTitle.lgfpt_Width * 2.0 - scaleWidth + differenceWidth + space) * progress;
+                        self.lgf_TitleLine.lgfpt_X = unSelectX - (space + selectWidth) * 2 * progress;
                     } else {
                         self.lgf_TitleLine.lgfpt_X = unSelectX;
                     }
                 }
                 if (progress > 0.5) {
-                    self.lgf_TitleLine.lgfpt_Width = selectWidth + (unSelectTitle.lgfpt_Width * 2.0 - scaleWidth - differenceWidth - space) * (1.0 - progress);
+                    self.lgf_TitleLine.lgfpt_Width = selectWidth  + (unSelectWidth + space) * 2 * (1.0 - progress);
                 } else {
-                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth + (selectTitle.lgfpt_Width * 2.0 - scaleWidth + differenceWidth + space) * progress;
+                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth + (selectWidth + space) * 2 * progress;
                 }
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoise) {
-                
+            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
+                if (progress > 0.5) {
+                    self.lgf_TitleLine.lgfpt_X = selectX;
+                    self.lgf_TitleLine.lgfpt_Width = selectWidth;
+                    self.lgf_TitleLine.alpha = 1.0 - (2.0 * (1.0 - progress));
+                } else {
+                    self.lgf_TitleLine.lgfpt_X = unSelectX;
+                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth;
+                    self.lgf_TitleLine.alpha = 1.0 - (2.0 * progress);
+                }
+            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseUp) {
+                CGFloat space = self.lgf_Style.lgf_LineBottom + (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown ? self.lgf_TitleLine.lgfpt_Height : -self.lgfpt_Height);
+                if (progress > 0.5) {
+                    self.lgf_TitleLine.lgfpt_X = selectX;
+                    self.lgf_TitleLine.lgfpt_Width = selectWidth;
+                    self.lgf_TitleLine.transform = CGAffineTransformIdentity;
+                    self.lgf_TitleLine.transform = CGAffineTransformMakeTranslation(0, space * (2.0 * (1.0 - progress)));
+                } else {
+                    self.lgf_TitleLine.lgfpt_X = unSelectX;
+                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth;
+                    self.lgf_TitleLine.transform = CGAffineTransformIdentity;
+                    self.lgf_TitleLine.transform = CGAffineTransformMakeTranslation(0, space + space * (1.0 - (2.0 * (1.0 - progress))));
+                }
+            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
+                if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:line:progress:)]) {
+                    [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle line:self.lgf_TitleLine progress:progress];
+                }
             }
-        }
+        } selectTitle:selectTitle unSelectTitle:unSelectTitle];
     }
 }
 
 #pragma mark - 更新标view的UI(用于点击标的时候)
-- (void)lgf_AdjustUIWhenBtnOnClickExecutionDelegate:(BOOL)isExecution duration:(CGFloat)duration {
+- (void)lgf_AdjustUIWhenBtnOnClickExecutionDelegate:(BOOL)isExecution duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration {
     self.lgf_PageViewEnabled = NO;
     // 外部分页控制器 滚动到对应下标
     if (self.lgf_PageView) [self.lgf_PageView setContentOffset:CGPointMake(self.lgf_PageView.lgfpt_Width * self.lgf_SelectIndex, 0)];
     // 取得 前一个选中的标 和 将要选中的标
-    LGFFreePTTitle *unSelectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_UnSelectIndex];
-    LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_SelectIndex];
+    __block LGFFreePTTitle *unSelectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_UnSelectIndex];
+    __block LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[self.lgf_SelectIndex];
     // 动画时间
-    CGFloat animatedTime = self.lgf_Style.lgf_TitleHaveAnimation ? duration : 0.0;
-    [UIView animateWithDuration:animatedTime animations:^{
-        // 标缩放大小改变
-        unSelectTitle.lgf_CurrentTransformSX = 1.0;
-        selectTitle.lgf_CurrentTransformSX = self.lgf_Style.lgf_TitleBigScale;
-        unSelectTitle.lgf_MainTitleCurrentTransformSX = 1.0;
-        selectTitle.lgf_MainTitleCurrentTransformSX = self.lgf_Style.lgf_MainTitleBigScale;
-        unSelectTitle.lgf_SubTitleCurrentTransformSX = 1.0;
-        selectTitle.lgf_SubTitleCurrentTransformSX = self.lgf_Style.lgf_SubTitleBigScale;
-        unSelectTitle.lgf_MainTitleCurrentTransformTY = 0.0;
-        selectTitle.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleUpDownScale;
-        unSelectTitle.lgf_SubTitleCurrentTransformTY = 0.0;
-        selectTitle.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleUpDownScale;
+    __block CGFloat animatedDuration = self.lgf_Style.lgf_TitleHaveAnimation ? duration : 0.0;
+    [UIView animateKeyframesWithDuration:animatedDuration delay:0.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
+        // 标整体状态改变
+        [unSelectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:NO selectIndex:self.lgf_UnSelectIndex unselectIndex:self.lgf_UnSelectIndex];
+        [selectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:YES selectIndex:self.lgf_UnSelectIndex unselectIndex:self.lgf_UnSelectIndex];
         
-        // 标颜色渐变
-        unSelectTitle.lgf_Title.textColor = self.lgf_Style.lgf_UnTitleSelectColor;
-        selectTitle.lgf_Title.textColor = self.lgf_Style.lgf_TitleSelectColor;
-        if (self.lgf_Style.lgf_IsDoubleTitle) {
-            unSelectTitle.lgf_SubTitle.textColor = self.lgf_Style.lgf_UnSubTitleSelectColor;
-            selectTitle.lgf_SubTitle.textColor = self.lgf_Style.lgf_SubTitleSelectColor;
-        }
-        // 字体改变
-        if (![self.lgf_Style.lgf_TitleSelectFont isEqual:self.lgf_Style.lgf_UnTitleSelectFont]) {
-            unSelectTitle.lgf_Title.font = self.lgf_Style.lgf_UnTitleSelectFont;
-            selectTitle.lgf_Title.font = self.lgf_Style.lgf_TitleSelectFont ?: self.lgf_Style.lgf_UnTitleSelectFont;
-            if (self.lgf_Style.lgf_IsDoubleTitle) {
-                unSelectTitle.lgf_SubTitle.font = self.lgf_Style.lgf_UnSubTitleSelectFont;
-                selectTitle.lgf_SubTitle.font = self.lgf_Style.lgf_SubTitleSelectFont ?: self.lgf_Style.lgf_UnSubTitleSelectFont;
-            }
-        }
-        // 左边图标选中
-        if (self.lgf_Style.lgf_LeftImageWidth > 0.0) {
-            if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-                [unSelectTitle.lgf_LeftImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[self.lgf_UnSelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_LeftImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[self.lgf_SelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
-        // 右边图标选中
-        if (self.lgf_Style.lgf_RightImageWidth > 0.0) {
-            if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-                [unSelectTitle.lgf_RightImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[self.lgf_UnSelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_RightImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[self.lgf_SelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
-        // 顶部图标选中
-        if (self.lgf_Style.lgf_TopImageHeight > 0.0) {
-            if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-                [unSelectTitle.lgf_TopImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[self.lgf_UnSelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_TopImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[self.lgf_SelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
-        // 底部图标选中
-        if (self.lgf_Style.lgf_BottomImageHeight > 0.0) {
-            if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
-                [unSelectTitle.lgf_BottomImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_UnSelectImageNames[self.lgf_UnSelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-                [selectTitle.lgf_BottomImage setImage:[UIImage imageNamed:self.lgf_Style.lgf_SelectImageNames[self.lgf_SelectIndex] inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
-            }
-        }
         // 标底部滚动条 更新位置
         if (self.lgf_TitleLine && self.lgf_Style.lgf_IsShowLine) {
-            if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoise) {
-                
-            } else {
-                if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
-                    self.lgf_TitleLine.lgfpt_X = selectTitle.lgfpt_X;
-                    self.lgf_TitleLine.lgfpt_Width = selectTitle.lgfpt_Width;
-                } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
-                    self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_X : (self.lgf_Style.lgf_TitleLeftRightSpace * self.lgf_Style.lgf_TitleBigScale + selectTitle.lgfpt_X);
-                    self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_Width : ((self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_LeftImageWidth + selectTitle.lgf_Title.lgfpt_Width + self.lgf_Style.lgf_RightImageWidth + self.lgf_Style.lgf_RightImageSpace) * self.lgf_Style.lgf_TitleBigScale);
-                } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-                    CGFloat space = (selectTitle.lgf_TitleWidth.constant * self.lgf_Style.lgf_MainTitleBigScale - selectTitle.lgf_TitleWidth.constant) * self.lgf_Style.lgf_TitleBigScale / 2;
-                    self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_X : ((self.lgf_Style.lgf_TitleLeftRightSpace + self.lgf_Style.lgf_LeftImageSpace + self.lgf_Style.lgf_LeftImageWidth) * self.lgf_Style.lgf_TitleBigScale - space + selectTitle.lgfpt_X);
-                    self.lgf_TitleLine.lgfpt_Width = self.lgf_Style.lgf_TitleFixedWidth > 0.0 ? selectTitle.lgfpt_Width : (selectTitle.lgf_Title.lgfpt_Width * self.lgf_Style.lgf_TitleBigScale);
-                } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith){
-                    self.lgf_TitleLine.lgfpt_X = self.lgf_Style.lgf_LineWidth > selectTitle.lgfpt_Width ? selectTitle.lgfpt_X : selectTitle.lgfpt_X + ((selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0);
-                    self.lgf_TitleLine.lgfpt_Width = MIN(self.lgf_Style.lgf_LineWidth, selectTitle.lgfpt_Width);
+            @LGFPTWeak(self);
+            [self lgf_GetXAndW:^(CGFloat selectX, CGFloat selectWidth, CGFloat unSelectX, CGFloat unSelectWidth) {
+                @LGFPTStrong(self);
+                if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseUp  || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
+                    CGFloat space = self.lgf_Style.lgf_LineBottom + (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown ? self.lgf_TitleLine.lgfpt_Height : -self.lgfpt_Height);
+                    // 这个 0.0001 用于关键帧动画的瞬间无缝坐标改动（肉眼无法识别）
+                    [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / animatedDuration)  animations:^{
+                        if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
+                            self.lgf_TitleLine.alpha = 0.0;
+                        } else {
+                            self.lgf_TitleLine.transform = CGAffineTransformMakeTranslation(0, space);
+                        }
+                    }];
+                    [UIView addKeyframeWithRelativeStartTime:0.5 - (0.0001 / animatedDuration) relativeDuration:0.0002 / animatedDuration animations:^{
+                        self.lgf_TitleLine.lgfpt_X = selectX;
+                        self.lgf_TitleLine.lgfpt_Width = selectWidth;
+                    }];
+                    [UIView addKeyframeWithRelativeStartTime:0.5 + (0.0001 / animatedDuration) relativeDuration:0.5 - (0.0001 / animatedDuration) animations:^{
+                        if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
+                            self.lgf_TitleLine.alpha = 1.0;
+                        } else {
+                            self.lgf_TitleLine.transform = CGAffineTransformIdentity;
+                        }
+                    }];
+                } else {
+                    self.lgf_TitleLine.lgfpt_X = selectX;
+                    self.lgf_TitleLine.lgfpt_Width = selectWidth;
                 }
-            }
+            } selectTitle:selectTitle unSelectTitle:unSelectTitle];
         }
     } completion:^(BOOL finished) {
-        [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:isExecution];
+        [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:isExecution autoScrollDuration:autoScrollDuration];
         self.lgf_PageViewEnabled = YES;
     }];
+}
+
+#pragma mark - 取得要改变的 X 和 Width 核心逻辑部分
+- (void)lgf_GetXAndW:(void (^)(CGFloat selectX, CGFloat selectWidth, CGFloat unSelectX, CGFloat unSelectWidth))XAndW selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle {
+    CGFloat selectX = 0.0;
+    CGFloat selectWidth = 0.0;
+    CGFloat unSelectX = 0.0;
+    CGFloat unSelectWidth = 0.0;
+    if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
+        selectX = selectTitle.lgfpt_X;
+        selectWidth = selectTitle.lgfpt_Width;
+        unSelectX = unSelectTitle.lgfpt_X;
+        unSelectWidth = unSelectTitle.lgfpt_Width;
+    } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
+        selectX = (selectTitle.lgfpt_X + selectTitle.lgf_LeftImage.lgfpt_X * selectTitle.lgf_CurrentTransformSX);
+        selectWidth = (selectTitle.lgf_RightImage.lgfpt_X + selectTitle.lgf_RightImage.lgfpt_Width - selectTitle.lgf_LeftImage.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
+        unSelectX = (unSelectTitle.lgfpt_X + unSelectTitle.lgf_LeftImage.lgfpt_X * unSelectTitle.lgf_CurrentTransformSX);
+        unSelectWidth = (unSelectTitle.lgf_RightImage.lgfpt_X + unSelectTitle.lgf_RightImage.lgfpt_Width - unSelectTitle.lgf_LeftImage.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
+    } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
+        selectX = selectTitle.lgfpt_X + (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_X : selectTitle.lgf_Title.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
+        selectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_Width : selectTitle.lgf_Title.lgfpt_Width) * selectTitle.lgf_CurrentTransformSX;
+        unSelectX = unSelectTitle.lgfpt_X + (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_X : unSelectTitle.lgf_Title.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
+        unSelectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_Width : unSelectTitle.lgf_Title.lgfpt_Width) * unSelectTitle.lgf_CurrentTransformSX;
+    } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith) {
+        selectX = selectTitle.lgfpt_X + (selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
+        selectWidth = self.lgf_Style.lgf_LineWidth;
+        unSelectX = unSelectTitle.lgfpt_X + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
+        unSelectWidth = self.lgf_Style.lgf_LineWidth;
+    }
+    if (XAndW) XAndW(selectX, selectWidth, unSelectX, unSelectWidth);
 }
 
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentOffset"]) {
-        // setContentOffset 方法触发的不算
+        // setContentOffset 方法触发的不算数～
         if (self.lgf_PageView.isTracking || self.lgf_PageView.isDragging || self.lgf_PageView.isDecelerating) {
             self.lgf_FreePTViewEnabled = NO;
             [self lgf_ConvertToProgress:self.lgf_PageView.contentOffset.x < 0.0 ? 0.0 : self.lgf_PageView.contentOffset.x];
@@ -565,7 +430,7 @@
 - (void)setViewEnabled:(BOOL)enabled view:(UIScrollView *)view  {
     if (view){
         if (enabled) {
-            view.scrollEnabled = YES;
+            view.scrollEnabled = ((self.lgf_Style.lgf_PVAnimationType == lgf_PageViewAnimationNone) && (view == self.lgf_PageView)) ? NO : YES;
             view.userInteractionEnabled = YES;
             view.panGestureRecognizer.view.userInteractionEnabled = YES;
         } else {
@@ -593,72 +458,6 @@
         _lgf_TitleLine = [LGFFreePTLine lgf_AllocLine:self.lgf_Style];
     }
     return _lgf_TitleLine;
-}
-
-- (NSArray *)lgf_UnSelectColorRGBA {
-    if (!_lgf_UnSelectColorRGBA) {
-        NSArray *unSelectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_UnTitleSelectColor];
-        NSAssert(unSelectColorRGBA, @"设置普通状态的文字颜色时 请使用RGBA空间的颜色值");
-        _lgf_UnSelectColorRGBA = unSelectColorRGBA;
-    }
-    return  _lgf_UnSelectColorRGBA;
-}
-
-- (NSArray *)lgf_SelectColorRGBA {
-    if (!_lgf_SelectColorRGBA) {
-        NSArray *selectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_TitleSelectColor];
-        NSAssert(selectColorRGBA, @"设置选中状态的文字颜色时 请使用RGBA空间的颜色值");
-        _lgf_SelectColorRGBA = selectColorRGBA;
-    }
-    return  _lgf_SelectColorRGBA;
-}
-
-- (NSArray *)lgf_DeltaRGBA {
-    if (_lgf_DeltaRGBA == nil) {
-        NSArray *delta;
-        if (self.lgf_UnSelectColorRGBA && self.lgf_SelectColorRGBA) {
-            CGFloat deltaR = [self.lgf_UnSelectColorRGBA[0] floatValue] - [self.lgf_SelectColorRGBA[0] floatValue];
-            CGFloat deltaG = [self.lgf_UnSelectColorRGBA[1] floatValue] - [self.lgf_SelectColorRGBA[1] floatValue];
-            CGFloat deltaB = [self.lgf_UnSelectColorRGBA[2] floatValue] - [self.lgf_SelectColorRGBA[2] floatValue];
-            CGFloat deltaA = [self.lgf_UnSelectColorRGBA[3] floatValue] - [self.lgf_SelectColorRGBA[3] floatValue];
-            delta = [NSArray arrayWithObjects:@(deltaR), @(deltaG), @(deltaB), @(deltaA), nil];
-            _lgf_DeltaRGBA = delta;
-        }
-    }
-    return _lgf_DeltaRGBA;
-}
-
-- (NSArray *)lgf_SubUnSelectColorRGBA {
-    if (!_lgf_SubUnSelectColorRGBA) {
-        NSArray *subUnSelectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_UnSubTitleSelectColor];
-        NSAssert(subUnSelectColorRGBA, @"设置普通状态的文字颜色时 请使用RGBA空间的颜色值");
-        _lgf_SubUnSelectColorRGBA = subUnSelectColorRGBA;
-    }
-    return  _lgf_SubUnSelectColorRGBA;
-}
-
-- (NSArray *)lgf_SubSelectColorRGBA {
-    if (!_lgf_SubSelectColorRGBA) {
-        NSArray *subSelectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_SubTitleSelectColor];
-        NSAssert(subSelectColorRGBA, @"设置选中状态的文字颜色时 请使用RGBA空间的颜色值");
-        _lgf_SubSelectColorRGBA = subSelectColorRGBA;
-    }
-    return  _lgf_SubSelectColorRGBA;
-}
-
-- (NSArray *)lgf_SubDeltaRGBA {
-    if (_lgf_SubDeltaRGBA == nil) {
-        NSArray *subDelta;
-        if (self.lgf_SubUnSelectColorRGBA && self.lgf_SubSelectColorRGBA) {
-            CGFloat subDeltaR = [self.lgf_SubUnSelectColorRGBA[0] floatValue] - [self.lgf_SubSelectColorRGBA[0] floatValue];
-            CGFloat subDeltaG = [self.lgf_SubUnSelectColorRGBA[1] floatValue] - [self.lgf_SubSelectColorRGBA[1] floatValue];
-            CGFloat subDeltaB = [self.lgf_SubUnSelectColorRGBA[2] floatValue] - [self.lgf_SubSelectColorRGBA[2] floatValue];
-            CGFloat subDeltaA = [self.lgf_SubUnSelectColorRGBA[3] floatValue] - [self.lgf_SubSelectColorRGBA[3] floatValue];
-            subDelta = [NSArray arrayWithObjects:@(subDeltaR), @(subDeltaG), @(subDeltaB), @(subDeltaA), nil];
-            _lgf_SubDeltaRGBA = subDelta;
-        }
-    }
-    return _lgf_SubDeltaRGBA;
 }
 
 - (NSMutableArray <LGFFreePTTitle *> *)lgf_TitleButtons {

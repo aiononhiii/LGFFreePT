@@ -8,6 +8,7 @@
 
 #import "UITextView+LGFTextView.h"
 #import <objc/runtime.h>
+#import "LGFOCTool.h"
 
 static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
 
@@ -79,6 +80,40 @@ static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
     [attribute addAttribute:NSForegroundColorAttributeName value:color range:range];
     // 将带属性的字符串添加到cell.textLabel上.
     [self setAttributedText:attribute];
+}
+
+- (void)lgf_KeywordHighlightTexts:(NSArray *)texts {
+    // 获取关键字的位置
+    NSArray *ranges = [self rangeOfSubString:texts inString:self.text];
+    // 转换成可以操作的字符串类型.
+    NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithString:self.text];
+    [attribute addAttribute:NSForegroundColorAttributeName value:self.textColor range:[self.text rangeOfString:self.text]];
+    [attribute addAttribute:NSFontAttributeName value:self.font range:[self.text rangeOfString:self.text]];
+    [ranges enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // 添加属性(粗体)
+        [attribute addAttribute:NSFontAttributeName value:self.font range:[obj[@"range"] rangeValue]];
+        // 关键字高亮
+        [attribute addAttribute:NSForegroundColorAttributeName value:lgf_HexColor(obj[@"color"]) range:[obj[@"range"] rangeValue]];
+    }];
+    // 将带属性的字符串添加到cell.textLabel上.
+    [self setAttributedText:attribute];
+}
+
+- (NSArray*)rangeOfSubString:(NSArray *)texts inString:(NSString*)string {
+    NSMutableArray *rangeArray = [NSMutableArray array];
+    [texts enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull subStrDict, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *subStr = subStrDict[@"text"];
+        NSString*string1 = [string stringByAppendingString:subStr];
+        NSString *temp;
+        for(int i = 0; i < string.length; i ++) {
+            temp = [string1 substringWithRange:NSMakeRange(i, subStr.length)];
+            if ([temp isEqualToString:subStr]) {
+                NSRange range = {i, subStr.length};
+                [rangeArray addObject:@{@"range" : [NSValue valueWithRange:range], @"color" : subStrDict[@"color"]}];
+            }
+        }
+    }];
+    return rangeArray;
 }
 
 @end

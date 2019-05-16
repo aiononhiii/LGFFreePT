@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (LGFFreePTStyle *)fifteen;
 + (LGFFreePTStyle *)sixteen;
 + (LGFFreePTStyle *)seventeen;
++ (LGFFreePTStyle *)eighteen;
++ (LGFFreePTStyle *)nineteen;
++ (LGFFreePTStyle *)twenty;
++ (LGFFreePTStyle *)twentyone;
++ (LGFFreePTStyle *)twentytwo;
 @end
 
 NS_ASSUME_NONNULL_END

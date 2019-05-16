@@ -12,6 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (LGFImage)
 
+#pragma mark - 图像变暗
+/**
+ @param value 变暗指数 0.0 - 1.0
+ @return 变暗后的图片
+ */
+- (UIImage *)lgf_ImageToDark:(float)value;
+
 #pragma mark - 更具gif图片名字取得gif图片数组
 /**
  @param gifNameInBoundle gif图片名字

@@ -74,7 +74,7 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
     
     // 刷新title数组
     self.fptView.lgf_Style.lgf_Titles = self.titles;
-    [self.fptView lgf_ReloadTitleAndExecutionDelegate:NO];
+    [self.fptView lgf_ReloadTitleAndSelectIndex:0 isExecutionDelegate:NO animated:NO];
     [self setHeader];
 }
 
@@ -131,7 +131,7 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
         }];
     } else {
         self.headerView.backgroundColor = lgf_HexColor(@"FFFFFF");
-        [self.fptView lgf_SelectIndex:0 duration:0.1];
+        [self.fptView lgf_SelectIndex:0 duration:0.1 autoScrollDuration:0.25];
         [self setCVContentInset:0];
         [self goEdit:^(BOOL finished) {
             [UIView animateWithDuration:0.3 animations:^{
@@ -264,7 +264,7 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
                 CGFloat realY = self.isEdit ? (scrollView.contentOffset.y + 250.0 + 8.0) : scrollView.contentOffset.y;
                 if (realY > [obj.firstObject floatValue] && realY < [obj.lastObject floatValue]) {
                     // 根据 contentOffset.y 选中某个 title
-                    [self.fptView lgf_SelectIndex:idx duration:0.1];
+                    [self.fptView lgf_SelectIndex:idx duration:0.1 autoScrollDuration:0.25];
                 }
             }];
         }

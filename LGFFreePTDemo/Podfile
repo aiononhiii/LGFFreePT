@@ -3,4 +3,8 @@ target 'LGFFreePTDemo' do
 
 pod 'LGFOCTool'
 
+pod 'IQKeyboardManager'
+
+pod 'YYImage'
+
 end

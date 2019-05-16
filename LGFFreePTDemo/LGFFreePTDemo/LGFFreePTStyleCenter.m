@@ -35,7 +35,7 @@
     style.lgf_PageLeftRightSpace = 20.0;
     style.lgf_LineHeight = 4.0;
     style.lgf_LineCornerRadius = 2.0;
-    style.lgf_TitleBigScale = 1.5;// 控制放大缩小
+    style.lgf_TitleTransformSX = 1.5;// 控制放大缩小
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
@@ -50,7 +50,7 @@
     style.lgf_LineWidthType = lgf_EqualTitle;// 底部线对准 title 宽
     style.lgf_TitleLeftRightSpace = 20.0;
     style.lgf_PageLeftRightSpace = 20.0;
-    style.lgf_TitleBigScale = 1.5;// 控制放大缩小
+    style.lgf_TitleTransformSX = 1.5;// 控制放大缩小
     style.lgf_LineHeight = 2.0;
     style.lgf_LineCornerRadius = 2.0;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
@@ -101,9 +101,10 @@
     style.lgf_LineWidthType = lgf_EqualTitleSTR;
     style.lgf_TitleLeftRightSpace = 20.0;
     style.lgf_PageLeftRightSpace = 20.0;
-    style.lgf_TitleBigScale = 1.5;// 控制放大缩小
+    style.lgf_TitleTransformSX = 2.0;// 控制放大缩小
     style.lgf_LineHeight = 4.0;
     style.lgf_LineCornerRadius = 2.0;
+    style.lgf_MainTitleTransformSX = 2.0;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
@@ -121,7 +122,8 @@
     style.lgf_LineHeight = 4.0;
     style.lgf_LineBottom = 0.0;
     style.lgf_LineCornerRadius = 2.0;
-    style.lgf_TitleBigScale = 0.5;// 控制放大缩小
+    style.lgf_TitleTransformSX = 0.5;// 控制放大缩小
+    style.lgf_MainTitleTransformSX = 3.3;// 控制放大缩小
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:18];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:18];
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
@@ -145,7 +147,7 @@
     style.lgf_LineHeight = 44.0;
     style.lgf_LineBottom = 0.0;
     style.lgf_LineCornerRadius = 2.0;
-    style.lgf_TitleBigScale = 1.3;// 控制放大缩小
+    style.lgf_TitleTransformSX = 1.3;// 控制放大缩小
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:12];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:12];
     style.lgf_LineColor = LGFPTHexColor(@"f0f0f0");
@@ -218,9 +220,9 @@
     style.lgf_TitleCornerRadius = 1.0;
     style.lgf_LineHeight = 2.0;
     style.lgf_LineBottom = 0.0;
-    style.lgf_LineCornerRadius = 2.0;
-    style.lgf_SubTitleBigScale = 0.7;
-    style.lgf_TitleBigScale = 1.3;
+    style.lgf_LineCornerRadius = 1.0;
+    style.lgf_SubTitleTransformSX = 0.7;
+    style.lgf_TitleTransformSX = 1.3;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
@@ -243,9 +245,9 @@
     style.lgf_TitleLeftRightSpace = 15.0;
     style.lgf_PageLeftRightSpace = 15.0;
     style.lgf_TitleCornerRadius = 1.0;
-    style.lgf_MainTitleBigScale = 1.5;
-    style.lgf_SubTitleBigScale = 0.0;
-    style.lgf_MainTitleUpDownScale = 5.0;
+    style.lgf_MainTitleTransformSX = 1.5;
+    style.lgf_SubTitleTransformSX = 0.0;
+    style.lgf_MainTitleTransformTY = 5.0;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:20];
     style.lgf_LineColor = LGFPTHexColor(@"333333");
@@ -330,14 +332,14 @@
     style.lgf_LineHeight = 10.0;
     style.lgf_LineBottom = -5;
     style.lgf_LineCornerRadius = 5.0;
-    style.lgf_TitleBigScale = 1.2;
+    style.lgf_TitleTransformSX = 1.2;
     style.lgf_LineColor = LGFPTHexColor(@"FF2A52");
     style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"000000");
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:16];
     style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:16];
     style.lgf_TitleSelectColor = LGFPTHexColor(@"0DA4F3");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"FFFFFF");
-    style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
+    style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseDown;
     return style;
 }
 
@@ -349,9 +351,9 @@
     style.lgf_LineHeight = 16.0;
     style.lgf_LineBottom = 4.0;
     style.lgf_LineCornerRadius = 3.0;
-    style.lgf_MainTitleBigScale = 1.4;
+    style.lgf_MainTitleTransformSX = 1.4;
     style.lgf_SubTitleTopSpace = 2.0;
-    style.lgf_MainTitleUpDownScale = -1;
+    style.lgf_MainTitleTransformTY = -1;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_PVTitleViewBackgroundColor = lgf_RGBColor(219, 23, 25, 1.0);
@@ -368,4 +370,85 @@
     return style;
 }
 
++ (LGFFreePTStyle *)eighteen {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_TitleFixedWidth = 80.0;
+    style.lgf_LineWidth = 10.0;
+    style.lgf_LineWidthType = lgf_FixedWith;
+    style.lgf_LineHeight = 4.0;
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_LineColor = lgf_RGBColor(255, 0, 0, 1.0);
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
+    style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseDown;// 毛毛虫效果
+    return style;
+}
+
++ (LGFFreePTStyle *)nineteen {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_LineWidthType = lgf_EqualTitleSTR;// 底部线对准字
+    style.lgf_TitleCornerRadius = 3.0;
+    style.lgf_TitleLeftRightSpace = 20.0;
+    style.lgf_PageLeftRightSpace = 20.0;
+    style.lgf_MainTitleTransformSX = 1.3;
+    style.lgf_MainTitleTransformTY = -7;
+    style.lgf_LineHeight = 20.0;
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_LineColor = LGFPTHexColor(@"228B22");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"228B22");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"40E0D0");
+    style.lgf_StartDebug = YES;
+    style.lgf_LineAnimation = lgf_PageLineAnimationCustomize;// 自定义的小乌龟效果
+    return style;
+}
++ (LGFFreePTStyle *)twenty {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_LineWidthType = lgf_EqualTitleSTR;
+    style.lgf_TitleLeftRightSpace = 20.0;
+    style.lgf_PageLeftRightSpace = 20.0;
+    style.lgf_TitleTransformSX = 1.5;// 控制放大缩小
+    style.lgf_LineHeight = 4.0;
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_LineColor = LGFPTHexColor(@"fr134f");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
+    style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseDown;// 小乌龟效果
+    return style;
+}
++ (LGFFreePTStyle *)twentyone {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_LineWidthType = lgf_FixedWith;
+    style.lgf_TitleFixedWidth = 80.0;
+    style.lgf_TitleTransformSX = 1.3;// 控制放大缩小
+    style.lgf_MainTitleTransformTY = 10.0;
+    style.lgf_LineHeight = 80.0;
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_LineBackImage =  lgf_Image(@"line_mutou_image");
+    style.lgf_LineColor = [LGFPTHexColor(@"FFFFFF") colorWithAlphaComponent:0.0];
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"FFFFFF");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"B22222");
+    style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseUp;/// 小乌龟反向效果
+    return style;
+}
+
++ (LGFFreePTStyle *)twentytwo {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_LineWidthType = lgf_FixedWith;
+    style.lgf_TitleFixedWidth = 100.0;
+    style.lgf_LineWidth = 80.0;
+    style.lgf_LineHeight = 24.0;
+    style.lgf_LineCornerRadius = 12.0;
+    style.lgf_LineBottom = 10.0;
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_LineColor = LGFPTHexColor(@"fr134f");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"FFFFFF");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"333333");
+    style.lgf_LineAnimation = lgf_PageLineAnimationHideShow;/// 小乌龟反向效果
+    return style;
+}
 @end

@@ -663,5 +663,15 @@ static void _lgf_cleanupBuffer(void *userData, void *buf_data) {
     return outputImage;
 }
 
+- (UIImage *)lgf_ImageToDark:(float)value {
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, [UIScreen mainScreen].scale);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)
+            blendMode:kCGBlendModeDarken
+                alpha:1 - value];
+    UIImage *darkImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return darkImage;
+}
+
 @end
 

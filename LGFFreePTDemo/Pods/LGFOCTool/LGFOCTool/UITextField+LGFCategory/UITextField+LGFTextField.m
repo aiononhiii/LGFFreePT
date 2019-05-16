@@ -92,6 +92,7 @@ static const char *lgf_RightSpaceKey = "lgf_RightSpaceKey";
     NSRange range = [self.text rangeOfString:text];
     // 转换成可以操作的字符串类型.
     NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithString:self.text];
+    [attribute addAttribute:NSForegroundColorAttributeName value:self.textColor range:[self.text rangeOfString:self.text]];
     // 添加属性(粗体)
     [attribute addAttribute:NSFontAttributeName value:font range:range];
     // 关键字高亮

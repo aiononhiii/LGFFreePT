@@ -330,7 +330,6 @@ static BOOL lgf_HexStrToRGBA(NSString *str,
                (NSUInteger)(components[1] * 255.0f),
                (NSUInteger)(components[2] * 255.0f)];
     }
-    
     if (hex && withAlpha) {
         hex = [hex stringByAppendingFormat:@"%02lx",
                (unsigned long)(self.lgf_Alpha * 255.0 + 0.5)];

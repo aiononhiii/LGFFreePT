@@ -10,11 +10,13 @@
 #import "LGFFreePTStyleCenter.h"
 #import "LGFFreePT.h"
 #import "ChildViewController.h"
+#import "colorSelectView.h"
 
 @interface ViewController () <LGFFreePTDelegate>
 @property (strong, nonatomic) LGFFreePTView *fptView;
 @property (weak, nonatomic) IBOutlet UILabel *naviTitle;
 @property (weak, nonatomic) IBOutlet UIView *pageSuperView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pageSuperViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *pageSuperViewSuperView;
 @property (weak, nonatomic) IBOutlet UICollectionView *pageCollectionView;
 @property (strong, nonatomic) NSMutableArray *chlidVCs;
@@ -31,7 +33,9 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.naviTitle.text = self.type;
+    // 添加子控制器
     [self.titles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ChildViewController *vc = [ChildViewController lgf];
         [self addChildViewController:vc];
@@ -41,14 +45,13 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     // 刷新title数组
     self.fptView.lgf_Style.lgf_Titles = self.titles;
     if ([self.type isEqualToString:@"默认选中 index 5"]) {
-        [self.fptView lgf_ReloadTitleAndSelectIndex:5];
+        [self.fptView lgf_ReloadTitleAndSelectIndex:5 animated:YES];
     } else {
         [self.fptView lgf_ReloadTitle];
     }
     
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        self.pageSuperViewSuperView.transform = CGAffineTransformMakeTranslation(0, 80);
-    } completion:^(BOOL finished) {
+    [UIView animateWithDuration:0.4 animations:^{
+        self.pageSuperView.transform = CGAffineTransformMakeTranslation(0.0, 50.0);
     }];
 }
 
@@ -82,6 +85,22 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     [self.view lgf_ShowMessageStyle:style animated:NO completion:^{
         
     }];
+}
+
+// 自定义 line 动画配置代理
+- (void)lgf_FreePTViewCustomizeLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress {
+    CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
+    if (progress > 0.5) {
+        line.lgfpt_X = selectX;
+        line.lgfpt_Width = selectWidth;
+        line.transform = CGAffineTransformIdentity;
+        line.transform = CGAffineTransformMakeTranslation(0, space * (2.0 * (1.0 - progress)));
+    } else {
+        line.lgfpt_X = unSelectX;
+        line.lgfpt_Width = unSelectWidth;
+        line.transform = CGAffineTransformIdentity;
+        line.transform = CGAffineTransformMakeTranslation(0, space + space * (1.0 - (2.0 * (1.0 - progress))));
+    }
 }
 
 #pragma mark - 懒加载
@@ -141,6 +160,16 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
             style = [LGFFreePTStyleCenter sixteen];
         } else if ([self.type isEqualToString:@"部分需求效果"]) {
             style = [LGFFreePTStyleCenter seventeen];
+        } else if ([self.type isEqualToString:@"小乌龟"]) {
+            style = [LGFFreePTStyleCenter eighteen];
+        } else if ([self.type isEqualToString:@"小乌龟-底部线对准 title(自定义)"]) {
+            style = [LGFFreePTStyleCenter nineteen];
+        } else if ([self.type isEqualToString:@"小乌龟-选中放大/缩小"]) {
+            style = [LGFFreePTStyleCenter twenty];
+        } else if ([self.type isEqualToString:@"小乌龟反向"]) {
+            style = [LGFFreePTStyleCenter twentyone];
+        } else if ([self.type isEqualToString:@"渐隐效果"]) {
+            style = [LGFFreePTStyleCenter twentytwo];
         }
         _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:style SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
         _fptView.lgf_FreePTDelegate = self;

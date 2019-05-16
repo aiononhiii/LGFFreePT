@@ -51,9 +51,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat lgf_CurrentTransformSX;// 放大缩小倍数
 @property (assign, nonatomic) CGFloat lgf_MainTitleCurrentTransformSX;// 主标题放大缩小倍数
 @property (assign, nonatomic) CGFloat lgf_MainTitleCurrentTransformTY;// 主标题上下位移
+@property (assign, nonatomic) CGFloat lgf_MainTitleCurrentTransformTX;// 主标题左右位移
 @property (assign, nonatomic) CGFloat lgf_SubTitleCurrentTransformSX;// 子标题放大缩小倍数
 @property (assign, nonatomic) CGFloat lgf_SubTitleCurrentTransformTY;// 子标题上下位移
+@property (assign, nonatomic) CGFloat lgf_SubTitleCurrentTransformTX;// 子标题左右位移
 
+#pragma mark - 标整体状态改变 核心逻辑部分
+/**
+ @param progress 外部 progress
+ @param isSelectTitle 是否是要选中的 LGFFreePTTitle
+ @param selectIndex 选中的 index
+ @param unselectIndex 未选中的 index
+ */
+- (void)lgf_SetMainTitleTransform:(CGFloat)progress isSelectTitle:(BOOL)isSelectTitle selectIndex:(NSInteger)selectIndex unselectIndex:(NSInteger)unselectIndex;
 #pragma mark - 标初始化
 /**
  @param titleText 标文字

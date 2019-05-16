@@ -10,6 +10,18 @@
 #import "UIView+LGFFreePT.h"
 #import "LGFFreePTMethod.h"
 
+#undef LGFPTRandomColor
+#define LGFPTRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0f green:arc4random_uniform(256)/255.0f blue:arc4random_uniform(256)/255.0f alpha:0.2]
+
+@interface LGFFreePTTitle()
+// 标字体渐变色用数组
+@property (copy, nonatomic) NSArray *lgf_DeltaRGBA;
+@property (copy, nonatomic) NSArray *lgf_SelectColorRGBA;
+@property (copy, nonatomic) NSArray *lgf_UnSelectColorRGBA;
+@property (copy, nonatomic) NSArray *lgf_SubDeltaRGBA;
+@property (copy, nonatomic) NSArray *lgf_SubSelectColorRGBA;
+@property (copy, nonatomic) NSArray *lgf_SubUnSelectColorRGBA;
+@end
 @implementation LGFFreePTTitle
 
 + (instancetype)lgf_AllocTitle:(NSString *)titleText index:(NSInteger)index style:(LGFFreePTStyle *)style {
@@ -18,6 +30,17 @@
     LGFFreePTTitle *title = [LGFPTBundle loadNibNamed:NSStringFromClass([LGFFreePTTitle class]) owner:self options:nil].firstObject;
     title.tag = index;
     title.lgf_Style = style;
+    
+    // 开启调试模式所有背景将设置随机颜色方便调试
+    if (title.lgf_Style.lgf_StartDebug) {
+        title.backgroundColor = LGFPTRandomColor;
+        title.lgf_Title.backgroundColor = LGFPTRandomColor;
+        title.lgf_SubTitle.backgroundColor = LGFPTRandomColor;
+        title.lgf_LeftImage.backgroundColor = LGFPTRandomColor;
+        title.lgf_RightImage.backgroundColor = LGFPTRandomColor;
+        title.lgf_TopImage.backgroundColor = LGFPTRandomColor;
+        title.lgf_BottomImage.backgroundColor = LGFPTRandomColor;
+    }
     
     // 需要显示子标题
     if (title.lgf_Style.lgf_IsDoubleTitle) {
@@ -28,19 +51,17 @@
     }
     
     // 获取字体宽度
-    CGSize titleSize = [LGFFreePTMethod lgf_SizeWithString:title.lgf_Title.text font:title.lgf_Style.lgf_TitleSelectFont maxSize:CGSizeMake(CGFLOAT_MAX, title.lgf_Style.lgf_PVTitleView.lgfpt_Height)];
+    CGSize titleSize = [LGFFreePTMethod lgf_SizeWithString:title.lgf_Title.text font:(title.lgf_Style.lgf_TitleSelectFont.pointSize > title.lgf_Style.lgf_UnTitleSelectFont.pointSize ? title.lgf_Style.lgf_TitleSelectFont : title.lgf_Style.lgf_UnTitleSelectFont) maxSize:CGSizeMake(CGFLOAT_MAX, title.lgf_Style.lgf_PVTitleView.lgfpt_Height)];
     CGSize subTitleSize = CGSizeZero;
     if (title.lgf_Style.lgf_IsDoubleTitle) {
-        subTitleSize = [LGFFreePTMethod lgf_SizeWithString:title.lgf_SubTitle.text font:title.lgf_Style.lgf_SubTitleSelectFont maxSize:CGSizeMake(CGFLOAT_MAX, title.lgf_Style.lgf_PVTitleView.lgfpt_Height)];
+        subTitleSize = [LGFFreePTMethod lgf_SizeWithString:title.lgf_SubTitle.text font:(title.lgf_Style.lgf_SubTitleSelectFont.pointSize > title.lgf_Style.lgf_UnSubTitleSelectFont.pointSize ? title.lgf_Style.lgf_SubTitleSelectFont : title.lgf_Style.lgf_UnSubTitleSelectFont) maxSize:CGSizeMake(CGFLOAT_MAX, title.lgf_Style.lgf_PVTitleView.lgfpt_Height)];
         title.lgf_SubTitleHeight.constant = subTitleSize.height;
         title.lgf_TitleCenterY.constant = title.lgf_TitleCenterY.constant - subTitleSize.height / 2.0 - title.lgf_Style.lgf_SubTitleTopSpace / 2;
         title.lgf_SubTitleTop.constant = title.lgf_Style.lgf_SubTitleTopSpace;
-        CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.05;
-        title.lgf_SubTitleWidth.constant = maxWidth;
+        title.lgf_SubTitleWidth.constant = subTitleSize.width * 1.05;
         [title layoutIfNeeded];
     }
-    CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.05;
-    title.lgf_TitleWidth.constant = maxWidth;
+    title.lgf_TitleWidth.constant = titleSize.width * 1.05;
     title.lgf_TitleHeight.constant = titleSize.height;
     
     // 标 X
@@ -53,6 +74,7 @@
     }
     
     // 标宽度
+    CGFloat maxWidth = MAX(titleSize.width, subTitleSize.width) * 1.05;
     CGFloat titleWidth = title.lgf_Style.lgf_TitleFixedWidth > 0.0 ? title.lgf_Style.lgf_TitleFixedWidth : (maxWidth + (style.lgf_TitleLeftRightSpace * 2.0) + title.lgf_Style.lgf_LeftImageWidth + title.lgf_Style.lgf_RightImageWidth + title.lgf_Style.lgf_LeftImageSpace + title.lgf_Style.lgf_RightImageSpace);
     
     title.frame = CGRectMake(titleX,
@@ -76,6 +98,88 @@
         }
     }
     return title;
+}
+
+#pragma mark - 标整体状态改变 核心逻辑部分
+- (void)lgf_SetMainTitleTransform:(CGFloat)progress isSelectTitle:(BOOL)isSelectTitle selectIndex:(NSInteger)selectIndex unselectIndex:(NSInteger)unselectIndex {
+    CGFloat deltaScale = self.lgf_Style.lgf_TitleTransformSX - 1.0;
+    CGFloat mainTitleDeltaScale = self.lgf_Style.lgf_MainTitleTransformSX - 1.0;
+    CGFloat subTitleDeltaScale = self.lgf_Style.lgf_SubTitleTransformSX - 1.0;
+    
+    if (isSelectTitle) {
+        self.lgf_CurrentTransformSX = 1.0 + deltaScale * progress;
+        self.lgf_MainTitleCurrentTransformSX = 1.0 + mainTitleDeltaScale * progress;
+        self.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleTransformTY * progress;
+        self.lgf_MainTitleCurrentTransformTX = self.lgf_Style.lgf_MainTitleTransformTX * progress;
+        self.lgf_SubTitleCurrentTransformSX = 1.0 + subTitleDeltaScale * progress;
+        self.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleTransformTY * progress;
+        self.lgf_SubTitleCurrentTransformTX = self.lgf_Style.lgf_SubTitleTransformTX * progress;
+    } else {
+        self.lgf_CurrentTransformSX = self.lgf_Style.lgf_TitleTransformSX - deltaScale * progress;
+        self.lgf_MainTitleCurrentTransformSX = self.lgf_Style.lgf_MainTitleTransformSX - mainTitleDeltaScale * progress;
+        self.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleTransformTY - self.lgf_Style.lgf_MainTitleTransformTY * progress;
+        self.lgf_MainTitleCurrentTransformTX = self.lgf_Style.lgf_MainTitleTransformTX - self.lgf_Style.lgf_MainTitleTransformTX * progress;
+        self.lgf_SubTitleCurrentTransformSX = self.lgf_Style.lgf_SubTitleTransformSX - subTitleDeltaScale * progress;
+        self.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleTransformTY - self.lgf_Style.lgf_SubTitleTransformTY * progress;
+        self.lgf_SubTitleCurrentTransformTX = self.lgf_Style.lgf_SubTitleTransformTX - self.lgf_Style.lgf_SubTitleTransformTX * progress;
+    }
+    
+    self.transform = CGAffineTransformMakeScale(self.lgf_CurrentTransformSX, self.lgf_CurrentTransformSX);
+    self.lgf_Title.transform = CGAffineTransformIdentity;
+    self.lgf_Title.transform = CGAffineTransformMakeScale(self.lgf_MainTitleCurrentTransformSX, self.lgf_MainTitleCurrentTransformSX);
+    self.lgf_Title.transform = CGAffineTransformTranslate(self.lgf_Title.transform, self.lgf_MainTitleCurrentTransformTX, self.lgf_MainTitleCurrentTransformTY);
+    
+    self.lgf_SubTitle.transform = CGAffineTransformIdentity;
+    self.lgf_SubTitle.transform = CGAffineTransformMakeScale(self.lgf_SubTitleCurrentTransformSX, self.lgf_SubTitleCurrentTransformSX);
+    self.lgf_SubTitle.transform = CGAffineTransformTranslate(self.lgf_SubTitle.transform, self.lgf_SubTitleCurrentTransformTX, self.lgf_SubTitleCurrentTransformTY);
+    
+    // 标颜色渐变
+    if (self.lgf_Style.lgf_TitleSelectColor != self.lgf_Style.lgf_UnTitleSelectColor) {
+        NSArray *colors = isSelectTitle ? self.lgf_UnSelectColorRGBA : self.lgf_SelectColorRGBA;
+        self.lgf_Title.textColor = [UIColor
+                                    colorWithRed:[colors[0] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[0] floatValue] : -[self.lgf_DeltaRGBA[0] floatValue]) * progress
+                                    green:[colors[1] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[1] floatValue] : -[self.lgf_DeltaRGBA[1] floatValue]) * progress
+                                    blue:[colors[2] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[2] floatValue] : -[self.lgf_DeltaRGBA[2] floatValue]) * progress
+                                    alpha:[colors[3] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[3] floatValue] : -[self.lgf_DeltaRGBA[3] floatValue]) * progress];
+    }
+    if (self.lgf_Style.lgf_IsDoubleTitle && self.lgf_Style.lgf_SubTitleSelectColor != self.lgf_Style.lgf_UnSubTitleSelectColor) {
+        NSArray *colors = isSelectTitle ? self.lgf_SubUnSelectColorRGBA : self.lgf_SubSelectColorRGBA;
+        self.lgf_SubTitle.textColor = [UIColor
+                                       colorWithRed:[colors[0] floatValue] - (isSelectTitle ? [self.lgf_SubDeltaRGBA[0] floatValue] : -[self.lgf_SubDeltaRGBA[0] floatValue]) * progress
+                                       green:[colors[1] floatValue] - (isSelectTitle ? [self.lgf_SubDeltaRGBA[1] floatValue] : -[self.lgf_SubDeltaRGBA[1] floatValue]) * progress
+                                       blue:[colors[2] floatValue] - (isSelectTitle ? [self.lgf_SubDeltaRGBA[2] floatValue] : -[self.lgf_SubDeltaRGBA[2] floatValue]) * progress
+                                       alpha:[colors[3] floatValue] - (isSelectTitle ? [self.lgf_SubDeltaRGBA[3] floatValue] : -[self.lgf_SubDeltaRGBA[3] floatValue]) * progress];
+    }
+    
+    // 字体改变
+    if (![self.lgf_Style.lgf_TitleSelectFont isEqual:self.lgf_Style.lgf_UnTitleSelectFont]) {
+        self.lgf_Title.font = (isSelectTitle == progress > 0.5) ? self.lgf_Style.lgf_TitleSelectFont : self.lgf_Style.lgf_UnTitleSelectFont;
+    }
+    if (self.lgf_Style.lgf_IsDoubleTitle) {
+        if (![self.lgf_Style.lgf_SubTitleSelectFont isEqual:self.lgf_Style.lgf_UnSubTitleSelectFont]) {
+            self.lgf_SubTitle.font = (isSelectTitle == progress > 0.5) ? self.lgf_Style.lgf_SubTitleSelectFont : self.lgf_Style.lgf_UnSubTitleSelectFont;
+        }
+    }
+    
+    // 图标选中
+    if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
+        NSString *ssImageName = self.lgf_Style.lgf_SelectImageNames[selectIndex];
+        NSString *uuImageName = self.lgf_Style.lgf_UnSelectImageNames[unselectIndex];
+        NSString *usImageName = self.lgf_Style.lgf_UnSelectImageNames[selectIndex];
+        NSString *suImageName = self.lgf_Style.lgf_SelectImageNames[unselectIndex];
+        if (self.lgf_Style.lgf_LeftImageWidth > 0.0 && self.lgf_Style.lgf_LeftImageHeight > 0.0) {
+            [self.lgf_LeftImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+        }
+        if (self.lgf_Style.lgf_RightImageWidth > 0.0 && self.lgf_Style.lgf_RightImageHeight > 0.0) {
+            [self.lgf_RightImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+        }
+        if (self.lgf_Style.lgf_TopImageHeight > 0.0 && self.lgf_Style.lgf_TopImageWidth > 0.0) {
+            [self.lgf_TopImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+        }
+        if (self.lgf_Style.lgf_BottomImageHeight > 0.0 && self.lgf_Style.lgf_BottomImageWidth > 0.0) {
+            [self.lgf_BottomImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+        }
+    }
 }
 
 #pragma mark - 懒加载
@@ -124,10 +228,6 @@
         self.lgf_BottomImageSpace.constant = 0.0;
         self.lgf_LeftImageSpace.constant = 0.0;
         self.lgf_RightImageSpace.constant = 0.0;
-        self.lgf_TopImage = nil;
-        self.lgf_BottomImage = nil;
-        self.lgf_LeftImage = nil;
-        self.lgf_RightImage = nil;
         return;
     }
     
@@ -192,31 +292,6 @@
     }
 }
 
-- (void)setLgf_CurrentTransformSX:(CGFloat)lgf_CurrentTransformSX {
-    _lgf_CurrentTransformSX = lgf_CurrentTransformSX;
-    self.transform = CGAffineTransformMakeScale(lgf_CurrentTransformSX, lgf_CurrentTransformSX);
-}
-
-- (void)setLgf_MainTitleCurrentTransformSX:(CGFloat)lgf_MainTitleCurrentTransformSX {
-    _lgf_MainTitleCurrentTransformSX = lgf_MainTitleCurrentTransformSX;
-    self.lgf_Title.transform = CGAffineTransformMakeScale(lgf_MainTitleCurrentTransformSX, lgf_MainTitleCurrentTransformSX);
-}
-
-- (void)setLgf_SubTitleCurrentTransformSX:(CGFloat)lgf_SubTitleCurrentTransformSX {
-    _lgf_SubTitleCurrentTransformSX = lgf_SubTitleCurrentTransformSX;
-    self.lgf_SubTitle.transform = CGAffineTransformMakeScale(lgf_SubTitleCurrentTransformSX, lgf_SubTitleCurrentTransformSX);
-}
-
-- (void)setLgf_MainTitleCurrentTransformTY:(CGFloat)lgf_MainTitleCurrentTransformTY {
-    _lgf_MainTitleCurrentTransformTY = lgf_MainTitleCurrentTransformTY;
-    self.lgf_Title.transform = CGAffineTransformTranslate(self.lgf_Title.transform, 0, lgf_MainTitleCurrentTransformTY);
-}
-
-- (void)setLgf_SubTitleCurrentTransformTY:(CGFloat)lgf_SubTitleCurrentTransformTY {
-    _lgf_SubTitleCurrentTransformTY = lgf_SubTitleCurrentTransformTY;
-    self.lgf_SubTitle.transform = CGAffineTransformTranslate(self.lgf_SubTitle.transform, 0, lgf_SubTitleCurrentTransformTY);
-}
-
 - (NSMutableArray *)lgf_SelectImageNames {
     if (!_lgf_SelectImageNames) {
         _lgf_SelectImageNames = [NSMutableArray new];
@@ -229,6 +304,72 @@
         _lgf_UnSelectImageNames = [NSMutableArray new];
     }
     return _lgf_UnSelectImageNames;
+}
+
+- (NSArray *)lgf_UnSelectColorRGBA {
+    if (!_lgf_UnSelectColorRGBA) {
+        NSArray *unSelectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_UnTitleSelectColor];
+        NSAssert(unSelectColorRGBA, @"设置普通状态的文字颜色时 请使用RGBA空间的颜色值");
+        _lgf_UnSelectColorRGBA = unSelectColorRGBA;
+    }
+    return  _lgf_UnSelectColorRGBA;
+}
+
+- (NSArray *)lgf_SelectColorRGBA {
+    if (!_lgf_SelectColorRGBA) {
+        NSArray *selectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_TitleSelectColor];
+        NSAssert(selectColorRGBA, @"设置选中状态的文字颜色时 请使用RGBA空间的颜色值");
+        _lgf_SelectColorRGBA = selectColorRGBA;
+    }
+    return  _lgf_SelectColorRGBA;
+}
+
+- (NSArray *)lgf_DeltaRGBA {
+    if (_lgf_DeltaRGBA == nil) {
+        NSArray *delta;
+        if (self.lgf_UnSelectColorRGBA && self.lgf_SelectColorRGBA) {
+            CGFloat deltaR = [self.lgf_UnSelectColorRGBA[0] floatValue] - [self.lgf_SelectColorRGBA[0] floatValue];
+            CGFloat deltaG = [self.lgf_UnSelectColorRGBA[1] floatValue] - [self.lgf_SelectColorRGBA[1] floatValue];
+            CGFloat deltaB = [self.lgf_UnSelectColorRGBA[2] floatValue] - [self.lgf_SelectColorRGBA[2] floatValue];
+            CGFloat deltaA = [self.lgf_UnSelectColorRGBA[3] floatValue] - [self.lgf_SelectColorRGBA[3] floatValue];
+            delta = [NSArray arrayWithObjects:@(deltaR), @(deltaG), @(deltaB), @(deltaA), nil];
+            _lgf_DeltaRGBA = delta;
+        }
+    }
+    return _lgf_DeltaRGBA;
+}
+
+- (NSArray *)lgf_SubUnSelectColorRGBA {
+    if (!_lgf_SubUnSelectColorRGBA) {
+        NSArray *subUnSelectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_UnSubTitleSelectColor];
+        NSAssert(subUnSelectColorRGBA, @"设置普通状态的文字颜色时 请使用RGBA空间的颜色值");
+        _lgf_SubUnSelectColorRGBA = subUnSelectColorRGBA;
+    }
+    return  _lgf_SubUnSelectColorRGBA;
+}
+
+- (NSArray *)lgf_SubSelectColorRGBA {
+    if (!_lgf_SubSelectColorRGBA) {
+        NSArray *subSelectColorRGBA = [LGFFreePTMethod lgf_GetColorRGBA:self.lgf_Style.lgf_SubTitleSelectColor];
+        NSAssert(subSelectColorRGBA, @"设置选中状态的文字颜色时 请使用RGBA空间的颜色值");
+        _lgf_SubSelectColorRGBA = subSelectColorRGBA;
+    }
+    return  _lgf_SubSelectColorRGBA;
+}
+
+- (NSArray *)lgf_SubDeltaRGBA {
+    if (_lgf_SubDeltaRGBA == nil) {
+        NSArray *subDelta;
+        if (self.lgf_SubUnSelectColorRGBA && self.lgf_SubSelectColorRGBA) {
+            CGFloat subDeltaR = [self.lgf_SubUnSelectColorRGBA[0] floatValue] - [self.lgf_SubSelectColorRGBA[0] floatValue];
+            CGFloat subDeltaG = [self.lgf_SubUnSelectColorRGBA[1] floatValue] - [self.lgf_SubSelectColorRGBA[1] floatValue];
+            CGFloat subDeltaB = [self.lgf_SubUnSelectColorRGBA[2] floatValue] - [self.lgf_SubSelectColorRGBA[2] floatValue];
+            CGFloat subDeltaA = [self.lgf_SubUnSelectColorRGBA[3] floatValue] - [self.lgf_SubSelectColorRGBA[3] floatValue];
+            subDelta = [NSArray arrayWithObjects:@(subDeltaR), @(subDeltaG), @(subDeltaB), @(subDeltaA), nil];
+            _lgf_SubDeltaRGBA = subDelta;
+        }
+    }
+    return _lgf_SubDeltaRGBA;
 }
 
 @end
