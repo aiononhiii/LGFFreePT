@@ -20,7 +20,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.styleDemoText.textContainer.lineFragmentPadding = 0;
-    self.styleDemoText.textContainerInset = UIEdgeInsetsMake(30, 15, 30, 15);
+    self.styleDemoText.textContainerInset = UIEdgeInsetsMake(15, 10, 15, 10);
     NSString *demoStr = [self.demoArray componentsJoinedByString:@"\n"];
     self.styleDemoText.text = demoStr;
     [self.styleDemoText lgf_KeywordHighlightTexts:@[
@@ -34,12 +34,20 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
   @{@"text" : @"(", @"color" : @"FFFFFF"},
   @{@"text" : @")", @"color" : @"FFFFFF"},
   @{@"text" : @"lgf_Bundle", @"color" : @"A96941"},
-  @{@"text" : @"LGFPTHexColor", @"color" : @"A96941"},
-  @{@"text" : @"@\"tupian\"", @"color" : @"D0232D"},
-  @{@"text" : @"@\"tupian_un\"", @"color" : @"D0232D"},
-  @{@"text" : @"@\"LGFFreePTDemo\"", @"color" : @"D0232D"}]];
+  @{@"text" : @"LGFPTHexColor", @"color" : @"A96941"}]];
+    
+  // @{@"text" : @"@\"tupian\"", @"color" : @"D0232D"},
     
     
+}
+
+#pragma mark - 复制代码
+- (IBAction)pasteboard:(UIButton *)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.styleDemoText.text;
+    if (pasteboard) {
+        [self.view lgf_ShowMessage:@"复制成功" completion:nil];
+    }
 }
 
 @end
