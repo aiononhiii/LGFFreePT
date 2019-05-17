@@ -32,6 +32,9 @@
  @param text 高亮关键字
  */
 - (void)lgf_KeywordHighlightColor:(UIColor *)color font:(UIFont *)font text:(NSString *)text;
-
+#pragma mark - 多个关键字高亮
+/**
+ @param texts 高亮关键字数组
+ */
 - (void)lgf_KeywordHighlightTexts:(NSArray *)texts;
 @end

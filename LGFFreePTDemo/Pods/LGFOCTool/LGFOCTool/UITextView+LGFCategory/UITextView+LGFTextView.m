@@ -103,7 +103,9 @@ static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
     NSMutableArray *rangeArray = [NSMutableArray array];
     [texts enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull subStrDict, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *subStr = subStrDict[@"text"];
-        NSString*string1 = [string stringByAppendingString:subStr];
+        NSString *string1 = [string stringByAppendingString:subStr];
+        
+        //
         NSString *temp;
         for(int i = 0; i < string.length; i ++) {
             temp = [string1 substringWithRange:NSMakeRange(i, subStr.length)];
@@ -112,6 +114,17 @@ static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
                 [rangeArray addObject:@{@"range" : [NSValue valueWithRange:range], @"color" : subStrDict[@"color"]}];
             }
         }
+        // @""字符串高亮
+        if ([subStr isEqualToString:@"@(\"([^\"]*)\")"]) {
+            NSError *error = nil;
+            NSRegularExpression *regularExp = [[NSRegularExpression alloc] initWithPattern:subStr options:NSRegularExpressionCaseInsensitive error:&error];
+            [regularExp enumerateMatchesInString:self.text options:NSMatchingReportProgress range:NSMakeRange(0, self.text.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+                if (result) {
+                    [rangeArray addObject:@{@"range" : [NSValue valueWithRange:result.range], @"color" : subStrDict[@"color"]}];
+                }
+            }];
+        }
+        
     }];
     return rangeArray;
 }
