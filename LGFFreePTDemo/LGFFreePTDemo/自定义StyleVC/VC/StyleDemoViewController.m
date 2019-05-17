@@ -51,7 +51,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
     NSMutableArray *demoArray = [NSMutableArray arrayWithArray:@[@"LGFFreePTStyle *style = [LGFFreePTStyle lgf];"]];
     
     if (![styleDict[@"lgf_IsDoubleTitle"] boolValue]) {
-        NSString *demo = @"style.lgf_Titles = @[@\"我的\", @\"邮箱:\", @\"452354033@qq.com\", @\"正在\", @\"寻求好的\", @\"团队\", @\"从事过 IOS 开发 And Android 开发\", @\"主要从事\", @\"IOS 开发\", @\"5\", @\"年开发经验\"].copy;";
+        NSString *demo = @"style.lgf_Titles = @[@\"我的\", @\"邮箱:\", @\"452354033@qq.com\", @\"正在\", @\"寻求好的\", @\"团队\", @\"从事过 IOS 开发 And Android 开发\", @\"主要从事\", @\"IOS 开发\", @\"5\", @\"年半开发经验\"].copy;";
         [demoArray addObject:demo];
     } else {
         NSString *demo = @"style.lgf_Titles = @[@\"我的/我的\", @\"邮箱:/邮箱\", @\"452354033@qq.com/452354033@qq.com\", @\"正在/正在\", @\"寻求好的/寻求好的\", @\"团队/团队\", @\"从事过 IOS 开发 And Android 开发/从事过 IOS 开发 And Android 开发\", @\"主要从事/主要从事\", @\"IOS 开发/IOS 开发\", @\"5/5\", @\"年半开发经验/年半开发经验\"].copy;";

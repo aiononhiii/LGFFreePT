@@ -15,7 +15,6 @@
 @property (strong, nonatomic) UICollectionView *lgf_PageView;// 外部分页控制器
 @property (strong, nonatomic) LGFFreePTLine *lgf_TitleLine;// 底部滚动条
 @property (strong, nonatomic) NSMutableArray <LGFFreePTTitle *> *lgf_TitleButtons;// 所有标数组
-@property (assign, nonatomic) NSInteger lgf_SelectIndex;// 将要选中下标
 @property (assign, nonatomic) NSInteger lgf_UnSelectIndex;// 前一个选中下标
 @property (assign, nonatomic) BOOL lgf_IsSelectTitle;// 点击了顶部标
 @property (assign, nonatomic) BOOL lgf_Enabled;// 操作中是否禁用手势
@@ -109,9 +108,15 @@
 
 #pragma mark - 手动选中某个标（如果关联外部 CV 外部 CV 请手动滚动）
 - (void)lgf_SelectIndex:(NSInteger)index {
-    [self lgf_SelectIndex:index duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
+    [self lgf_SelectIndex:index isExecutionDelegate:NO];
+}
+- (void)lgf_SelectIndex:(NSInteger)index isExecutionDelegate:(BOOL)isExecutionDelegate {
+    [self lgf_SelectIndex:index duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration isExecutionDelegate:isExecutionDelegate];
 }
 - (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration {
+    [self lgf_SelectIndex:index duration:duration autoScrollDuration:autoScrollDuration isExecutionDelegate:NO];
+}
+- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration isExecutionDelegate:(BOOL)isExecutionDelegate {
     if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (index >  self.lgf_Style.lgf_Titles.count - 1) || self.lgf_SelectIndex == index) {
         return;
     }
@@ -120,7 +125,7 @@
         self.lgf_UnSelectIndex = self.lgf_SelectIndex;
         self.lgf_SelectIndex = index;
         // 默认选中
-        [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:NO duration:duration autoScrollDuration:autoScrollDuration];
+        [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:isExecutionDelegate duration:duration autoScrollDuration:autoScrollDuration];
     });
 }
 
@@ -306,9 +311,6 @@
             } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
                 if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:line:progress:)]) {
                     [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle line:self.lgf_TitleLine progress:progress];
-                    LGFPTLog(@"自定义动画用 progress 值:%f", progress);
-                } else {
-                    LGFPTLog(@"要使用自定义效果请实现 lgf_FreePTViewCustomizeLineAnimationConfig 代理, 并在代理中配置动画");
                 }
             }
         } selectTitle:selectTitle unSelectTitle:unSelectTitle];

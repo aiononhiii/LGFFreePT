@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;
 @property (strong, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
+@property (assign, nonatomic) NSInteger lgf_SelectIndex;// 将要选中下标
 #pragma mark - 初始化
 + (instancetype)lgf;
 #pragma mark - 刷新所有标
@@ -41,8 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
  @param index 要选中的下标
  @param duration 选中动画的时间
  @param autoScrollDuration 跟随动画的时间
+ @param isExecutionDelegate 是否执行点击代理
  */
+- (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration isExecutionDelegate:(BOOL)isExecutionDelegate;
 - (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration;
+- (void)lgf_SelectIndex:(NSInteger)index isExecutionDelegate:(BOOL)isExecutionDelegate;
 - (void)lgf_SelectIndex:(NSInteger)index;
 #pragma mark - 初始化配置
 /**
