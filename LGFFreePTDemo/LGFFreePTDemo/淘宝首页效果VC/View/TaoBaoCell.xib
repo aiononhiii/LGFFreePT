@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="TaoBaoCell" reuseIdentifier="TaoBaoCell" id="gTV-IL-0wX" customClass="TaoBaoCell">
+            <rect key="frame" x="0.0" y="0.0" width="137" height="199"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="137" height="199"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_cell1.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="lb4-cZ-Vko">
+                        <rect key="frame" x="3" y="3" width="131" height="193"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="lb4-cZ-Vko" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="F5Z-Xj-DQd"/>
+                <constraint firstItem="lb4-cZ-Vko" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="rXe-VL-qG7"/>
+                <constraint firstAttribute="bottom" secondItem="lb4-cZ-Vko" secondAttribute="bottom" constant="3" id="veE-55-nSe"/>
+                <constraint firstAttribute="trailing" secondItem="lb4-cZ-Vko" secondAttribute="trailing" constant="3" id="yW6-0w-oTg"/>
+            </constraints>
+            <size key="customSize" width="137" height="199"/>
+            <connections>
+                <outlet property="good" destination="lb4-cZ-Vko" id="32v-tT-yGa"/>
+            </connections>
+            <point key="canvasLocation" x="207.19999999999999" y="185.75712143928038"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="taobao_cell1.PNG" width="520" height="801"/>
+    </resources>
+</document>

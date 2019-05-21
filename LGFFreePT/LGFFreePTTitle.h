@@ -11,6 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol LGFFreePTTitleDelegate <NSObject>
+@optional
+- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+@end
 @interface LGFFreePTTitle : UIView
 @property (weak, nonatomic) IBOutlet UILabel *lgf_Title;// 标
 @property (weak, nonatomic) IBOutlet UILabel *lgf_SubTitle;// 子标
@@ -56,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat lgf_SubTitleCurrentTransformTY;// 子标题上下位移
 @property (assign, nonatomic) CGFloat lgf_SubTitleCurrentTransformTX;// 子标题左右位移
 
+@property (weak, nonatomic) id<LGFFreePTTitleDelegate>lgf_FreePTTitleDelegate;
+
 #pragma mark - 标整体状态改变 核心逻辑部分
 /**
  @param progress 外部 progress
@@ -71,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param style 配置用模型
  @return LGFFreePTTitle
  */
-+ (instancetype)lgf_AllocTitle:(NSString *)titleText index:(NSInteger)index style:(LGFFreePTStyle *)style;
++ (instancetype)lgf_AllocTitle:(NSString *)titleText index:(NSInteger)index style:(LGFFreePTStyle *)style delegate:(id<LGFFreePTTitleDelegate>)delegate;
 @end
 
 NS_ASSUME_NONNULL_END

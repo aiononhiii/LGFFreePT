@@ -1089,6 +1089,99 @@
             </objects>
             <point key="canvasLocation" x="3137" y="123"/>
         </scene>
+        <!--Tao Bao View Controller-->
+        <scene sceneID="Shz-Sv-tYN">
+            <objects>
+                <viewController storyboardIdentifier="TaoBaoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KAE-U3-Slq" customClass="TaoBaoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mam-fY-LMm"/>
+                        <viewControllerLayoutGuide type="bottom" id="xoi-PK-GMQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cja-g3-dpg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWP-Yd-GLu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWS-lU-D2y">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Qac-Zf-dKO"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_navi.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="iLa-l0-vnS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPN-Px-UUH">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VP8-aJ-rgJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_tabbar.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="VWQ-A3-Zc6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="VWQ-A3-Zc6" firstAttribute="top" secondItem="VP8-aJ-rgJ" secondAttribute="top" id="H0N-VO-u30"/>
+                                        <constraint firstItem="VWQ-A3-Zc6" firstAttribute="leading" secondItem="VP8-aJ-rgJ" secondAttribute="leading" id="RtD-Bd-n2e"/>
+                                        <constraint firstAttribute="trailing" secondItem="VWQ-A3-Zc6" secondAttribute="trailing" id="eNz-DE-Jwh"/>
+                                        <constraint firstAttribute="bottom" secondItem="VWQ-A3-Zc6" secondAttribute="bottom" id="zt1-uY-RIG"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="GtG-SK-spf"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FPN-Px-UUH" secondAttribute="trailing" id="B0X-bF-1g5"/>
+                            <constraint firstItem="SWS-lU-D2y" firstAttribute="top" secondItem="Mam-fY-LMm" secondAttribute="bottom" id="EFI-kN-QUV"/>
+                            <constraint firstItem="iLa-l0-vnS" firstAttribute="top" secondItem="cja-g3-dpg" secondAttribute="top" id="Ecb-zM-kgl"/>
+                            <constraint firstAttribute="trailing" secondItem="aWP-Yd-GLu" secondAttribute="trailing" id="IFp-mZ-aCx"/>
+                            <constraint firstItem="SWS-lU-D2y" firstAttribute="bottom" secondItem="iLa-l0-vnS" secondAttribute="bottom" constant="-30" id="J4x-mC-dH8"/>
+                            <constraint firstItem="aWP-Yd-GLu" firstAttribute="top" secondItem="cja-g3-dpg" secondAttribute="top" id="NDW-17-2ab"/>
+                            <constraint firstItem="FPN-Px-UUH" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="NSa-ea-WPd"/>
+                            <constraint firstItem="SWS-lU-D2y" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="RQh-Qp-Kap"/>
+                            <constraint firstItem="xoi-PK-GMQ" firstAttribute="top" secondItem="FPN-Px-UUH" secondAttribute="bottom" id="TrE-fI-0hv"/>
+                            <constraint firstItem="aWP-Yd-GLu" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="XMd-kZ-DWa"/>
+                            <constraint firstAttribute="bottom" secondItem="aWP-Yd-GLu" secondAttribute="bottom" id="Z48-Zp-38z"/>
+                            <constraint firstAttribute="trailing" secondItem="SWS-lU-D2y" secondAttribute="trailing" id="ajI-p5-k69"/>
+                            <constraint firstAttribute="trailing" secondItem="iLa-l0-vnS" secondAttribute="trailing" id="fJC-dO-4J5"/>
+                            <constraint firstItem="iLa-l0-vnS" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="uME-VZ-YDn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerTop" destination="2Ej-46-J7V" id="epF-dr-s9v"/>
+                        <outlet property="headerView" destination="538-XE-XZ3" id="O0P-UM-ouO"/>
+                        <outlet property="pageView" destination="aWP-Yd-GLu" id="6a2-rY-bWT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAj-qa-szh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="538-XE-XZ3">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1194"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_header.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="RDL-cd-XUc">
+                            <rect key="frame" x="0.0" y="94" width="375" height="1100"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="RDL-cd-XUc" firstAttribute="top" secondItem="538-XE-XZ3" secondAttribute="top" constant="94" id="2Ej-46-J7V"/>
+                        <constraint firstAttribute="bottom" secondItem="RDL-cd-XUc" secondAttribute="bottom" id="MEE-wg-Iuh"/>
+                        <constraint firstItem="RDL-cd-XUc" firstAttribute="leading" secondItem="538-XE-XZ3" secondAttribute="leading" id="YYy-99-fXi"/>
+                        <constraint firstAttribute="trailing" secondItem="RDL-cd-XUc" secondAttribute="trailing" id="u0x-5z-708"/>
+                    </constraints>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="4021.5999999999999" y="122.78860569715144"/>
+        </scene>
         <!--Custom View Controller-->
         <scene sceneID="jMw-31-zfA">
             <objects>
@@ -4643,6 +4736,9 @@
     </scenes>
     <resources>
         <image name="diandian" width="200" height="200"/>
+        <image name="taobao_header.PNG" width="1125" height="3310"/>
+        <image name="taobao_navi.PNG" width="1125" height="284"/>
+        <image name="taobao_tabbar.PNG" width="1125" height="145"/>
         <image name="删除" width="128" height="128"/>
         <image name="添加" width="128" height="128"/>
     </resources>

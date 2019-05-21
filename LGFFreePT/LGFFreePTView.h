@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 // 自定义 line 动画
 - (void)lgf_FreePTViewCustomizeLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress;
+// 加载网络图片
+- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 @end
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;

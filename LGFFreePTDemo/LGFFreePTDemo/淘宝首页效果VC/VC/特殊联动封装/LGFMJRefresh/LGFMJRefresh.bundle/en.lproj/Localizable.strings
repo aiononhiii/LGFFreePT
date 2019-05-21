@@ -1,0 +1,16 @@
+"LGFMJRefreshHeaderIdleText" = "Pull down to refresh";
+"LGFMJRefreshHeaderPullingText" = "Release to refresh";
+"LGFMJRefreshHeaderRefreshingText" = "Loading...";
+
+"LGFMJRefreshAutoFooterIdleText" = "Tap or pull up to load more";
+"LGFMJRefreshAutoFooterRefreshingText" = "Loading...";
+"LGFMJRefreshAutoFooterNoMoreDataText" = "No more data";
+
+"LGFMJRefreshBackFooterIdleText" = "Pull up to load more";
+"LGFMJRefreshBackFooterPullingText" = "Release to load more.";
+"LGFMJRefreshBackFooterRefreshingText" = "Loading...";
+"LGFMJRefreshBackFooterNoMoreDataText" = "No more data";
+
+"LGFMJRefreshHeaderLastTimeText" = "Last updated: ";
+"LGFMJRefreshHeaderDateTodayText" = "Today";
+"LGFMJRefreshHeaderNoneLastDateText" = "No record";

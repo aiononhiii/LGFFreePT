@@ -121,20 +121,22 @@
     style.lgf_TitleCornerRadius = 3.0;
     style.lgf_LineHeight = 4.0;
     style.lgf_LineBottom = 0.0;
-    style.lgf_LineCornerRadius = 2.0;
-    style.lgf_TitleTransformSX = 0.5;// 控制放大缩小
-    style.lgf_MainTitleTransformSX = 3.3;// 控制放大缩小
-    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:18];
-    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:18];
+    style.lgf_TitleTransformSX = 1.0;// 控制放大缩小
+    style.lgf_MainTitleTransformSX = 1.1;// 控制放大缩小
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;// 毛毛虫效果
-    // 添加左边图片 距离文字 5
-    style.lgf_SelectImageNames = @[@"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian"].mutableCopy;
-    style.lgf_UnSelectImageNames = @[@"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un"].mutableCopy;
-    style.lgf_TitleImageBundel = lgf_Bundle(@"LGFFreePTDemo");
+    style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseDown;// 毛毛虫效果
+    //----------- 加载网络图片
+    style.lgf_SameSelectImageName = @"https://qtyc-1256019144.cos.ap-guangzhou.myqcloud.com/%E9%92%B1%E5%A1%98%E4%BA%91%E4%BB%93%E5%85%A8%E5%88%87%E5%9B%BE%2FTabBar%2Ftab_home_on%403x.png";
+    style.lgf_SameUnSelectImageName = @"https://qtyc-1256019144.cos.ap-guangzhou.myqcloud.com/%E9%92%B1%E5%A1%98%E4%BA%91%E4%BB%93%E5%85%A8%E5%88%87%E5%9B%BE%2FTabBar%2Ftab_home_off%403x.png";
+    style.lgf_IsNetImage = YES;// 加载网络图片开关（还需要开启加载网络图片代理）
+//    style.lgf_TitleImageBundel = lgf_Bundle(@"LGFFreePTDemo");// 加载网络图片颗不赋值
+    //-------------
     style.lgf_LeftImageWidth = 25.0;
+    style.lgf_LeftImageHeight = 25.0;
     style.lgf_LeftImageSpace = 5.0;
     return style;
 }

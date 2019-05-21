@@ -183,6 +183,8 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 设置所有图 title 为相同
 @property (copy, nonatomic) NSString *lgf_SameSelectImageName;
 @property (copy, nonatomic) NSString *lgf_SameUnSelectImageName;
+// 是否是网络图片
+@property (assign, nonatomic) BOOL lgf_IsNetImage;
 
 // 以下属性只要有值，对应imageview就会显示出来
 // 顶部 title 图片与 title 的间距 默认 0

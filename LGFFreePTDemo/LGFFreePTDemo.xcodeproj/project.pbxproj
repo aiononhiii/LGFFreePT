@@ -8,6 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		18193C0C2276E1ED003108FB /* MainViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18193C0B2276E1ED003108FB /* MainViewControllerCell.m */; };
+		18210EDD22925A6100253BA5 /* LGFCenterPageVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18210EAE22925A6100253BA5 /* LGFCenterPageVC.storyboard */; };
+		18210EDE22925A6100253BA5 /* LGFCenterPageChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EAF22925A6100253BA5 /* LGFCenterPageChildVC.m */; };
+		18210EDF22925A6100253BA5 /* LGFCenterPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EB022925A6100253BA5 /* LGFCenterPageVC.m */; };
+		18210EE022925A6100253BA5 /* LGFMJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EB422925A6100253BA5 /* LGFMJRefreshConst.m */; };
+		18210EE122925A6100253BA5 /* UIScrollView+LGFMJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EB522925A6100253BA5 /* UIScrollView+LGFMJExtension.m */; };
+		18210EE222925A6100253BA5 /* LGFMJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18210EB722925A6100253BA5 /* LGFMJRefresh.bundle */; };
+		18210EE322925A6100253BA5 /* LGFMJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EB822925A6100253BA5 /* LGFMJRefreshAutoStateFooter.m */; };
+		18210EE422925A6100253BA5 /* UIScrollView+LGFMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EBC22925A6100253BA5 /* UIScrollView+LGFMJRefresh.m */; };
+		18210EE522925A6100253BA5 /* NSBundle+LGFMJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EBD22925A6100253BA5 /* NSBundle+LGFMJRefresh.m */; };
+		18210EE622925A6100253BA5 /* LGFMJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EBF22925A6100253BA5 /* LGFMJRefreshAutoNormalFooter.m */; };
+		18210EE722925A6100253BA5 /* LGFMJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EC022925A6100253BA5 /* LGFMJRefreshBackNormalFooter.m */; };
+		18210EE822925A6100253BA5 /* LGFMJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EC122925A6100253BA5 /* LGFMJRefreshAutoFooter.m */; };
+		18210EE922925A6100253BA5 /* UIScrollView+LGFPageRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EC422925A6100253BA5 /* UIScrollView+LGFPageRefresh.m */; };
+		18210EEA22925A6100253BA5 /* LGFMJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EC722925A6100253BA5 /* LGFMJRefreshBackStateFooter.m */; };
+		18210EEB22925A6100253BA5 /* LGFMJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ECB22925A6100253BA5 /* LGFMJRefreshBackGifFooter.m */; };
+		18210EEC22925A6100253BA5 /* LGFMJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ECC22925A6100253BA5 /* LGFMJRefreshComponent.m */; };
+		18210EED22925A6100253BA5 /* LGFMJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ECD22925A6100253BA5 /* LGFMJRefreshBackFooter.m */; };
+		18210EEE22925A6100253BA5 /* LGFMJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ECF22925A6100253BA5 /* LGFMJRefreshNormalHeader.m */; };
+		18210EEF22925A6100253BA5 /* LGFMJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ED022925A6100253BA5 /* LGFMJRefreshHeader.m */; };
+		18210EF022925A6100253BA5 /* LGFMJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ED322925A6100253BA5 /* LGFMJRefreshFooter.m */; };
+		18210EF122925A6100253BA5 /* LGFMJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ED722925A6100253BA5 /* LGFMJRefreshAutoGifFooter.m */; };
+		18210EF222925A6100253BA5 /* LGFMJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210ED922925A6100253BA5 /* LGFMJRefreshStateHeader.m */; };
+		18210EF322925A6100253BA5 /* UIView+LGFMJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EDB22925A6100253BA5 /* UIView+LGFMJExtension.m */; };
+		18210EF422925A6100253BA5 /* LGFMJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EDC22925A6100253BA5 /* LGFMJRefreshGifHeader.m */; };
+		18210EF722925A8600253BA5 /* TaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EF622925A8600253BA5 /* TaoBaoViewController.m */; };
+		18210EFF2292738E00253BA5 /* taobao_navi.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFB2292738E00253BA5 /* taobao_navi.PNG */; };
+		18210F002292738E00253BA5 /* taobao_header.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFC2292738E00253BA5 /* taobao_header.PNG */; };
+		18210F012292738E00253BA5 /* taobao_tabbar.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFD2292738E00253BA5 /* taobao_tabbar.PNG */; };
+		18210F022292738E00253BA5 /* taobao_ref.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFE2292738E00253BA5 /* taobao_ref.PNG */; };
 		182A8E3A22813040006FFDE6 /* VerticalViewControllerOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */; };
 		182A8E3D2281304E006FFDE6 /* VerticalViewControllerThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3C2281304E006FFDE6 /* VerticalViewControllerThreeCell.m */; };
 		18311EE4227FFCF300F9999C /* specialTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18311EE3227FFCF300F9999C /* specialTitle.m */; };
@@ -46,6 +75,10 @@
 		185F09AC228ADFDB004CDEDA /* colorSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F09AB228ADFDB004CDEDA /* colorSelectView.xib */; };
 		185F09AE228AE216004CDEDA /* colorSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 185F09AD228AE216004CDEDA /* colorSelect.png */; };
 		185F09B1228AEE68004CDEDA /* LGFColorSelectImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */; };
+		18A735132292818800741078 /* TaoBaoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A735112292818800741078 /* TaoBaoCell.m */; };
+		18A735142292818800741078 /* TaoBaoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A735122292818800741078 /* TaoBaoCell.xib */; };
+		18A7351722928B4700741078 /* taobao_cell2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18A7351522928B4600741078 /* taobao_cell2.PNG */; };
+		18A7351822928B4700741078 /* taobao_cell1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18A7351622928B4600741078 /* taobao_cell1.PNG */; };
 		B0AE91678DE4F3B260F9D38D /* libPods-LGFFreePTDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +103,59 @@
 		15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGFFreePTDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18193C0A2276E1ED003108FB /* MainViewControllerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewControllerCell.h; sourceTree = "<group>"; };
 		18193C0B2276E1ED003108FB /* MainViewControllerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewControllerCell.m; sourceTree = "<group>"; };
+		18210EAC22925A6100253BA5 /* LGFCenterPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFCenterPageVC.h; sourceTree = "<group>"; };
+		18210EAD22925A6100253BA5 /* LGFCenterPageChildVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFCenterPageChildVC.h; sourceTree = "<group>"; };
+		18210EAE22925A6100253BA5 /* LGFCenterPageVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LGFCenterPageVC.storyboard; sourceTree = "<group>"; };
+		18210EAF22925A6100253BA5 /* LGFCenterPageChildVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFCenterPageChildVC.m; sourceTree = "<group>"; };
+		18210EB022925A6100253BA5 /* LGFCenterPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFCenterPageVC.m; sourceTree = "<group>"; };
+		18210EB222925A6100253BA5 /* LGFMJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshComponent.h; sourceTree = "<group>"; };
+		18210EB322925A6100253BA5 /* LGFMJRefreshBackGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshBackGifFooter.h; sourceTree = "<group>"; };
+		18210EB422925A6100253BA5 /* LGFMJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshConst.m; sourceTree = "<group>"; };
+		18210EB522925A6100253BA5 /* UIScrollView+LGFMJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LGFMJExtension.m"; sourceTree = "<group>"; };
+		18210EB622925A6100253BA5 /* LGFMJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshFooter.h; sourceTree = "<group>"; };
+		18210EB722925A6100253BA5 /* LGFMJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGFMJRefresh.bundle; sourceTree = "<group>"; };
+		18210EB822925A6100253BA5 /* LGFMJRefreshAutoStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshAutoStateFooter.m; sourceTree = "<group>"; };
+		18210EB922925A6100253BA5 /* LGFMJRefreshNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshNormalHeader.h; sourceTree = "<group>"; };
+		18210EBA22925A6100253BA5 /* LGFMJRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshHeader.h; sourceTree = "<group>"; };
+		18210EBB22925A6100253BA5 /* LGFMJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshBackFooter.h; sourceTree = "<group>"; };
+		18210EBC22925A6100253BA5 /* UIScrollView+LGFMJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LGFMJRefresh.m"; sourceTree = "<group>"; };
+		18210EBD22925A6100253BA5 /* NSBundle+LGFMJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LGFMJRefresh.m"; sourceTree = "<group>"; };
+		18210EBE22925A6100253BA5 /* LGFMJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
+		18210EBF22925A6100253BA5 /* LGFMJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
+		18210EC022925A6100253BA5 /* LGFMJRefreshBackNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshBackNormalFooter.m; sourceTree = "<group>"; };
+		18210EC122925A6100253BA5 /* LGFMJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshAutoFooter.m; sourceTree = "<group>"; };
+		18210EC222925A6100253BA5 /* LGFMJRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshGifHeader.h; sourceTree = "<group>"; };
+		18210EC422925A6100253BA5 /* UIScrollView+LGFPageRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LGFPageRefresh.m"; sourceTree = "<group>"; };
+		18210EC522925A6100253BA5 /* UIScrollView+LGFPageRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LGFPageRefresh.h"; sourceTree = "<group>"; };
+		18210EC622925A6100253BA5 /* UIView+LGFMJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LGFMJExtension.h"; sourceTree = "<group>"; };
+		18210EC722925A6100253BA5 /* LGFMJRefreshBackStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshBackStateFooter.m; sourceTree = "<group>"; };
+		18210EC822925A6100253BA5 /* LGFMJRefreshStateHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshStateHeader.h; sourceTree = "<group>"; };
+		18210EC922925A6100253BA5 /* UIScrollView+LGFMJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LGFMJExtension.h"; sourceTree = "<group>"; };
+		18210ECA22925A6100253BA5 /* LGFMJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshConst.h; sourceTree = "<group>"; };
+		18210ECB22925A6100253BA5 /* LGFMJRefreshBackGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshBackGifFooter.m; sourceTree = "<group>"; };
+		18210ECC22925A6100253BA5 /* LGFMJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshComponent.m; sourceTree = "<group>"; };
+		18210ECD22925A6100253BA5 /* LGFMJRefreshBackFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshBackFooter.m; sourceTree = "<group>"; };
+		18210ECE22925A6100253BA5 /* UIScrollView+LGFMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LGFMJRefresh.h"; sourceTree = "<group>"; };
+		18210ECF22925A6100253BA5 /* LGFMJRefreshNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshNormalHeader.m; sourceTree = "<group>"; };
+		18210ED022925A6100253BA5 /* LGFMJRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshHeader.m; sourceTree = "<group>"; };
+		18210ED122925A6100253BA5 /* LGFMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefresh.h; sourceTree = "<group>"; };
+		18210ED222925A6100253BA5 /* LGFMJRefreshAutoStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshAutoStateFooter.h; sourceTree = "<group>"; };
+		18210ED322925A6100253BA5 /* LGFMJRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshFooter.m; sourceTree = "<group>"; };
+		18210ED422925A6100253BA5 /* LGFMJRefreshBackNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshBackNormalFooter.h; sourceTree = "<group>"; };
+		18210ED522925A6100253BA5 /* LGFMJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshAutoFooter.h; sourceTree = "<group>"; };
+		18210ED622925A6100253BA5 /* LGFMJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
+		18210ED722925A6100253BA5 /* LGFMJRefreshAutoGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshAutoGifFooter.m; sourceTree = "<group>"; };
+		18210ED822925A6100253BA5 /* NSBundle+LGFMJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+LGFMJRefresh.h"; sourceTree = "<group>"; };
+		18210ED922925A6100253BA5 /* LGFMJRefreshStateHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshStateHeader.m; sourceTree = "<group>"; };
+		18210EDA22925A6100253BA5 /* LGFMJRefreshBackStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMJRefreshBackStateFooter.h; sourceTree = "<group>"; };
+		18210EDB22925A6100253BA5 /* UIView+LGFMJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGFMJExtension.m"; sourceTree = "<group>"; };
+		18210EDC22925A6100253BA5 /* LGFMJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshGifHeader.m; sourceTree = "<group>"; };
+		18210EF522925A8600253BA5 /* TaoBaoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaoBaoViewController.h; sourceTree = "<group>"; };
+		18210EF622925A8600253BA5 /* TaoBaoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaoBaoViewController.m; sourceTree = "<group>"; };
+		18210EFB2292738E00253BA5 /* taobao_navi.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_navi.PNG; sourceTree = "<group>"; };
+		18210EFC2292738E00253BA5 /* taobao_header.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_header.PNG; sourceTree = "<group>"; };
+		18210EFD2292738E00253BA5 /* taobao_tabbar.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_tabbar.PNG; sourceTree = "<group>"; };
+		18210EFE2292738E00253BA5 /* taobao_ref.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_ref.PNG; sourceTree = "<group>"; };
 		182A8E3822813040006FFDE6 /* VerticalViewControllerOneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerticalViewControllerOneCell.h; sourceTree = "<group>"; };
 		182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerticalViewControllerOneCell.m; sourceTree = "<group>"; };
 		182A8E3B2281304E006FFDE6 /* VerticalViewControllerThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerticalViewControllerThreeCell.h; sourceTree = "<group>"; };
@@ -137,6 +223,11 @@
 		185F09AD228AE216004CDEDA /* colorSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorSelect.png; sourceTree = "<group>"; };
 		185F09AF228AEE68004CDEDA /* LGFColorSelectImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFColorSelectImageView.h; sourceTree = "<group>"; };
 		185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFColorSelectImageView.m; sourceTree = "<group>"; };
+		18A735102292818800741078 /* TaoBaoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaoBaoCell.h; sourceTree = "<group>"; };
+		18A735112292818800741078 /* TaoBaoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaoBaoCell.m; sourceTree = "<group>"; };
+		18A735122292818800741078 /* TaoBaoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaoBaoCell.xib; sourceTree = "<group>"; };
+		18A7351522928B4600741078 /* taobao_cell2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_cell2.PNG; sourceTree = "<group>"; };
+		18A7351622928B4600741078 /* taobao_cell1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_cell1.PNG; sourceTree = "<group>"; };
 		7A2DCE3390351753B24B8B2A /* Pods-LGFFreePTDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.release.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A4F4048A1649EACFADD120D2 /* Pods-LGFFreePTDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.debug.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +258,135 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18210EA822925A0100253BA5 /* 淘宝首页效果VC */ = {
+			isa = PBXGroup;
+			children = (
+				18210EFA2292734000253BA5 /* Image */,
+				18210EA922925A1800253BA5 /* View */,
+				18210EAA22925A2000253BA5 /* VC */,
+			);
+			path = "淘宝首页效果VC";
+			sourceTree = "<group>";
+		};
+		18210EA922925A1800253BA5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18A735102292818800741078 /* TaoBaoCell.h */,
+				18A735112292818800741078 /* TaoBaoCell.m */,
+				18A735122292818800741078 /* TaoBaoCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18210EAA22925A2000253BA5 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				18210EAB22925A3B00253BA5 /* 特殊联动封装 */,
+				18210EF522925A8600253BA5 /* TaoBaoViewController.h */,
+				18210EF622925A8600253BA5 /* TaoBaoViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		18210EAB22925A3B00253BA5 /* 特殊联动封装 */ = {
+			isa = PBXGroup;
+			children = (
+				18210EAC22925A6100253BA5 /* LGFCenterPageVC.h */,
+				18210EB022925A6100253BA5 /* LGFCenterPageVC.m */,
+				18210EAD22925A6100253BA5 /* LGFCenterPageChildVC.h */,
+				18210EAF22925A6100253BA5 /* LGFCenterPageChildVC.m */,
+				18210EAE22925A6100253BA5 /* LGFCenterPageVC.storyboard */,
+				18210EC322925A6100253BA5 /* UIScrollView+LGFRefresh */,
+				18210EB122925A6100253BA5 /* LGFMJRefresh */,
+			);
+			path = "特殊联动封装";
+			sourceTree = "<group>";
+		};
+		18210EB122925A6100253BA5 /* LGFMJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				18210EB222925A6100253BA5 /* LGFMJRefreshComponent.h */,
+				18210EB322925A6100253BA5 /* LGFMJRefreshBackGifFooter.h */,
+				18210EB422925A6100253BA5 /* LGFMJRefreshConst.m */,
+				18210EB522925A6100253BA5 /* UIScrollView+LGFMJExtension.m */,
+				18210EB622925A6100253BA5 /* LGFMJRefreshFooter.h */,
+				18210EB722925A6100253BA5 /* LGFMJRefresh.bundle */,
+				18210EB822925A6100253BA5 /* LGFMJRefreshAutoStateFooter.m */,
+				18210EB922925A6100253BA5 /* LGFMJRefreshNormalHeader.h */,
+				18210EBA22925A6100253BA5 /* LGFMJRefreshHeader.h */,
+				18210EBB22925A6100253BA5 /* LGFMJRefreshBackFooter.h */,
+				18210EBC22925A6100253BA5 /* UIScrollView+LGFMJRefresh.m */,
+				18210EBD22925A6100253BA5 /* NSBundle+LGFMJRefresh.m */,
+				18210EBE22925A6100253BA5 /* LGFMJRefreshAutoGifFooter.h */,
+				18210EBF22925A6100253BA5 /* LGFMJRefreshAutoNormalFooter.m */,
+				18210EC022925A6100253BA5 /* LGFMJRefreshBackNormalFooter.m */,
+				18210EC122925A6100253BA5 /* LGFMJRefreshAutoFooter.m */,
+				18210EC222925A6100253BA5 /* LGFMJRefreshGifHeader.h */,
+				18210EC622925A6100253BA5 /* UIView+LGFMJExtension.h */,
+				18210EC722925A6100253BA5 /* LGFMJRefreshBackStateFooter.m */,
+				18210EC822925A6100253BA5 /* LGFMJRefreshStateHeader.h */,
+				18210EC922925A6100253BA5 /* UIScrollView+LGFMJExtension.h */,
+				18210ECA22925A6100253BA5 /* LGFMJRefreshConst.h */,
+				18210ECB22925A6100253BA5 /* LGFMJRefreshBackGifFooter.m */,
+				18210ECC22925A6100253BA5 /* LGFMJRefreshComponent.m */,
+				18210ECD22925A6100253BA5 /* LGFMJRefreshBackFooter.m */,
+				18210ECE22925A6100253BA5 /* UIScrollView+LGFMJRefresh.h */,
+				18210ECF22925A6100253BA5 /* LGFMJRefreshNormalHeader.m */,
+				18210ED022925A6100253BA5 /* LGFMJRefreshHeader.m */,
+				18210ED122925A6100253BA5 /* LGFMJRefresh.h */,
+				18210ED222925A6100253BA5 /* LGFMJRefreshAutoStateFooter.h */,
+				18210ED322925A6100253BA5 /* LGFMJRefreshFooter.m */,
+				18210ED422925A6100253BA5 /* LGFMJRefreshBackNormalFooter.h */,
+				18210ED522925A6100253BA5 /* LGFMJRefreshAutoFooter.h */,
+				18210ED622925A6100253BA5 /* LGFMJRefreshAutoNormalFooter.h */,
+				18210ED722925A6100253BA5 /* LGFMJRefreshAutoGifFooter.m */,
+				18210ED822925A6100253BA5 /* NSBundle+LGFMJRefresh.h */,
+				18210ED922925A6100253BA5 /* LGFMJRefreshStateHeader.m */,
+				18210EDA22925A6100253BA5 /* LGFMJRefreshBackStateFooter.h */,
+				18210EDB22925A6100253BA5 /* UIView+LGFMJExtension.m */,
+				18210EDC22925A6100253BA5 /* LGFMJRefreshGifHeader.m */,
+			);
+			path = LGFMJRefresh;
+			sourceTree = "<group>";
+		};
+		18210EC322925A6100253BA5 /* UIScrollView+LGFRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				18210EC522925A6100253BA5 /* UIScrollView+LGFPageRefresh.h */,
+				18210EC422925A6100253BA5 /* UIScrollView+LGFPageRefresh.m */,
+			);
+			path = "UIScrollView+LGFRefresh";
+			sourceTree = "<group>";
+		};
+		18210EF82292731F00253BA5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				18311EE7228007E500F9999C /* special_image.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		18210EF92292733200253BA5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				185F09AD228AE216004CDEDA /* colorSelect.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		18210EFA2292734000253BA5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				18A7351622928B4600741078 /* taobao_cell1.PNG */,
+				18A7351522928B4600741078 /* taobao_cell2.PNG */,
+				18210EFC2292738E00253BA5 /* taobao_header.PNG */,
+				18210EFB2292738E00253BA5 /* taobao_navi.PNG */,
+				18210EFE2292738E00253BA5 /* taobao_ref.PNG */,
+				18210EFD2292738E00253BA5 /* taobao_tabbar.PNG */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		18458F6522756AF8001F1CCC = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +418,7 @@
 				185879BE228BD8B4001B1BAB /* 自定义StyleVC */,
 				18AD2F1322841AD700772CD7 /* 实际使用效果展示VC */,
 				18AD2F1022841AA900772CD7 /* 支付宝编辑页效果VC */,
+				18210EA822925A0100253BA5 /* 淘宝首页效果VC */,
 				18458F7722756AF8001F1CCC /* Main.storyboard */,
 				18458F7122756AF8001F1CCC /* AppDelegate.h */,
 				18458F7222756AF8001F1CCC /* AppDelegate.m */,
@@ -256,6 +477,7 @@
 		185879BE228BD8B4001B1BAB /* 自定义StyleVC */ = {
 			isa = PBXGroup;
 			children = (
+				18210EF92292733200253BA5 /* Image */,
 				185879C0228BD8D0001B1BAB /* View */,
 				185879BF228BD8CB001B1BAB /* VC */,
 			);
@@ -276,7 +498,6 @@
 		185879C0228BD8D0001B1BAB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				185F09AD228AE216004CDEDA /* colorSelect.png */,
 				185F09A8228ADFD4004CDEDA /* colorSelectView.h */,
 				185F09A9228ADFD4004CDEDA /* colorSelectView.m */,
 				185F09AB228ADFDB004CDEDA /* colorSelectView.xib */,
@@ -322,6 +543,7 @@
 		18AD2F1322841AD700772CD7 /* 实际使用效果展示VC */ = {
 			isa = PBXGroup;
 			children = (
+				18210EF82292731F00253BA5 /* Image */,
 				18AD2F1622841B9D00772CD7 /* View */,
 				18AD2F1422841AEA00772CD7 /* VC */,
 			);
@@ -346,7 +568,6 @@
 			children = (
 				18193C0A2276E1ED003108FB /* MainViewControllerCell.h */,
 				18193C0B2276E1ED003108FB /* MainViewControllerCell.m */,
-				18311EE7228007E500F9999C /* special_image.png */,
 				18311EE2227FFCF300F9999C /* specialTitle.h */,
 				18311EE3227FFCF300F9999C /* specialTitle.m */,
 				18311EE5227FFCFA00F9999C /* specialTitle.xib */,
@@ -479,15 +700,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A7351722928B4700741078 /* taobao_cell2.PNG in Resources */,
 				18458FB822756B95001F1CCC /* LGFFreePTTitle.xib in Resources */,
+				18A735142292818800741078 /* TaoBaoCell.xib in Resources */,
 				18458FBF22756B95001F1CCC /* LGFFreePTLine.xib in Resources */,
 				18458F7E22756AF9001F1CCC /* LaunchScreen.storyboard in Resources */,
+				18210F022292738E00253BA5 /* taobao_ref.PNG in Resources */,
+				18210EE222925A6100253BA5 /* LGFMJRefresh.bundle in Resources */,
 				18458FBC22756B95001F1CCC /* LGFFreePTView.xib in Resources */,
+				18210F012292738E00253BA5 /* taobao_tabbar.PNG in Resources */,
 				18311EE6227FFCFA00F9999C /* specialTitle.xib in Resources */,
+				18210EDD22925A6100253BA5 /* LGFCenterPageVC.storyboard in Resources */,
+				18210EFF2292738E00253BA5 /* taobao_navi.PNG in Resources */,
 				18458F7B22756AF9001F1CCC /* Assets.xcassets in Resources */,
+				18A7351822928B4700741078 /* taobao_cell1.PNG in Resources */,
 				18458F7922756AF8001F1CCC /* Main.storyboard in Resources */,
 				185F09AE228AE216004CDEDA /* colorSelect.png in Resources */,
 				18311EE8228007E500F9999C /* special_image.png in Resources */,
+				18210F002292738E00253BA5 /* taobao_header.PNG in Resources */,
 				185F09AC228ADFDB004CDEDA /* colorSelectView.xib in Resources */,
 				18311EED228007FA00F9999C /* specialImageTitle.xib in Resources */,
 			);
@@ -556,30 +786,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18210EE522925A6100253BA5 /* NSBundle+LGFMJRefresh.m in Sources */,
 				18458FC72276A96B001F1CCC /* LGFFreePT.h in Sources */,
+				18210EEA22925A6100253BA5 /* LGFMJRefreshBackStateFooter.m in Sources */,
+				18210EF222925A6100253BA5 /* LGFMJRefreshStateHeader.m in Sources */,
+				18210EF322925A6100253BA5 /* UIView+LGFMJExtension.m in Sources */,
+				18210EDE22925A6100253BA5 /* LGFCenterPageChildVC.m in Sources */,
+				18210EF722925A8600253BA5 /* TaoBaoViewController.m in Sources */,
+				18210EEC22925A6100253BA5 /* LGFMJRefreshComponent.m in Sources */,
+				18210EE122925A6100253BA5 /* UIScrollView+LGFMJExtension.m in Sources */,
 				18458FCA2276ABB7001F1CCC /* ChildViewController.m in Sources */,
 				18458F7622756AF8001F1CCC /* ViewController.m in Sources */,
+				18210EEE22925A6100253BA5 /* LGFMJRefreshNormalHeader.m in Sources */,
 				182A8E3D2281304E006FFDE6 /* VerticalViewControllerThreeCell.m in Sources */,
+				18210EF122925A6100253BA5 /* LGFMJRefreshAutoGifFooter.m in Sources */,
 				182A8E3A22813040006FFDE6 /* VerticalViewControllerOneCell.m in Sources */,
 				18458FBA22756B95001F1CCC /* LGFFreePTStyle.m in Sources */,
+				18210EE422925A6100253BA5 /* UIScrollView+LGFMJRefresh.m in Sources */,
+				18A735132292818800741078 /* TaoBaoCell.m in Sources */,
 				18458FB722756B95001F1CCC /* UIView+LGFFreePT.m in Sources */,
 				18458FC52276A5FB001F1CCC /* LGFFreePTStyleCenter.m in Sources */,
 				18311EF62281186100F9999C /* VerticalViewControllerReusableView.m in Sources */,
 				185F09AA228ADFD4004CDEDA /* colorSelectView.m in Sources */,
+				18210EF022925A6100253BA5 /* LGFMJRefreshFooter.m in Sources */,
 				18458FBE22756B95001F1CCC /* LGFFreePTLine.m in Sources */,
 				185879C3228BD939001B1BAB /* CustomViewController.m in Sources */,
+				18210EEB22925A6100253BA5 /* LGFMJRefreshBackGifFooter.m in Sources */,
 				18458FBD22756B95001F1CCC /* LGFFreePTView.m in Sources */,
 				18311EF0228116C700F9999C /* VerticalViewController.m in Sources */,
+				18210EE822925A6100253BA5 /* LGFMJRefreshAutoFooter.m in Sources */,
 				18311EF32281180B00F9999C /* VerticalViewControllerCell.m in Sources */,
+				18210EDF22925A6100253BA5 /* LGFCenterPageVC.m in Sources */,
 				18193C0C2276E1ED003108FB /* MainViewControllerCell.m in Sources */,
+				18210EE622925A6100253BA5 /* LGFMJRefreshAutoNormalFooter.m in Sources */,
 				18311EEB228007F500F9999C /* specialImageTitle.m in Sources */,
+				18210EF422925A6100253BA5 /* LGFMJRefreshGifHeader.m in Sources */,
 				18458FB922756B95001F1CCC /* LGFFreePTTitle.m in Sources */,
 				18458FBB22756B95001F1CCC /* LGFFreePTMethod.m in Sources */,
 				18458FB622756B95001F1CCC /* LGFFreePTFlowLayout.m in Sources */,
+				18210EED22925A6100253BA5 /* LGFMJRefreshBackFooter.m in Sources */,
+				18210EE322925A6100253BA5 /* LGFMJRefreshAutoStateFooter.m in Sources */,
 				18311EE4227FFCF300F9999C /* specialTitle.m in Sources */,
+				18210EE022925A6100253BA5 /* LGFMJRefreshConst.m in Sources */,
+				18210EEF22925A6100253BA5 /* LGFMJRefreshHeader.m in Sources */,
 				18458FCD2276CCC3001F1CCC /* MainViewController.m in Sources */,
 				18458F8122756AF9001F1CCC /* main.m in Sources */,
+				18210EE922925A6100253BA5 /* UIScrollView+LGFPageRefresh.m in Sources */,
 				18458F7322756AF8001F1CCC /* AppDelegate.m in Sources */,
+				18210EE722925A6100253BA5 /* LGFMJRefreshBackNormalFooter.m in Sources */,
 				185F09B1228AEE68004CDEDA /* LGFColorSelectImageView.m in Sources */,
 				185879C6228BE3FA001B1BAB /* StyleDemoViewController.m in Sources */,
 			);

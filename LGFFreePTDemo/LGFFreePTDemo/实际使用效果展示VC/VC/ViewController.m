@@ -103,6 +103,11 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     }
 }
 
+// 加载网络图片时候需要实现这个代理
+- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl {
+    [imageView sd_setImageWithURL:imageUrl];
+}
+
 #pragma mark - 懒加载
 - (NSMutableArray *)chlidVCs {
     if (!_chlidVCs) {
@@ -133,7 +138,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
             style = [LGFFreePTStyleCenter five];
         } else if ([self.type isEqualToString:@"毛毛虫-选中放大/缩小"]) {
             style = [LGFFreePTStyleCenter six];
-        } else if ([self.type isEqualToString:@"根据需求添加左图片"]) {
+        } else if ([self.type isEqualToString:@"添加左图片(加载网络图片示例)"]) {
             style = [LGFFreePTStyleCenter seven];
         } else if ([self.type isEqualToString:@"根据需求添加上下左右图片"]) {
             style = [LGFFreePTStyleCenter eight];

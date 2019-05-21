@@ -11,7 +11,7 @@
 #import "LGFFreePTMethod.h"
 #import "UIView+LGFFreePT.h"
 
-@interface LGFFreePTView () <UIScrollViewDelegate>
+@interface LGFFreePTView () <UIScrollViewDelegate, LGFFreePTTitleDelegate>
 @property (strong, nonatomic) UICollectionView *lgf_PageView;// 外部分页控制器
 @property (strong, nonatomic) LGFFreePTLine *lgf_TitleLine;// 底部滚动条
 @property (strong, nonatomic) NSMutableArray <LGFFreePTTitle *> *lgf_TitleButtons;// 所有标数组
@@ -133,7 +133,7 @@
 - (void)lgf_AddTitles {
     __block CGFloat contentWidth = 0.0;
     [self.lgf_Style.lgf_Titles enumerateObjectsUsingBlock:^(NSString *  _Nonnull titleText, NSUInteger idx, BOOL * _Nonnull stop) {
-        LGFFreePTTitle *title = [LGFFreePTTitle lgf_AllocTitle:titleText index:idx style:self.lgf_Style];
+        LGFFreePTTitle *title = [LGFFreePTTitle lgf_AllocTitle:titleText index:idx style:self.lgf_Style delegate:self];
         UITapGestureRecognizer *tapRecognize = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lgf_TitleClick:)];
         tapRecognize.cancelsTouchesInView = NO;
         [title addGestureRecognizer:tapRecognize];
@@ -400,6 +400,13 @@
     if (XAndW) XAndW(selectX, selectWidth, unSelectX, unSelectWidth);
 }
 
+#pragma mark - LGFFreePTTitleDelegate
+- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl {
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
+        [self.lgf_FreePTDelegate lgf_GetNetImage:imageView imageUrl:imageUrl];
+    }
+}
+
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentOffset"]) {
@@ -454,6 +461,7 @@
         [lgf_PageView setCollectionViewLayout:layout];
         [lgf_PageView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
         lgf_PageView.pagingEnabled = YES;
+        lgf_PageView.scrollsToTop = NO;
         lgf_PageView.tag = 333333;
     }
 }

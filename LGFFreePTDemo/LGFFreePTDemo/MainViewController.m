@@ -11,6 +11,7 @@
 #import "MainViewControllerCell.h"
 #import "VerticalViewController.h"
 #import "CustomViewController.h"
+#import "TaoBaoViewController.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *listCV;
@@ -47,7 +48,7 @@
     @"array" : @[@"1", @"22", @"333", @"4444", @"55555", @"666666", @"77", @"88888888"]},
   @{@"title" : @"小乌龟反向",
     @"array" : @[@"1", @"22", @"333", @"4444", @"55555", @"666666", @"77", @"88888888"]},
-  @{@"title" : @"根据需求添加左图片",
+  @{@"title" : @"添加左图片(加载网络图片示例)",
     @"array" : @[@"1", @"22", @"333", @"4444", @"55555", @"666666", @"77", @"88888888"]},
   @{@"title" : @"根据需求添加上下左右图片",
     @"array" : @[@"1", @"22", @"333", @"4444", @"55555", @"666666", @"77", @"88888888"]},
@@ -110,7 +111,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.item == self.listArray.count - 2) {
         // 淘宝首页效果VC
-        [self.view lgf_ShowMessage:@"即将推出" completion:nil];
+//        TaoBaoViewController *vc = [TaoBaoViewController lgf];
+//        vc.titles = self.listArray[indexPath.item][@"array"];
+//        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.item == self.listArray.count - 1) {
         // 自定义 Style 生成
         CustomViewController *vc = [CustomViewController lgf];
