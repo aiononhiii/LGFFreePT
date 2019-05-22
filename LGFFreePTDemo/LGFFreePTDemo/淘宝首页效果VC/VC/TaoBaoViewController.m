@@ -28,18 +28,7 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
     [super viewDidLoad];
     self.headerTop.constant = IPhoneX_NAVIGATION_BAR_HEIGHT + 30;
     [self configPage];
-    [self loadData];
     [lgf_NCenter addObserver:self selector:@selector(childScroll:) name:@"LGFChildScroll" object:nil];
-}
-
-- (void)loadData {
-//    [self.titleArray removeAllObjects];
-//    [self loadMoreData];
-    
-}
-
-- (void)loadMoreData {
-    [self.titleArray addObjectsFromArray:@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @""]];
 }
 
 #pragma mark - 配置分页联动
@@ -81,16 +70,16 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
 
 #pragma mark - 内部滚动监听
 - (void)childScroll:(NSNotification *)noti {
-    CGFloat offsetY = [noti.object[0] floatValue];
-    if (offsetY > -154) {
+//    CGFloat offsetY = [noti.object[0] floatValue];
+//    if (offsetY > -154) {
 //        self.pageVC.lgf_PageTitleViewHeight = 60 + self.pageVC.lgf_NavigationBarHeight - MIN(15, (offsetY + 154));
 //        self.pageVC.lgf_PageTitleSuperViewHeight.constant = self.pageVC.lgf_PageTitleViewHeight - self.pageVC.lgf_NavigationBarHeight;
-        self.pageVC.lgf_PageTitleSuperViewForSB.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:(MIN(15, (offsetY + 154)) / 15)];
-    } else {
+//        self.pageVC.lgf_PageTitleSuperViewForSB.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:(MIN(15, (offsetY + 154)) / 15)];
+//    } else {
 //        self.pageVC.lgf_PageTitleViewHeight = 60 + self.pageVC.lgf_NavigationBarHeight;
 //        self.pageVC.lgf_PageTitleSuperViewHeight.constant = self.pageVC.lgf_PageTitleViewHeight - self.pageVC.lgf_NavigationBarHeight;
-        self.pageVC.lgf_PageTitleSuperViewForSB.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
-    }
+//        self.pageVC.lgf_PageTitleSuperViewForSB.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
+//    }
 }
 
 #pragma mark - LGFCenterPageChildVC Delegate
@@ -143,7 +132,7 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
 - (void)lgf_CenterChildPageVC:(LGFCenterPageChildVC *)VC didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
 }
-
+// 处理 特殊标 动画
 - (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex {
     if (selectIndex == 1) {
         [LoveView lgf].subTitle.textColor = [UIColor whiteColor];

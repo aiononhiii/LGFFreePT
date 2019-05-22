@@ -88,10 +88,12 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
     if (offsetY < -self.lgf_PageTitleViewHeight) {
         if (self.lgf_PageTitleSuperViewLine.hidden == NO) {
             self.lgf_PageTitleSuperViewLine.hidden = YES;
+            self.lgf_PageTitleSuperViewForSB.backgroundColor = [UIColor clearColor];
         }
     } else {
         if (self.lgf_PageTitleSuperViewLine.hidden == YES) {
             self.lgf_PageTitleSuperViewLine.hidden = NO;
+            self.lgf_PageTitleSuperViewForSB.backgroundColor = [UIColor whiteColor];
         }
     }
 }
