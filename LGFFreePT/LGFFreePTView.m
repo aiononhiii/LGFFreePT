@@ -11,11 +11,11 @@
 #import "LGFFreePTMethod.h"
 #import "UIView+LGFFreePT.h"
 
-@interface LGFFreePTView () <UIScrollViewDelegate, LGFFreePTTitleDelegate>
+@interface LGFFreePTView () <UIScrollViewDelegate, LGFFreePTTitleDelegate, LGFFreePTLineDelegate>
 @property (strong, nonatomic) UICollectionView *lgf_PageView;// 外部分页控制器
-@property (strong, nonatomic) LGFFreePTLine *lgf_TitleLine;// 底部滚动条
 @property (strong, nonatomic) NSMutableArray <LGFFreePTTitle *> *lgf_TitleButtons;// 所有标数组
 @property (assign, nonatomic) NSInteger lgf_UnSelectIndex;// 前一个选中下标
+@property (assign, nonatomic) NSInteger lgf_RealSelectIndex;// 最准确的选中标值
 @property (assign, nonatomic) BOOL lgf_IsSelectTitle;// 点击了顶部标
 @property (assign, nonatomic) BOOL lgf_Enabled;// 操作中是否禁用手势
 @property (assign, nonatomic) BOOL lgf_FreePTViewEnabled;// 操作中是否禁用手势
@@ -171,6 +171,11 @@
     self.lgf_UnSelectIndex = self.lgf_SelectIndex;
     self.lgf_SelectIndex = nowSelectIndex;
     [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:YES duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
+    // 获取精确 lgf_RealSelectIndex
+    self.lgf_RealSelectIndex = self.lgf_SelectIndex;
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_RealSelectFreePTTitle:)]) {
+        [self.lgf_FreePTDelegate lgf_RealSelectFreePTTitle:self.lgf_RealSelectIndex];
+    }
 }
 
 #pragma mark - 标自动滚动
@@ -243,6 +248,14 @@
     }
     if ((unselectIndex > self.lgf_TitleButtons.count - 1) || (selectIndex > self.lgf_TitleButtons.count - 1 ) || (self.lgf_TitleButtons.count == 0)) {
         return;
+    }
+    
+    // 获取精确 lgf_RealSelectIndex
+    if (self.lgf_RealSelectIndex != roundf(selectProgress)) {
+        self.lgf_RealSelectIndex = roundf(selectProgress);
+        if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_RealSelectFreePTTitle:)]) {
+            [self.lgf_FreePTDelegate lgf_RealSelectFreePTTitle:self.lgf_RealSelectIndex];
+        }
     }
     [self lgf_AdjustUIWithProgress:progress unselectIndex:unselectIndex selectIndex:selectIndex];
 }
@@ -401,7 +414,14 @@
 }
 
 #pragma mark - LGFFreePTTitleDelegate
-- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl {
+- (void)lgf_GetTitleNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl {
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
+        [self.lgf_FreePTDelegate lgf_GetNetImage:imageView imageUrl:imageUrl];
+    }
+}
+
+#pragma mark - LGFFreePTLineDelegate
+- (void)lgf_GetLineNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl {
     if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
         [self.lgf_FreePTDelegate lgf_GetNetImage:imageView imageUrl:imageUrl];
     }
@@ -468,7 +488,8 @@
 
 - (LGFFreePTLine *)lgf_TitleLine {
     if (!_lgf_TitleLine) {
-        _lgf_TitleLine = [LGFFreePTLine lgf_AllocLine:self.lgf_Style];
+        _lgf_TitleLine = [LGFFreePTLine lgf];
+        [_lgf_TitleLine lgf_AllocLine:self.lgf_Style delegate:self];
     }
     return _lgf_TitleLine;
 }

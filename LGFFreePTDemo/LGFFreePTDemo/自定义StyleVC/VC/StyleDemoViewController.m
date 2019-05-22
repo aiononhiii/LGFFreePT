@@ -62,9 +62,17 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
         if (![[styleDefultDict valueForKey:defultKey] isEqualToString:[styleDict valueForKey:defultKey]] && ![defultKey isEqualToString:@"LGFFreePTSuperViewHeight"]) {
             NSString *demo = @"";
             if ([defultKey isEqualToString:@"setlgf_ImageNames"]) {
-                demo = @"style.lgf_SelectImageNames = @[@\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\"].mutableCopy;\nstyle.lgf_UnSelectImageNames = @[@\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\"].mutableCopy;\nstyle.lgf_TitleImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");";
-            } else if ([defultKey isEqualToString:@"setlgf_LineBackImage"]) {
-                demo = @"style.lgf_LineBackImage = lgf_Image(@\"line_image\");";
+                demo = @"style.lgf_SelectImageNames = @[@\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\"].mutableCopy;\nstyle.lgf_UnSelectImageNames = @[@\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\"].mutableCopy;";
+                if ([demoArray containsObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"]) {
+                    [demoArray removeObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"];
+                }
+                [demoArray addObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"];
+            } else if ([defultKey isEqualToString:@"setlgf_LineImageName"]) {
+                demo = @"style.lgf_LineImageName = @\"line_image\";";
+                if ([demoArray containsObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"]) {
+                    [demoArray removeObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"];
+                }
+                [demoArray addObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"];
             } else if ([defultKey isEqualToString:@"lgf_TitleSelectFont"] || [defultKey isEqualToString:@"lgf_UnTitleSelectFont"] || [defultKey isEqualToString:@"lgf_SubTitleSelectFont"] || [defultKey isEqualToString:@"lgf_UnSubTitleSelectFont"]) {
                 demo = [NSString stringWithFormat:@"style.%@ = [UIFont systemFontOfSize:%@];", defultKey, [styleDict valueForKey:defultKey]];
             } else if ([defultKey isEqualToString:@"lgf_TitleSelectColor"] || [defultKey isEqualToString:@"lgf_UnSubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_SubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_TitleBackgroundColor"] || [defultKey isEqualToString:@"lgf_LineColor"] || [defultKey isEqualToString:@"lgf_TitleBorderColor"] || [defultKey isEqualToString:@"lgf_PVTitleViewBackgroundColor"]) {
@@ -77,6 +85,9 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
     }];
     
     if (![styleDict[@"setlgf_ImageNames"] boolValue]) {
+        if (![demoArray containsObject:@"style.lgf_LineImageName = @\"line_image\";"]) {
+            [demoArray removeObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"];
+        }
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_TopImageSpace", [styleDict valueForKey:@"lgf_TopImageSpace"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_TopImageWidth", [styleDict valueForKey:@"lgf_TopImageWidth"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_TopImageHeight", [styleDict valueForKey:@"lgf_TopImageHeight"]]];
@@ -92,7 +103,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
     }
     
     if (![styleDict[@"lgf_IsShowLine"] boolValue]) {
-        [demoArray removeObject:@"style.lgf_LineBackImage = lgf_Image(@\"line_image\");"];
+        [demoArray removeObject:@"style.lgf_LineImageName = @\"line_image\";"];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineAnimation", [styleDict valueForKey:@"lgf_LineAnimation"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineCornerRadius", [styleDict valueForKey:@"lgf_LineCornerRadius"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = @\"%@\";", @"lgf_LineColor", [styleDict valueForKey:@"lgf_LineColor"]]];

@@ -16,6 +16,8 @@ typedef NS_ENUM(NSUInteger, lgf_LoadType) {
 };
 
 @protocol LGFCenterPageVCDelegate <NSObject>
+// 精确 select index
+- (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex;
 // lgf_CenterPageChildCV 子控制器加载数据
 - (void)lgf_CenterPageChildVCLoadData:(UIViewController *)VC selectIndex:(NSInteger)selectIndex loadType:(lgf_LoadType)loadType;
 // 配置内部 centerPageChildVC
@@ -36,12 +38,12 @@ typedef NS_ENUM(NSUInteger, lgf_LoadType) {
 @property (strong, nonatomic) LGFFreePTStyle *lgf_PageTitleStyle;
 // header view
 @property (strong, nonatomic) UIView *lgf_HeaderView;
-// lgf_PageTitleView 父控件(superview)
-@property (strong, nonatomic) UIView *lgf_PageTitleSuperView;
 // header view 高度
 @property (assign, nonatomic) CGFloat lgf_HeaderHeight;
 // page title view 高度
 @property (assign, nonatomic) CGFloat lgf_PageTitleViewHeight;
+// navigation bar 高度
+@property (assign, nonatomic) CGFloat lgf_NavigationBarHeight;
 // 分页滚动 UICollectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *lgf_CenterPageCV;
 // header view
@@ -57,7 +59,7 @@ typedef NS_ENUM(NSUInteger, lgf_LoadType) {
 // 分页控件 底部分割线 根据 contentOffset.y 自动显示
 @property (weak, nonatomic) IBOutlet UIView *lgf_PageTitleSuperViewLine;
 // 分页控件
-@property (strong, nonatomic) LGFFreePTView*lgf_PageTitleView;
+@property (strong, nonatomic) LGFFreePTView *lgf_PageTitleView;
 // 子控制器记录用 contentOffset.y
 @property (nonatomic, assign) CGFloat lgf_OffsetY;
 // 当前选择子控制器 selectIndex

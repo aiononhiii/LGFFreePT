@@ -12,16 +12,22 @@
 
 @implementation LGFFreePTLine
 
-+ (instancetype)lgf_AllocLine:(LGFFreePTStyle *)style {
++ (instancetype)lgf {
     LGFFreePTLine *line = [LGFPTBundle loadNibNamed:NSStringFromClass([LGFFreePTLine class]) owner:self options:nil].firstObject;
-    line.clipsToBounds = YES;
-    line.lgf_Style = style;
     return line;
+}
+
+- (void)lgf_AllocLine:(LGFFreePTStyle *)style delegate:(id<LGFFreePTLineDelegate>)delegate {
+    self.clipsToBounds = YES;
+    self.lgf_FreePTLineDelegate = delegate;
+    self.lgf_Style = style;
 }
 
 #pragma mark - 懒加载
 - (void)setLgf_Style:(LGFFreePTStyle *)lgf_Style {
     _lgf_Style = lgf_Style;
+    if (!lgf_Style.lgf_IsLineNetImage && lgf_Style.lgf_LineImageName.length > 0) NSAssert(lgf_Style.lgf_ImageBundel, @"为了获取正确的图片 - 请设置 (NSBundle *)style.lgf_ImageBundel");
+    self.contentMode = lgf_Style.lgf_LineImageContentMode;
     self.backgroundColor = lgf_Style.lgf_LineColor;
     CGFloat Y = lgf_Style.lgf_PVTitleView.lgfpt_Height - ((lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? lgf_Style.lgf_PVTitleView.lgfpt_Height : (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom));
     CGFloat H = (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? (lgf_Style.lgf_PVTitleView.lgfpt_Height - lgf_Style.lgf_LineBottom) : lgf_Style.lgf_LineHeight;
@@ -34,8 +40,14 @@
     self.lgfpt_Height = H;
     self.alpha = lgf_Style.lgf_LineAlpha;
     self.layer.cornerRadius = lgf_Style.lgf_LineCornerRadius;
-    if (lgf_Style.lgf_LineBackImage && self.subviews.count == 0) {
-        [self setImage:lgf_Style.lgf_LineBackImage];
+    if (lgf_Style.lgf_LineImageName.length > 0 && self.subviews.count == 0) {
+        if (lgf_Style.lgf_IsLineNetImage) {
+            if (self.lgf_FreePTLineDelegate && [self.lgf_FreePTLineDelegate respondsToSelector:@selector(lgf_GetLineNetImage:imageUrl:)]) {
+                [self.lgf_FreePTLineDelegate lgf_GetLineNetImage:self imageUrl:[NSURL URLWithString:lgf_Style.lgf_LineImageName]];
+            }
+        } else {
+            [self setImage:[UIImage imageNamed:lgf_Style.lgf_LineImageName inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+        }
     }
 }
 

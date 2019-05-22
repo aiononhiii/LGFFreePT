@@ -63,7 +63,9 @@
         self.lgf_LineHeight = 1.0;
         self.lgf_LineBottom = 0.0;
         self.lgf_LineAlpha = 1.0;
-        self.lgf_LineBackImage = nil;
+        self.lgf_LineImageName = @"";
+        self.lgf_IsLineNetImage = NO;
+        self.lgf_LineImageContentMode = UIViewContentModeScaleToFill;
         
         // 标上下左右图片配置
         self.lgf_SelectImageNames = [NSMutableArray new];
@@ -80,6 +82,8 @@
         self.lgf_RightImageSpace = 0.0;
         self.lgf_RightImageWidth = 0.0;
         self.lgf_RightImageHeight = 0.0;
+        self.lgf_IsNetImage = NO;
+        self.lgf_TitleImageContentMode = UIViewContentModeScaleToFill;
         
         // 枚举配置
         self.lgf_LineAnimation = lgf_PageLineAnimationDefult;
@@ -221,9 +225,10 @@
 }
 
 - (void)setLgf_LeftImageHeight:(CGFloat)lgf_LeftImageHeight {
-    _lgf_LeftImageHeight = lgf_LeftImageHeight;
-    if (_lgf_LeftImageWidth == 0.0) {
-        _lgf_LeftImageWidth = lgf_LeftImageHeight;
+    if (lgf_LeftImageHeight == 0.0) {
+        _lgf_LeftImageHeight = self.lgf_LeftImageWidth;
+    } else {
+        _lgf_LeftImageHeight = lgf_LeftImageHeight;
     }
 }
 
@@ -249,9 +254,10 @@
 }
 
 - (void)setLgf_LeftImageWidth:(CGFloat)lgf_LeftImageWidth {
-    _lgf_LeftImageWidth = lgf_LeftImageWidth;
-    if (_lgf_LeftImageHeight == 0.0) {
-        _lgf_LeftImageHeight = lgf_LeftImageWidth;
+    if (lgf_LeftImageWidth == 0.0) {
+        _lgf_LeftImageWidth = self.lgf_LeftImageHeight;
+    } else {
+        _lgf_LeftImageWidth = lgf_LeftImageWidth;
     }
 }
 

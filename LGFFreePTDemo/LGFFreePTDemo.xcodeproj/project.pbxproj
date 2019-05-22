@@ -33,15 +33,10 @@
 		18210EF322925A6100253BA5 /* UIView+LGFMJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EDB22925A6100253BA5 /* UIView+LGFMJExtension.m */; };
 		18210EF422925A6100253BA5 /* LGFMJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EDC22925A6100253BA5 /* LGFMJRefreshGifHeader.m */; };
 		18210EF722925A8600253BA5 /* TaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18210EF622925A8600253BA5 /* TaoBaoViewController.m */; };
-		18210EFF2292738E00253BA5 /* taobao_navi.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFB2292738E00253BA5 /* taobao_navi.PNG */; };
-		18210F002292738E00253BA5 /* taobao_header.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFC2292738E00253BA5 /* taobao_header.PNG */; };
-		18210F012292738E00253BA5 /* taobao_tabbar.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFD2292738E00253BA5 /* taobao_tabbar.PNG */; };
-		18210F022292738E00253BA5 /* taobao_ref.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18210EFE2292738E00253BA5 /* taobao_ref.PNG */; };
 		182A8E3A22813040006FFDE6 /* VerticalViewControllerOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */; };
 		182A8E3D2281304E006FFDE6 /* VerticalViewControllerThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A8E3C2281304E006FFDE6 /* VerticalViewControllerThreeCell.m */; };
 		18311EE4227FFCF300F9999C /* specialTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18311EE3227FFCF300F9999C /* specialTitle.m */; };
 		18311EE6227FFCFA00F9999C /* specialTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18311EE5227FFCFA00F9999C /* specialTitle.xib */; };
-		18311EE8228007E500F9999C /* special_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 18311EE7228007E500F9999C /* special_image.png */; };
 		18311EEB228007F500F9999C /* specialImageTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18311EEA228007F500F9999C /* specialImageTitle.m */; };
 		18311EED228007FA00F9999C /* specialImageTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18311EEC228007FA00F9999C /* specialImageTitle.xib */; };
 		18311EF0228116C700F9999C /* VerticalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18311EEF228116C700F9999C /* VerticalViewController.m */; };
@@ -73,12 +68,11 @@
 		185879C6228BE3FA001B1BAB /* StyleDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185879C5228BE3FA001B1BAB /* StyleDemoViewController.m */; };
 		185F09AA228ADFD4004CDEDA /* colorSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09A9228ADFD4004CDEDA /* colorSelectView.m */; };
 		185F09AC228ADFDB004CDEDA /* colorSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F09AB228ADFDB004CDEDA /* colorSelectView.xib */; };
-		185F09AE228AE216004CDEDA /* colorSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 185F09AD228AE216004CDEDA /* colorSelect.png */; };
 		185F09B1228AEE68004CDEDA /* LGFColorSelectImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */; };
 		18A735132292818800741078 /* TaoBaoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A735112292818800741078 /* TaoBaoCell.m */; };
 		18A735142292818800741078 /* TaoBaoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A735122292818800741078 /* TaoBaoCell.xib */; };
-		18A7351722928B4700741078 /* taobao_cell2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18A7351522928B4600741078 /* taobao_cell2.PNG */; };
-		18A7351822928B4700741078 /* taobao_cell1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 18A7351622928B4600741078 /* taobao_cell1.PNG */; };
+		18F0F5FC229524DA0068247A /* LoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0F5FB229524DA0068247A /* LoveView.m */; };
+		18F0F5FE229524E20068247A /* LoveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F0F5FD229524E20068247A /* LoveView.xib */; };
 		B0AE91678DE4F3B260F9D38D /* libPods-LGFFreePTDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1036E51358AB611EB47F2 /* libPods-LGFFreePTDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -152,10 +146,6 @@
 		18210EDC22925A6100253BA5 /* LGFMJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMJRefreshGifHeader.m; sourceTree = "<group>"; };
 		18210EF522925A8600253BA5 /* TaoBaoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaoBaoViewController.h; sourceTree = "<group>"; };
 		18210EF622925A8600253BA5 /* TaoBaoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaoBaoViewController.m; sourceTree = "<group>"; };
-		18210EFB2292738E00253BA5 /* taobao_navi.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_navi.PNG; sourceTree = "<group>"; };
-		18210EFC2292738E00253BA5 /* taobao_header.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_header.PNG; sourceTree = "<group>"; };
-		18210EFD2292738E00253BA5 /* taobao_tabbar.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_tabbar.PNG; sourceTree = "<group>"; };
-		18210EFE2292738E00253BA5 /* taobao_ref.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_ref.PNG; sourceTree = "<group>"; };
 		182A8E3822813040006FFDE6 /* VerticalViewControllerOneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerticalViewControllerOneCell.h; sourceTree = "<group>"; };
 		182A8E3922813040006FFDE6 /* VerticalViewControllerOneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerticalViewControllerOneCell.m; sourceTree = "<group>"; };
 		182A8E3B2281304E006FFDE6 /* VerticalViewControllerThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerticalViewControllerThreeCell.h; sourceTree = "<group>"; };
@@ -163,7 +153,6 @@
 		18311EE2227FFCF300F9999C /* specialTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = specialTitle.h; sourceTree = "<group>"; };
 		18311EE3227FFCF300F9999C /* specialTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = specialTitle.m; sourceTree = "<group>"; };
 		18311EE5227FFCFA00F9999C /* specialTitle.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = specialTitle.xib; sourceTree = "<group>"; };
-		18311EE7228007E500F9999C /* special_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = special_image.png; sourceTree = "<group>"; };
 		18311EE9228007F500F9999C /* specialImageTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = specialImageTitle.h; sourceTree = "<group>"; };
 		18311EEA228007F500F9999C /* specialImageTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = specialImageTitle.m; sourceTree = "<group>"; };
 		18311EEC228007FA00F9999C /* specialImageTitle.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = specialImageTitle.xib; sourceTree = "<group>"; };
@@ -220,14 +209,14 @@
 		185F09A8228ADFD4004CDEDA /* colorSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = colorSelectView.h; sourceTree = "<group>"; };
 		185F09A9228ADFD4004CDEDA /* colorSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = colorSelectView.m; sourceTree = "<group>"; };
 		185F09AB228ADFDB004CDEDA /* colorSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = colorSelectView.xib; sourceTree = "<group>"; };
-		185F09AD228AE216004CDEDA /* colorSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorSelect.png; sourceTree = "<group>"; };
 		185F09AF228AEE68004CDEDA /* LGFColorSelectImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFColorSelectImageView.h; sourceTree = "<group>"; };
 		185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFColorSelectImageView.m; sourceTree = "<group>"; };
 		18A735102292818800741078 /* TaoBaoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaoBaoCell.h; sourceTree = "<group>"; };
 		18A735112292818800741078 /* TaoBaoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaoBaoCell.m; sourceTree = "<group>"; };
 		18A735122292818800741078 /* TaoBaoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaoBaoCell.xib; sourceTree = "<group>"; };
-		18A7351522928B4600741078 /* taobao_cell2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_cell2.PNG; sourceTree = "<group>"; };
-		18A7351622928B4600741078 /* taobao_cell1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobao_cell1.PNG; sourceTree = "<group>"; };
+		18F0F5FA229524DA0068247A /* LoveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoveView.h; sourceTree = "<group>"; };
+		18F0F5FB229524DA0068247A /* LoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveView.m; sourceTree = "<group>"; };
+		18F0F5FD229524E20068247A /* LoveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoveView.xib; sourceTree = "<group>"; };
 		7A2DCE3390351753B24B8B2A /* Pods-LGFFreePTDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.release.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A4F4048A1649EACFADD120D2 /* Pods-LGFFreePTDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.debug.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,7 +250,6 @@
 		18210EA822925A0100253BA5 /* 淘宝首页效果VC */ = {
 			isa = PBXGroup;
 			children = (
-				18210EFA2292734000253BA5 /* Image */,
 				18210EA922925A1800253BA5 /* View */,
 				18210EAA22925A2000253BA5 /* VC */,
 			);
@@ -274,6 +262,9 @@
 				18A735102292818800741078 /* TaoBaoCell.h */,
 				18A735112292818800741078 /* TaoBaoCell.m */,
 				18A735122292818800741078 /* TaoBaoCell.xib */,
+				18F0F5FA229524DA0068247A /* LoveView.h */,
+				18F0F5FB229524DA0068247A /* LoveView.m */,
+				18F0F5FD229524E20068247A /* LoveView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -356,35 +347,6 @@
 				18210EC422925A6100253BA5 /* UIScrollView+LGFPageRefresh.m */,
 			);
 			path = "UIScrollView+LGFRefresh";
-			sourceTree = "<group>";
-		};
-		18210EF82292731F00253BA5 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				18311EE7228007E500F9999C /* special_image.png */,
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
-		18210EF92292733200253BA5 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				185F09AD228AE216004CDEDA /* colorSelect.png */,
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
-		18210EFA2292734000253BA5 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				18A7351622928B4600741078 /* taobao_cell1.PNG */,
-				18A7351522928B4600741078 /* taobao_cell2.PNG */,
-				18210EFC2292738E00253BA5 /* taobao_header.PNG */,
-				18210EFB2292738E00253BA5 /* taobao_navi.PNG */,
-				18210EFE2292738E00253BA5 /* taobao_ref.PNG */,
-				18210EFD2292738E00253BA5 /* taobao_tabbar.PNG */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		18458F6522756AF8001F1CCC = {
@@ -477,7 +439,6 @@
 		185879BE228BD8B4001B1BAB /* 自定义StyleVC */ = {
 			isa = PBXGroup;
 			children = (
-				18210EF92292733200253BA5 /* Image */,
 				185879C0228BD8D0001B1BAB /* View */,
 				185879BF228BD8CB001B1BAB /* VC */,
 			);
@@ -543,7 +504,6 @@
 		18AD2F1322841AD700772CD7 /* 实际使用效果展示VC */ = {
 			isa = PBXGroup;
 			children = (
-				18210EF82292731F00253BA5 /* Image */,
 				18AD2F1622841B9D00772CD7 /* View */,
 				18AD2F1422841AEA00772CD7 /* VC */,
 			);
@@ -700,26 +660,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A7351722928B4700741078 /* taobao_cell2.PNG in Resources */,
 				18458FB822756B95001F1CCC /* LGFFreePTTitle.xib in Resources */,
 				18A735142292818800741078 /* TaoBaoCell.xib in Resources */,
 				18458FBF22756B95001F1CCC /* LGFFreePTLine.xib in Resources */,
 				18458F7E22756AF9001F1CCC /* LaunchScreen.storyboard in Resources */,
-				18210F022292738E00253BA5 /* taobao_ref.PNG in Resources */,
 				18210EE222925A6100253BA5 /* LGFMJRefresh.bundle in Resources */,
 				18458FBC22756B95001F1CCC /* LGFFreePTView.xib in Resources */,
-				18210F012292738E00253BA5 /* taobao_tabbar.PNG in Resources */,
 				18311EE6227FFCFA00F9999C /* specialTitle.xib in Resources */,
 				18210EDD22925A6100253BA5 /* LGFCenterPageVC.storyboard in Resources */,
-				18210EFF2292738E00253BA5 /* taobao_navi.PNG in Resources */,
 				18458F7B22756AF9001F1CCC /* Assets.xcassets in Resources */,
-				18A7351822928B4700741078 /* taobao_cell1.PNG in Resources */,
 				18458F7922756AF8001F1CCC /* Main.storyboard in Resources */,
-				185F09AE228AE216004CDEDA /* colorSelect.png in Resources */,
-				18311EE8228007E500F9999C /* special_image.png in Resources */,
-				18210F002292738E00253BA5 /* taobao_header.PNG in Resources */,
 				185F09AC228ADFDB004CDEDA /* colorSelectView.xib in Resources */,
 				18311EED228007FA00F9999C /* specialImageTitle.xib in Resources */,
+				18F0F5FE229524E20068247A /* LoveView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,6 +768,7 @@
 				18458FBD22756B95001F1CCC /* LGFFreePTView.m in Sources */,
 				18311EF0228116C700F9999C /* VerticalViewController.m in Sources */,
 				18210EE822925A6100253BA5 /* LGFMJRefreshAutoFooter.m in Sources */,
+				18F0F5FC229524DA0068247A /* LoveView.m in Sources */,
 				18311EF32281180B00F9999C /* VerticalViewControllerCell.m in Sources */,
 				18210EDF22925A6100253BA5 /* LGFCenterPageVC.m in Sources */,
 				18193C0C2276E1ED003108FB /* MainViewControllerCell.m in Sources */,

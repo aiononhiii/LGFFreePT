@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="137" height="199"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_cell1.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="lb4-cZ-Vko">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lb4-cZ-Vko">
                         <rect key="frame" x="3" y="3" width="131" height="193"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
@@ -41,7 +41,4 @@
             <point key="canvasLocation" x="207.19999999999999" y="185.75712143928038"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="taobao_cell1.PNG" width="520" height="801"/>
-    </resources>
 </document>

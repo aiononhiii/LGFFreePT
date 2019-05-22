@@ -79,7 +79,7 @@
   @{@"title" : @"模拟支付宝编辑页效果",
     @"array" : @[@"便民生活", @"财富管理", @"资金往来", @"购物娱乐", @"教育公益", @"第三方服务"]},
   @{@"title" : @"淘宝首页效果(即将推出)",
-    @"array" : @[@"全部", @"新势力周", @"直播", @"便宜好货", @"买家秀", @"全球", @"母婴", @"时尚", @"生活"]},
+    @"array" : @[@"全部/猜你喜欢", @" / ", @"直播/网红推荐", @"便宜好货/低价抢购", @"买家秀/购后分享", @"全球/进口好货", @"生活/享受生活", @"母婴/母婴大赏", @"时尚/时尚好货"]},
   @{@"title" : @"可视化打造你要的 style",
     @"array" : @[@"我的", @"邮箱:", @"452354033@qq.com", @"正在", @"寻求好的", @"团队", @"从事过 IOS 开发 And Android 开发", @"主要从事", @"IOS 开发", @"5", @"年半开发经验"]}
   ];
@@ -111,9 +111,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.item == self.listArray.count - 2) {
         // 淘宝首页效果VC
-//        TaoBaoViewController *vc = [TaoBaoViewController lgf];
-//        vc.titles = self.listArray[indexPath.item][@"array"];
-//        [self.navigationController pushViewController:vc animated:YES];
+        TaoBaoViewController *vc = [TaoBaoViewController lgf];
+        vc.titles = self.listArray[indexPath.item][@"array"];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.item == self.listArray.count - 1) {
         // 自定义 Style 生成
         CustomViewController *vc = [CustomViewController lgf];

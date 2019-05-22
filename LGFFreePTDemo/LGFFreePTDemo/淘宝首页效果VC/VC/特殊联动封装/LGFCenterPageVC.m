@@ -24,27 +24,39 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 }
 
 - (void)reloadPageTitleWidthArray:(NSMutableArray *)dataArray {
-    self.lgf_PageTitleArray = [NSMutableArray arrayWithArray:dataArray];
-    [self.lgf_PageTitleArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        LGFCenterPageChildVC *vc = [LGFCenterPageChildVC lgf];
-        vc.title = obj;
-        vc.lgf_Page = 1;
-        vc.delegate = self;
-        vc.lgf_HeaderHeight = self.lgf_HeaderHeight;
-        vc.lgf_PageTitleViewHeight = self.lgf_PageTitleViewHeight;
-        vc.lgf_SelectIndex = idx;
-        vc.lgf_CenterPageCV = self.lgf_CenterPageCV;
-        vc.LGFCenterPageView = self.view;
-        vc.lgf_HeaderTapView = self.lgf_HeaderTapView;
-        vc.lgf_HeaderSuperView = self.lgf_HeaderSuperView;
-        [self addChildViewController:vc];
-        [vc didMoveToParentViewController:self];
-        [self.lgf_ChildVCArray addObject:vc];
-    }];
-
-    // 刷新title数组
-    self.lgf_PageTitleView.lgf_Style.lgf_Titles = self.lgf_PageTitleArray;
-    [self.lgf_PageTitleView lgf_ReloadTitle];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.lgf_PageTitleViewHeight = self.lgf_PageTitleViewHeight + self.lgf_NavigationBarHeight;
+        self.lgf_HeaderHeight = self.lgf_HeaderHeight + self.lgf_NavigationBarHeight;
+        self.lgf_PageTitleSuperViewHeight.constant = self.lgf_PageTitleViewHeight - self.lgf_NavigationBarHeight;
+        self.lgf_HeaderSuperView.frame = CGRectMake(0, self.lgf_CenterPageCV.lgf_y, lgf_ScreenWidth, self.lgf_HeaderHeight);
+        self.lgf_HeaderTapView.frame = self.lgf_HeaderSuperView.frame;
+        if (self.lgf_HeaderView) {
+            self.lgf_HeaderView.frame = CGRectMake(0, 0, lgf_ScreenWidth, self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight + self.lgf_NavigationBarHeight);
+            [self.lgf_HeaderViewForSB addSubview:self.lgf_HeaderView];
+        }
+        self.lgf_PageTitleArray = [NSMutableArray arrayWithArray:dataArray];
+        [self.lgf_PageTitleArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            LGFCenterPageChildVC *vc = [LGFCenterPageChildVC lgf];
+            vc.title = obj;
+            vc.lgf_Page = 1;
+            vc.delegate = self;
+            vc.lgf_HeaderHeight = self.lgf_HeaderHeight;
+            vc.lgf_PageTitleViewHeight = self.lgf_PageTitleViewHeight;
+            vc.lgf_SelectIndex = idx;
+            vc.lgf_CenterPageCV = self.lgf_CenterPageCV;
+            vc.LGFCenterPageView = self.view;
+            vc.lgf_HeaderTapView = self.lgf_HeaderTapView;
+            vc.lgf_HeaderSuperView = self.lgf_HeaderSuperView;
+            [self addChildViewController:vc];
+            [vc didMoveToParentViewController:self];
+            [self.lgf_ChildVCArray addObject:vc];
+        }];
+        
+        // 刷新title数组
+        self.lgf_PageTitleView.lgf_Style.lgf_Titles = self.lgf_PageTitleArray;
+        [self.lgf_PageTitleView lgf_ReloadTitle];
+    });
 }
 
 - (void)viewDidLoad {
@@ -55,22 +67,9 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.lgf_CenterPageCV.scrollsToTop = NO;
-    self.lgf_PageTitleSuperViewHeight.constant = self.lgf_PageTitleViewHeight - IPhoneX_NAVIGATION_BAR_HEIGHT;
-    self.lgf_HeaderSuperView.frame = CGRectMake(0, self.lgf_CenterPageCV.lgf_y, lgf_ScreenWidth, self.lgf_HeaderHeight);
-    self.lgf_HeaderTapView.frame = self.lgf_HeaderSuperView.frame;
     [self.view addSubview:self.lgf_HeaderTapView];
     [self.view addSubview:self.lgf_HeaderSuperView];
-    
-    if (self.lgf_HeaderView) {
-        self.lgf_HeaderView.frame = CGRectMake(0, 0, lgf_ScreenWidth, self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight + IPhoneX_NAVIGATION_BAR_HEIGHT);
-        [self.lgf_HeaderViewForSB addSubview:self.lgf_HeaderView];
-    }
-    if (self.lgf_PageTitleSuperView) {
-        self.lgf_PageTitleSuperView.frame = CGRectMake(0, 0, lgf_ScreenWidth, self.lgf_PageTitleViewHeight);
-        [self.lgf_PageTitleSuperViewForSB addSubview:self.lgf_PageTitleSuperView];
-    }
-    
+    self.lgf_CenterPageCV.scrollsToTop = NO;
     [lgf_NCenter addObserver:self selector:@selector(childScroll:) name:@"LGFChildScroll" object:nil];
 }
 
@@ -83,7 +82,10 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
         self.lgf_HeaderSuperView.transform = CGAffineTransformMakeTranslation(0, MAX(-(self.lgf_OffsetY + self.lgf_HeaderHeight), -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)));
         self.lgf_HeaderTapView.transform = self.lgf_HeaderSuperView.transform;
     }
-    if (offsetY <= -self.lgf_PageTitleViewHeight) {
+    [self lgf_IsShowLine:offsetY];
+}
+- (void)lgf_IsShowLine:(CGFloat)offsetY {
+    if (offsetY < -self.lgf_PageTitleViewHeight) {
         if (self.lgf_PageTitleSuperViewLine.hidden == NO) {
             self.lgf_PageTitleSuperViewLine.hidden = YES;
         }
@@ -162,6 +164,10 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     LGFCenterPageChildVC *vc = self.lgf_ChildVCArray[indexPath.item];
+    if (vc.lgf_SelectIndex > 0) {
+        vc.lgf_PageTitleViewHeight = self.lgf_PageTitleViewHeight;
+        [lgf_NCenter postNotificationName:@"LGFChildScroll" object:@[@(vc.lgf_OffsetY), @(vc.lgf_SelectIndex)]];
+    }
     if (vc.lgf_SelectIndex != self.lgf_SelectIndex) {
         if (self.lgf_HeaderSuperView.transform.ty > -(self.lgf_HeaderHeight - self.lgf_PageTitleViewHeight)) {
             if (vc.lgf_IsLoadData) {
@@ -184,6 +190,7 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
             }
         }
     }
+    [self lgf_IsShowLine:self.lgf_OffsetY];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -207,8 +214,13 @@ lgf_SBViewControllerForM(LGFCenterPageVC, @"LGFCenterPageVC", @"LGFCenterPageVC"
             [self.delegate lgf_CenterPageChildVCLoadData:vc selectIndex:selectIndex loadType:lgf_LoadData];
         }
     }
-    
     [self lgf_AddPanGestureRecognizer];
+}
+
+- (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(lgf_RealSelectFreePTTitle:)]) {
+        [self.delegate lgf_RealSelectFreePTTitle:selectIndex];
+    }
 }
 
 - (void)lgf_AddPanGestureRecognizer {

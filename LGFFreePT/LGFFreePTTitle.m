@@ -170,38 +170,38 @@
         NSString *suImageName = self.lgf_Style.lgf_SelectImageNames[unselectIndex];
         if (self.lgf_Style.lgf_LeftImageWidth > 0.0 && self.lgf_Style.lgf_LeftImageHeight > 0.0) {
             if (self.lgf_Style.lgf_IsNetImage) {
-                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                    [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 }
             } else {
-                [self.lgf_LeftImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_LeftImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
         if (self.lgf_Style.lgf_RightImageWidth > 0.0 && self.lgf_Style.lgf_RightImageHeight > 0.0) {
             if (self.lgf_Style.lgf_IsNetImage) {
-                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                    [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 }
             } else {
-                [self.lgf_RightImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_RightImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
         if (self.lgf_Style.lgf_TopImageHeight > 0.0 && self.lgf_Style.lgf_TopImageWidth > 0.0) {
             if (self.lgf_Style.lgf_IsNetImage) {
-                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                    [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 }
             } else {
-                [self.lgf_TopImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_TopImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
         if (self.lgf_Style.lgf_BottomImageHeight > 0.0 && self.lgf_Style.lgf_BottomImageWidth > 0.0) {
             if (self.lgf_Style.lgf_IsNetImage) {
-                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                    [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 }
             } else {
-                [self.lgf_BottomImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_BottomImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
     }
@@ -257,19 +257,20 @@
     
     self.lgf_IsHaveImage = YES;
     
-    if (!lgf_Style.lgf_IsNetImage) NSAssert(lgf_Style.lgf_TitleImageBundel, @"为了获取正确的图片 - 请设置 (NSBundle *)style.title_image_bundel");
+    if (!lgf_Style.lgf_IsNetImage) NSAssert(lgf_Style.lgf_ImageBundel, @"为了获取正确的图片 - 请设置 (NSBundle *)style.lgf_ImageBundel");
     
     // 只要有宽度，允许设置左图片
     if (lgf_Style.lgf_LeftImageWidth > 0.0) {
+        self.lgf_LeftImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_LeftImageSpace.constant = lgf_Style.lgf_LeftImageSpace;
         self.lgf_LeftImageWidth.constant = MIN(lgf_Style.lgf_LeftImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         self.lgf_LeftImageHeight.constant = MIN(lgf_Style.lgf_LeftImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             }
         } else {
-            [self.lgf_LeftImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_LeftImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
         self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageWidth / 2);
         if (lgf_Style.lgf_LeftImageSpace > 0.0) {
@@ -281,15 +282,16 @@
     
     // 只要有宽度，允许设置右图片
     if (lgf_Style.lgf_RightImageWidth > 0.0) {
+        self.lgf_RightImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_RightImageSpace.constant = lgf_Style.lgf_RightImageSpace;
         self.lgf_RightImageWidth.constant = MIN(lgf_Style.lgf_RightImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         self.lgf_RightImageHeight.constant = MIN(lgf_Style.lgf_RightImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             }
         } else {
-            [self.lgf_RightImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_RightImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
         self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageWidth / 2.0);
         if (lgf_Style.lgf_RightImageSpace > 0.0) {
@@ -301,15 +303,16 @@
     
     // 只要有高度，允许设置上图片
     if (lgf_Style.lgf_TopImageHeight > 0.0) {
+        self.lgf_TopImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_TopImageSpace.constant = lgf_Style.lgf_TopImageSpace;
         self.lgf_TopImageWidth.constant = MIN(lgf_Style.lgf_TopImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
         self.lgf_TopImageHeight.constant = MIN(lgf_Style.lgf_TopImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             }
         } else {
-            [self.lgf_TopImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_TopImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
         self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageHeight / 2.0);
         if (lgf_Style.lgf_TopImageSpace > 0.0) {
@@ -321,15 +324,16 @@
     
     // 只要有高度，允许设置下图片
     if (lgf_Style.lgf_BottomImageHeight > 0.0) {
+        self.lgf_BottomImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_BottomImageSpace.constant = lgf_Style.lgf_BottomImageSpace;
         self.lgf_BottomImageWidth.constant = MIN(lgf_Style.lgf_BottomImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
         self.lgf_BottomImageHeight.constant = MIN(lgf_Style.lgf_BottomImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
-                [self.lgf_FreePTTitleDelegate lgf_GetNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             }
         } else {
-            [self.lgf_BottomImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_TitleImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_BottomImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
         self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageHeight / 2.0);
         if (lgf_Style.lgf_BottomImageSpace > 0.0) {

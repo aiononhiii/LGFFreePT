@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LGFFreePTTitleDelegate <NSObject>
 @optional
-- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+// 加载 title 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
+- (void)lgf_GetTitleNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 @end
 @interface LGFFreePTTitle : UIView
 @property (weak, nonatomic) IBOutlet UILabel *lgf_Title;// 标

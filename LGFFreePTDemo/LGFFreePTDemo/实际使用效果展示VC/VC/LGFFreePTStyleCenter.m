@@ -128,13 +128,17 @@
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseDown;// 毛毛虫效果
+    style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseDown;
     //----------- 加载网络图片
     style.lgf_SameSelectImageName = @"https://qtyc-1256019144.cos.ap-guangzhou.myqcloud.com/%E9%92%B1%E5%A1%98%E4%BA%91%E4%BB%93%E5%85%A8%E5%88%87%E5%9B%BE%2FTabBar%2Ftab_home_on%403x.png";
     style.lgf_SameUnSelectImageName = @"https://qtyc-1256019144.cos.ap-guangzhou.myqcloud.com/%E9%92%B1%E5%A1%98%E4%BA%91%E4%BB%93%E5%85%A8%E5%88%87%E5%9B%BE%2FTabBar%2Ftab_home_off%403x.png";
     style.lgf_IsNetImage = YES;// 加载网络图片开关（还需要开启加载网络图片代理）
-//    style.lgf_TitleImageBundel = lgf_Bundle(@"LGFFreePTDemo");// 加载网络图片颗不赋值
+//    style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");// 加载网络图片可不赋值
     //-------------
+    //------------- 加载 line 网络图片
+    style.lgf_LineImageName = @"https://qtyc-1256019144.cos.ap-guangzhou.myqcloud.com/%E9%92%B1%E5%A1%98%E4%BA%91%E4%BB%93%E5%85%A8%E5%88%87%E5%9B%BE%2FTabBar%2Ftab_home_off%403x.png";
+    style.lgf_IsLineNetImage = YES;
+    //
     style.lgf_LeftImageWidth = 25.0;
     style.lgf_LeftImageHeight = 25.0;
     style.lgf_LeftImageSpace = 5.0;
@@ -159,7 +163,7 @@
     // 添加左边图片 距离文字 5
     style.lgf_SelectImageNames = @[@"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian"].mutableCopy;
     style.lgf_UnSelectImageNames = @[@"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un"].mutableCopy;
-    style.lgf_TitleImageBundel = lgf_Bundle(@"LGFFreePTDemo");
+    style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
     style.lgf_LeftImageWidth = 10.0;
     style.lgf_RightImageWidth = 10.0;
     style.lgf_TopImageWidth = 6.0;
@@ -215,7 +219,7 @@
     // 添加左边图片 距离文字 5
     style.lgf_SelectImageNames = @[@"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian"].mutableCopy;
     style.lgf_UnSelectImageNames = @[@"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un"].mutableCopy;
-    style.lgf_TitleImageBundel = lgf_Bundle(@"LGFFreePTDemo");
+    style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
     style.lgf_LeftImageWidth = 10;
     style.lgf_TitleLeftRightSpace = 10.0;
     style.lgf_PageLeftRightSpace = 10.0;
@@ -273,7 +277,8 @@
     style.lgf_LineWidth = 120.0;
     style.lgf_LineWidthType = lgf_FixedWith;
     style.lgf_LineHeight = 44.0;
-    style.lgf_LineBackImage = lgf_Image(@"line_image");
+    style.lgf_LineImageName = @"line_image";
+    style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:14];
     style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
@@ -290,7 +295,8 @@
     style.lgf_TitleLeftRightSpace = 15.0;
     style.lgf_PageLeftRightSpace = 10.0;
     style.lgf_LineHeight = 44.0;
-    style.lgf_LineBackImage = lgf_Image(@"line_maomaochong");
+    style.lgf_LineImageName = @"line_maomaochong";
+    style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:14];
     style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
@@ -429,7 +435,8 @@
     style.lgf_LineHeight = 80.0;
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
-    style.lgf_LineBackImage =  lgf_Image(@"line_mutou_image");
+    style.lgf_LineImageName = @"line_mutou_image";
+    style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
     style.lgf_LineColor = [LGFPTHexColor(@"FFFFFF") colorWithAlphaComponent:0.0];
     style.lgf_TitleSelectColor = LGFPTHexColor(@"FFFFFF");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"B22222");

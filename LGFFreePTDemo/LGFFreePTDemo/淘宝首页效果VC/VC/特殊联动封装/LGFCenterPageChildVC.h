@@ -39,13 +39,13 @@ typedef NS_ENUM(NSUInteger, lgf_ChildLoadType) {
 // 用于控制联动的 空白ScrollView
 @property (weak, nonatomic) IBOutlet UIScrollView *lgf_PanScrollView;
 // 外部分页滚动 UICollectionView
-@property (weak, nonatomic) UICollectionView *lgf_CenterPageCV;
+@property (strong, nonatomic) UICollectionView *lgf_CenterPageCV;
 @property (strong, nonatomic) NSMutableArray *lgf_PageChildDataArray;
 @property (strong, nonatomic) NSMutableArray *lgf_PageChildDataHeightArray;
 // 父控制器传进来的
-@property (weak, nonatomic) UIView *lgf_HeaderTapView;
-@property (weak, nonatomic) UIView *lgf_HeaderSuperView;
-@property (weak, nonatomic) UIView *LGFCenterPageView;
+@property (strong, nonatomic) UIView *lgf_HeaderTapView;
+@property (strong, nonatomic) UIView *lgf_HeaderSuperView;
+@property (strong, nonatomic) UIView *LGFCenterPageView;
 @property (nonatomic, assign) NSInteger lgf_SelectIndex;
 @property (nonatomic, assign) NSInteger lgf_SuperSelectIndex;
 @property (nonatomic, assign) CGFloat lgf_HeaderHeight;

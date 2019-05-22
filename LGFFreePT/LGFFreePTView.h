@@ -15,17 +15,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LGFFreePTDelegate <NSObject>
 @required
-- (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex;// 返回选中的标
+// 标动画完全结束后的选中标回调代理
+- (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex;
 @optional
-// 自定义 line 动画
+// 以 contentOffsetX 匹配最精确的选中标回调代理
+- (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex;
+// 自定义 line 动画代理
 - (void)lgf_FreePTViewCustomizeLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress;
-// 加载网络图片
+// 加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
 - (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 @end
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;
+@property (strong, nonatomic) LGFFreePTLine * _Nullable lgf_TitleLine;// 底部滚动条(决定开在 .h 方便配合代理实现某些特殊需求)
 @property (strong, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
-@property (assign, nonatomic) NSInteger lgf_SelectIndex;// 将要选中下标
+@property (assign, nonatomic) NSInteger lgf_SelectIndex;// 选中下标
 #pragma mark - 初始化
 + (instancetype)lgf;
 #pragma mark - 刷新所有标

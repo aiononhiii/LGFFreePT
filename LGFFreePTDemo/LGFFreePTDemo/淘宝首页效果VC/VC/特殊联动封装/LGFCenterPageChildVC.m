@@ -7,6 +7,7 @@
 //
 
 #import "LGFCenterPageChildVC.h"
+#import "TaoBaoCell.h"
 
 #undef lgf_CenterChildPageCVRealRect
 #define lgf_CenterChildPageCVRealRect ([self.view.superview convertRect:self.view.frame toView:nil])

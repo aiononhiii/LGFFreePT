@@ -91,7 +91,7 @@
 @property (nonatomic, assign) NSInteger lgf_PVAnimationTypeInt;
 @property (nonatomic, assign) NSInteger lgf_LineWidthTypeInt;
 @property (weak, nonatomic) IBOutlet UISwitch *setlgf_ImageNames;
-@property (weak, nonatomic) IBOutlet UISwitch *setlgf_LineBackImage;
+@property (weak, nonatomic) IBOutlet UISwitch *setlgf_LineImageName;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_PageLeftRightSpace;
 @property (weak, nonatomic) IBOutlet UITextField *LGFFreePTSuperViewHeight;
 // 枚举类型展示用数据源
@@ -279,11 +279,11 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField.text lgf_IsBlank]) {
-        textField.text = @"0.00";
+        textField.text = @"0.0";
     } else {
         NSArray *texts = [textField.text componentsSeparatedByString:@"."];
         if ([texts.lastObject lgf_IsBlank]) {
-            textField.text = [NSString stringWithFormat:@"%@.00", texts.firstObject];
+            textField.text = [NSString stringWithFormat:@"%@.0", texts.firstObject];
         } else {
             textField.text = [NSString stringWithFormat:@"%0.1f", [textField.text floatValue]];
         }
@@ -350,8 +350,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_IsLineAlignSubTitle.on = styleDict[@"lgf_IsLineAlignSubTitle"] ? [styleDict[@"lgf_IsLineAlignSubTitle"] boolValue] : style.lgf_IsLineAlignSubTitle;
     self.lgf_StartDebug.on = styleDict[@"lgf_StartDebug"] ? [styleDict[@"lgf_StartDebug"] boolValue] : style.lgf_StartDebug;
     self.setlgf_ImageNames.on = styleDict[@"setlgf_ImageNames"] ? [styleDict[@"setlgf_ImageNames"] boolValue] : NO;
-    self.setlgf_LineBackImage.on = styleDict[@"setlgf_LineBackImage"] ? [styleDict[@"setlgf_LineBackImage"] boolValue] : NO;
-    
+    self.setlgf_LineImageName.on = styleDict[@"setlgf_LineImageName"] ? [styleDict[@"setlgf_LineImageName"] boolValue] : NO;
     self.lgf_LineAnimationInt = styleDict[@"lgf_LineAnimation"] ? [self.lgf_LineAnimationArray indexOfObject:styleDict[@"lgf_LineAnimation"]] : style.lgf_LineAnimation;
     self.lgf_TitleScrollFollowTypeInt = styleDict[@"lgf_TitleScrollFollowType"] ? [self.lgf_TitleScrollFollowTypeArray indexOfObject:styleDict[@"lgf_TitleScrollFollowType"]] : style.lgf_TitleScrollFollowType;
     self.lgf_PVAnimationTypeInt = styleDict[@"lgf_PVAnimationType"] ? [self.lgf_PVAnimationTypeArray indexOfObject:styleDict[@"lgf_PVAnimationType"]] : style.lgf_PVAnimationType;
@@ -373,6 +372,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 
 - (void)setViewColor {
     self.lgf_UnTitleSelectColorView.backgroundColor = lgf_HexColor(self.lgf_UnTitleSelectColor.text);
+    self.lgf_TitleSelectColorView.backgroundColor = lgf_HexColor(self.lgf_TitleSelectColor.text);
     self.lgf_UnSubTitleSelectColorView.backgroundColor = lgf_HexColor(self.lgf_UnSubTitleSelectColor.text);
     self.lgf_SubTitleSelectColorView.backgroundColor = lgf_HexColor(self.lgf_SubTitleSelectColor.text);
     self.lgf_TitleBackgroundColorView.backgroundColor = lgf_HexColor(self.lgf_TitleBackgroundColor.text);
@@ -428,7 +428,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     if (self.setlgf_ImageNames.on) {
         style.lgf_SelectImageNames = @[@"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian"].mutableCopy;
         style.lgf_UnSelectImageNames = @[@"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un"].mutableCopy;
-        style.lgf_TitleImageBundel = lgf_Bundle(@"LGFFreePTDemo");
+        style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
         style.lgf_TopImageSpace = self.lgf_TopImageSpace.text.floatValue;
         style.lgf_TopImageWidth = self.lgf_TopImageWidth.text.floatValue;
         style.lgf_TopImageHeight = self.lgf_TopImageHeight.text.floatValue;
@@ -445,10 +445,11 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         style.lgf_SelectImageNames = @[].mutableCopy;
         style.lgf_UnSelectImageNames = @[].mutableCopy;
     }
-    if (self.setlgf_LineBackImage.on) {
-        style.lgf_LineBackImage = lgf_Image(@"line_image");
+    if (self.setlgf_LineImageName.on) {
+        style.lgf_LineImageName = @"line_image";
+        style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
     } else {
-        style.lgf_LineBackImage = nil;
+        style.lgf_LineImageName = @"";
     }
     if (self.lgf_IsDoubleTitle.on) {
         style.lgf_Titles = @[@"我的/我的", @"邮箱:/邮箱:", @"452354033@qq.com/452354033@qq.com", @"正在/正在", @"寻求好的/寻求好的", @"团队/团队", @"从事过 IOS 开发 And Android 开发/从事过 IOS 开发 And Android 开发", @"主要从事/主要从事", @"IOS 开发/IOS 开发", @"5/5", @"年半开发经验/年半开发经验"].copy;
@@ -519,7 +520,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [styleDict setValue:self.lgf_PVAnimationTypeArray[self.lgf_PVAnimationTypeInt] forKey:@"lgf_PVAnimationType"];
     [styleDict setValue:self.lgf_LineWidthTypeArray[self.lgf_LineWidthTypeInt] forKey:@"lgf_LineWidthType"];
     [styleDict setObject:(self.setlgf_ImageNames.on ? @"YES" : @"NO") forKey:@"setlgf_ImageNames"];
-    [styleDict setObject:(self.setlgf_LineBackImage.on ? @"YES" : @"NO") forKey:@"setlgf_LineBackImage"];
+    [styleDict setObject:(self.setlgf_LineImageName.on ? @"YES" : @"NO") forKey:@"setlgf_LineImageName"];
     [styleDict setObject:self.LGFFreePTSuperViewHeight.text forKey:@"LGFFreePTSuperViewHeight"];
     [lgf_Defaults setObject:styleDict forKey:name];
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoveView">
+            <rect key="frame" x="0.0" y="0.0" width="133" height="79"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_520" translatesAutoresizingMaskIntoConstraints="NO" id="mpx-Bh-0wp">
+                    <rect key="frame" x="10" y="10" width="113" height="59"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="疯狂抢购" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lph-QP-4Qp">
+                    <rect key="frame" x="44" y="45.5" width="45" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mpx-Bh-0wp" secondAttribute="bottom" constant="10" id="1Bu-tE-4mI"/>
+                <constraint firstItem="mpx-Bh-0wp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="1gJ-qX-qlF"/>
+                <constraint firstAttribute="trailing" secondItem="mpx-Bh-0wp" secondAttribute="trailing" constant="10" id="61f-Kw-fEE"/>
+                <constraint firstItem="Lph-QP-4Qp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="K6y-QL-f1X"/>
+                <constraint firstItem="mpx-Bh-0wp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="nJq-A1-yE3"/>
+                <constraint firstItem="Lph-QP-4Qp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.35" constant="-1" id="pTG-nJ-GML"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="image" destination="mpx-Bh-0wp" id="q3Q-jV-Xli"/>
+                <outlet property="subTitle" destination="Lph-QP-4Qp" id="GDL-bz-Zgs"/>
+            </connections>
+            <point key="canvasLocation" x="23.199999999999999" y="138.98050974512745"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="taobao_520" width="201" height="127"/>
+    </resources>
+</document>

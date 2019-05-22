@@ -169,12 +169,14 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 点击 title 后移动 title 居中动画时间 默认 0.2
 @property (assign, nonatomic) CGFloat lgf_TitleScrollToTheMiddleAnimationDuration;
 //------------------- 特殊 title 设置
-// 要替换的特殊 title 数组（数组中元素 view 的 lgf_FreePTSpecialTitleArray（值格式：@"0/80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
+// 要替换的特殊 title 数组（数组中元素 view (改 view 最好为单列，以方便设置 选中状态/动效/动画 等特殊处理) 的 lgf_FreePTSpecialTitleArray（值格式：@"0/80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是障眼法替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
 @property (nonatomic, copy) NSArray <UIView *> *lgf_FreePTSpecialTitleArray;
 
 //-------------------  title 图片设置
 // 图片Bundle 如果图片不在本控件bundel里请设置
-@property (strong, nonatomic) NSBundle *lgf_TitleImageBundel;
+@property (strong, nonatomic) NSBundle *lgf_ImageBundel;
+// title 图片 ContentMode **(非主要属性)**
+@property(nonatomic) UIViewContentMode lgf_TitleImageContentMode;
 // lgf_SelectImageNames 和 lgf_SameSelectImageName 设置一个就行 如果都设置了默认取 lgf_SameSelectImageName
 // 设置不同图 title 数组（必须和titles数组count保持一致,如果某一个 title 不想设置图 title 名字传空即可）
 // 选中图 title 数组和未选中图 title 数组如果只传了其中一个,将没有选中效果
@@ -217,8 +219,12 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) BOOL lgf_IsShowLine;
 // title 底部线圆角弧度 默认 0 没有弧度
 @property (assign, nonatomic) CGFloat lgf_LineCornerRadius;
-// title 背景图片 默认 无图
-@property (strong, nonatomic) UIImage *_Nullable lgf_LineBackImage;
+// title 底部滚动线 背景图片 默认 无图
+@property (copy, nonatomic) NSString *lgf_LineImageName;
+// title 底部滚动线 背景图片 ContentMode **(非主要属性)**
+@property(nonatomic) UIViewContentMode lgf_LineImageContentMode;
+// 是否是 line 网络图片
+@property (assign, nonatomic) BOOL lgf_IsLineNetImage;
 // title 底部滚动线 颜色 默认 blueColor
 @property (strong, nonatomic) UIColor *lgf_LineColor;
 // title 底部滚动线 透明度 默认 1.0 - 不透明
