@@ -46,7 +46,12 @@
 
 ![](https://upload-images.jianshu.io/upload_images/2857609-aa7f7cc85184b13e.gif?imageMogr2/auto-orient/strip)
 
-* 还有更多效果，详件Demo ([LGFFreePT](https://github.com/aiononhiii/LGFFreePT))
+* 淘宝首页
+
+![](https://upload-images.jianshu.io/upload_images/2857609-ceac897a859ed839.gif?imageMogr2/auto-orient/strip)
+
+
+*这只是冰山一角，还有近千种效果等待你的组合发现，详件Demo ([LGFFreePT](https://github.com/aiononhiii/LGFFreePT))
 
 ## 功能
 * 实现了市面上大部分的效果，如果有新的需求请留言我
@@ -59,3 +64,6 @@
 如果提示错误，请更新你的 cocoaPods ~>1.7.0
 
 ## 我的邮箱 - 452354033@qq.com
+
+## 用了感觉不错的可以赠我一颗 github 星星，我将努力持续添加新的组合参数
+## 有建议的也请在下方回复我，如果可行我会尽快采纳
