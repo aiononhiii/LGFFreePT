@@ -87,8 +87,8 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     }];
 }
 
-// 自定义 line 动画配置代理
-- (void)lgf_FreePTViewCustomizeLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress {
+// 自定义 line 滚动动画配置代理
+- (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress {
     CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
     if (progress > 0.5) {
         line.lgfpt_X = selectX;
@@ -101,6 +101,20 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
         line.transform = CGAffineTransformIdentity;
         line.transform = CGAffineTransformMakeTranslation(0, space + space * (1.0 - (2.0 * (1.0 - progress))));
     }
+}
+// 自定义 line 点击动画配置代理
+- (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
+    CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
+    [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / duration)  animations:^{
+        line.transform = CGAffineTransformMakeTranslation(0, space);
+    }];
+    [UIView addKeyframeWithRelativeStartTime:0.5 - (0.0001 / duration) relativeDuration:0.0002 / duration animations:^{
+        line.lgfpt_X = selectX;
+        line.lgfpt_Width = selectWidth;
+    }];
+    [UIView addKeyframeWithRelativeStartTime:0.5 + (0.0001 / duration) relativeDuration:0.5 - (0.0001 / duration) animations:^{
+        line.transform = CGAffineTransformIdentity;
+    }];
 }
 
 // 加载网络图片时候需要实现这个代理

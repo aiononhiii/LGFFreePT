@@ -64,10 +64,11 @@ typedef NS_ENUM(NSUInteger, lgf_FreePageViewAnimationType) {
 typedef NS_ENUM(NSUInteger, lgf_FreePageLineAnimationType) {
     lgf_PageLineAnimationDefult,// title 底部线平滑改变大小
     // 后续推出下面的 仿爱奇艺底部线动画效果 现暂时不可用 请勿设置
-    lgf_PageLineAnimationSmallToBig,// title 底部线先右边伸出变宽致 title 和下一个 title 的总宽度, 再左边收回恢复到下一个 title 的宽度
+    lgf_PageLineAnimationShortToLong,// title 底部线先右边伸出变宽致 title 和下一个 title 的总宽度, 再左边收回恢复到下一个 title 的宽度
     lgf_PageLineAnimationHideShow,// 渐隐效果， title 底部线隐藏，再在下一个 title 的底部出现
     lgf_PageLineAnimationTortoiseDown,// 乌龟的头效果， title 底部线向下隐藏，再在下一个 title 的底部向上出现
     lgf_PageLineAnimationTortoiseUp,// 乌龟的头效果， title 底部线向上隐藏，再在下一个 title 的底部向下出现
+    lgf_PageLineAnimationSmallToBig,// title 底部线缩小放大
     lgf_PageLineAnimationCustomize,// 我想自定义这个效果，系统将返回你或许需要的值（selectX，selectWidth，unSelectX，unSelectWidth等等），用这些值来制造你自己想要的 line 动画
 };
 
@@ -235,8 +236,14 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_LineWidth;
 // title 底部滚动线 高度 默认 1.0 (line_height最大高度为 LGFFreePT 的高度)
 @property (assign, nonatomic) CGFloat lgf_LineHeight;
+// title 底部滚动线 边框颜色
+@property (strong, nonatomic) UIColor *lgf_LineBorderColor;
+// title 底部滚动线 边框宽度
+@property (assign, nonatomic) CGFloat lgf_LineBorderWidth;
 // title 底部滚动线相对于底部位置 默认 0 - 贴于底部
 @property (assign, nonatomic) CGFloat lgf_LineBottom;
+// title 底部滚动线中心点左右偏移 默认 0 - 不偏移
+@property (assign, nonatomic) CGFloat lgf_LineCenterX;
 // title 底部滚动线滑动动画 默认 LGFPageLineAnimationDefult 有跟随动画
 @property (assign, nonatomic) lgf_FreePageLineAnimationType lgf_LineAnimation;
 

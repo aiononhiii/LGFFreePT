@@ -76,7 +76,7 @@
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;// 毛毛虫效果
+    style.lgf_LineAnimation = lgf_PageLineAnimationShortToLong;// 毛毛虫效果
     return style;
 }
 
@@ -93,7 +93,7 @@
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;// 毛毛虫效果
+    style.lgf_LineAnimation = lgf_PageLineAnimationShortToLong;// 毛毛虫效果
     return style;
 }
 + (LGFFreePTStyle *)six {
@@ -110,7 +110,7 @@
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;// 毛毛虫效果
+    style.lgf_LineAnimation = lgf_PageLineAnimationShortToLong;// 毛毛虫效果
     return style;
 }
 + (LGFFreePTStyle *)seven {
@@ -202,7 +202,7 @@
     style.lgf_LineColor = LGFPTHexColor(@"fr134f");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"B50000");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;
+    style.lgf_LineAnimation = lgf_PageLineAnimationShortToLong;
     // 副标题配置
     style.lgf_SubTitleSelectFont = [UIFont boldSystemFontOfSize:12];
     style.lgf_UnSubTitleSelectFont = [UIFont boldSystemFontOfSize:12];
@@ -259,7 +259,7 @@
     style.lgf_LineColor = LGFPTHexColor(@"333333");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"8656E3");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;
+    style.lgf_LineAnimation = lgf_PageLineAnimationShortToLong;
     // 副标题配置
     style.lgf_SubTitleSelectFont = [UIFont boldSystemFontOfSize:12];
     style.lgf_UnSubTitleSelectFont = [UIFont boldSystemFontOfSize:12];
@@ -302,7 +302,7 @@
     style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
     style.lgf_TitleSelectColor = LGFPTHexColor(@"8656E3");
     style.lgf_UnTitleSelectColor = LGFPTHexColor(@"F0F0F0");
-    style.lgf_LineAnimation = lgf_PageLineAnimationSmallToBig;
+    style.lgf_LineAnimation = lgf_PageLineAnimationShortToLong;
     return style;
 }
 

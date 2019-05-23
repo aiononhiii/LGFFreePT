@@ -49,7 +49,7 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
         [self.lgf_CenterChildPageCV setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
         [self.lgf_PanScrollView setContentOffset:CGPointMake(0, -self.lgf_HeaderHeight) animated:NO];
     }
-    // 这里使用我改写过的 MJRefresh (支持双 ScrollView 重叠刷新)
+    // 由于设计的特殊性，这里只能使用我改写过的 MJRefresh (支持双 ScrollView 重叠刷新)
     LGFMJRefreshFooter *footer = LGFPageMJFooter(self, @selector(lgf_ChildLoadMoreData));
     footer.bscrollView = self.lgf_PanScrollView;
     self.lgf_CenterChildPageCV.lgf_PageFooter = footer;
@@ -116,6 +116,11 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
         self.lgf_IsLoadData = YES;
         [lgf_NCenter postNotificationName:@"LGFChildScroll" object:@[@(self.lgf_CenterChildPageCV.contentOffset.y), @(self.lgf_SelectIndex)]];
     });
+}
+
+- (void)lgf_PageEndRefreshing {
+    [self.lgf_CenterChildPageCV lgf_PageEndRefreshing];
+    [self.lgf_PanScrollView lgf_PageEndRefreshing];
 }
 
 #pragma mark - Collection View DataSource And Delegate

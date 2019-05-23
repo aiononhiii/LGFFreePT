@@ -31,7 +31,7 @@
         self.lgf_TitleTransformSX = 1.0;
         self.lgf_IsTitleCenter = NO;
         self.lgf_TitleHaveAnimation = YES;
-        self.lgf_TitleBorderColor = [UIColor whiteColor];
+        self.lgf_TitleBorderColor = [UIColor clearColor];
         self.lgf_TitleBorderWidth = 0.0;
         
         // 标 title 配置
@@ -59,9 +59,12 @@
         self.lgf_IsShowLine = YES;
         self.lgf_LineCornerRadius = 0.0;
         self.lgf_LineColor = [UIColor blueColor];
+        self.lgf_LineBorderColor = [UIColor clearColor];
+        self.lgf_LineBorderWidth = 0.0;
         self.lgf_LineWidth = 0.0;
         self.lgf_LineHeight = 1.0;
         self.lgf_LineBottom = 0.0;
+        self.lgf_LineCenterX = 0.0;
         self.lgf_LineAlpha = 1.0;
         self.lgf_LineImageName = @"";
         self.lgf_IsLineNetImage = NO;

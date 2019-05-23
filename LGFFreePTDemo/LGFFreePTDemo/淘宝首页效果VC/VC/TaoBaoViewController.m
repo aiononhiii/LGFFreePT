@@ -14,9 +14,9 @@
 
 @interface TaoBaoViewController ()<LGFCenterPageVCDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerTop;
-@property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (strong, nonatomic) IBOutlet UIView *headerView;// 头部视图 可添加任意控件
 @property (weak, nonatomic) IBOutlet UIView *pageView;
-@property (strong, nonatomic) LGFCenterPageVC *pageVC;
+@property (strong, nonatomic) LGFCenterPageVC *pageVC;// 封装好的控制器
 @property (nonatomic, strong) NSMutableArray *titleArray;
 @end
 
@@ -31,8 +31,13 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
     [lgf_NCenter addObserver:self selector:@selector(childScroll:) name:@"LGFChildScroll" object:nil];
 }
 
+- (void)dealloc {
+    [lgf_NCenter removeObserver:self];
+}
+
 #pragma mark - 配置分页联动
 - (void)configPage {
+    // 配置 LGFFreePTStyle
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
     style.lgf_TitleFixedWidth = 80.0;
     style.lgf_LineWidthType = lgf_FixedWith;
@@ -52,20 +57,19 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
     style.lgf_UnSubTitleSelectColor = lgf_RGBColor(138, 138, 138, 1);
     style.lgf_IsDoubleTitle = YES;
     style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
-    
     [LoveView lgf].lgf_FreePTSpecialTitleProperty = @"1/80";
     style.lgf_FreePTSpecialTitleArray = @[[LoveView lgf]];
     
     self.pageVC = [LGFCenterPageVC lgf];
     self.pageVC.view.backgroundColor = lgf_RGBColor(243, 243, 243, 1);
-    self.pageVC.lgf_PageTitleStyle = style;
+    self.pageVC.lgf_PageTitleStyle = style;// 设置 LGFFreePTStyle
     self.pageVC.delegate = self;
     self.pageVC.lgf_NavigationBarHeight = IPhoneX_NAVIGATION_BAR_HEIGHT + 30;// navigationBar 高度
     self.pageVC.lgf_HeaderHeight = 1090 + 60;// header 高度 + LGFFreePTView 高度
     self.pageVC.lgf_PageTitleViewHeight = 60;// LGFFreePTView 高度
-    self.pageVC.lgf_HeaderView = self.headerView;
-    [self.pageVC lgf_ShowInVC:self view:self.pageView];
-    [self.pageVC reloadPageTitleWidthArray:self.titles];
+    self.pageVC.lgf_HeaderView = self.headerView;// 设置自定义头部视图
+    [self.pageVC lgf_ShowInVC:self view:self.pageView];// 添加封装好的控制器
+    [self.pageVC reloadPageTitleWidthArray:self.titles];// 刷新 LGFFreePTView
 }
 
 #pragma mark - 内部滚动监听
@@ -83,7 +87,7 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
 }
 
 #pragma mark - LGFCenterPageChildVC Delegate
-
+// 加载数据
 - (void)lgf_CenterPageChildVCLoadData:(LGFCenterPageChildVC *)VC selectIndex:(NSInteger)selectIndex loadType:(lgf_LoadType)loadType {
     if (loadType == lgf_LoadData) [self.view lgf_ShowToastActivity:UIEdgeInsetsZero isClearBack:YES cornerRadius:0 style:UIActivityIndicatorViewStyleGray];
     // 模拟异步请求
@@ -95,10 +99,9 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
             [VC.lgf_PageChildDataArray addObjectsFromArray:datas];
         }
         [VC.lgf_CenterChildPageCV reloadData];
-        [VC lgf_SynContentSize];
+        [VC lgf_SynContentSize];// 由于多子控制器存在数据不满一页的情况，因此需要计算底部留白距离重新配置 ContentSize，ContentInset
         if (datas.count > 0) VC.lgf_Page++;
-        [VC.lgf_CenterChildPageCV lgf_PageEndRefreshing];
-        [VC.lgf_PanScrollView lgf_PageEndRefreshing];
+        [VC lgf_PageEndRefreshing];
         [self.view lgf_HideToastActivity];
     });
 }
@@ -106,19 +109,19 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
 - (void)lgf_CenterChildPageVCDidLoad:(LGFCenterPageChildVC *)VC {
     VC.lgf_PageCVBottom = 49;
 }
-
+// cell 数量
 - (NSInteger)lgf_NumberOfItems:(LGFCenterPageChildVC *)VC {
     return VC.lgf_PageChildDataArray.count;
 }
-
+// cell 高度
 - (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath VC:(LGFCenterPageChildVC *)VC {
     return CGSizeMake(lgf_ScreenWidth / 2, (lgf_ScreenWidth / 2) * (indexPath.item % (indexPath.item / 2) == 0 ? 0.8 : 1.0));
 }
-
+// 传入要注册的自定义 cell class
 - (Class)lgf_CenterChildPageCVCellClass:(LGFCenterPageChildVC *)VC {
     return [TaoBaoCell class];
 }
-
+// 配置 cell 数据
 - (void)lgf_CenterChildPageVC:(LGFCenterPageChildVC *)VC cell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath {
     TaoBaoCell *bcell = (TaoBaoCell *)cell;
     if (indexPath.item % (indexPath.item / 2) == 0) {
@@ -126,9 +129,8 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
     } else {
         [bcell.good setImage:lgf_Image(@"taobao_cell_two")];
     }
-    
 }
-
+// cell 点击
 - (void)lgf_CenterChildPageVC:(LGFCenterPageChildVC *)VC didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
 }

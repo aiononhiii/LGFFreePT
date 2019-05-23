@@ -108,6 +108,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineCornerRadius", [styleDict valueForKey:@"lgf_LineCornerRadius"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = @\"%@\";", @"lgf_LineColor", [styleDict valueForKey:@"lgf_LineColor"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineWidth", [styleDict valueForKey:@"lgf_LineWidth"]]];
+        [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineCenterX", [styleDict valueForKey:@"lgf_LineCenterX"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineHeight", [styleDict valueForKey:@"lgf_LineHeight"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineBottom", [styleDict valueForKey:@"lgf_LineBottom"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineAlpha", [styleDict valueForKey:@"lgf_LineAlpha"]]];

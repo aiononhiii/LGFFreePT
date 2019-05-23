@@ -278,7 +278,7 @@
             if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationDefult) {
                 self.lgf_TitleLine.lgfpt_X = selectX * progress + unSelectX * (1.0 - progress);
                 self.lgf_TitleLine.lgfpt_Width = selectWidth * progress + unSelectWidth * (1.0 - progress);
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
+            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationShortToLong) {
                 CGFloat space = (unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX - unSelectWidth) / 2 + (selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX - selectWidth) / 2;
                 if (progress > 0.5) {
                     if (unselectIndex < selectIndex) {
@@ -308,6 +308,19 @@
                     self.lgf_TitleLine.lgfpt_Width = unSelectWidth;
                     self.lgf_TitleLine.alpha = 1.0 - (2.0 * progress);
                 }
+            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
+                self.lgf_TitleLine.transform = CGAffineTransformIdentity;
+                if (progress > 0.5) {
+                    CGFloat num = 1.0 - (2.0 * (1.0 - progress));
+                    self.lgf_TitleLine.lgfpt_X = selectX;
+                    self.lgf_TitleLine.lgfpt_Width = selectWidth;
+                    self.lgf_TitleLine.transform = CGAffineTransformMakeScale(num, num);
+                } else {
+                    CGFloat num = 1.0 - (2.0 * progress);
+                    self.lgf_TitleLine.lgfpt_X = unSelectX;
+                    self.lgf_TitleLine.lgfpt_Width = unSelectWidth;
+                    self.lgf_TitleLine.transform = CGAffineTransformMakeScale(num, num);
+                }
             } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseUp) {
                 CGFloat space = self.lgf_Style.lgf_LineBottom + (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown ? self.lgf_TitleLine.lgfpt_Height : -self.lgfpt_Height);
                 if (progress > 0.5) {
@@ -322,8 +335,8 @@
                     self.lgf_TitleLine.transform = CGAffineTransformMakeTranslation(0, space + space * (1.0 - (2.0 * (1.0 - progress))));
                 }
             } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
-                if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:line:progress:)]) {
-                    [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle line:self.lgf_TitleLine progress:progress];
+                if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeScrollLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:line:progress:)]) {
+                    [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle line:self.lgf_TitleLine progress:progress];
                 }
             }
         } selectTitle:selectTitle unSelectTitle:unSelectTitle];
@@ -350,30 +363,38 @@
             @LGFPTWeak(self);
             [self lgf_GetXAndW:^(CGFloat selectX, CGFloat selectWidth, CGFloat unSelectX, CGFloat unSelectWidth) {
                 @LGFPTStrong(self);
-                if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseUp  || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
+                if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseUp || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
                     CGFloat space = self.lgf_Style.lgf_LineBottom + (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown ? self.lgf_TitleLine.lgfpt_Height : -self.lgfpt_Height);
                     // 这个 0.0001 用于关键帧动画的瞬间无缝坐标改动（肉眼无法识别）
                     [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / animatedDuration)  animations:^{
                         if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
                             self.lgf_TitleLine.alpha = 0.0;
+                        } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
+                            self.lgf_TitleLine.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
                         } else {
-                            self.lgf_TitleLine.transform = CGAffineTransformMakeTranslation(0, space);
+                            self.lgf_TitleLine.transform = CGAffineTransformMakeTranslation(0.0, space);
+                        }
+                    }];
+                    [UIView addKeyframeWithRelativeStartTime:0.5 + (0.0001 / animatedDuration) relativeDuration:0.5 - (0.0001 / animatedDuration) animations:^{
+                        if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
+                            self.lgf_TitleLine.alpha = 1.0;
+                        } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
+                            self.lgf_TitleLine.transform = CGAffineTransformIdentity;
+                        } else {
+                            self.lgf_TitleLine.transform = CGAffineTransformIdentity;
                         }
                     }];
                     [UIView addKeyframeWithRelativeStartTime:0.5 - (0.0001 / animatedDuration) relativeDuration:0.0002 / animatedDuration animations:^{
                         self.lgf_TitleLine.lgfpt_X = selectX;
                         self.lgf_TitleLine.lgfpt_Width = selectWidth;
                     }];
-                    [UIView addKeyframeWithRelativeStartTime:0.5 + (0.0001 / animatedDuration) relativeDuration:0.5 - (0.0001 / animatedDuration) animations:^{
-                        if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
-                            self.lgf_TitleLine.alpha = 1.0;
-                        } else {
-                            self.lgf_TitleLine.transform = CGAffineTransformIdentity;
-                        }
-                    }];
-                } else {
+                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationDefult || self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationShortToLong) {
                     self.lgf_TitleLine.lgfpt_X = selectX;
                     self.lgf_TitleLine.lgfpt_Width = selectWidth;
+                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
+                    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeClickLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:line:duration:)]) {
+                        [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle line:self.lgf_TitleLine duration:animatedDuration];
+                    }
                 }
             } selectTitle:selectTitle unSelectTitle:unSelectTitle];
         }
@@ -390,24 +411,24 @@
     CGFloat unSelectX = 0.0;
     CGFloat unSelectWidth = 0.0;
     if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
-        selectX = selectTitle.lgfpt_X;
+        selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX;
         selectWidth = selectTitle.lgfpt_Width;
-        unSelectX = unSelectTitle.lgfpt_X;
+        unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX;
         unSelectWidth = unSelectTitle.lgfpt_Width;
     } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
-        selectX = (selectTitle.lgfpt_X + selectTitle.lgf_LeftImage.lgfpt_X * selectTitle.lgf_CurrentTransformSX);
+        selectX = (selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + selectTitle.lgf_LeftImage.lgfpt_X * selectTitle.lgf_CurrentTransformSX);
         selectWidth = (selectTitle.lgf_RightImage.lgfpt_X + selectTitle.lgf_RightImage.lgfpt_Width - selectTitle.lgf_LeftImage.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
-        unSelectX = (unSelectTitle.lgfpt_X + unSelectTitle.lgf_LeftImage.lgfpt_X * unSelectTitle.lgf_CurrentTransformSX);
+        unSelectX = (unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + unSelectTitle.lgf_LeftImage.lgfpt_X * unSelectTitle.lgf_CurrentTransformSX);
         unSelectWidth = (unSelectTitle.lgf_RightImage.lgfpt_X + unSelectTitle.lgf_RightImage.lgfpt_Width - unSelectTitle.lgf_LeftImage.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
     } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-        selectX = selectTitle.lgfpt_X + (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_X : selectTitle.lgf_Title.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
+        selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_X : selectTitle.lgf_Title.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
         selectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_Width : selectTitle.lgf_Title.lgfpt_Width) * selectTitle.lgf_CurrentTransformSX;
-        unSelectX = unSelectTitle.lgfpt_X + (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_X : unSelectTitle.lgf_Title.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
+        unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_X : unSelectTitle.lgf_Title.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
         unSelectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_Width : unSelectTitle.lgf_Title.lgfpt_Width) * unSelectTitle.lgf_CurrentTransformSX;
     } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith) {
-        selectX = selectTitle.lgfpt_X + (selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
+        selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
         selectWidth = self.lgf_Style.lgf_LineWidth;
-        unSelectX = unSelectTitle.lgfpt_X + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
+        unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
         unSelectWidth = self.lgf_Style.lgf_LineWidth;
     }
     if (XAndW) XAndW(selectX, selectWidth, unSelectX, unSelectWidth);

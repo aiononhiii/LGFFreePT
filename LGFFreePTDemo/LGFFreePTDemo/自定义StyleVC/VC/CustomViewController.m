@@ -54,6 +54,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *lgf_SubTitleTransformTY;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_SubTitleTransformTX;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineWidth;
+@property (weak, nonatomic) IBOutlet UITextField *lgf_LineCenterX;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineHeight;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineBottom;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineAlpha;
@@ -114,7 +115,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [super viewDidLoad];
     
     // 枚举类型展示用数据源
-    self.lgf_LineAnimationArray = @[@"lgf_PageLineAnimationDefult", @"lgf_PageLineAnimationSmallToBig", @"lgf_PageLineAnimationHideShow", @"lgf_PageLineAnimationTortoiseDown", @"lgf_PageLineAnimationTortoiseUp", @"lgf_PageLineAnimationCustomize"];
+    self.lgf_LineAnimationArray = @[@"lgf_PageLineAnimationDefult", @"lgf_PageLineAnimationShortToLong", @"lgf_PageLineAnimationHideShow", @"lgf_PageLineAnimationTortoiseDown", @"lgf_PageLineAnimationTortoiseUp", @"lgf_PageLineAnimationSmallToBig", @"lgf_PageLineAnimationCustomize"];
     self.lgf_TitleScrollFollowTypeArray = @[@"lgf_TitleScrollFollowDefult", @"lgf_TitleScrollFollowLeftRight"];
     self.lgf_PVAnimationTypeArray = @[@"lgf_PageViewAnimationDefult", @"lgf_PageViewAnimationTopToBottom", @"lgf_PageViewAnimationSmallToBig", @"lgf_PageViewAnimationNone"];
     self.lgf_LineWidthTypeArray = @[@"lgf_EqualTitleSTR", @"lgf_EqualTitleSTRAndImage", @"lgf_EqualTitle", @"lgf_FixedWith"];
@@ -207,8 +208,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     }];
 }
 
-// 自定义 line 动画配置代理
-- (void)lgf_FreePTViewCustomizeLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress {
+// 自定义 line 滚动动画配置代理
+- (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress {
     CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
     if (progress > 0.5) {
         line.lgfpt_X = selectX;
@@ -221,6 +222,20 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         line.transform = CGAffineTransformIdentity;
         line.transform = CGAffineTransformMakeTranslation(0, space + space * (1.0 - (2.0 * (1.0 - progress))));
     }
+}
+// 自定义 line 点击动画配置代理
+- (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
+    CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
+    [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / duration)  animations:^{
+        line.transform = CGAffineTransformMakeTranslation(0, space);
+    }];
+    [UIView addKeyframeWithRelativeStartTime:0.5 - (0.0001 / duration) relativeDuration:0.0002 / duration animations:^{
+        line.lgfpt_X = selectX;
+        line.lgfpt_Width = selectWidth;
+    }];
+    [UIView addKeyframeWithRelativeStartTime:0.5 + (0.0001 / duration) relativeDuration:0.5 - (0.0001 / duration) animations:^{
+        line.transform = CGAffineTransformIdentity;
+    }];
 }
 
 #pragma mark - UIPickerView Delegate
@@ -320,6 +335,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_SubTitleTransformTY.text = styleDict[@"lgf_SubTitleTransformTY"] ? styleDict[@"lgf_SubTitleTransformTY"] : [NSString stringWithFormat:@"%.1f", style.lgf_SubTitleTransformTY];
     self.lgf_SubTitleTransformTX.text = styleDict[@"lgf_SubTitleTransformTX"] ? styleDict[@"lgf_SubTitleTransformTX"] : [NSString stringWithFormat:@"%.1f", style.lgf_SubTitleTransformTX];
     self.lgf_LineWidth.text = styleDict[@"lgf_LineWidth"] ? styleDict[@"lgf_LineWidth"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineWidth];
+    self.lgf_LineCenterX.text = styleDict[@"lgf_LineCenterX"] ? styleDict[@"lgf_LineCenterX"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineCenterX];
     self.lgf_LineHeight.text = styleDict[@"lgf_LineHeight"] ? styleDict[@"lgf_LineHeight"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineHeight];
     self.lgf_LineBottom.text = styleDict[@"lgf_LineBottom"] ? styleDict[@"lgf_LineBottom"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineBottom];
     self.lgf_LineAlpha.text = styleDict[@"lgf_LineAlpha"] ? styleDict[@"lgf_LineAlpha"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineAlpha];
@@ -355,7 +371,6 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_TitleScrollFollowTypeInt = styleDict[@"lgf_TitleScrollFollowType"] ? [self.lgf_TitleScrollFollowTypeArray indexOfObject:styleDict[@"lgf_TitleScrollFollowType"]] : style.lgf_TitleScrollFollowType;
     self.lgf_PVAnimationTypeInt = styleDict[@"lgf_PVAnimationType"] ? [self.lgf_PVAnimationTypeArray indexOfObject:styleDict[@"lgf_PVAnimationType"]] : style.lgf_PVAnimationType;
     self.lgf_LineWidthTypeInt = styleDict[@"lgf_LineWidthType"] ? [self.lgf_LineWidthTypeArray indexOfObject:styleDict[@"lgf_LineWidthType"]] : style.lgf_LineWidthType;
-    
     [self.lgf_LineAnimation selectRow:self.lgf_LineAnimationInt inComponent:0 animated:NO];
     [self.lgf_TitleScrollFollowType selectRow:self.lgf_TitleScrollFollowTypeInt inComponent:0 animated:NO];
     [self.lgf_PVAnimationType selectRow:self.lgf_PVAnimationTypeInt inComponent:0 animated:NO];
@@ -404,6 +419,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_SubTitleTransformTY = self.lgf_SubTitleTransformTY.text.floatValue;
     style.lgf_SubTitleTransformTX = self.lgf_SubTitleTransformTX.text.floatValue;
     style.lgf_LineWidth = self.lgf_LineWidth.text.floatValue;
+    style.lgf_LineCenterX = self.lgf_LineCenterX.text.floatValue;
     style.lgf_LineHeight = self.lgf_LineHeight.text.floatValue;
     style.lgf_LineBottom = self.lgf_LineBottom.text.floatValue;
     style.lgf_LineAlpha = self.lgf_LineAlpha.text.floatValue;
@@ -486,6 +502,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [styleDict setValue:self.lgf_SubTitleTransformTY.text forKey:@"lgf_SubTitleTransformTY"];
     [styleDict setValue:self.lgf_SubTitleTransformTX.text forKey:@"lgf_SubTitleTransformTX"];
     [styleDict setValue:self.lgf_LineWidth.text forKey:@"lgf_LineWidth"];
+    [styleDict setValue:self.lgf_LineCenterX.text forKey:@"lgf_LineCenterX"];
     [styleDict setValue:self.lgf_LineHeight.text forKey:@"lgf_LineHeight"];
     [styleDict setValue:self.lgf_LineBottom.text forKey:@"lgf_LineBottom"];
     [styleDict setValue:self.lgf_LineAlpha.text forKey:@"lgf_LineAlpha"];

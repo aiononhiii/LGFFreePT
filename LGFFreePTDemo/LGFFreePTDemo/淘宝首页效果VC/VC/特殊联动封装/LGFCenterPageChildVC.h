@@ -61,4 +61,5 @@ lgf_SBViewControllerForH;
 // 同步 lgf_PanScrollView 和 lgf_CenterChildPageCV 的 ContentSize
 - (void)lgf_SynContentSize;
 - (void)lgf_ChildLoadData;
+- (void)lgf_PageEndRefreshing;
 @end

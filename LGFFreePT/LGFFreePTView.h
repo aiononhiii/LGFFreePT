@@ -20,8 +20,24 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 // 以 contentOffsetX 匹配最精确的选中标回调代理
 - (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex;
-// 自定义 line 动画代理
-- (void)lgf_FreePTViewCustomizeLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress;
+/**
+ 如果我原配的动画满足不了你，那么请使用这个自定义 line 动画代理
+
+ @param style LGFFreePTStyle
+ @param selectX 选中标的 X
+ @param selectWidth 选中标的 Width
+ @param unSelectX 未选中标的 X
+ @param unSelectWidth 未选中标的 Width
+ @param unSelectTitle 未选中标本体
+ @param selectTitle 选中标本体
+ @param line line 本体
+ @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计动画吧)
+ */
+- (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress;
+/**
+ @param duration 点击动画时长
+ */
+- (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration;
 // 加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
 - (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 @end
