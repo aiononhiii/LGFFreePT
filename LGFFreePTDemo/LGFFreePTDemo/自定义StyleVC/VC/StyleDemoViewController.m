@@ -34,6 +34,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
   @{@"text" : @"].mutableCopy", @"color" : [self.styleDemoText.textColor lgf_HexString]},
   @{@"text" : @"=", @"color" : @"FFFFFF"},
   @{@"text" : @";", @"color" : @"FFFFFF"},
+  @{@"text" : @"-", @"color" : @"FFFFFF"},
   @{@"text" : @".", @"color" : @"FFFFFF"},
   @{@"text" : @"(", @"color" : @"FFFFFF"},
   @{@"text" : @")", @"color" : @"FFFFFF"},

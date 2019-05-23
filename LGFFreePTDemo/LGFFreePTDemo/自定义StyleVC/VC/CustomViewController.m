@@ -49,31 +49,42 @@
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TitleTransformSX;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_MainTitleTransformSX;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_MainTitleTransformTY;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_MainTitleTransformTYPlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_MainTitleTransformTX;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_MainTitleTransformTXPlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_SubTitleTransformSX;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_SubTitleTransformTY;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_SubTitleTransformTYPlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_SubTitleTransformTX;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_SubTitleTransformTXPlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineWidth;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineCenterX;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_LineCenterXPlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineHeight;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineBottom;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_LineBottomPlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineAlpha;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_SubTitleTopSpace;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_SubTitleTopSpacePlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TitleClickAnimationDuration;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TitleScrollToTheMiddleAnimationDuration;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TitleFixedWidth;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TitleLeftRightSpace;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TitleCornerRadius;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TopImageSpace;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_TopImageSpacePlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TopImageWidth;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_TopImageHeight;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_BottomImageSpace;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_BottomImageSpacePlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_BottomImageWidth;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_BottomImageHeight;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LeftImageSpace;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_LeftImageSpacePlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LeftImageWidth;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LeftImageHeight;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_RightImageSpace;
+@property (weak, nonatomic) IBOutlet UIButton *lgf_RightImageSpacePlusMinus;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_RightImageWidth;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_RightImageHeight;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineCornerRadius;
@@ -84,9 +95,13 @@
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_IsLineAlignSubTitle;
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_StartDebug;
 @property (weak, nonatomic) IBOutlet UIPickerView *lgf_LineAnimation;
+@property (weak, nonatomic) IBOutlet UILabel *lgf_LineAnimationDescribe;
 @property (weak, nonatomic) IBOutlet UIPickerView *lgf_TitleScrollFollowType;
+@property (weak, nonatomic) IBOutlet UILabel *lgf_TitleScrollFollowTypeDescribe;
 @property (weak, nonatomic) IBOutlet UIPickerView *lgf_PVAnimationType;
+@property (weak, nonatomic) IBOutlet UILabel *lgf_PVAnimationTypeDescribe;
 @property (weak, nonatomic) IBOutlet UIPickerView *lgf_LineWidthType;
+@property (weak, nonatomic) IBOutlet UILabel *lgf_LineWidthTypeDescribe;
 @property (nonatomic, assign) NSInteger lgf_LineAnimationInt;
 @property (nonatomic, assign) NSInteger lgf_TitleScrollFollowTypeInt;
 @property (nonatomic, assign) NSInteger lgf_PVAnimationTypeInt;
@@ -100,6 +115,10 @@
 @property (nonatomic, copy) NSArray *lgf_TitleScrollFollowTypeArray;
 @property (nonatomic, copy) NSArray *lgf_PVAnimationTypeArray;
 @property (nonatomic, copy) NSArray *lgf_LineWidthTypeArray;
+@property (nonatomic, copy) NSArray *lgf_LineAnimationDescribeArray;
+@property (nonatomic, copy) NSArray *lgf_TitleScrollFollowTypeDescribeArray;
+@property (nonatomic, copy) NSArray *lgf_PVAnimationTypeDescribeArray;
+@property (nonatomic, copy) NSArray *lgf_LineWidthTypeDescribeArray;
 @end
 
 @implementation CustomViewController
@@ -119,6 +138,11 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_TitleScrollFollowTypeArray = @[@"lgf_TitleScrollFollowDefult", @"lgf_TitleScrollFollowLeftRight"];
     self.lgf_PVAnimationTypeArray = @[@"lgf_PageViewAnimationDefult", @"lgf_PageViewAnimationTopToBottom", @"lgf_PageViewAnimationSmallToBig", @"lgf_PageViewAnimationNone"];
     self.lgf_LineWidthTypeArray = @[@"lgf_EqualTitleSTR", @"lgf_EqualTitleSTRAndImage", @"lgf_EqualTitle", @"lgf_FixedWith"];
+    
+    self.lgf_LineAnimationDescribeArray = @[@"默认效果", @"短到长效果", @"隐藏显示效果", @"底部隐藏效果", @"顶部隐藏效果", @"放大缩小效果", @"自定义效果，需添加自定义代理自行实现"];
+    self.lgf_TitleScrollFollowTypeDescribeArray = @[@"结束后居中", @"跟随两边（腾讯新闻效果）"];
+    self.lgf_PVAnimationTypeDescribeArray = @[@"默认效果", @"上下效果", @"放大缩小效果", @"禁止拖拽滚动"];
+    self.lgf_LineWidthTypeDescribeArray = @[@"对准标文本", @"对准标文本和图片", @"对准标", @"固定宽度，需配置 line 的 lgf_LineWidth"];
     
     [self setDefultStyle];
     // 添加子控制器
@@ -174,6 +198,11 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         textF.text = colorHexString;
         [self setViewColor];
     };
+}
+
+#pragma mark - 特殊值加减
+- (IBAction)plusMinus:(UIButton *)sender {
+    sender.selected = !sender.selected;
 }
 
 #pragma mark - Collection View DataSource And Delegate
@@ -268,12 +297,16 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     pickerLabel.font = [UIFont systemFontOfSize:10.0];
     if (pickerView == self.lgf_LineAnimation) {
         pickerLabel.text = self.lgf_LineAnimationArray[row];
+        self.lgf_LineAnimationDescribe.text = self.lgf_LineAnimationDescribeArray[row];
     } else if (pickerView == self.lgf_TitleScrollFollowType) {
         pickerLabel.text = self.lgf_TitleScrollFollowTypeArray[row];
+        self.lgf_TitleScrollFollowTypeDescribe.text = self.lgf_TitleScrollFollowTypeDescribeArray[row];
     } else if (pickerView == self.lgf_PVAnimationType) {
         pickerLabel.text = self.lgf_PVAnimationTypeArray[row];
+        self.lgf_PVAnimationTypeDescribe.text = self.lgf_PVAnimationTypeDescribeArray[row];
     } else if (pickerView == self.lgf_LineWidthType) {
         pickerLabel.text = self.lgf_LineWidthTypeArray[row];
+        self.lgf_LineWidthTypeDescribe.text = self.lgf_LineWidthTypeDescribeArray[row];
     }
     return pickerLabel;
 }
@@ -281,12 +314,16 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.lgf_LineAnimation) {
         self.lgf_LineAnimationInt = row;
+        self.lgf_LineAnimationDescribe.text = self.lgf_LineAnimationDescribeArray[row];
     } else if (pickerView == self.lgf_TitleScrollFollowType) {
         self.lgf_TitleScrollFollowTypeInt = row;
+        self.lgf_TitleScrollFollowTypeDescribe.text = self.lgf_TitleScrollFollowTypeDescribeArray[row];
     } else if (pickerView == self.lgf_PVAnimationType) {
         self.lgf_PVAnimationTypeInt = row;
+        self.lgf_PVAnimationTypeDescribe.text = self.lgf_PVAnimationTypeDescribeArray[row];
     } else if (pickerView == self.lgf_LineWidthType) {
         self.lgf_LineWidthTypeInt = row;
+        self.lgf_LineWidthTypeDescribe.text = self.lgf_LineWidthTypeDescribeArray[row];
     }
 }
 
@@ -329,32 +366,43 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_UnSubTitleSelectFont.text = styleDict[@"lgf_UnSubTitleSelectFont"] ? styleDict[@"lgf_UnSubTitleSelectFont"] : [NSString stringWithFormat:@"%.1f", style.lgf_UnSubTitleSelectFont.pointSize];
     self.lgf_TitleTransformSX.text = styleDict[@"lgf_TitleTransformSX"] ? styleDict[@"lgf_TitleTransformSX"] : [NSString stringWithFormat:@"%.1f", style.lgf_TitleTransformSX];
     self.lgf_MainTitleTransformSX.text = styleDict[@"lgf_MainTitleTransformSX"] ? styleDict[@"lgf_MainTitleTransformSX"] : [NSString stringWithFormat:@"%.1f", style.lgf_MainTitleTransformSX];
-    self.lgf_MainTitleTransformTY.text = styleDict[@"lgf_MainTitleTransformTY"] ? styleDict[@"lgf_MainTitleTransformTY"] : [NSString stringWithFormat:@"%.1f", style.lgf_MainTitleTransformTY];
-    self.lgf_MainTitleTransformTX.text = styleDict[@"lgf_MainTitleTransformTX"] ? styleDict[@"lgf_MainTitleTransformTX"] : [NSString stringWithFormat:@"%.1f", style.lgf_MainTitleTransformTX];
+    self.lgf_MainTitleTransformTY.text = styleDict[@"lgf_MainTitleTransformTY"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_MainTitleTransformTY"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_MainTitleTransformTY)];
+    self.lgf_MainTitleTransformTYPlusMinus.selected = (styleDict[@"lgf_MainTitleTransformTY"] ? [styleDict[@"lgf_MainTitleTransformTY"] floatValue] : style.lgf_MainTitleTransformTY) < 0.0;
+    self.lgf_MainTitleTransformTX.text = styleDict[@"lgf_MainTitleTransformTX"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_MainTitleTransformTX"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_MainTitleTransformTX)];
+    self.lgf_MainTitleTransformTXPlusMinus.selected = (styleDict[@"lgf_MainTitleTransformTX"] ? [styleDict[@"lgf_MainTitleTransformTX"] floatValue] : style.lgf_MainTitleTransformTX) < 0.0;
     self.lgf_SubTitleTransformSX.text = styleDict[@"lgf_SubTitleTransformSX"] ? styleDict[@"lgf_SubTitleTransformSX"] : [NSString stringWithFormat:@"%.1f", style.lgf_SubTitleTransformSX];
-    self.lgf_SubTitleTransformTY.text = styleDict[@"lgf_SubTitleTransformTY"] ? styleDict[@"lgf_SubTitleTransformTY"] : [NSString stringWithFormat:@"%.1f", style.lgf_SubTitleTransformTY];
-    self.lgf_SubTitleTransformTX.text = styleDict[@"lgf_SubTitleTransformTX"] ? styleDict[@"lgf_SubTitleTransformTX"] : [NSString stringWithFormat:@"%.1f", style.lgf_SubTitleTransformTX];
+    self.lgf_SubTitleTransformTY.text = styleDict[@"lgf_SubTitleTransformTY"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_SubTitleTransformTY"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_SubTitleTransformTY)];
+    self.lgf_SubTitleTransformTYPlusMinus.selected = (styleDict[@"lgf_SubTitleTransformTY"] ? [styleDict[@"lgf_SubTitleTransformTY"] floatValue] : style.lgf_SubTitleTransformTY) < 0.0;
+    self.lgf_SubTitleTransformTX.text = styleDict[@"lgf_SubTitleTransformTX"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_SubTitleTransformTX"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_SubTitleTransformTX)];
+    self.lgf_SubTitleTransformTXPlusMinus.selected = (styleDict[@"lgf_SubTitleTransformTX"] ? [styleDict[@"lgf_SubTitleTransformTX"] floatValue] : style.lgf_SubTitleTransformTX) < 0.0;
     self.lgf_LineWidth.text = styleDict[@"lgf_LineWidth"] ? styleDict[@"lgf_LineWidth"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineWidth];
-    self.lgf_LineCenterX.text = styleDict[@"lgf_LineCenterX"] ? styleDict[@"lgf_LineCenterX"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineCenterX];
+    self.lgf_LineCenterX.text = styleDict[@"lgf_LineCenterX"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_LineCenterX"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_LineCenterX)];
+    self.lgf_LineCenterXPlusMinus.selected = (styleDict[@"lgf_LineCenterX"] ? [styleDict[@"lgf_LineCenterX"] floatValue] : style.lgf_LineCenterX) < 0.0;
     self.lgf_LineHeight.text = styleDict[@"lgf_LineHeight"] ? styleDict[@"lgf_LineHeight"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineHeight];
-    self.lgf_LineBottom.text = styleDict[@"lgf_LineBottom"] ? styleDict[@"lgf_LineBottom"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineBottom];
+    self.lgf_LineBottom.text = styleDict[@"lgf_LineBottom"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_LineBottom"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_LineBottom)];
+    self.lgf_LineBottomPlusMinus.selected = (styleDict[@"lgf_LineBottom"] ? [styleDict[@"lgf_LineBottom"] floatValue] : style.lgf_LineBottom) < 0.0;
     self.lgf_LineAlpha.text = styleDict[@"lgf_LineAlpha"] ? styleDict[@"lgf_LineAlpha"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineAlpha];
-    self.lgf_SubTitleTopSpace.text = styleDict[@"lgf_SubTitleTopSpace"] ? styleDict[@"lgf_SubTitleTopSpace"] : [NSString stringWithFormat:@"%.1f", style.lgf_SubTitleTopSpace];
+    self.lgf_SubTitleTopSpace.text = styleDict[@"lgf_SubTitleTopSpace"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_SubTitleTopSpace"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_SubTitleTopSpace)];
+    self.lgf_SubTitleTopSpacePlusMinus.selected = (styleDict[@"lgf_SubTitleTopSpace"] ? [styleDict[@"lgf_SubTitleTopSpace"] floatValue] : style.lgf_SubTitleTopSpace) < 0.0;
     self.lgf_TitleClickAnimationDuration.text = styleDict[@"lgf_TitleClickAnimationDuration"] ? styleDict[@"lgf_TitleClickAnimationDuration"] : [NSString stringWithFormat:@"%.1f", style.lgf_TitleClickAnimationDuration];
     self.lgf_TitleScrollToTheMiddleAnimationDuration.text = styleDict[@"lgf_TitleScrollToTheMiddleAnimationDuration"] ? styleDict[@"lgf_TitleScrollToTheMiddleAnimationDuration"] : [NSString stringWithFormat:@"%.1f", style.lgf_TitleScrollToTheMiddleAnimationDuration];
     self.lgf_TitleFixedWidth.text = styleDict[@"lgf_TitleFixedWidth"] ? styleDict[@"lgf_TitleFixedWidth"] : [NSString stringWithFormat:@"%.1f", style.lgf_TitleFixedWidth];
     self.lgf_TitleLeftRightSpace.text = styleDict[@"lgf_TitleLeftRightSpace"] ? styleDict[@"lgf_TitleLeftRightSpace"] : [NSString stringWithFormat:@"%.1f", style.lgf_TitleLeftRightSpace];
     self.lgf_TitleCornerRadius.text = styleDict[@"lgf_TitleCornerRadius"] ? styleDict[@"lgf_TitleCornerRadius"] : [NSString stringWithFormat:@"%.1f", style.lgf_TitleCornerRadius];
-    self.lgf_TopImageSpace.text = styleDict[@"lgf_TopImageSpace"] ? styleDict[@"lgf_TopImageSpace"] : [NSString stringWithFormat:@"%.1f", style.lgf_TopImageSpace];
+    self.lgf_TopImageSpace.text = styleDict[@"lgf_TopImageSpace"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_TopImageSpace"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_TopImageSpace)];
+    self.lgf_TopImageSpacePlusMinus.selected = (styleDict[@"lgf_TopImageSpace"] ? [styleDict[@"lgf_TopImageSpace"] floatValue] : style.lgf_TopImageSpace) < 0.0;
     self.lgf_TopImageWidth.text = styleDict[@"lgf_TopImageWidth"] ? styleDict[@"lgf_TopImageWidth"] : [NSString stringWithFormat:@"%.1f", style.lgf_TopImageWidth];
     self.lgf_TopImageHeight.text = styleDict[@"lgf_TopImageHeight"] ? styleDict[@"lgf_TopImageHeight"] : [NSString stringWithFormat:@"%.1f", style.lgf_TopImageHeight];
-    self.lgf_BottomImageSpace.text = styleDict[@"lgf_BottomImageSpace"] ? styleDict[@"lgf_BottomImageSpace"] : [NSString stringWithFormat:@"%.1f", style.lgf_BottomImageSpace];
+    self.lgf_BottomImageSpace.text = styleDict[@"lgf_BottomImageSpace"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_BottomImageSpace"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_BottomImageSpace)];
+    self.lgf_BottomImageSpacePlusMinus.selected = (styleDict[@"lgf_BottomImageSpace"] ? [styleDict[@"lgf_BottomImageSpace"] floatValue] : style.lgf_BottomImageSpace) < 0.0;
     self.lgf_BottomImageWidth.text = styleDict[@"lgf_BottomImageWidth"] ? styleDict[@"lgf_BottomImageWidth"] : [NSString stringWithFormat:@"%.1f", style.lgf_BottomImageWidth];
     self.lgf_BottomImageHeight.text = styleDict[@"lgf_BottomImageHeight"] ? styleDict[@"lgf_BottomImageHeight"] : [NSString stringWithFormat:@"%.1f", style.lgf_BottomImageHeight];
-    self.lgf_LeftImageSpace.text = styleDict[@"lgf_LeftImageSpace"] ? styleDict[@"lgf_LeftImageSpace"] : [NSString stringWithFormat:@"%.1f", style.lgf_LeftImageSpace];
+    self.lgf_LeftImageSpace.text = styleDict[@"lgf_LeftImageSpace"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_LeftImageSpace"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_LeftImageSpace)];
+    self.lgf_LeftImageSpacePlusMinus.selected = (styleDict[@"lgf_LeftImageSpace"] ? [styleDict[@"lgf_LeftImageSpace"] floatValue] : style.lgf_LeftImageSpace) < 0.0;
     self.lgf_LeftImageWidth.text = styleDict[@"lgf_LeftImageWidth"] ? styleDict[@"lgf_LeftImageWidth"] : [NSString stringWithFormat:@"%.1f", style.lgf_LeftImageWidth];
     self.lgf_LeftImageHeight.text = styleDict[@"lgf_LeftImageHeight"] ? styleDict[@"lgf_LeftImageHeight"] : [NSString stringWithFormat:@"%.1f", style.lgf_LeftImageHeight];
-    self.lgf_RightImageSpace.text = styleDict[@"lgf_RightImageSpace"] ? styleDict[@"lgf_RightImageSpace"] : [NSString stringWithFormat:@"%.1f", style.lgf_RightImageSpace];
+    self.lgf_RightImageSpace.text = styleDict[@"lgf_RightImageSpace"] ? [NSString stringWithFormat:@"%.1f", ABS([styleDict[@"lgf_RightImageSpace"] floatValue])] : [NSString stringWithFormat:@"%.1f", ABS(style.lgf_RightImageSpace)];
+    self.lgf_RightImageSpacePlusMinus.selected = (styleDict[@"lgf_RightImageSpace"] ? [styleDict[@"lgf_RightImageSpace"] floatValue] : style.lgf_RightImageSpace) < 0.0;
     self.lgf_RightImageWidth.text = styleDict[@"lgf_RightImageWidth"] ? styleDict[@"lgf_RightImageWidth"] : [NSString stringWithFormat:@"%.1f", style.lgf_RightImageWidth];
     self.lgf_RightImageHeight.text = styleDict[@"lgf_RightImageHeight"] ? styleDict[@"lgf_RightImageHeight"] : [NSString stringWithFormat:@"%.1f", style.lgf_RightImageHeight];
     self.lgf_LineCornerRadius.text = styleDict[@"lgf_LineCornerRadius"] ? styleDict[@"lgf_LineCornerRadius"] : [NSString stringWithFormat:@"%.1f", style.lgf_LineCornerRadius];
@@ -413,17 +461,17 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_UnSubTitleSelectFont = [UIFont systemFontOfSize:self.lgf_UnSubTitleSelectFont.text.floatValue];
     style.lgf_TitleTransformSX = self.lgf_TitleTransformSX.text.floatValue;
     style.lgf_MainTitleTransformSX = self.lgf_MainTitleTransformSX.text.floatValue;
-    style.lgf_MainTitleTransformTY = self.lgf_MainTitleTransformTY.text.floatValue;
-    style.lgf_MainTitleTransformTX = self.lgf_MainTitleTransformTX.text.floatValue;
+    style.lgf_MainTitleTransformTY = self.lgf_MainTitleTransformTYPlusMinus.selected ? -self.lgf_MainTitleTransformTY.text.floatValue : self.lgf_MainTitleTransformTY.text.floatValue;
+    style.lgf_MainTitleTransformTX = self.lgf_MainTitleTransformTXPlusMinus.selected ? -self.lgf_MainTitleTransformTX.text.floatValue : self.lgf_MainTitleTransformTX.text.floatValue;
     style.lgf_SubTitleTransformSX = self.lgf_SubTitleTransformSX.text.floatValue;
-    style.lgf_SubTitleTransformTY = self.lgf_SubTitleTransformTY.text.floatValue;
-    style.lgf_SubTitleTransformTX = self.lgf_SubTitleTransformTX.text.floatValue;
+    style.lgf_SubTitleTransformTY = self.lgf_SubTitleTransformTYPlusMinus.selected ? -self.lgf_SubTitleTransformTY.text.floatValue : self.lgf_SubTitleTransformTY.text.floatValue;
+    style.lgf_SubTitleTransformTX = self.lgf_SubTitleTransformTXPlusMinus.selected ? -self.lgf_SubTitleTransformTX.text.floatValue : self.lgf_SubTitleTransformTX.text.floatValue;
     style.lgf_LineWidth = self.lgf_LineWidth.text.floatValue;
-    style.lgf_LineCenterX = self.lgf_LineCenterX.text.floatValue;
+    style.lgf_LineCenterX = self.lgf_LineCenterXPlusMinus.selected ? -self.lgf_LineCenterX.text.floatValue : self.lgf_LineCenterX.text.floatValue;
     style.lgf_LineHeight = self.lgf_LineHeight.text.floatValue;
-    style.lgf_LineBottom = self.lgf_LineBottom.text.floatValue;
+    style.lgf_LineBottom = self.lgf_LineBottomPlusMinus.selected ? -self.lgf_LineBottom.text.floatValue : self.lgf_LineBottom.text.floatValue;
     style.lgf_LineAlpha = self.lgf_LineAlpha.text.floatValue;
-    style.lgf_SubTitleTopSpace = self.lgf_SubTitleTopSpace.text.floatValue;
+    style.lgf_SubTitleTopSpace = self.lgf_SubTitleTopSpacePlusMinus.selected ? -self.lgf_SubTitleTopSpace.text.floatValue : self.lgf_SubTitleTopSpace.text.floatValue;
     style.lgf_TitleClickAnimationDuration = self.lgf_TitleClickAnimationDuration.text.floatValue;
     style.lgf_TitleScrollToTheMiddleAnimationDuration = self.lgf_TitleScrollToTheMiddleAnimationDuration.text.floatValue;
     style.lgf_TitleFixedWidth = self.lgf_TitleFixedWidth.text.floatValue;
@@ -445,16 +493,16 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         style.lgf_SelectImageNames = @[@"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian"].mutableCopy;
         style.lgf_UnSelectImageNames = @[@"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un"].mutableCopy;
         style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
-        style.lgf_TopImageSpace = self.lgf_TopImageSpace.text.floatValue;
+        style.lgf_TopImageSpace = self.lgf_TopImageSpacePlusMinus.selected ? -self.lgf_TopImageSpace.text.floatValue : self.lgf_TopImageSpace.text.floatValue;
         style.lgf_TopImageWidth = self.lgf_TopImageWidth.text.floatValue;
         style.lgf_TopImageHeight = self.lgf_TopImageHeight.text.floatValue;
-        style.lgf_BottomImageSpace = self.lgf_BottomImageSpace.text.floatValue;
+        style.lgf_BottomImageSpace = self.lgf_BottomImageSpacePlusMinus.selected ? -self.lgf_BottomImageSpace.text.floatValue : self.lgf_BottomImageSpace.text.floatValue;
         style.lgf_BottomImageWidth = self.lgf_BottomImageWidth.text.floatValue;
         style.lgf_BottomImageHeight = self.lgf_BottomImageHeight.text.floatValue;
-        style.lgf_LeftImageSpace = self.lgf_LeftImageSpace.text.floatValue;
+        style.lgf_LeftImageSpace = self.lgf_LeftImageSpacePlusMinus.selected ? -self.lgf_LeftImageSpace.text.floatValue : self.lgf_LeftImageSpace.text.floatValue;
         style.lgf_LeftImageWidth = self.lgf_LeftImageWidth.text.floatValue;
         style.lgf_LeftImageHeight = self.lgf_LeftImageHeight.text.floatValue;
-        style.lgf_RightImageSpace = self.lgf_RightImageSpace.text.floatValue;
+        style.lgf_RightImageSpace = self.lgf_RightImageSpacePlusMinus.selected ? -self.lgf_RightImageSpace.text.floatValue : self.lgf_RightImageSpace.text.floatValue;
         style.lgf_RightImageWidth = self.lgf_RightImageWidth.text.floatValue;
         style.lgf_RightImageHeight = self.lgf_RightImageHeight.text.floatValue;
     } else {
@@ -474,7 +522,6 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     }
     self.pageSuperViewHeight.constant = self.LGFFreePTSuperViewHeight.text.floatValue;
     [self.pageSuperView setNeedsLayout];
-    
     [self saveStyleDict:@"LGFStyleDict"];
     return style;
 }
@@ -496,32 +543,32 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [styleDict setValue:self.lgf_UnSubTitleSelectFont.text forKey:@"lgf_UnSubTitleSelectFont"];
     [styleDict setValue:self.lgf_TitleTransformSX.text forKey:@"lgf_TitleTransformSX"];
     [styleDict setValue:self.lgf_MainTitleTransformSX.text forKey:@"lgf_MainTitleTransformSX"];
-    [styleDict setValue:self.lgf_MainTitleTransformTY.text forKey:@"lgf_MainTitleTransformTY"];
-    [styleDict setValue:self.lgf_MainTitleTransformTX.text forKey:@"lgf_MainTitleTransformTX"];
+    [styleDict setValue:self.lgf_MainTitleTransformTYPlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_MainTitleTransformTY.text] : self.lgf_MainTitleTransformTY.text forKey:@"lgf_MainTitleTransformTY"];
+    [styleDict setValue:self.lgf_MainTitleTransformTXPlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_MainTitleTransformTX.text] : self.lgf_MainTitleTransformTX.text forKey:@"lgf_MainTitleTransformTX"];
     [styleDict setValue:self.lgf_SubTitleTransformSX.text forKey:@"lgf_SubTitleTransformSX"];
-    [styleDict setValue:self.lgf_SubTitleTransformTY.text forKey:@"lgf_SubTitleTransformTY"];
-    [styleDict setValue:self.lgf_SubTitleTransformTX.text forKey:@"lgf_SubTitleTransformTX"];
+    [styleDict setValue:self.lgf_SubTitleTransformTYPlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_SubTitleTransformTY.text] : self.lgf_SubTitleTransformTY.text forKey:@"lgf_SubTitleTransformTY"];
+    [styleDict setValue:self.lgf_SubTitleTransformTXPlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_SubTitleTransformTX.text] : self.lgf_SubTitleTransformTX.text forKey:@"lgf_SubTitleTransformTX"];
     [styleDict setValue:self.lgf_LineWidth.text forKey:@"lgf_LineWidth"];
-    [styleDict setValue:self.lgf_LineCenterX.text forKey:@"lgf_LineCenterX"];
+    [styleDict setValue:self.lgf_LineCenterXPlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_LineCenterX.text] : self.lgf_LineCenterX.text forKey:@"lgf_LineCenterX"];
     [styleDict setValue:self.lgf_LineHeight.text forKey:@"lgf_LineHeight"];
-    [styleDict setValue:self.lgf_LineBottom.text forKey:@"lgf_LineBottom"];
+    [styleDict setValue:self.lgf_LineBottomPlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_LineBottom.text] : self.lgf_LineBottom.text forKey:@"lgf_LineBottom"];
     [styleDict setValue:self.lgf_LineAlpha.text forKey:@"lgf_LineAlpha"];
-    [styleDict setValue:self.lgf_SubTitleTopSpace.text forKey:@"lgf_SubTitleTopSpace"];
+    [styleDict setValue:self.lgf_SubTitleTopSpacePlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_SubTitleTopSpace.text] : self.lgf_SubTitleTopSpace.text forKey:@"lgf_SubTitleTopSpace"];
     [styleDict setValue:self.lgf_TitleClickAnimationDuration.text forKey:@"lgf_TitleClickAnimationDuration"];
     [styleDict setValue:self.lgf_TitleScrollToTheMiddleAnimationDuration.text forKey:@"lgf_TitleScrollToTheMiddleAnimationDuration"];
     [styleDict setValue:self.lgf_TitleFixedWidth.text forKey:@"lgf_TitleFixedWidth"];
     [styleDict setValue:self.lgf_TitleLeftRightSpace.text forKey:@"lgf_TitleLeftRightSpace"];
     [styleDict setValue:self.lgf_TitleCornerRadius.text forKey:@"lgf_TitleCornerRadius"];
-    [styleDict setValue:self.lgf_TopImageSpace.text forKey:@"lgf_TopImageSpace"];
+    [styleDict setValue:self.lgf_TopImageSpacePlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_TopImageSpace.text] : self.lgf_TopImageSpace.text forKey:@"lgf_TopImageSpace"];
     [styleDict setValue:self.lgf_TopImageWidth.text forKey:@"lgf_TopImageWidth"];
     [styleDict setValue:self.lgf_TopImageHeight.text forKey:@"lgf_TopImageHeight"];
-    [styleDict setValue:self.lgf_BottomImageSpace.text forKey:@"lgf_BottomImageSpace"];
+    [styleDict setValue:self.lgf_BottomImageSpacePlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_BottomImageSpace.text] : self.lgf_BottomImageSpace.text forKey:@"lgf_BottomImageSpace"];
     [styleDict setValue:self.lgf_BottomImageWidth.text forKey:@"lgf_BottomImageWidth"];
     [styleDict setValue:self.lgf_BottomImageHeight.text forKey:@"lgf_BottomImageHeight"];
-    [styleDict setValue:self.lgf_LeftImageSpace.text forKey:@"lgf_LeftImageSpace"];
+    [styleDict setValue:self.lgf_LeftImageSpacePlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_LeftImageSpace.text] : self.lgf_LeftImageSpace.text forKey:@"lgf_LeftImageSpace"];
     [styleDict setValue:self.lgf_LeftImageWidth.text forKey:@"lgf_LeftImageWidth"];
     [styleDict setValue:self.lgf_LeftImageHeight.text forKey:@"lgf_LeftImageHeight"];
-    [styleDict setValue:self.lgf_RightImageSpace.text forKey:@"lgf_RightImageSpace"];
+    [styleDict setValue:self.lgf_RightImageSpacePlusMinus.selected ? [NSString stringWithFormat:@"-%@", self.lgf_RightImageSpace.text] : self.lgf_RightImageSpace.text forKey:@"lgf_RightImageSpace"];
     [styleDict setValue:self.lgf_RightImageWidth.text forKey:@"lgf_RightImageWidth"];
     [styleDict setValue:self.lgf_RightImageHeight.text forKey:@"lgf_RightImageHeight"];
     [styleDict setValue:self.lgf_LineCornerRadius.text forKey:@"lgf_LineCornerRadius"];

@@ -214,60 +214,90 @@
 }
 
 - (void)setLgf_TopImageHeight:(CGFloat)lgf_TopImageHeight {
-    _lgf_TopImageHeight = lgf_TopImageHeight;
-    if (_lgf_TopImageWidth == 0.0) {
-        _lgf_TopImageWidth = lgf_TopImageHeight;
+    if (lgf_TopImageHeight == 0.0) {
+        _lgf_TopImageHeight =_lgf_TopImageWidth;
+    } else {
+        if (_lgf_TopImageWidth == 0.0) {
+            _lgf_TopImageWidth = lgf_TopImageHeight;
+        }
+        _lgf_TopImageHeight = lgf_TopImageHeight;
     }
 }
 
 - (void)setLgf_BottomImageHeight:(CGFloat)lgf_BottomImageHeight {
-    _lgf_BottomImageHeight = lgf_BottomImageHeight;
-    if (_lgf_BottomImageWidth == 0.0) {
-        _lgf_BottomImageWidth = lgf_BottomImageHeight;
+    if (lgf_BottomImageHeight == 0.0) {
+        _lgf_BottomImageHeight = _lgf_BottomImageWidth;
+    } else {
+        if (_lgf_BottomImageWidth == 0.0) {
+            _lgf_BottomImageWidth = lgf_BottomImageHeight;
+        }
+        _lgf_BottomImageHeight = lgf_BottomImageHeight;
     }
 }
 
 - (void)setLgf_LeftImageHeight:(CGFloat)lgf_LeftImageHeight {
     if (lgf_LeftImageHeight == 0.0) {
-        _lgf_LeftImageHeight = self.lgf_LeftImageWidth;
+        _lgf_LeftImageHeight = _lgf_LeftImageWidth;
     } else {
+        if (_lgf_LeftImageWidth == 0.0) {
+            _lgf_LeftImageWidth = lgf_LeftImageHeight;
+        }
         _lgf_LeftImageHeight = lgf_LeftImageHeight;
     }
 }
 
 - (void)setLgf_RightImageHeight:(CGFloat)lgf_RightImageHeight {
-    _lgf_RightImageHeight = lgf_RightImageHeight;
-    if (_lgf_RightImageWidth == 0.0) {
-        _lgf_RightImageWidth = lgf_RightImageHeight;
+    if (lgf_RightImageHeight == 0.0) {
+        _lgf_RightImageHeight = _lgf_RightImageWidth;
+    } else {
+        if (_lgf_RightImageWidth == 0.0) {
+            _lgf_RightImageWidth = lgf_RightImageHeight;
+        }
+        _lgf_RightImageHeight = lgf_RightImageHeight;
     }
 }
 
 - (void)setLgf_TopImageWidth:(CGFloat)lgf_TopImageWidth {
-    _lgf_TopImageWidth = lgf_TopImageWidth;
-    if (_lgf_TopImageHeight == 0.0) {
-        _lgf_TopImageHeight = lgf_TopImageWidth;
+    if (lgf_TopImageWidth == 0.0) {
+        _lgf_TopImageWidth = _lgf_TopImageHeight;
+    } else {
+        if (_lgf_TopImageHeight == 0.0) {
+            _lgf_TopImageHeight = lgf_TopImageWidth;
+        }
+        _lgf_TopImageWidth = lgf_TopImageWidth;
     }
 }
 
 - (void)setLgf_BottomImageWidth:(CGFloat)lgf_BottomImageWidth {
-    _lgf_BottomImageWidth = lgf_BottomImageWidth;
-    if (_lgf_BottomImageHeight == 0.0) {
-        _lgf_BottomImageHeight = lgf_BottomImageWidth;
+    if (lgf_BottomImageWidth == 0.0) {
+        _lgf_BottomImageWidth = _lgf_BottomImageHeight;
+    } else {
+        if (_lgf_BottomImageHeight == 0.0) {
+            _lgf_BottomImageHeight = lgf_BottomImageWidth;
+        }
+        _lgf_BottomImageWidth = lgf_BottomImageWidth;
     }
 }
 
 - (void)setLgf_LeftImageWidth:(CGFloat)lgf_LeftImageWidth {
     if (lgf_LeftImageWidth == 0.0) {
-        _lgf_LeftImageWidth = self.lgf_LeftImageHeight;
+        _lgf_LeftImageWidth = _lgf_LeftImageHeight;
     } else {
+        if (_lgf_LeftImageHeight == 0.0) {
+            _lgf_LeftImageHeight = lgf_LeftImageWidth;
+        }
         _lgf_LeftImageWidth = lgf_LeftImageWidth;
     }
 }
 
 - (void)setLgf_RightImageWidth:(CGFloat)lgf_RightImageWidth {
-    _lgf_RightImageWidth = lgf_RightImageWidth;
-    if (_lgf_RightImageHeight == 0.0) {
-        _lgf_RightImageHeight = lgf_RightImageWidth;
+    if (lgf_RightImageWidth == 0.0) {
+        _lgf_RightImageWidth = _lgf_RightImageHeight;
+    } else {
+        if (_lgf_RightImageHeight == 0.0) {
+            _lgf_RightImageHeight = lgf_RightImageWidth;
+        }
+        _lgf_RightImageWidth = lgf_RightImageWidth;
     }
 }
 
