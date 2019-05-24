@@ -565,6 +565,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         style.lgf_LineImageName = @"";
     }
     style.lgf_Titles = self.titles;
+    [lgf_Defaults setObject:[NSString stringWithFormat:@"style.lgf_Titles = @[@\"%@\"].copy", [style.lgf_Titles componentsJoinedByString:@"\", @\""]] forKey:@"LGFCustomDataSourceStr"];
     style.lgf_SelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian" count:self.titles.count].mutableCopy;
     style.lgf_UnSelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian_un" count:self.titles.count].mutableCopy;
     self.pageSuperViewHeight.constant = self.LGFFreePTSuperViewHeight.text.floatValue;
