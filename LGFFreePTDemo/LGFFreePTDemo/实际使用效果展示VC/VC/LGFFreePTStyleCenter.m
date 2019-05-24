@@ -426,6 +426,7 @@
     style.lgf_LineAnimation = lgf_PageLineAnimationTortoiseDown;// 小乌龟效果
     return style;
 }
+
 + (LGFFreePTStyle *)twentyone {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
     style.lgf_LineWidthType = lgf_FixedWith;

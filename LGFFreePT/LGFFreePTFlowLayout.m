@@ -32,7 +32,6 @@
             CGFloat alpha = fabs(1.0 - fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /self.collectionView.lgfpt_Width);
             CGFloat scale = -fabs(fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /self.collectionView.lgfpt_Width) * 50.0;
             NSInteger index = fabs(self.collectionView.contentOffset.x / self.collectionView.lgfpt_Width);
-            // 判断滑动方向
             if ([self.collectionView.panGestureRecognizer translationInView:self.collectionView].x < 0.0) {
                 if (attr.indexPath.item != index) {
                     attr.alpha = alpha;

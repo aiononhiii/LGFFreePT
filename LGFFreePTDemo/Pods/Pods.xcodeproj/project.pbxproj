@@ -493,7 +493,7 @@
 		13F5FE94BB4836C95D4C928BAA96672F /* UIColor+LGFGradient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+LGFGradient.h"; path = "LGFOCTool/UIColor+LGFCategory/UIColor+LGFGradient.h"; sourceTree = "<group>"; };
 		1448D09BB06EFF952CD396890AF524A0 /* IQToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQToolbar.h; path = IQKeyboardManager/IQToolbar/IQToolbar.h; sourceTree = "<group>"; };
 		14A79BE4D2777B99511C7234FEDF115E /* UIScreen+LGFScreen.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScreen+LGFScreen.m"; path = "LGFOCTool/UIScreen+LGFCategory/UIScreen+LGFScreen.m"; sourceTree = "<group>"; };
-		14C97FE746361381BE518C4319DCF604 /* libLGFOCTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLGFOCTool.a; path = libLGFOCTool.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C97FE746361381BE518C4319DCF604 /* libLGFOCTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLGFOCTool.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		16D63B743FFB720723F7DB28D6B54D96 /* YYImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYImage.h; path = YYImage/YYImage.h; sourceTree = "<group>"; };
 		172556A7800D15E292767B05EC1009FC /* LGFOCTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LGFOCTool.xcconfig; sourceTree = "<group>"; };
 		17997C79A02816F1232A9DE5602A9701 /* UIView+LGFExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LGFExtension.m"; path = "LGFOCTool/UIView+LGFCategory/UIView+LGFExtension.m"; sourceTree = "<group>"; };
@@ -584,7 +584,7 @@
 		4CD4FA1431F898FA161E5CCBBE38A9DA /* MJRefreshBackGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackGifFooter.h; path = MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.h; sourceTree = "<group>"; };
 		4D712B5FAA1E785DAC11D12A88B3187F /* SDWebImageCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoder.m; path = SDWebImage/SDWebImageCoder.m; sourceTree = "<group>"; };
 		4D7D9A257B63C502B98527617CE8CF05 /* LGFEmojiCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = LGFEmojiCell.xib; path = LGFOCTool/LGFView/LGFEmoji/LGFEmojiCell.xib; sourceTree = "<group>"; };
-		4E10CDAC2A43B793212940258731BFFD /* LGFOCTool.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LGFOCTool.bundle; path = "LGFOCTool-LGFOCTool.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E10CDAC2A43B793212940258731BFFD /* LGFOCTool.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGFOCTool.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E49BBFBF4041F7FF30A8CF2C51DCCE4 /* LGFBackButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGFBackButton.h; path = LGFOCTool/LGFView/LGFBackButton/LGFBackButton.h; sourceTree = "<group>"; };
 		4F4B45E373F1681D3D14F815B0DBE911 /* IQKeyboardReturnKeyHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQKeyboardReturnKeyHandler.m; path = IQKeyboardManager/IQKeyboardReturnKeyHandler.m; sourceTree = "<group>"; };
 		4F57221F31BE4BE6D7A28DFFD6AE6A76 /* FLAnimatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLAnimatedImage.h; path = FLAnimatedImage/FLAnimatedImage.h; sourceTree = "<group>"; };
@@ -614,7 +614,7 @@
 		632CFC94FC41CE16178C5EFF826F1E1C /* UIButton+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+WebCache.h"; path = "SDWebImage/UIButton+WebCache.h"; sourceTree = "<group>"; };
 		632FAE18E2DE70B3F081E2B32E803509 /* UIImage+ForceDecode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ForceDecode.m"; path = "SDWebImage/UIImage+ForceDecode.m"; sourceTree = "<group>"; };
 		63C1BF6E6495CCEE7933D74046648172 /* Pods-LGFFreePTDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LGFFreePTDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		641F0FB2B4667A29EA721DBEB143DB27 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAFNetworking.a; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		641F0FB2B4667A29EA721DBEB143DB27 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CB9B95896960BFBEE010E083CBE636 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		65FB7FCFF80B085A36979BCDDC6C74FB /* LGFEmojiCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGFEmojiCell.h; path = LGFOCTool/LGFView/LGFEmoji/LGFEmojiCell.h; sourceTree = "<group>"; };
 		6651A7464C6D131D6DE57B54E5A4D0D9 /* NSString+LGFEncodeDecode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+LGFEncodeDecode.m"; path = "LGFOCTool/NSString+LGFCategory/NSString+LGFEncodeDecode.m"; sourceTree = "<group>"; };
@@ -638,7 +638,7 @@
 		71C070266568DEED2D98686B8B801736 /* UIButton+LGFImagePosition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+LGFImagePosition.h"; path = "LGFOCTool/UIButton+LGFCategory/UIButton+LGFImagePosition.h"; sourceTree = "<group>"; };
 		729F1BD099972AFBA9F2EF4D522982EB /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+AFNetworking.m"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
 		73188D063CE697614F8EBA50C9F0A1CD /* YYImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YYImage-prefix.pch"; sourceTree = "<group>"; };
-		73BA0D6F4E5EFB1735AEF57497767CC7 /* libIQKeyboardManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libIQKeyboardManager.a; path = libIQKeyboardManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73BA0D6F4E5EFB1735AEF57497767CC7 /* libIQKeyboardManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIQKeyboardManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		740FFAEE2BC67FC7A4828AC1C2346EB3 /* SDWebImageCompat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCompat.h; path = SDWebImage/SDWebImageCompat.h; sourceTree = "<group>"; };
 		74671534677BF9C26364DB924D28700B /* NSKeyedUnarchiver+LGFKeyedUnarchiver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSKeyedUnarchiver+LGFKeyedUnarchiver.h"; path = "LGFOCTool/NSKeyedUnarchiver+LGFCategory/NSKeyedUnarchiver+LGFKeyedUnarchiver.h"; sourceTree = "<group>"; };
 		7475A7F8B6D6A6EF19D334A3E54CB86D /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+MJRefresh.h"; path = "MJRefresh/UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
@@ -693,12 +693,12 @@
 		9BAF23688598C05027BBBD1F4F2C8013 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "SDWebImage/UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		9C542D1D13FDC9A7B5EBBA75855F7398 /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageImageIOCoder.h; path = SDWebImage/SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
 		9D211C71CC5529A58CD5387E143AA647 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+MJRefresh.m"; path = "MJRefresh/UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E1BA34EB292E5D0A3D20A8A294CB3B6 /* MJRefreshBackNormalFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackNormalFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackNormalFooter.m; sourceTree = "<group>"; };
 		9E248637C4E5BFFEEB9F549D6C496B77 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIView+IQKeyboardToolbar.m"; path = "IQKeyboardManager/IQToolbar/IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		9E4C99AB072424EAB8D9B89E3F727F16 /* SDWebImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageManager.h; path = SDWebImage/SDWebImageManager.h; sourceTree = "<group>"; };
 		9E888A003E88305478078CDB442BB0D2 /* UILabel+LGFLable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+LGFLable.m"; path = "LGFOCTool/UILabel+LGFCategory/UILabel+LGFLable.m"; sourceTree = "<group>"; };
-		9EDD3FCBE9E3F2ACF57E228986B74D69 /* libYYImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYYImage.a; path = libYYImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EDD3FCBE9E3F2ACF57E228986B74D69 /* libYYImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYYImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3C38EF4CA00B5D343C628400EECF18 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+HighlightedWebCache.h"; path = "SDWebImage/UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
 		9F8AE7B085D3679F7E83F7D7B137FA18 /* UIView+LGFGSView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LGFGSView.m"; path = "LGFOCTool/UIView+LGFCategory/UIView+LGFGSView.m"; sourceTree = "<group>"; };
 		A00A8EC02343FF656DDEDD5016E54181 /* YYImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YYImage.xcconfig; sourceTree = "<group>"; };
@@ -755,7 +755,7 @@
 		BF625D97121C5C2452C20719B26801F9 /* NSString+LGFRegex.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+LGFRegex.m"; path = "LGFOCTool/NSString+LGFCategory/NSString+LGFRegex.m"; sourceTree = "<group>"; };
 		C012D70BA9CA24276306E6EB86DF3243 /* YYImageCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYImageCoder.h; path = YYImage/YYImageCoder.h; sourceTree = "<group>"; };
 		C0BECF41EA4AC754F874BF60D891C118 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		C10F26957FE3D3EBF7460C9039AC98AC /* libPods-LGFFreePTDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-LGFFreePTDemo.a"; path = "libPods-LGFFreePTDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10F26957FE3D3EBF7460C9039AC98AC /* libPods-LGFFreePTDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGFFreePTDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E96DAD3D7D072C21D06CE416EF8223 /* LGFNetwork.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGFNetwork.m; path = LGFOCTool/LGFNetworking/LGFNetwork.m; sourceTree = "<group>"; };
 		C445E7BCB8690F4864A434F3F69FC093 /* NSMutableDictionary+LGFMutableDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+LGFMutableDictionary.m"; path = "LGFOCTool/NSDictionary+LGFCategory/NSMutableDictionary+LGFMutableDictionary.m"; sourceTree = "<group>"; };
 		C478F244261340C26DB8811C28B4343F /* IQUIViewController+Additions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIViewController+Additions.m"; path = "IQKeyboardManager/Categories/IQUIViewController+Additions.m"; sourceTree = "<group>"; };
@@ -767,7 +767,7 @@
 		C902D2F9ED4EBD9E955E8C51B9A64DFE /* NSData+LGFData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+LGFData.m"; path = "LGFOCTool/NSData+LGFCategory/NSData+LGFData.m"; sourceTree = "<group>"; };
 		C95EF42006200757CDC16E017C919C09 /* UILabel+LGFLable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+LGFLable.h"; path = "LGFOCTool/UILabel+LGFCategory/UILabel+LGFLable.h"; sourceTree = "<group>"; };
 		CA63C637AF7D1C5AB01F461E038155FA /* UIScrollView+LGFScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+LGFScrollView.h"; path = "LGFOCTool/UIScrollView+LGFCategory/UIScrollView+LGFScrollView.h"; sourceTree = "<group>"; };
-		CA96C1344A92AE0AFCDEBFCE5F1E535A /* libFLAnimatedImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFLAnimatedImage.a; path = libFLAnimatedImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA96C1344A92AE0AFCDEBFCE5F1E535A /* libFLAnimatedImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFLAnimatedImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB64E3C29616DC25621D86039BC0967C /* NSObject+LGFKVOBlocks.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+LGFKVOBlocks.h"; path = "LGFOCTool/NSObject+LGFCategory/NSObject+LGFKVOBlocks.h"; sourceTree = "<group>"; };
 		CC86EB6CD33CE9B146BE9D59E1A1B8F0 /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackGifFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
 		CE35C1095E0AFCD1B93F7AB09941AD0E /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFAutoPurgingImageCache.h; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.h"; sourceTree = "<group>"; };
@@ -777,7 +777,7 @@
 		CFDE6D041A2160A7B9A535FE09E4DA52 /* YYAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYAnimatedImageView.h; path = YYImage/YYAnimatedImageView.h; sourceTree = "<group>"; };
 		D037618490B2F7D60E512BC24789596A /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		D0788E8D925C43E0062C507C072BB527 /* LGFImageTitleCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGFImageTitleCell.m; path = LGFOCTool/LGFView/LGFImageTitleCell/LGFImageTitleCell.m; sourceTree = "<group>"; };
-		D1EE375D62CCEE868EE93F33102DA34F /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSDWebImage.a; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1EE375D62CCEE868EE93F33102DA34F /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2B5B712790D29B35F381EFD16A94CA1 /* UIImage+LGFImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+LGFImage.m"; path = "LGFOCTool/UIImage+LGFCategory/UIImage+LGFImage.m"; sourceTree = "<group>"; };
 		D2E1016702FC797B84E973BEC4214EE9 /* UIControl+LGFControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+LGFControl.m"; path = "LGFOCTool/UIControl+LGFCategory/UIControl+LGFControl.m"; sourceTree = "<group>"; };
 		D33C0E048D07B0F6490B160E60F35753 /* UIImage+LGFImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+LGFImage.h"; path = "LGFOCTool/UIImage+LGFCategory/UIImage+LGFImage.h"; sourceTree = "<group>"; };
@@ -786,7 +786,7 @@
 		D52D820FC9DDE252EBDE07887EE54DA2 /* IQTitleBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQTitleBarButtonItem.m; path = IQKeyboardManager/IQToolbar/IQTitleBarButtonItem.m; sourceTree = "<group>"; };
 		D6611FB5FEA17DD26931A5E5BCE33ECB /* NSImage+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSImage+WebCache.h"; path = "SDWebImage/NSImage+WebCache.h"; sourceTree = "<group>"; };
 		D693B7958049D8E5C6B868CB7999B88D /* NSData+LGFData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+LGFData.h"; path = "LGFOCTool/NSData+LGFCategory/NSData+LGFData.h"; sourceTree = "<group>"; };
-		D6A5170CBEE10AB6697C41B3EC94C367 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMJRefresh.a; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6A5170CBEE10AB6697C41B3EC94C367 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6ABBB7ECDC9CD442B694CC74908BAE0 /* LGFAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGFAlertView.m; path = LGFOCTool/LGFView/LGFAlertView/LGFAlertView.m; sourceTree = "<group>"; };
 		D742E23064973A5B314FD288A1BCE9AF /* IQBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQBarButtonItem.h; path = IQKeyboardManager/IQToolbar/IQBarButtonItem.h; sourceTree = "<group>"; };
 		D779D1285EFD89129085D65C9DC29414 /* UIImage+LGFPDFImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+LGFPDFImage.h"; path = "LGFOCTool/UIImage+LGFCategory/UIImage+LGFPDFImage.h"; sourceTree = "<group>"; };
@@ -967,7 +967,6 @@
 				BBD44956CAAB140BABD01F8D797407E4 /* Support Files */,
 				C54C485F1EF9F613A3C15B9741AB9829 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -1274,7 +1273,6 @@
 				DC3F45BD7312789B0EBE648A87DB317A /* Resources */,
 				28C1F21C43469D2C81A5DBF112F9C0F7 /* Support Files */,
 			);
-			name = LGFOCTool;
 			path = LGFOCTool;
 			sourceTree = "<group>";
 		};
@@ -1320,7 +1318,6 @@
 				45705E17B65DF08003128B496FDA9811 /* Core */,
 				DBFC12E7E63A1D19723ECC5E5B4B0F45 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -1341,7 +1338,6 @@
 				70F22931C22E543A6EFDFB21B80E4CF0 /* Core */,
 				29864D5F4DB52E366F312E498211334A /* Support Files */,
 			);
-			name = YYImage;
 			path = YYImage;
 			sourceTree = "<group>";
 		};
@@ -1390,7 +1386,6 @@
 				23C435438BE07103E61469EDAF564B64 /* Resources */,
 				CBE7B98E579CAB7B393AE7F84E40C143 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -1510,7 +1505,6 @@
 				CB1C325CA20DFA4BAEC58EE40EE27654 /* Resources */,
 				7F44DCFC115D011BD890A62167FF8EEE /* Support Files */,
 			);
-			name = IQKeyboardManager;
 			path = IQKeyboardManager;
 			sourceTree = "<group>";
 		};
@@ -1556,7 +1550,6 @@
 				2B07ACE9229D7777A33A19742FA7D5F2 /* FLAnimatedImageView.m */,
 				53F7DDB2976CE09176CD5C90A5AFFF89 /* Support Files */,
 			);
-			name = FLAnimatedImage;
 			path = FLAnimatedImage;
 			sourceTree = "<group>";
 		};
@@ -1971,7 +1964,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1010;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -2341,7 +2334,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MJRefresh/MJRefresh-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2365,7 +2358,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2452,7 +2445,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2476,7 +2469,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/YYImage/YYImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2499,7 +2492,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2590,7 +2583,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2759,7 +2752,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MJRefresh/MJRefresh-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2798,7 +2791,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2821,7 +2814,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/YYImage/YYImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2845,7 +2838,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";

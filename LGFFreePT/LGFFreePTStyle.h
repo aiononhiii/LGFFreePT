@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, lgf_FreePageViewAnimationType) {
     lgf_PageViewAnimationDefult,// 默认分页动画
     lgf_PageViewAnimationTopToBottom,// 从上往下进入的分页动画
     lgf_PageViewAnimationSmallToBig,// 从小到大进入的分页动画
-    lgf_PageViewAnimationNone,// 没有分页动画
+    lgf_PageViewAnimationNone// 没有分页动画
 };
 
 typedef NS_ENUM(NSUInteger, lgf_FreePageLineAnimationType) {
@@ -69,20 +69,21 @@ typedef NS_ENUM(NSUInteger, lgf_FreePageLineAnimationType) {
     lgf_PageLineAnimationTortoiseDown,// 乌龟的头效果， title 底部线向下隐藏，再在下一个 title 的底部向上出现
     lgf_PageLineAnimationTortoiseUp,// 乌龟的头效果， title 底部线向上隐藏，再在下一个 title 的底部向下出现
     lgf_PageLineAnimationSmallToBig,// title 底部线缩小放大
-    lgf_PageLineAnimationCustomize,// 我想自定义这个效果，系统将返回你或许需要的值（selectX，selectWidth，unSelectX，unSelectWidth等等），用这些值来制造你自己想要的 line 动画
+    lgf_PageLineAnimationCustomize// 我想自定义这个效果，将返回你或许需要的值（selectX，selectWidth，unSelectX，unSelectWidth等等），用这些值来制造你自己想要的 line 动画
 };
 
 typedef NS_ENUM(NSUInteger, lgf_FreeTitleScrollFollowType) {
     lgf_TitleScrollFollowDefult,// 在可滚动的情况下, 选中 title 默认滚动到 lgf_PVTitleView 中间
     // 后续推出下面的 仿腾讯新闻, 天天快报选中 title 滚动效果 现暂时不可用 请勿设置
     lgf_TitleScrollFollowLeftRight,// 向左滚动选中 title 永远出现在最右边可见位置, 反之向右滚动选中 title 永远出现在最左边可见位置（此效果不会像上面的效果那样滚到中间）(模仿腾讯新闻)
+    lgf_TitleScrollFollowCustomize// 我想自定义这个效果，将返回你或许需要的值
 };
 
 typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
     lgf_EqualTitleSTR,// 宽度等于字体宽度
     lgf_EqualTitleSTRAndImage,// 宽度等于字体宽度 + 图 title 宽度
     lgf_EqualTitle,// 宽度等于 title view宽度
-    lgf_FixedWith,// 宽度等于固定宽度
+    lgf_FixedWith// 宽度等于固定宽度
 };
 
 @interface LGFFreePTStyle : NSObject
@@ -111,7 +112,7 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 //------------------- 整体序列设置
 // 当所有 title 总宽度加起来小于 lgf_PVTitleView 宽度时 是否居中显示 默认 NO - 不居中(从左边开始显示)
 @property (assign, nonatomic) BOOL lgf_IsTitleCenter;
-// 选中 title 滚动类型 默认 LGFTitleScrollFollowDefult
+// 选中结束后标的回位模式 默认 LGFTitleScrollFollowDefult
 @property (assign, nonatomic) lgf_FreeTitleScrollFollowType lgf_TitleScrollFollowType;
 // page左右间距 默认 0.0
 @property (assign, nonatomic) CGFloat lgf_PageLeftRightSpace;

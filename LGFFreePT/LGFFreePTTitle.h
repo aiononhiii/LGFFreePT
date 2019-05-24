@@ -13,7 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LGFFreePTTitleDelegate <NSObject>
 @optional
-// 加载 title 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
+#pragma mark - 加载 title 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
+/**
+ @param imageView 要加载网络图片的 imageView
+ @param imageUrl 网络图片的 Url
+ */
 - (void)lgf_GetTitleNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 @end
 @interface LGFFreePTTitle : UIView
@@ -71,6 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param unselectIndex 未选中的 index
  */
 - (void)lgf_SetMainTitleTransform:(CGFloat)progress isSelectTitle:(BOOL)isSelectTitle selectIndex:(NSInteger)selectIndex unselectIndex:(NSInteger)unselectIndex;
+
 #pragma mark - 标初始化
 /**
  @param titleText 标文字
@@ -79,6 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return LGFFreePTTitle
  */
 + (instancetype)lgf_AllocTitle:(NSString *)titleText index:(NSInteger)index style:(LGFFreePTStyle *)style delegate:(id<LGFFreePTTitleDelegate>)delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

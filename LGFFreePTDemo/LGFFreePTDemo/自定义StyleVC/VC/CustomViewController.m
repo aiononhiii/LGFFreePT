@@ -135,12 +135,12 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     
     // 枚举类型展示用数据源
     self.lgf_LineAnimationArray = @[@"lgf_PageLineAnimationDefult", @"lgf_PageLineAnimationShortToLong", @"lgf_PageLineAnimationHideShow", @"lgf_PageLineAnimationTortoiseDown", @"lgf_PageLineAnimationTortoiseUp", @"lgf_PageLineAnimationSmallToBig", @"lgf_PageLineAnimationCustomize"];
-    self.lgf_TitleScrollFollowTypeArray = @[@"lgf_TitleScrollFollowDefult", @"lgf_TitleScrollFollowLeftRight"];
+    self.lgf_TitleScrollFollowTypeArray = @[@"lgf_TitleScrollFollowDefult", @"lgf_TitleScrollFollowLeftRight", @"lgf_TitleScrollFollowCustomize"];
     self.lgf_PVAnimationTypeArray = @[@"lgf_PageViewAnimationDefult", @"lgf_PageViewAnimationTopToBottom", @"lgf_PageViewAnimationSmallToBig", @"lgf_PageViewAnimationNone"];
     self.lgf_LineWidthTypeArray = @[@"lgf_EqualTitleSTR", @"lgf_EqualTitleSTRAndImage", @"lgf_EqualTitle", @"lgf_FixedWith"];
     
     self.lgf_LineAnimationDescribeArray = @[@"默认效果", @"短到长效果", @"隐藏显示效果", @"底部隐藏效果", @"顶部隐藏效果", @"放大缩小效果", @"自定义效果，需添加自定义代理自行实现"];
-    self.lgf_TitleScrollFollowTypeDescribeArray = @[@"结束后居中", @"跟随两边（腾讯新闻效果）"];
+    self.lgf_TitleScrollFollowTypeDescribeArray = @[@"结束后居中", @"跟随两边（腾讯新闻效果）", @"自定义效果，需添加自定义代理自行实现"];
     self.lgf_PVAnimationTypeDescribeArray = @[@"默认效果", @"上下效果", @"放大缩小效果", @"禁止拖拽滚动"];
     self.lgf_LineWidthTypeDescribeArray = @[@"对准标文本", @"对准标文本和图片", @"对准标", @"固定宽度，需配置 line 的 lgf_LineWidth"];
     
@@ -237,8 +237,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     }];
 }
 
-// 自定义 line 滚动动画配置代理
-- (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress {
+// 自定义 line 滚动动画配置代理（非自定义动画无需实现）
+- (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line progress:(CGFloat)progress {
     CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
     if (progress > 0.5) {
         line.lgfpt_X = selectX;
@@ -252,8 +252,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         line.transform = CGAffineTransformMakeTranslation(0, space + space * (1.0 - (2.0 * (1.0 - progress))));
     }
 }
-// 自定义 line 点击动画配置代理
-- (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
+// 自定义 line 点击动画配置代理（非自定义动画无需实现）
+- (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
     CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
     [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / duration)  animations:^{
         line.transform = CGAffineTransformMakeTranslation(0, space);
@@ -264,6 +264,14 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     }];
     [UIView addKeyframeWithRelativeStartTime:0.5 + (0.0001 / duration) relativeDuration:0.5 - (0.0001 / duration) animations:^{
         line.transform = CGAffineTransformIdentity;
+    }];
+}
+// 自定义选中结束后标的回位模式（非自定义动画无需实现）
+- (void)lgf_TitleScrollFollowCustomizeAnimationConfig:(LGFFreePTStyle *)style lgf_TitleButtons:(NSMutableArray<LGFFreePTTitle *> *)lgf_TitleButtons unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex duration:(NSTimeInterval)duration {
+    LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)lgf_TitleButtons[selectIndex];
+    CGFloat offSetx = MIN(MAX(selectTitle.center.x - style.lgf_PVTitleView.lgfpt_Width * 0.5, 0.0), MAX(style.lgf_PVTitleView.contentSize.width - style.lgf_PVTitleView.lgfpt_Width, 0.0));
+    [UIView animateWithDuration:duration animations:^{
+        [style.lgf_PVTitleView setContentOffset:CGPointMake(offSetx, 0.0)];
     }];
 }
 
@@ -297,16 +305,12 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     pickerLabel.font = [UIFont systemFontOfSize:10.0];
     if (pickerView == self.lgf_LineAnimation) {
         pickerLabel.text = self.lgf_LineAnimationArray[row];
-        self.lgf_LineAnimationDescribe.text = self.lgf_LineAnimationDescribeArray[row];
     } else if (pickerView == self.lgf_TitleScrollFollowType) {
         pickerLabel.text = self.lgf_TitleScrollFollowTypeArray[row];
-        self.lgf_TitleScrollFollowTypeDescribe.text = self.lgf_TitleScrollFollowTypeDescribeArray[row];
     } else if (pickerView == self.lgf_PVAnimationType) {
         pickerLabel.text = self.lgf_PVAnimationTypeArray[row];
-        self.lgf_PVAnimationTypeDescribe.text = self.lgf_PVAnimationTypeDescribeArray[row];
     } else if (pickerView == self.lgf_LineWidthType) {
         pickerLabel.text = self.lgf_LineWidthTypeArray[row];
-        self.lgf_LineWidthTypeDescribe.text = self.lgf_LineWidthTypeDescribeArray[row];
     }
     return pickerLabel;
 }
@@ -423,6 +427,11 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [self.lgf_TitleScrollFollowType selectRow:self.lgf_TitleScrollFollowTypeInt inComponent:0 animated:NO];
     [self.lgf_PVAnimationType selectRow:self.lgf_PVAnimationTypeInt inComponent:0 animated:NO];
     [self.lgf_LineWidthType selectRow:self.lgf_LineWidthTypeInt inComponent:0 animated:NO];
+    
+    self.lgf_LineAnimationDescribe.text = self.lgf_LineAnimationDescribeArray[self.lgf_LineAnimationInt];
+    self.lgf_TitleScrollFollowTypeDescribe.text = self.lgf_TitleScrollFollowTypeDescribeArray[self.lgf_TitleScrollFollowTypeInt];
+    self.lgf_PVAnimationTypeDescribe.text = self.lgf_PVAnimationTypeDescribeArray[self.lgf_PVAnimationTypeInt];
+    self.lgf_LineWidthTypeDescribe.text = self.lgf_LineWidthTypeDescribeArray[self.lgf_LineWidthTypeInt];
     
     self.LGFFreePTSuperViewHeight.text = styleDict[@"LGFFreePTSuperViewHeight"] ? styleDict[@"LGFFreePTSuperViewHeight"] : @"40.0";
     

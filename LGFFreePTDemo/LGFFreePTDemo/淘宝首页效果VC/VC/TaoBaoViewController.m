@@ -16,7 +16,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerTop;
 @property (strong, nonatomic) IBOutlet UIView *headerView;// 头部视图 可添加任意控件
 @property (weak, nonatomic) IBOutlet UIView *pageView;
-@property (strong, nonatomic) LGFCenterPageVC *pageVC;// 封装好的控制器
+// 封装好的控制器
+@property (strong, nonatomic) LGFCenterPageVC *pageVC;
 @property (nonatomic, strong) NSMutableArray *titleArray;
 @end
 
@@ -28,6 +29,7 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
     [super viewDidLoad];
     self.headerTop.constant = IPhoneX_NAVIGATION_BAR_HEIGHT + 30;
     [self configPage];
+    [LoveView lgf].subTitle.textColor = lgf_RGBColor(138, 138, 138, 1);
     [lgf_NCenter addObserver:self selector:@selector(childScroll:) name:@"LGFChildScroll" object:nil];
 }
 

@@ -15,14 +15,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LGFFreePTDelegate <NSObject>
 @required
-// 标动画完全结束后的选中标回调代理
+#pragma mark -  标动画完全结束后的选中标回调代理
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex;
-@optional
-// 以 contentOffsetX 匹配最精确的选中标回调代理
-- (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex;
-/**
- 如果我原配的动画满足不了你，那么请使用这个自定义 line 动画代理
 
+@optional
+#pragma mark -  以 contentOffsetX 匹配最精确的选中标回调代理
+- (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex;
+
+#pragma mark -  加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
+/**
+ @param imageView 要加载网络图片的 imageView
+ @param imageUrl 网络图片的 Url
+ */
+- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+
+#pragma mark - 如果我原配的动画满足不了你，那么请使用这个自定义 line 动画代理（自定义配置滚动后 line 的动画）
+/**
  @param style LGFFreePTStyle
  @param selectX 选中标的 X
  @param selectWidth 选中标的 Width
@@ -30,27 +38,52 @@ NS_ASSUME_NONNULL_BEGIN
  @param unSelectWidth 未选中标的 Width
  @param unSelectTitle 未选中标本体
  @param selectTitle 选中标本体
+ @param unSelectIndex 未选中 index
+ @param selectIndex 选中 index
  @param line line 本体
  @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计动画吧)
  */
-- (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line progress:(CGFloat)progress;
+- (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line progress:(CGFloat)progress;
+
+#pragma mark - 自定义配置点击后 line 的动画
 /**
+ @param style LGFFreePTStyle
+ @param selectX 选中标的 X
+ @param selectWidth 选中标的 Width
+ @param unSelectX 未选中标的 X
+ @param unSelectWidth 未选中标的 Width
+ @param unSelectTitle 未选中标本体
+ @param selectTitle 选中标本体
+ @param unSelectIndex 未选中 index
+ @param selectIndex 选中 index
+ @param line line 本体
  @param duration 点击动画时长
  */
-- (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration;
-// 加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
-- (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+- (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration;
+
+#pragma mark - 自定义配置选中结束后标的回位模式
+/**
+ @param style LGFFreePTStyle
+ @param lgf_TitleButtons 所有标数组
+ @param unSelectIndex 未选中 index
+ @param selectIndex 选中 index
+ @param duration 回位动画时长
+ */
+- (void)lgf_TitleScrollFollowCustomizeAnimationConfig:(LGFFreePTStyle *)style lgf_TitleButtons:(NSMutableArray <LGFFreePTTitle *> *)lgf_TitleButtons unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex duration:(NSTimeInterval)duration;
 @end
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;
 @property (strong, nonatomic) LGFFreePTLine * _Nullable lgf_TitleLine;// 底部滚动条(决定开在 .h 方便配合代理实现某些特殊需求)
 @property (strong, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
+@property (strong, nonatomic) NSMutableArray <LGFFreePTTitle *> *lgf_TitleButtons;// 所有标数组
 @property (assign, nonatomic) NSInteger lgf_SelectIndex;// 选中下标
+
 #pragma mark - 初始化
 + (instancetype)lgf;
+
 #pragma mark - 刷新所有标
 /**
- @param isExecutionDelegate 是否执行点击代理
+ @param isExecutionDelegate 是否执行 lgf_SelectFreePTTitle 代理
  @param isReloadPageCV 是否刷新外部子控制器分页容器（CV）
  @param selectIndex 需要默认选中的下标
  @param animated 默认选中的下标是否需要动画
@@ -59,17 +92,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex isExecutionDelegate:(BOOL)isExecutionDelegate animated:(BOOL)animated;
 - (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex animated:(BOOL)animated;
 - (void)lgf_ReloadTitle;
+
 #pragma mark - 手动选中某个标（如果关联外部 CV 外部 CV 请手动滚动）
 /**
  @param index 要选中的下标
  @param duration 选中动画的时间
  @param autoScrollDuration 跟随动画的时间
- @param isExecutionDelegate 是否执行点击代理
+ @param isExecutionDelegate 是否执行 lgf_SelectFreePTTitle 代理
  */
 - (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration isExecutionDelegate:(BOOL)isExecutionDelegate;
 - (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration;
 - (void)lgf_SelectIndex:(NSInteger)index isExecutionDelegate:(BOOL)isExecutionDelegate;
 - (void)lgf_SelectIndex:(NSInteger)index;
+
 #pragma mark - 初始化配置
 /**
  @param style 配置用模型
@@ -79,6 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return LGFFreePT
  */
 - (instancetype)lgf_InitWithStyle:(LGFFreePTStyle *)style SVC:(UIViewController *)SVC SV:(UIView *)SV PV:(nullable UICollectionView *)PV;
+
 @end
 
 NS_ASSUME_NONNULL_END
