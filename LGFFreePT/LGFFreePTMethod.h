@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - UIColorRGB 转颜色数组
 + (NSArray *)lgf_GetColorRGBA:(UIColor *)color;
 
-//--------------- 我自己原配的 line 滚动动画逻辑代码(部分重复为了方便观看理解我控件的用法)
+// 我自己原配的 line 滚动动画逻辑代码(部分重复为了方便观看理解我控件的用法)(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的动效代码分享给大家)
 #pragma mark - lgf_PageLineAnimationDefult
 + (void)lgf_PageLineAnimationDefultScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line progress:(CGFloat)progress;
 
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - lgf_PageLineAnimationTortoiseUp
 + (void)lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line progress:(CGFloat)progress;
 
-//--------------- 我自己原配的 line 点击动画逻辑代码(部分重复为了方便观看理解我控件的用法)
+// 我自己原配的 line 点击动画逻辑代码(部分重复为了方便观看理解我控件的用法)(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的动效代码分享给大家)
 #pragma mark - lgf_PageLineAnimationDefult
 + (void)lgf_PageLineAnimationDefultClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration;
 
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - lgf_PageLineAnimationTortoiseUp
 + (void)lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration;
 
-//--------------- 我自己原配的选中结束后标的回位模式
+// 我自己原配的选中结束后标的回位模式(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的代码分享给大家)
 #pragma mark - lgf_TitleScrollFollowDefult
 + (void)lgf_TitleScrollFollowDefultAnimationConfig:(LGFFreePTStyle *)style lgf_TitleButtons:(NSMutableArray <LGFFreePTTitle *> *)lgf_TitleButtons unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex duration:(NSTimeInterval)duration;
 

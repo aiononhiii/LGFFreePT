@@ -12,13 +12,13 @@
 #import "ChildViewController.h"
 #import "colorSelectView.h"
 #import "StyleDemoViewController.h"
+#import "customDataSourceView.h"
 
 @interface CustomViewController () <LGFFreePTDelegate>
 @property (strong, nonatomic) LGFFreePTView *fptView;
 @property (weak, nonatomic) IBOutlet UILabel *naviTitle;
 @property (weak, nonatomic) IBOutlet UIView *pageSuperView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pageSuperViewHeight;
-@property (weak, nonatomic) IBOutlet UIView *pageSuperViewSuperView;
 @property (weak, nonatomic) IBOutlet UICollectionView *pageCollectionView;
 @property (strong, nonatomic) NSMutableArray *chlidVCs;
 
@@ -144,27 +144,40 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_PVAnimationTypeDescribeArray = @[@"默认效果", @"上下效果", @"放大缩小效果", @"禁止拖拽滚动"];
     self.lgf_LineWidthTypeDescribeArray = @[@"对准标文本", @"对准标文本和图片", @"对准标", @"固定宽度，需配置 line 的 lgf_LineWidth"];
     
-    [self setDefultStyle];
-    // 添加子控制器
+    if ([lgf_Defaults objectForKey:@"LGFCustomDataSource"]) {
+        self.titles = [[lgf_Defaults objectForKey:@"LGFCustomDataSource"] componentsSeparatedByString:@"\n"];
+    }
     self.naviTitle.text = self.type;
+    self.toolScrollView.hidden = NO;
+    self.toolBar.hidden = NO;
+    [self setDefultStyle];
+    [self addChlidVC];
+    // 刷新title数组
+    self.fptView.lgf_Style.lgf_Titles = self.titles;
+    [self.fptView lgf_ReloadTitle];
+}
+
+- (void)addChlidVC {
+    // 删除子控制器
+    [self.chlidVCs enumerateObjectsUsingBlock:^(ChildViewController *  _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
+        [vc removeFromParentViewController];
+        [vc.view removeFromSuperview];
+    }];
+    [self.chlidVCs removeAllObjects];
+    // 添加子控制器
     [self.titles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ChildViewController *vc = [ChildViewController lgf];
         [self addChildViewController:vc];
         [vc didMoveToParentViewController:self];
         [self.chlidVCs addObject:vc];
     }];
-    // 刷新title数组
-    self.fptView.lgf_Style.lgf_Titles = self.titles;
-    self.toolScrollView.hidden = NO;
-    self.toolBar.hidden = NO;
-    [self.toolScrollView addGestureRecognizer:self.pageCollectionView.panGestureRecognizer];
-    [self.fptView lgf_ReloadTitle];
 }
 
 #pragma mark - 更新 UI
 - (IBAction)reloadLGFFreePTView:(id)sender {
     [[LGFAlertView lgf] lgf_ShowAlertWithMessage:@"确定要自定义 LGFFreePTView 吗？" cancel:nil confirm:^{
         [self.fptView removeFromSuperview];
+        [self addChlidVC];
         [self.fptView lgf_InitWithStyle:[self getNewStyle] SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
         [self.fptView lgf_ReloadTitle];
     }];
@@ -178,6 +191,35 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         [self setDefultStyle];
         [self.fptView lgf_InitWithStyle:[self getNewStyle] SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
         [self.fptView lgf_ReloadTitle];
+    }];
+}
+
+#pragma mark - 配置自定义数据源
+- (IBAction)customDataSource:(UIButton *)sender {
+    customDataSourceView *view = [customDataSourceView lgf];
+    [view lgf_ShowCustomDataSourceView:self oldData:self.titles];
+    @LGFPTWeak(self);
+    view.lgf_DataSourceBlock = ^() {
+        @LGFPTStrong(self);
+        self.titles = [[lgf_Defaults objectForKey:@"LGFCustomDataSource"] componentsSeparatedByString:@"\n"];
+    };
+}
+
+- (IBAction)hideShow:(UIButton *)sender {
+    [UIView animateWithDuration:0.4 animations:^{
+        if (CGAffineTransformEqualToTransform(self.toolScrollView.transform, CGAffineTransformIdentity)) {
+            self.toolScrollView.transform = CGAffineTransformMakeTranslation(0, self.toolScrollView.lgfpt_Height);
+            self.toolBar.transform = CGAffineTransformMakeTranslation(0, self.toolScrollView.lgfpt_Height);
+        } else {
+            self.toolScrollView.transform = CGAffineTransformIdentity;
+            self.toolBar.transform = CGAffineTransformIdentity;
+        }
+    } completion:^(BOOL finished) {
+        if (CGAffineTransformEqualToTransform(self.toolScrollView.transform, CGAffineTransformIdentity)) {
+            [sender setTitle:@"隐藏" forState:UIControlStateNormal];
+        } else {
+            [sender setTitle:@"显示" forState:UIControlStateNormal];
+        }
     }];
 }
 
@@ -499,8 +541,6 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_PVAnimationType = self.lgf_PVAnimationTypeInt;
     style.lgf_LineWidthType = self.lgf_LineWidthTypeInt;
     if (self.setlgf_ImageNames.on) {
-        style.lgf_SelectImageNames = @[@"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian", @"tupian"].mutableCopy;
-        style.lgf_UnSelectImageNames = @[@"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un", @"tupian_un"].mutableCopy;
         style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
         style.lgf_TopImageSpace = self.lgf_TopImageSpacePlusMinus.selected ? -self.lgf_TopImageSpace.text.floatValue : self.lgf_TopImageSpace.text.floatValue;
         style.lgf_TopImageWidth = self.lgf_TopImageWidth.text.floatValue;
@@ -524,11 +564,9 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     } else {
         style.lgf_LineImageName = @"";
     }
-    if (self.lgf_IsDoubleTitle.on) {
-        style.lgf_Titles = @[@"我的/我的", @"邮箱:/邮箱:", @"452354033@qq.com/452354033@qq.com", @"正在/正在", @"寻求好的/寻求好的", @"团队/团队", @"从事过 IOS 开发 And Android 开发/从事过 IOS 开发 And Android 开发", @"主要从事/主要从事", @"IOS 开发/IOS 开发", @"5/5", @"年半开发经验/年半开发经验"].copy;
-    } else {
-        style.lgf_Titles = self.titles;
-    }
+    style.lgf_Titles = self.titles;
+    style.lgf_SelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian" count:self.titles.count].mutableCopy;
+    style.lgf_UnSelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian_un" count:self.titles.count].mutableCopy;
     self.pageSuperViewHeight.constant = self.LGFFreePTSuperViewHeight.text.floatValue;
     [self.pageSuperView setNeedsLayout];
     [self saveStyleDict:@"LGFStyleDict"];

@@ -56,5 +56,4 @@
     return image;
 }
 
-
 @end

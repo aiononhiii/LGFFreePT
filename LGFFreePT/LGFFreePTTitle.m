@@ -172,6 +172,8 @@
             if (self.lgf_Style.lgf_IsNetImage) {
                 if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                     [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                } else {
+                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
                 }
             } else {
                 [self.lgf_LeftImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
@@ -181,6 +183,8 @@
             if (self.lgf_Style.lgf_IsNetImage) {
                 if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                     [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                } else {
+                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
                 }
             } else {
                 [self.lgf_RightImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
@@ -190,6 +194,8 @@
             if (self.lgf_Style.lgf_IsNetImage) {
                 if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                     [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                } else {
+                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
                 }
             } else {
                 [self.lgf_TopImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
@@ -199,6 +205,8 @@
             if (self.lgf_Style.lgf_IsNetImage) {
                 if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                     [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+                } else {
+                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
                 }
             } else {
                 [self.lgf_BottomImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
@@ -268,6 +276,8 @@
         if (lgf_Style.lgf_IsNetImage) {
             if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                 [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            } else {
+                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
             }
         } else {
             [self.lgf_LeftImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
@@ -289,6 +299,8 @@
         if (lgf_Style.lgf_IsNetImage) {
             if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                 [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            } else {
+                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
             }
         } else {
             [self.lgf_RightImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
@@ -310,6 +322,8 @@
         if (lgf_Style.lgf_IsNetImage) {
             if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                 [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            } else {
+                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
             }
         } else {
             [self.lgf_TopImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
@@ -331,6 +345,8 @@
         if (lgf_Style.lgf_IsNetImage) {
             if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
                 [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            } else {
+                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
             }
         } else {
             [self.lgf_BottomImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];

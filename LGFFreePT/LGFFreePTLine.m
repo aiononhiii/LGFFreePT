@@ -50,6 +50,8 @@
         if (lgf_Style.lgf_IsLineNetImage) {
             if (self.lgf_FreePTLineDelegate && [self.lgf_FreePTLineDelegate respondsToSelector:@selector(lgf_GetLineNetImage:imageUrl:)]) {
                 [self.lgf_FreePTLineDelegate lgf_GetLineNetImage:self imageUrl:[NSURL URLWithString:lgf_Style.lgf_LineImageName]];
+            } else {
+                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
             }
         } else {
             [self setImage:[UIImage imageNamed:lgf_Style.lgf_LineImageName inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="customDataSourceView" id="iN0-l3-epB" customClass="customDataSourceView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTx-FL-GNB">
+                    <rect key="frame" x="56.5" y="167" width="262.5" height="333.5"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xGe-KS-gGO">
+                            <rect key="frame" x="15" y="15" width="232.5" height="213.5"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZg-Eb-Al6">
+                            <rect key="frame" x="15" y="278.5" width="232.5" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="AMB-HH-ofy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                            <state key="normal" title="保存">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="lgf_BorderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="lgf_BorderColor">
+                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="saveData:" destination="iN0-l3-epB" eventType="touchUpInside" id="IL5-Jb-gzP"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="格式 - 篮球\n足球\n排球\n乒乓球\n网球\n保龄球\n橄榄球" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hO-pE-bP2">
+                            <rect key="frame" x="15" y="233.5" width="232.5" height="45"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="3hO-pE-bP2" firstAttribute="leading" secondItem="qTx-FL-GNB" secondAttribute="leading" constant="15" id="3HE-GN-iN8"/>
+                        <constraint firstItem="xGe-KS-gGO" firstAttribute="top" secondItem="qTx-FL-GNB" secondAttribute="top" constant="15" id="4Eb-aJ-7wO"/>
+                        <constraint firstItem="3hO-pE-bP2" firstAttribute="top" secondItem="xGe-KS-gGO" secondAttribute="bottom" constant="5" id="7Es-Zz-elC"/>
+                        <constraint firstItem="yZg-Eb-Al6" firstAttribute="top" secondItem="3hO-pE-bP2" secondAttribute="bottom" id="7j8-6g-R0O"/>
+                        <constraint firstAttribute="trailing" secondItem="yZg-Eb-Al6" secondAttribute="trailing" constant="15" id="Ej4-gc-Ia2"/>
+                        <constraint firstAttribute="trailing" secondItem="3hO-pE-bP2" secondAttribute="trailing" constant="15" id="Zmq-IM-73r"/>
+                        <constraint firstAttribute="bottom" secondItem="yZg-Eb-Al6" secondAttribute="bottom" constant="15" id="bGg-mi-AMT"/>
+                        <constraint firstItem="yZg-Eb-Al6" firstAttribute="top" secondItem="xGe-KS-gGO" secondAttribute="bottom" constant="50" id="ea6-jP-tZ2"/>
+                        <constraint firstItem="yZg-Eb-Al6" firstAttribute="leading" secondItem="qTx-FL-GNB" secondAttribute="leading" constant="15" id="lmo-AY-YY6"/>
+                        <constraint firstAttribute="trailing" secondItem="xGe-KS-gGO" secondAttribute="trailing" constant="15" id="pQo-Ot-TGa"/>
+                        <constraint firstItem="xGe-KS-gGO" firstAttribute="leading" secondItem="qTx-FL-GNB" secondAttribute="leading" constant="15" id="t6W-0W-TQw"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="lgf_CornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.24213248239999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="qTx-FL-GNB" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="2R6-XE-4YN"/>
+                <constraint firstItem="qTx-FL-GNB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ngY-M6-nPC"/>
+                <constraint firstItem="qTx-FL-GNB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ny5-Fa-MwS"/>
+                <constraint firstItem="qTx-FL-GNB" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="otJ-YZ-xQh"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="dataTextView" destination="xGe-KS-gGO" id="FLV-AZ-KFx"/>
+            </connections>
+        </view>
+    </objects>
+</document>

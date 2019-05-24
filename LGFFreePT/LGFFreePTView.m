@@ -38,8 +38,6 @@
     NSAssert(SV, @"请在initWithStyle方法中传入父View! 否则将无法联动控件");
     NSAssert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, @"选中图片数组和未选中图片数组count必须一致");
     
-    [SV setNeedsLayout];
-    [SV layoutIfNeeded];
     self.lgf_Style = style;
     self.lgf_PageView = PV;
     
@@ -52,14 +50,17 @@
         SVC.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    // 是否有固定 Frame
-    if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
-        self.frame = SV.bounds;
-    } else {
-        self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
-    }
     self.lgf_Style.lgf_PVTitleView = self;
     [SV addSubview:self];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 是否有固定 Frame
+        if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
+            self.frame = self.superview.bounds;
+        } else {
+            self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
+        }
+    });
     return self;
 }
 
@@ -77,14 +78,8 @@
     if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (selectIndex >  self.lgf_Style.lgf_Titles.count - 1)) {
         return;
     }
-    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self.lgf_TitleButtons enumerateObjectsUsingBlock:^(LGFFreePTTitle * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj removeFromSuperview];
-        obj = nil;
-    }];
-    [self.lgf_TitleLine removeFromSuperview];
-    self.lgf_TitleLine = nil;
-    [self.lgf_TitleButtons removeAllObjects];
+    // 删除一遍所有子控件
+    [self lgf_RemoveAllSubViews];
     
     if (self.lgf_PageView && isReloadPageCV) [self.lgf_PageView reloadData];
     
@@ -384,8 +379,21 @@
 
 #pragma mark - 销毁
 - (void)dealloc {
+    [self lgf_RemoveAllSubViews];
     if (self.lgf_PageView) [self.lgf_PageView removeObserver:self forKeyPath:@"contentOffset"];
     LGFPTLog(@"LGF的分页控件:LGFFreePT --- 已经释放");
+}
+
+#pragma mark - 删除所有子控件
+- (void)lgf_RemoveAllSubViews {
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.lgf_TitleButtons enumerateObjectsUsingBlock:^(LGFFreePTTitle * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+        obj = nil;
+    }];
+    [self.lgf_TitleLine removeFromSuperview];
+    self.lgf_TitleLine = nil;
+    [self.lgf_TitleButtons removeAllObjects];
 }
 
 #pragma mark - 懒加载

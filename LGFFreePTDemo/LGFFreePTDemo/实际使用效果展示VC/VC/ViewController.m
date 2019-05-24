@@ -125,7 +125,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     }];
 }
 
-// 加载网络图片时候需要实现这个代理
+// 加载网络图片时候需要实现这个代理 并且打开 style.lgf_IsNetImage = YES
 - (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl {
     [imageView sd_setImageWithURL:imageUrl];
 }

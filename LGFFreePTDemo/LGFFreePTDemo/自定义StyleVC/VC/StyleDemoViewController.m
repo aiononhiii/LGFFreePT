@@ -51,13 +51,8 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
     
     NSMutableArray *demoArray = [NSMutableArray arrayWithArray:@[@"LGFFreePTStyle *style = [LGFFreePTStyle lgf];"]];
     
-    if (![styleDict[@"lgf_IsDoubleTitle"] boolValue]) {
-        NSString *demo = @"style.lgf_Titles = @[@\"我的\", @\"邮箱:\", @\"452354033@qq.com\", @\"正在\", @\"寻求好的\", @\"团队\", @\"从事过 IOS 开发 And Android 开发\", @\"主要从事\", @\"IOS 开发\", @\"5\", @\"年半开发经验\"].copy;";
-        [demoArray addObject:demo];
-    } else {
-        NSString *demo = @"style.lgf_Titles = @[@\"我的/我的\", @\"邮箱:/邮箱\", @\"452354033@qq.com/452354033@qq.com\", @\"正在/正在\", @\"寻求好的/寻求好的\", @\"团队/团队\", @\"从事过 IOS 开发 And Android 开发/从事过 IOS 开发 And Android 开发\", @\"主要从事/主要从事\", @\"IOS 开发/IOS 开发\", @\"5/5\", @\"年半开发经验/年半开发经验\"].copy;";
-        [demoArray addObject:demo];
-    }
+    NSString *demo = [lgf_Defaults objectForKey:@"LGFCustomDataSourceStr"];
+    [demoArray addObject:demo];
     
     [styleDefultDict.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull defultKey, NSUInteger idx, BOOL * _Nonnull stop) {
         if (![[styleDefultDict valueForKey:defultKey] isEqualToString:[styleDict valueForKey:defultKey]] && ![defultKey isEqualToString:@"LGFFreePTSuperViewHeight"]) {
@@ -76,7 +71,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
                 [demoArray addObject:@"style.lgf_ImageBundel = lgf_Bundle(@\"LGFFreePTDemo\");"];
             } else if ([defultKey isEqualToString:@"lgf_TitleSelectFont"] || [defultKey isEqualToString:@"lgf_UnTitleSelectFont"] || [defultKey isEqualToString:@"lgf_SubTitleSelectFont"] || [defultKey isEqualToString:@"lgf_UnSubTitleSelectFont"]) {
                 demo = [NSString stringWithFormat:@"style.%@ = [UIFont systemFontOfSize:%@];", defultKey, [styleDict valueForKey:defultKey]];
-            } else if ([defultKey isEqualToString:@"lgf_TitleSelectColor"] || [defultKey isEqualToString:@"lgf_UnSubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_SubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_TitleBackgroundColor"] || [defultKey isEqualToString:@"lgf_LineColor"] || [defultKey isEqualToString:@"lgf_TitleBorderColor"] || [defultKey isEqualToString:@"lgf_PVTitleViewBackgroundColor"]) {
+            } else if ([defultKey isEqualToString:@"lgf_TitleSelectColor"] || [defultKey isEqualToString:@"lgf_UnTitleSelectColor"] || [defultKey isEqualToString:@"lgf_UnSubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_SubTitleSelectColor"] || [defultKey isEqualToString:@"lgf_TitleBackgroundColor"] || [defultKey isEqualToString:@"lgf_LineColor"] || [defultKey isEqualToString:@"lgf_TitleBorderColor"] || [defultKey isEqualToString:@"lgf_PVTitleViewBackgroundColor"]) {
                 demo = [NSString stringWithFormat:@"style.%@ = LGFPTHexColor(@\"%@\");", defultKey, [styleDict valueForKey:defultKey]];
             } else {
                 demo = [NSString stringWithFormat:@"style.%@ = %@;", defultKey, [styleDict valueForKey:defultKey]];

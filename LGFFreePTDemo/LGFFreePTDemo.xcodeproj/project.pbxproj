@@ -69,6 +69,8 @@
 		185F09AA228ADFD4004CDEDA /* colorSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09A9228ADFD4004CDEDA /* colorSelectView.m */; };
 		185F09AC228ADFDB004CDEDA /* colorSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F09AB228ADFDB004CDEDA /* colorSelectView.xib */; };
 		185F09B1228AEE68004CDEDA /* LGFColorSelectImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */; };
+		18694F732297EF7D009364A2 /* customDataSourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18694F722297EF7D009364A2 /* customDataSourceView.m */; };
+		18694F752297EF82009364A2 /* customDataSourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18694F742297EF82009364A2 /* customDataSourceView.xib */; };
 		18A735132292818800741078 /* TaoBaoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A735112292818800741078 /* TaoBaoCell.m */; };
 		18A735142292818800741078 /* TaoBaoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A735122292818800741078 /* TaoBaoCell.xib */; };
 		18F0F5FC229524DA0068247A /* LoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0F5FB229524DA0068247A /* LoveView.m */; };
@@ -211,6 +213,9 @@
 		185F09AB228ADFDB004CDEDA /* colorSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = colorSelectView.xib; sourceTree = "<group>"; };
 		185F09AF228AEE68004CDEDA /* LGFColorSelectImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFColorSelectImageView.h; sourceTree = "<group>"; };
 		185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFColorSelectImageView.m; sourceTree = "<group>"; };
+		18694F712297EF7D009364A2 /* customDataSourceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customDataSourceView.h; sourceTree = "<group>"; };
+		18694F722297EF7D009364A2 /* customDataSourceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = customDataSourceView.m; sourceTree = "<group>"; };
+		18694F742297EF82009364A2 /* customDataSourceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = customDataSourceView.xib; sourceTree = "<group>"; };
 		18A735102292818800741078 /* TaoBaoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaoBaoCell.h; sourceTree = "<group>"; };
 		18A735112292818800741078 /* TaoBaoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaoBaoCell.m; sourceTree = "<group>"; };
 		18A735122292818800741078 /* TaoBaoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaoBaoCell.xib; sourceTree = "<group>"; };
@@ -464,6 +469,9 @@
 				185F09AB228ADFDB004CDEDA /* colorSelectView.xib */,
 				185F09AF228AEE68004CDEDA /* LGFColorSelectImageView.h */,
 				185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */,
+				18694F712297EF7D009364A2 /* customDataSourceView.h */,
+				18694F722297EF7D009364A2 /* customDataSourceView.m */,
+				18694F742297EF82009364A2 /* customDataSourceView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -660,6 +668,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18694F752297EF82009364A2 /* customDataSourceView.xib in Resources */,
 				18458FB822756B95001F1CCC /* LGFFreePTTitle.xib in Resources */,
 				18A735142292818800741078 /* TaoBaoCell.xib in Resources */,
 				18458FBF22756B95001F1CCC /* LGFFreePTLine.xib in Resources */,
@@ -777,6 +786,7 @@
 				18210EF422925A6100253BA5 /* LGFMJRefreshGifHeader.m in Sources */,
 				18458FB922756B95001F1CCC /* LGFFreePTTitle.m in Sources */,
 				18458FBB22756B95001F1CCC /* LGFFreePTMethod.m in Sources */,
+				18694F732297EF7D009364A2 /* customDataSourceView.m in Sources */,
 				18458FB622756B95001F1CCC /* LGFFreePTFlowLayout.m in Sources */,
 				18210EED22925A6100253BA5 /* LGFMJRefreshBackFooter.m in Sources */,
 				18210EE322925A6100253BA5 /* LGFMJRefreshAutoStateFooter.m in Sources */,
