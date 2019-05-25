@@ -38,31 +38,25 @@
     NSAssert(SV, @"请在initWithStyle方法中传入父View! 否则将无法联动控件");
     NSAssert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, @"选中图片数组和未选中图片数组count必须一致");
     
-    [self.superview setNeedsLayout];
-    [self.superview layoutIfNeeded];
     self.lgf_Style = style;
     self.lgf_PageView = PV;
-    
     // 部分基础 UI 配置
     self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV.backgroundColor;
-    
     if (@available(iOS 11.0, *)) {
         if (self.lgf_PageView) self.lgf_PageView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         SVC.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
     self.lgf_Style.lgf_PVTitleView = self;
     [SV addSubview:self];
-    
     // 是否有固定 Frame
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
-            self.frame = SV.bounds;
-        } else {
-            self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
-        }
-    });
+    [self.superview setNeedsLayout];
+    [self.superview layoutIfNeeded];
+    if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
+        self.frame = self.superview.bounds;
+    } else {
+        self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
+    }
     return self;
 }
 
@@ -93,7 +87,10 @@
         [self lgf_AddTitles];
         // 添加底部滚动线
         [self lgf_AddLine];
+        
         // 默认选中
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
         if (animated) {
             [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:isExecutionDelegate duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
         } else {
@@ -127,6 +124,7 @@
 
 #pragma mark - 添加标
 - (void)lgf_AddTitles {
+    
     __block CGFloat contentWidth = 0.0;
     [self.lgf_Style.lgf_Titles enumerateObjectsUsingBlock:^(NSString *  _Nonnull titleText, NSUInteger idx, BOOL * _Nonnull stop) {
         LGFFreePTTitle *title = [LGFFreePTTitle lgf_AllocTitle:titleText index:idx style:self.lgf_Style delegate:self];
@@ -146,8 +144,6 @@
             self.lgfpt_X = 0.0;
         }
     }
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
 }
 
 #pragma mark - 添加底部线
@@ -176,13 +172,15 @@
 
 #pragma mark - 标自动滚动
 - (void)lgf_AutoScrollTitle {
-    NSInteger nowSelectIndex = (self.lgf_PageView.contentOffset.x / (NSInteger)self.lgf_PageView.lgfpt_Width);
-    if (self.lgf_SelectIndex == nowSelectIndex) {
-        return;
+    if (!self.lgf_PageView.isTracking) {
+        NSInteger nowSelectIndex = (self.lgf_PageView.contentOffset.x / (NSInteger)self.lgf_PageView.lgfpt_Width);
+        if (self.lgf_SelectIndex == nowSelectIndex) {
+            return;
+        }
+        self.lgf_UnSelectIndex = self.lgf_SelectIndex;
+        self.lgf_SelectIndex = nowSelectIndex;
+        [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
     }
-    self.lgf_UnSelectIndex = self.lgf_SelectIndex;
-    self.lgf_SelectIndex = nowSelectIndex;
-    [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
 }
 
 #pragma mark - 调整title位置 使其滚动到中间
@@ -365,14 +363,16 @@
 }
 
 #pragma mark - KVO
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentOffset"]) {
         // setContentOffset 方法触发的不算数～
         if (self.lgf_PageView.isTracking || self.lgf_PageView.isDragging || self.lgf_PageView.isDecelerating) {
             self.lgf_FreePTViewEnabled = NO;
+            self.lgf_PageView.userInteractionEnabled = NO;
             [self lgf_ConvertToProgress:self.lgf_PageView.contentOffset.x < 0.0 ? 0.0 : self.lgf_PageView.contentOffset.x];
             if ((NSInteger)self.lgf_PageView.contentOffset.x % (NSInteger)self.lgf_PageView.lgfpt_Width == 0.0) {
                 self.lgf_FreePTViewEnabled = YES;
+                self.lgf_PageView.userInteractionEnabled = YES;
                 [self lgf_AutoScrollTitle];
             }
         }
@@ -414,11 +414,9 @@
         if (enabled) {
             view.scrollEnabled = ((self.lgf_Style.lgf_PVAnimationType == lgf_PageViewAnimationNone) && (view == self.lgf_PageView)) ? NO : YES;
             view.userInteractionEnabled = YES;
-            view.panGestureRecognizer.view.userInteractionEnabled = YES;
         } else {
             view.scrollEnabled = NO;
             view.userInteractionEnabled = NO;
-            view.panGestureRecognizer.view.userInteractionEnabled = NO;
         }
     }
 }

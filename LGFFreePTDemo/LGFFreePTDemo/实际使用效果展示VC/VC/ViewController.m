@@ -45,7 +45,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     // 刷新title数组
     self.fptView.lgf_Style.lgf_Titles = self.titles;
     if ([self.type isEqualToString:@"默认选中 index 5"]) {
-        [self.fptView lgf_ReloadTitleAndSelectIndex:5 animated:YES];
+        [self.fptView lgf_ReloadTitleAndSelectIndex:5 animated:NO];
     } else {
         [self.fptView lgf_ReloadTitle];
     }
