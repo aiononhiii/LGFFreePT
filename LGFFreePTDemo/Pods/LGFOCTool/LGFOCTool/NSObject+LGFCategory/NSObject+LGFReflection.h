@@ -74,6 +74,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)lgf_HasPropertyForKey:(NSString*)key;
 - (BOOL)lgf_HasIvarForKey:(NSString*)key;
 
+#pragma mark - 保留 N 位小数 取消四舍五入
+- (NSString *)lgf_KeepDecimals:(int)num;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -577,4 +577,18 @@
     return obj;
 }
 
+- (NSString *)lgf_KeepDecimals:(int)num {
+    NSString *floatStr = [NSString stringWithFormat:@"%@", self];
+    NSString *str = [NSString stringWithFormat:@"%@", @([floatStr floatValue])];
+    NSInteger length = [str componentsSeparatedByString:@"."].lastObject.length;
+    if (length <= num) {
+        return str;
+    } else {
+        NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:num raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+        NSDecimalNumber *ouncesDecimal = [[NSDecimalNumber alloc] initWithFloat:[str floatValue]];
+        NSDecimalNumber *roundedOunces = [ouncesDecimal decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+        NSString *roundedOuncesStr = [NSString stringWithFormat:@"%@", roundedOunces];
+        return roundedOuncesStr;
+    }
+}
 @end

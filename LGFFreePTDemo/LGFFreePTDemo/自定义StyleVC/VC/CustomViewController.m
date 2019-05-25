@@ -205,6 +205,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     };
 }
 
+#pragma mark - 隐藏/显示工具栏
 - (IBAction)hideShow:(UIButton *)sender {
     [UIView animateWithDuration:0.4 animations:^{
         if (CGAffineTransformEqualToTransform(self.toolScrollView.transform, CGAffineTransformIdentity)) {
@@ -383,7 +384,10 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         if ([texts.lastObject lgf_IsBlank]) {
             textField.text = [NSString stringWithFormat:@"%@.0", texts.firstObject];
         } else {
-            textField.text = [NSString stringWithFormat:@"%0.1f", [textField.text floatValue]];
+            textField.text = [NSString stringWithFormat:@"%@", [textField.text lgf_KeepDecimals:2]];
+            if ([textField.text floatValue] <= 0.0) {
+                textField.text = @"0.0";
+            }
         }
     }
 }
