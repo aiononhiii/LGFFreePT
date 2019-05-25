@@ -49,14 +49,14 @@
     }
     self.lgf_Style.lgf_PVTitleView = self;
     [SV addSubview:self];
-    // 是否有固定 Frame
-    [self.superview setNeedsLayout];
-    [self.superview layoutIfNeeded];
-    if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
-        self.frame = self.superview.bounds;
-    } else {
-        self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 是否有固定 Frame
+        if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
+            self.frame = self.superview.bounds;
+        } else {
+            self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
+        }
+    });
     return self;
 }
 

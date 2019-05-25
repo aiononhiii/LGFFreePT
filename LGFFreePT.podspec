@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name        = "LGFFreePT"
-s.version     = "0.1.7"
+s.version     = "0.1.8"
 s.summary     = "LGFFreePT"
 s.homepage    = "https://github.com/aiononhiii/LGFFreePT.git"
 s.license     = { :type => 'MIT', :file => 'LICENSE' }
