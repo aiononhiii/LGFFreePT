@@ -38,6 +38,8 @@
     NSAssert(SV, @"请在initWithStyle方法中传入父View! 否则将无法联动控件");
     NSAssert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, @"选中图片数组和未选中图片数组count必须一致");
     
+    [self.superview setNeedsLayout];
+    [self.superview layoutIfNeeded];
     self.lgf_Style = style;
     self.lgf_PageView = PV;
     
@@ -53,10 +55,10 @@
     self.lgf_Style.lgf_PVTitleView = self;
     [SV addSubview:self];
     
+    // 是否有固定 Frame
     dispatch_async(dispatch_get_main_queue(), ^{
-        // 是否有固定 Frame
         if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
-            self.frame = self.superview.bounds;
+            self.frame = SV.bounds;
         } else {
             self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
         }

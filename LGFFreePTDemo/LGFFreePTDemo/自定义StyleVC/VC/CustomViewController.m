@@ -143,7 +143,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_TitleScrollFollowTypeDescribeArray = @[@"结束后居中", @"跟随两边（腾讯新闻效果）", @"自定义效果，需添加自定义代理自行实现"];
     self.lgf_PVAnimationTypeDescribeArray = @[@"默认效果", @"上下效果", @"放大缩小效果", @"禁止拖拽滚动"];
     self.lgf_LineWidthTypeDescribeArray = @[@"对准标文本", @"对准标文本和图片", @"对准标", @"固定宽度，需配置 line 的 lgf_LineWidth"];
-    
+   
     if ([lgf_Defaults objectForKey:@"LGFCustomDataSource"]) {
         self.titles = [[lgf_Defaults objectForKey:@"LGFCustomDataSource"] componentsSeparatedByString:@"\n"];
     }
@@ -554,6 +554,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         style.lgf_RightImageSpace = self.lgf_RightImageSpacePlusMinus.selected ? -self.lgf_RightImageSpace.text.floatValue : self.lgf_RightImageSpace.text.floatValue;
         style.lgf_RightImageWidth = self.lgf_RightImageWidth.text.floatValue;
         style.lgf_RightImageHeight = self.lgf_RightImageHeight.text.floatValue;
+        style.lgf_SelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian" count:self.titles.count].mutableCopy;
+        style.lgf_UnSelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian_un" count:self.titles.count].mutableCopy;
     } else {
         style.lgf_SelectImageNames = @[].mutableCopy;
         style.lgf_UnSelectImageNames = @[].mutableCopy;
@@ -566,8 +568,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     }
     style.lgf_Titles = self.titles;
     [lgf_Defaults setObject:[NSString stringWithFormat:@"style.lgf_Titles = @[@\"%@\"].copy", [style.lgf_Titles componentsJoinedByString:@"\", @\""]] forKey:@"LGFCustomDataSourceStr"];
-    style.lgf_SelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian" count:self.titles.count].mutableCopy;
-    style.lgf_UnSelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian_un" count:self.titles.count].mutableCopy;
+    
     self.pageSuperViewHeight.constant = self.LGFFreePTSuperViewHeight.text.floatValue;
     [self.pageSuperView setNeedsLayout];
     [self saveStyleDict:@"LGFStyleDict"];
