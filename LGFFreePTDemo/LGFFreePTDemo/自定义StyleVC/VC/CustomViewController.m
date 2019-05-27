@@ -94,6 +94,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_IsDoubleTitle;
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_IsLineAlignSubTitle;
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_StartDebug;
+@property (weak, nonatomic) IBOutlet UISwitch *lgf_IsExecutedImmediatelyTitleScrollFollow;
 @property (weak, nonatomic) IBOutlet UIPickerView *lgf_LineAnimation;
 @property (weak, nonatomic) IBOutlet UILabel *lgf_LineAnimationDescribe;
 @property (weak, nonatomic) IBOutlet UIPickerView *lgf_TitleScrollFollowType;
@@ -110,6 +111,9 @@
 @property (weak, nonatomic) IBOutlet UISwitch *setlgf_LineImageName;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_PageLeftRightSpace;
 @property (weak, nonatomic) IBOutlet UITextField *LGFFreePTSuperViewHeight;
+@property (weak, nonatomic) IBOutlet UITextField *LGFFreePTSuperViewBorderColor;
+@property (weak, nonatomic) IBOutlet UIView *LGFFreePTSuperViewBorderColorView;
+@property (weak, nonatomic) IBOutlet UITextField *LGFFreePTSuperViewBorderWidth;
 // 枚举类型展示用数据源
 @property (nonatomic, copy) NSArray *lgf_LineAnimationArray;
 @property (nonatomic, copy) NSArray *lgf_TitleScrollFollowTypeArray;
@@ -463,6 +467,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_IsDoubleTitle.on = styleDict[@"lgf_IsDoubleTitle"] ? [styleDict[@"lgf_IsDoubleTitle"] boolValue] : style.lgf_IsDoubleTitle;
     self.lgf_IsLineAlignSubTitle.on = styleDict[@"lgf_IsLineAlignSubTitle"] ? [styleDict[@"lgf_IsLineAlignSubTitle"] boolValue] : style.lgf_IsLineAlignSubTitle;
     self.lgf_StartDebug.on = styleDict[@"lgf_StartDebug"] ? [styleDict[@"lgf_StartDebug"] boolValue] : style.lgf_StartDebug;
+    self.lgf_IsExecutedImmediatelyTitleScrollFollow.on = styleDict[@"lgf_IsExecutedImmediatelyTitleScrollFollow"] ? [styleDict[@"lgf_IsExecutedImmediatelyTitleScrollFollow"] boolValue] : style.lgf_IsExecutedImmediatelyTitleScrollFollow;
     self.setlgf_ImageNames.on = styleDict[@"setlgf_ImageNames"] ? [styleDict[@"setlgf_ImageNames"] boolValue] : NO;
     self.setlgf_LineImageName.on = styleDict[@"setlgf_LineImageName"] ? [styleDict[@"setlgf_LineImageName"] boolValue] : NO;
     self.lgf_LineAnimationInt = styleDict[@"lgf_LineAnimation"] ? [self.lgf_LineAnimationArray indexOfObject:styleDict[@"lgf_LineAnimation"]] : style.lgf_LineAnimation;
@@ -480,6 +485,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_LineWidthTypeDescribe.text = self.lgf_LineWidthTypeDescribeArray[self.lgf_LineWidthTypeInt];
     
     self.LGFFreePTSuperViewHeight.text = styleDict[@"LGFFreePTSuperViewHeight"] ? styleDict[@"LGFFreePTSuperViewHeight"] : @"40";
+    self.LGFFreePTSuperViewBorderWidth.text = styleDict[@"LGFFreePTSuperViewBorderWidth"] ? styleDict[@"LGFFreePTSuperViewBorderWidth"] : @"0";
+    self.LGFFreePTSuperViewBorderColor.text = styleDict[@"LGFFreePTSuperViewBorderColor"] ? styleDict[@"LGFFreePTSuperViewBorderColor"] : @"00000000";
     
     [self setViewColor];
     
@@ -497,6 +504,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_LineColorView.backgroundColor = lgf_HexColor(self.lgf_LineColor.text);
     self.lgf_TitleBorderColorView.backgroundColor = lgf_HexColor(self.lgf_TitleBorderColor.text);
     self.lgf_PVTitleViewBackgroundColorView.backgroundColor = lgf_HexColor(self.lgf_PVTitleViewBackgroundColor.text);
+    self.LGFFreePTSuperViewBorderColorView.backgroundColor = lgf_HexColor(self.LGFFreePTSuperViewBorderColor.text);
 }
 
 - (LGFFreePTStyle *)getNewStyle {
@@ -538,6 +546,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_IsShowLine = self.lgf_IsShowLine.on;
     style.lgf_IsTitleCenter = self.lgf_IsTitleCenter.on;
     style.lgf_IsDoubleTitle = self.lgf_IsDoubleTitle.on;
+    style.lgf_IsExecutedImmediatelyTitleScrollFollow = self.lgf_IsExecutedImmediatelyTitleScrollFollow.on;
     style.lgf_IsLineAlignSubTitle = self.lgf_IsLineAlignSubTitle.on;
     style.lgf_StartDebug = self.lgf_StartDebug.on;
     style.lgf_LineAnimation = self.lgf_LineAnimationInt;
@@ -574,6 +583,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [lgf_Defaults setObject:[NSString stringWithFormat:@"style.lgf_Titles = @[@\"%@\"].copy", [style.lgf_Titles componentsJoinedByString:@"\", @\""]] forKey:@"LGFCustomDataSourceStr"];
     
     self.pageSuperViewHeight.constant = self.LGFFreePTSuperViewHeight.text.floatValue;
+    self.pageSuperView.layer.borderWidth = self.LGFFreePTSuperViewBorderWidth.text.floatValue;
+    self.pageSuperView.layer.borderColor = [UIColor lgf_ColorWithHexString:self.LGFFreePTSuperViewBorderColor.text].CGColor;
     [self.pageSuperView setNeedsLayout];
     [self saveStyleDict:@"LGFStyleDict"];
     return style;
@@ -632,6 +643,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [styleDict setObject:(self.lgf_IsDoubleTitle.on ? @"YES" : @"NO") forKey:@"lgf_IsDoubleTitle"];
     [styleDict setObject:(self.lgf_IsLineAlignSubTitle.on ? @"YES" : @"NO") forKey:@"lgf_IsLineAlignSubTitle"];
     [styleDict setObject:(self.lgf_StartDebug.on ? @"YES" : @"NO") forKey:@"lgf_StartDebug"];
+    [styleDict setObject:(self.lgf_IsExecutedImmediatelyTitleScrollFollow.on ? @"YES" : @"NO") forKey:@"lgf_IsExecutedImmediatelyTitleScrollFollow"];
     [styleDict setValue:self.lgf_LineAnimationArray[self.lgf_LineAnimationInt] forKey:@"lgf_LineAnimation"];
     [styleDict setValue:self.lgf_TitleScrollFollowTypeArray[self.lgf_TitleScrollFollowTypeInt] forKey:@"lgf_TitleScrollFollowType"];
     [styleDict setValue:self.lgf_PVAnimationTypeArray[self.lgf_PVAnimationTypeInt] forKey:@"lgf_PVAnimationType"];
@@ -639,6 +651,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [styleDict setObject:(self.setlgf_ImageNames.on ? @"YES" : @"NO") forKey:@"setlgf_ImageNames"];
     [styleDict setObject:(self.setlgf_LineImageName.on ? @"YES" : @"NO") forKey:@"setlgf_LineImageName"];
     [styleDict setObject:self.LGFFreePTSuperViewHeight.text forKey:@"LGFFreePTSuperViewHeight"];
+    [styleDict setObject:self.LGFFreePTSuperViewBorderWidth.text forKey:@"LGFFreePTSuperViewBorderWidth"];
+    [styleDict setValue:self.LGFFreePTSuperViewBorderColor.text forKey:@"LGFFreePTSuperViewBorderColor"];
     [lgf_Defaults setObject:styleDict forKey:name];
 }
 

@@ -58,6 +58,7 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
     style.lgf_SubTitleSelectColor = LGFPTHexColor(@"FFFFFF");
     style.lgf_UnSubTitleSelectColor = lgf_RGBColor(138, 138, 138, 1);
     style.lgf_IsDoubleTitle = YES;
+    style.lgf_IsExecutedImmediatelyTitleScrollFollow = YES;
     style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
     [LoveView lgf].lgf_FreePTSpecialTitleProperty = @"1/80";
     style.lgf_FreePTSpecialTitleArray = @[[LoveView lgf]];

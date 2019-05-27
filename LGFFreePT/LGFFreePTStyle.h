@@ -114,6 +114,8 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) BOOL lgf_IsTitleCenter;
 // 选中结束后标的回位模式 默认 LGFTitleScrollFollowDefult
 @property (assign, nonatomic) lgf_FreeTitleScrollFollowType lgf_TitleScrollFollowType;
+// 是否立即回位(淘宝首页立即回位)
+@property (assign, nonatomic) BOOL lgf_IsExecutedImmediatelyTitleScrollFollow;
 // page左右间距 默认 0.0
 @property (assign, nonatomic) CGFloat lgf_PageLeftRightSpace;
 

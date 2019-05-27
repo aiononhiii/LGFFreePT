@@ -81,8 +81,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
-        self.lgf_UnSelectIndex = 0;
-        self.lgf_SelectIndex = selectIndex;
+        [self lgf_AutoSelectIndex:selectIndex];
         // 配置标
         [self lgf_AddTitles];
         // 添加底部滚动线
@@ -115,8 +114,7 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
-        self.lgf_UnSelectIndex = self.lgf_SelectIndex;
-        self.lgf_SelectIndex = index;
+        [self lgf_AutoSelectIndex:index];
         // 默认选中
         [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:isExecutionDelegate duration:duration autoScrollDuration:autoScrollDuration];
     });
@@ -156,12 +154,7 @@
 
 #pragma mark - 标点击事件 滚动到指定tag位置
 - (void)lgf_TitleClick:(UITapGestureRecognizer *)sender {
-    NSInteger nowSelectIndex = sender.view.tag;
-    if (self.lgf_SelectIndex == nowSelectIndex) {
-        return;
-    }
-    self.lgf_UnSelectIndex = self.lgf_SelectIndex;
-    self.lgf_SelectIndex = nowSelectIndex;
+    [self lgf_AutoSelectIndex:sender.view.tag];
     [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:YES duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
     // 获取精确 lgf_RealSelectIndex
     self.lgf_RealSelectIndex = self.lgf_SelectIndex;
@@ -171,16 +164,9 @@
 }
 
 #pragma mark - 标自动滚动
-- (void)lgf_AutoScrollTitle {
-    if (!self.lgf_PageView.isTracking) {
-        NSInteger nowSelectIndex = (self.lgf_PageView.contentOffset.x / (NSInteger)self.lgf_PageView.lgfpt_Width);
-        if (self.lgf_SelectIndex == nowSelectIndex) {
-            return;
-        }
-        self.lgf_UnSelectIndex = self.lgf_SelectIndex;
-        self.lgf_SelectIndex = nowSelectIndex;
-        [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
-    }
+- (void)lgf_AutoScrollTitle:(NSInteger)selectIndex {
+    [self lgf_AutoSelectIndex:selectIndex];
+    [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
 }
 
 #pragma mark - 调整title位置 使其滚动到中间
@@ -204,34 +190,38 @@
 }
 
 #pragma mark -  外层分页控制器 contentOffset 转化
-- (void)lgf_ConvertToProgress:(CGFloat)contentOffsetX {
+- (CGFloat)lgf_ConvertToProgress:(CGFloat)contentOffsetX {
     CGFloat selectProgress = contentOffsetX / self.lgf_PageView.lgfpt_Width;
     CGFloat progress = selectProgress - floor(selectProgress);
-    CGPoint delta = [self.lgf_PageView.panGestureRecognizer translationInView:self.lgf_PageView.superview];
     NSInteger selectIndex;
     NSInteger unSelectIndex;
-    if (delta.x > 0.0) {
+    if (self.lgf_TitleLine.lgfpt_X < contentOffsetX) {
         selectIndex = selectProgress + 1;
         unSelectIndex = selectProgress;
-    } else if (delta.x < 0.0) {
+    } else if (self.lgf_TitleLine.lgfpt_X > contentOffsetX) {
         progress = 1.0 - progress;
         unSelectIndex = selectProgress + 1;
         selectIndex = selectProgress;
     } else {
-        return;
+        return 0.0;
     }
     if ((unSelectIndex > self.lgf_TitleButtons.count - 1) || (selectIndex > self.lgf_TitleButtons.count - 1 ) || (self.lgf_TitleButtons.count == 0)) {
-        return;
+        return 0.0;
     }
     
     // 获取精确 lgf_RealSelectIndex
     if (self.lgf_RealSelectIndex != roundf(selectProgress)) {
         self.lgf_RealSelectIndex = roundf(selectProgress);
+        if (self.lgf_Style.lgf_IsExecutedImmediatelyTitleScrollFollow) {
+            [self lgf_AutoScrollTitle:self.lgf_RealSelectIndex];
+        }
         if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_RealSelectFreePTTitle:)]) {
             [self.lgf_FreePTDelegate lgf_RealSelectFreePTTitle:self.lgf_RealSelectIndex];
         }
     }
     [self lgf_AdjustUIWithProgress:progress unSelectIndex:unSelectIndex selectIndex:selectIndex];
+    
+    return progress;
 }
 
 #pragma mark - 更新标view的UI(用于滚动外部分页控制器的时候)
@@ -368,12 +358,12 @@
         // setContentOffset 方法触发的不算数～
         if (self.lgf_PageView.isTracking || self.lgf_PageView.isDragging || self.lgf_PageView.isDecelerating) {
             self.lgf_FreePTViewEnabled = NO;
-            self.lgf_PageView.userInteractionEnabled = NO;
             [self lgf_ConvertToProgress:self.lgf_PageView.contentOffset.x < 0.0 ? 0.0 : self.lgf_PageView.contentOffset.x];
             if ((NSInteger)self.lgf_PageView.contentOffset.x % (NSInteger)self.lgf_PageView.lgfpt_Width == 0.0) {
                 self.lgf_FreePTViewEnabled = YES;
-                self.lgf_PageView.userInteractionEnabled = YES;
-                [self lgf_AutoScrollTitle];
+                if (!self.lgf_Style.lgf_IsExecutedImmediatelyTitleScrollFollow) {
+                    [self lgf_AutoScrollTitle:(self.lgf_PageView.contentOffset.x / (NSInteger)self.lgf_PageView.lgfpt_Width)];
+                }
             }
         }
     }
@@ -399,6 +389,15 @@
 }
 
 #pragma mark - 懒加载
+
+- (void)lgf_AutoSelectIndex:(NSInteger)selectIndex {
+    if (self.lgf_SelectIndex == selectIndex) {
+        return;
+    }
+    self.lgf_UnSelectIndex = self.lgf_SelectIndex;
+    self.lgf_SelectIndex = selectIndex;
+}
+
 - (void)setLgf_FreePTViewEnabled:(BOOL)lgf_FreePTViewEnabled {
     _lgf_FreePTViewEnabled = lgf_FreePTViewEnabled;
     [self setViewEnabled:_lgf_FreePTViewEnabled view:self];

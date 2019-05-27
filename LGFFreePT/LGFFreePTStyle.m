@@ -98,6 +98,7 @@
         self.lgf_StartDebug = NO;
         self.lgf_PVTitleViewBackgroundColor = [UIColor clearColor];
         self.lgf_PageLeftRightSpace = 0.0;
+        self.lgf_IsExecutedImmediatelyTitleScrollFollow = NO;
     }
     return self;
 }

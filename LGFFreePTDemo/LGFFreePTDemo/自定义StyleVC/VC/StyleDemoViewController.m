@@ -55,7 +55,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
     [demoArray addObject:demo];
     
     [styleDefultDict.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull defultKey, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![[styleDefultDict valueForKey:defultKey] isEqualToString:[styleDict valueForKey:defultKey]] && ![defultKey isEqualToString:@"LGFFreePTSuperViewHeight"]) {
+        if (![[styleDefultDict valueForKey:defultKey] isEqualToString:[styleDict valueForKey:defultKey]] && ![defultKey isEqualToString:@"LGFFreePTSuperViewHeight"] && ![defultKey isEqualToString:@"LGFFreePTSuperViewBorderWidth"] && ![defultKey isEqualToString:@"LGFFreePTSuperViewBorderColor"]) {
             NSString *demo = @"";
             if ([defultKey isEqualToString:@"setlgf_ImageNames"]) {
                 demo = @"style.lgf_SelectImageNames = @[@\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\"].mutableCopy;\nstyle.lgf_UnSelectImageNames = @[@\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\"].mutableCopy;";
