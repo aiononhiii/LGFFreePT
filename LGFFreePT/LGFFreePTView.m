@@ -33,11 +33,9 @@
 
 #pragma mark - 初始化配置
 - (instancetype)lgf_InitWithStyle:(LGFFreePTStyle *)style SVC:(UIViewController *)SVC SV:(UIView *)SV PV:(UICollectionView *)PV {
-    // NSAssert
     NSAssert(SVC, @"请在initWithStyle方法中传入父视图控制器! 否则将无法联动控件");
     NSAssert(SV, @"请在initWithStyle方法中传入父View! 否则将无法联动控件");
     NSAssert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, @"选中图片数组和未选中图片数组count必须一致");
-    
     self.lgf_Style = style;
     self.lgf_PageView = PV;
     // 部分基础 UI 配置
@@ -71,13 +69,13 @@
     [self lgf_ReloadTitleAndSelectIndex:selectIndex isExecutionDelegate:isExecutionDelegate isReloadPageCV:YES animated:animated];
 }
 - (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex isExecutionDelegate:(BOOL)isExecutionDelegate isReloadPageCV:(BOOL)isReloadPageCV animated:(BOOL)animated {
-    if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (selectIndex >  self.lgf_Style.lgf_Titles.count - 1)) {
-        return;
+    if (self.lgf_PageView) {
+        NSAssert(self.lgf_Style.lgf_Titles.count == [self.lgf_PageView.dataSource collectionView:self.lgf_PageView numberOfItemsInSection:0], @"如果关联 lgf_PageView 外部子控制器/ cell 数量必须和 lgf_Titles 标数量保持一致，如果不关联 lgf_PageView 请传 nil");
+        if (isReloadPageCV) [self.lgf_PageView reloadData];
     }
+    NSAssert((selectIndex <= (self.lgf_Style.lgf_Titles.count - 1)) && (selectIndex >= 0), @"lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了");
     // 删除一遍所有子控件
     [self lgf_RemoveAllSubViews];
-    
-    if (self.lgf_PageView && isReloadPageCV) [self.lgf_PageView reloadData];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
@@ -109,9 +107,8 @@
     [self lgf_SelectIndex:index duration:duration autoScrollDuration:autoScrollDuration isExecutionDelegate:NO];
 }
 - (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration isExecutionDelegate:(BOOL)isExecutionDelegate {
-    if (self.lgf_Style.lgf_Titles.count == 0 || !self.lgf_Style.lgf_Titles || (index >  self.lgf_Style.lgf_Titles.count - 1) || self.lgf_SelectIndex == index) {
-        return;
-    }
+    NSAssert((index <= (self.lgf_Style.lgf_Titles.count - 1)) && (index >= 0), @"lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了");
+    if (self.lgf_SelectIndex == index) { return; }
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
         [self lgf_AutoSelectIndex:index];
@@ -122,7 +119,6 @@
 
 #pragma mark - 添加标
 - (void)lgf_AddTitles {
-    
     __block CGFloat contentWidth = 0.0;
     [self.lgf_Style.lgf_Titles enumerateObjectsUsingBlock:^(NSString *  _Nonnull titleText, NSUInteger idx, BOOL * _Nonnull stop) {
         LGFFreePTTitle *title = [LGFFreePTTitle lgf_AllocTitle:titleText index:idx style:self.lgf_Style delegate:self];
@@ -154,7 +150,7 @@
 
 #pragma mark - 标点击事件 滚动到指定tag位置
 - (void)lgf_TitleClick:(UITapGestureRecognizer *)sender {
-    [self lgf_AutoSelectIndex:sender.view.tag];
+    if (![self lgf_AutoSelectIndex:sender.view.tag]) return;
     [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:YES duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
     // 获取精确 lgf_RealSelectIndex
     self.lgf_RealSelectIndex = self.lgf_SelectIndex;
@@ -165,7 +161,7 @@
 
 #pragma mark - 标自动滚动
 - (void)lgf_AutoScrollTitle:(NSInteger)selectIndex {
-    [self lgf_AutoSelectIndex:selectIndex];
+    if (![self lgf_AutoSelectIndex:selectIndex]) return;
     [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
 }
 
@@ -180,6 +176,7 @@
         [LGFFreePTMethod lgf_TitleScrollFollowLeftRightAnimationConfig:self.lgf_Style lgf_TitleButtons:self.lgf_TitleButtons unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex duration:autoScrollDuration];
     } else if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowCustomize) {
         if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_TitleScrollFollowCustomizeAnimationConfig:lgf_TitleButtons:unSelectIndex:selectIndex:duration:)]) {
+            LGFPTLog(@"自定义回位动画的 contentOffset.x:%f", self.contentOffset.x);
             [self.lgf_FreePTDelegate lgf_TitleScrollFollowCustomizeAnimationConfig:self.lgf_Style lgf_TitleButtons:self.lgf_TitleButtons unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex duration:autoScrollDuration];
         }
     }
@@ -190,28 +187,30 @@
 }
 
 #pragma mark -  外层分页控制器 contentOffset 转化
-- (CGFloat)lgf_ConvertToProgress:(CGFloat)contentOffsetX {
+- (void)lgf_ConvertToProgress:(CGFloat)contentOffsetX {
     CGFloat selectProgress = contentOffsetX / self.lgf_PageView.lgfpt_Width;
     CGFloat progress = selectProgress - floor(selectProgress);
-    NSInteger selectIndex;
-    NSInteger unSelectIndex;
-    if (self.lgf_TitleLine.lgfpt_X < contentOffsetX) {
-        selectIndex = selectProgress + 1;
-        unSelectIndex = selectProgress;
-    } else if (self.lgf_TitleLine.lgfpt_X > contentOffsetX) {
-        progress = 1.0 - progress;
-        unSelectIndex = selectProgress + 1;
+    NSInteger selectIndex = self.lgf_UnSelectIndex;
+    NSInteger unSelectIndex = self.lgf_SelectIndex;
+    if (contentOffsetX >= (self.lgf_PageView.contentSize.width - self.lgf_PageView.lgfpt_Width)) {
+        progress = 1.0;
+        unSelectIndex = selectProgress - 1;
         selectIndex = selectProgress;
     } else {
-        return 0.0;
-    }
-    if ((unSelectIndex > self.lgf_TitleButtons.count - 1) || (selectIndex > self.lgf_TitleButtons.count - 1 ) || (self.lgf_TitleButtons.count == 0)) {
-        return 0.0;
+        if (self.lgf_TitleLine.lgfpt_X < contentOffsetX) {
+            selectIndex = selectProgress + 1;
+            unSelectIndex = selectProgress;
+        } else {
+            progress = 1.0 - progress;
+            unSelectIndex = selectProgress + 1;
+            selectIndex = selectProgress;
+        }
     }
     
     // 获取精确 lgf_RealSelectIndex
     if (self.lgf_RealSelectIndex != roundf(selectProgress)) {
         self.lgf_RealSelectIndex = roundf(selectProgress);
+        // 精确跟随
         if (self.lgf_Style.lgf_IsExecutedImmediatelyTitleScrollFollow) {
             [self lgf_AutoScrollTitle:self.lgf_RealSelectIndex];
         }
@@ -220,8 +219,6 @@
         }
     }
     [self lgf_AdjustUIWithProgress:progress unSelectIndex:unSelectIndex selectIndex:selectIndex];
-    
-    return progress;
 }
 
 #pragma mark - 更新标view的UI(用于滚动外部分页控制器的时候)
@@ -359,7 +356,7 @@
         if (self.lgf_PageView.isTracking || self.lgf_PageView.isDragging || self.lgf_PageView.isDecelerating) {
             self.lgf_FreePTViewEnabled = NO;
             [self lgf_ConvertToProgress:self.lgf_PageView.contentOffset.x < 0.0 ? 0.0 : self.lgf_PageView.contentOffset.x];
-            if ((NSInteger)self.lgf_PageView.contentOffset.x % (NSInteger)self.lgf_PageView.lgfpt_Width == 0.0) {
+            if ((NSInteger)self.lgf_PageView.contentOffset.x % (NSInteger)self.lgf_PageView.lgfpt_Width == 0) {
                 self.lgf_FreePTViewEnabled = YES;
                 if (!self.lgf_Style.lgf_IsExecutedImmediatelyTitleScrollFollow) {
                     [self lgf_AutoScrollTitle:(self.lgf_PageView.contentOffset.x / (NSInteger)self.lgf_PageView.lgfpt_Width)];
@@ -390,12 +387,13 @@
 
 #pragma mark - 懒加载
 
-- (void)lgf_AutoSelectIndex:(NSInteger)selectIndex {
+- (BOOL)lgf_AutoSelectIndex:(NSInteger)selectIndex {
     if (self.lgf_SelectIndex == selectIndex) {
-        return;
+        return NO;
     }
     self.lgf_UnSelectIndex = self.lgf_SelectIndex;
     self.lgf_SelectIndex = selectIndex;
+    return YES;
 }
 
 - (void)setLgf_FreePTViewEnabled:(BOOL)lgf_FreePTViewEnabled {

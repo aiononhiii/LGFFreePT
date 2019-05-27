@@ -129,7 +129,7 @@
 }
 
 + (void)lgf_PageLineAnimationHideShowClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
-    // 这个 0.0001 用于关键帧动画的瞬间无缝坐标改动（肉眼无法识别）
+    // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / duration)  animations:^{
         line.alpha = 0.0;
     }];
@@ -143,7 +143,7 @@
 }
 
 + (void)lgf_PageLineAnimationSmallToBigClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
-    // 这个 0.0001 用于关键帧动画的瞬间无缝坐标改动（肉眼无法识别）
+    // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / duration)  animations:^{
         line.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
     }];
@@ -158,7 +158,7 @@
 
 + (void)lgf_PageLineAnimationTortoiseDownClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
     CGFloat space = style.lgf_LineBottom + line.lgfpt_Height;
-    // 这个 0.0001 用于关键帧动画的瞬间无缝坐标改动（肉眼无法识别）
+    // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / duration)  animations:^{
         line.transform = CGAffineTransformMakeTranslation(0.0, space);
     }];
@@ -173,7 +173,7 @@
 
 + (void)lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration {
     CGFloat space = style.lgf_LineBottom - style.lgf_PVTitleView.lgfpt_Height;
-    // 这个 0.0001 用于关键帧动画的瞬间无缝坐标改动（肉眼无法识别）
+    // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 - (0.0001 / duration)  animations:^{
         line.transform = CGAffineTransformMakeTranslation(0.0, space);
     }];
