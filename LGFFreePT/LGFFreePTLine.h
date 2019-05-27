@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param imageUrl 网络图片的 Url
  */
 - (void)lgf_GetLineNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+#pragma mark - 实现这个代理来对 LGFFreePTLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
+/**
+ @param lgf_FreePTLine LGFFreePTLine 本体
+ @param style LGFFreePTStyle
+ */
+- (void)lgf_GetLine:(UIImageView *)lgf_FreePTLine style:(LGFFreePTStyle *)style;
 @end
 @interface LGFFreePTLine : UIImageView
 @property (strong, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型

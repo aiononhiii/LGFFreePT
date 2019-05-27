@@ -321,6 +321,19 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         [style.lgf_PVTitleView setContentOffset:CGPointMake(offSetx, 0.0)];
     }];
 }
+// 部分系统属性配置
+- (void)lgf_GetLGFFreePTTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style {
+    if (self.lgf_TitleBorderWidth.text.floatValue > 0.0) {
+        lgf_FreePTTitle.layer.borderWidth = self.lgf_TitleBorderWidth.text.floatValue;
+        lgf_FreePTTitle.layer.borderColor = lgf_HexColor(self.lgf_TitleBorderColor.text).CGColor;
+    }
+    lgf_FreePTTitle.backgroundColor = lgf_HexColor(self.lgf_TitleBackgroundColor.text);
+    lgf_FreePTTitle.layer.cornerRadius = self.lgf_TitleCornerRadius.text.floatValue;
+}
+
+- (void)lgf_GetLGFFreePTLine:(UIImageView *)lgf_FreePTLine style:(LGFFreePTStyle *)style {
+    lgf_FreePTLine.alpha = self.lgf_LineAlpha.text.floatValue;
+}
 
 #pragma mark - UIPickerView Delegate
 
@@ -382,7 +395,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField.text lgf_IsBlank]) {
-        textField.text = @"0.0";
+        textField.text = @"0";
     } else {
         NSArray *texts = [textField.text componentsSeparatedByString:@"."];
         if ([texts.lastObject lgf_IsBlank]) {
@@ -390,7 +403,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         } else {
             textField.text = [NSString stringWithFormat:@"%@", [textField.text lgf_KeepDecimals:2]];
             if ([textField.text floatValue] <= 0.0) {
-                textField.text = @"0.0";
+                textField.text = @"0";
             }
         }
     }
@@ -409,10 +422,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_TitleSelectColor.text = styleDict[@"lgf_TitleSelectColor"] ? styleDict[@"lgf_TitleSelectColor"] : [style.lgf_TitleSelectColor lgf_HexStringWithAlpha];
     self.lgf_UnSubTitleSelectColor.text = styleDict[@"lgf_UnSubTitleSelectColor"] ? styleDict[@"lgf_UnSubTitleSelectColor"] : [style.lgf_UnSubTitleSelectColor lgf_HexStringWithAlpha];
     self.lgf_SubTitleSelectColor.text = styleDict[@"lgf_SubTitleSelectColor"] ? styleDict[@"lgf_SubTitleSelectColor"] : [style.lgf_SubTitleSelectColor lgf_HexStringWithAlpha];
-    self.lgf_TitleBackgroundColor.text = styleDict[@"lgf_TitleBackgroundColor"] ? styleDict[@"lgf_TitleBackgroundColor"] : [style.lgf_TitleBackgroundColor lgf_HexStringWithAlpha];
     self.lgf_LineColor.text = styleDict[@"lgf_LineColor"] ? styleDict[@"lgf_LineColor"] : [style.lgf_LineColor lgf_HexStringWithAlpha];
-    self.lgf_TitleBorderColor.text = styleDict[@"lgf_TitleBorderColor"] ? styleDict[@"lgf_TitleBorderColor"] : [style.lgf_TitleBorderColor lgf_HexStringWithAlpha];
-    self.lgf_TitleBorderWidth.text = styleDict[@"lgf_TitleBorderWidth"] ? styleDict[@"lgf_TitleBorderWidth"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TitleBorderWidth) lgf_KeepDecimals:2]];
     self.lgf_PVTitleViewBackgroundColor.text = styleDict[@""] ? styleDict[@""] : [style.lgf_PVTitleViewBackgroundColor lgf_HexStringWithAlpha];
     self.lgf_TitleSelectFont.text = styleDict[@"lgf_TitleSelectFont"] ? styleDict[@"lgf_TitleSelectFont"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TitleSelectFont.pointSize) lgf_KeepDecimals:2]];
     self.lgf_UnTitleSelectFont.text = styleDict[@"lgf_UnTitleSelectFont"] ? styleDict[@"lgf_UnTitleSelectFont"] : [NSString stringWithFormat:@"%@", [@(style.lgf_UnTitleSelectFont.pointSize) lgf_KeepDecimals:2]];
@@ -435,14 +445,12 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_LineHeight.text = styleDict[@"lgf_LineHeight"] ? styleDict[@"lgf_LineHeight"] : [NSString stringWithFormat:@"%@", [@(style.lgf_LineHeight) lgf_KeepDecimals:2]];
     self.lgf_LineBottom.text = styleDict[@"lgf_LineBottom"] ? [NSString stringWithFormat:@"%@", [@(ABS([styleDict[@"lgf_LineBottom"] floatValue])) lgf_KeepDecimals:2]] : [NSString stringWithFormat:@"%@", [@(ABS(style.lgf_LineBottom)) lgf_KeepDecimals:2]];
     self.lgf_LineBottomPlusMinus.selected = (styleDict[@"lgf_LineBottom"] ? [styleDict[@"lgf_LineBottom"] floatValue] : style.lgf_LineBottom) < 0.0;
-    self.lgf_LineAlpha.text = styleDict[@"lgf_LineAlpha"] ? styleDict[@"lgf_LineAlpha"] : [NSString stringWithFormat:@"%@", [@(style.lgf_LineAlpha) lgf_KeepDecimals:2]];
     self.lgf_SubTitleTopSpace.text = styleDict[@"lgf_SubTitleTopSpace"] ? [NSString stringWithFormat:@"%@", [@(ABS([styleDict[@"lgf_SubTitleTopSpace"] floatValue])) lgf_KeepDecimals:2]] : [NSString stringWithFormat:@"%@", [@(ABS(style.lgf_SubTitleTopSpace)) lgf_KeepDecimals:2]];
     self.lgf_SubTitleTopSpacePlusMinus.selected = (styleDict[@"lgf_SubTitleTopSpace"] ? [styleDict[@"lgf_SubTitleTopSpace"] floatValue] : style.lgf_SubTitleTopSpace) < 0.0;
     self.lgf_TitleClickAnimationDuration.text = styleDict[@"lgf_TitleClickAnimationDuration"] ? styleDict[@"lgf_TitleClickAnimationDuration"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TitleClickAnimationDuration) lgf_KeepDecimals:2]];
     self.lgf_TitleScrollToTheMiddleAnimationDuration.text = styleDict[@"lgf_TitleScrollToTheMiddleAnimationDuration"] ? styleDict[@"lgf_TitleScrollToTheMiddleAnimationDuration"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TitleScrollToTheMiddleAnimationDuration) lgf_KeepDecimals:2]];
     self.lgf_TitleFixedWidth.text = styleDict[@"lgf_TitleFixedWidth"] ? styleDict[@"lgf_TitleFixedWidth"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TitleFixedWidth) lgf_KeepDecimals:2]];
     self.lgf_TitleLeftRightSpace.text = styleDict[@"lgf_TitleLeftRightSpace"] ? styleDict[@"lgf_TitleLeftRightSpace"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TitleLeftRightSpace) lgf_KeepDecimals:2]];
-    self.lgf_TitleCornerRadius.text = styleDict[@"lgf_TitleCornerRadius"] ? styleDict[@"lgf_TitleCornerRadius"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TitleCornerRadius) lgf_KeepDecimals:2]];
     self.lgf_TopImageSpace.text = styleDict[@"lgf_TopImageSpace"] ? [NSString stringWithFormat:@"%@", [@(ABS([styleDict[@"lgf_TopImageSpace"] floatValue])) lgf_KeepDecimals:2]] : [NSString stringWithFormat:@"%@", [@(ABS(style.lgf_TopImageSpace)) lgf_KeepDecimals:2]];
     self.lgf_TopImageSpacePlusMinus.selected = (styleDict[@"lgf_TopImageSpace"] ? [styleDict[@"lgf_TopImageSpace"] floatValue] : style.lgf_TopImageSpace) < 0.0;
     self.lgf_TopImageWidth.text = styleDict[@"lgf_TopImageWidth"] ? styleDict[@"lgf_TopImageWidth"] : [NSString stringWithFormat:@"%@", [@(style.lgf_TopImageWidth) lgf_KeepDecimals:2]];
@@ -488,6 +496,13 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.LGFFreePTSuperViewBorderWidth.text = styleDict[@"LGFFreePTSuperViewBorderWidth"] ? styleDict[@"LGFFreePTSuperViewBorderWidth"] : @"0";
     self.LGFFreePTSuperViewBorderColor.text = styleDict[@"LGFFreePTSuperViewBorderColor"] ? styleDict[@"LGFFreePTSuperViewBorderColor"] : @"00000000";
     
+    // 非 style 属性
+    self.lgf_TitleBackgroundColor.text = styleDict[@"lgf_TitleBackgroundColor"] ? styleDict[@"lgf_TitleBackgroundColor"] : @"00000000";
+    self.lgf_TitleBorderColor.text = styleDict[@"lgf_TitleBorderColor"] ? styleDict[@"lgf_TitleBorderColor"] : @"00000000";
+    self.lgf_TitleBorderWidth.text = styleDict[@"lgf_TitleBorderWidth"] ? styleDict[@"lgf_TitleBorderWidth"] : @"0";
+    self.lgf_TitleCornerRadius.text = styleDict[@"lgf_TitleCornerRadius"] ? styleDict[@"lgf_TitleCornerRadius"] : @"0";
+    self.lgf_LineAlpha.text = styleDict[@"lgf_LineAlpha"] ? styleDict[@"lgf_LineAlpha"] : @"1";
+    
     [self setViewColor];
     
     if (styleDict.allValues.count == 0) {
@@ -513,11 +528,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_TitleSelectColor = [UIColor lgf_ColorWithHexString:self.lgf_TitleSelectColor.text];
     style.lgf_UnSubTitleSelectColor = [UIColor lgf_ColorWithHexString:self.lgf_UnSubTitleSelectColor.text];
     style.lgf_SubTitleSelectColor = [UIColor lgf_ColorWithHexString:self.lgf_SubTitleSelectColor.text];
-    style.lgf_TitleBackgroundColor = [UIColor lgf_ColorWithHexString:self.lgf_TitleBackgroundColor.text];
     style.lgf_LineColor = [UIColor lgf_ColorWithHexString:self.lgf_LineColor.text];
-    style.lgf_TitleBorderColor = [UIColor lgf_ColorWithHexString:self.lgf_TitleBorderColor.text];
     style.lgf_PVTitleViewBackgroundColor = [UIColor lgf_ColorWithHexString:self.lgf_PVTitleViewBackgroundColor.text];
-    style.lgf_TitleBorderWidth = self.lgf_TitleBorderWidth.text.floatValue;
     style.lgf_TitleSelectFont = [UIFont systemFontOfSize:self.lgf_TitleSelectFont.text.floatValue];
     style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:self.lgf_UnTitleSelectFont.text.floatValue];
     style.lgf_SubTitleSelectFont = [UIFont systemFontOfSize:self.lgf_SubTitleSelectFont.text.floatValue];
@@ -533,13 +545,11 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_LineCenterX = self.lgf_LineCenterXPlusMinus.selected ? -self.lgf_LineCenterX.text.floatValue : self.lgf_LineCenterX.text.floatValue;
     style.lgf_LineHeight = self.lgf_LineHeight.text.floatValue;
     style.lgf_LineBottom = self.lgf_LineBottomPlusMinus.selected ? -self.lgf_LineBottom.text.floatValue : self.lgf_LineBottom.text.floatValue;
-    style.lgf_LineAlpha = self.lgf_LineAlpha.text.floatValue;
     style.lgf_SubTitleTopSpace = self.lgf_SubTitleTopSpacePlusMinus.selected ? -self.lgf_SubTitleTopSpace.text.floatValue : self.lgf_SubTitleTopSpace.text.floatValue;
     style.lgf_TitleClickAnimationDuration = self.lgf_TitleClickAnimationDuration.text.floatValue;
     style.lgf_TitleScrollToTheMiddleAnimationDuration = self.lgf_TitleScrollToTheMiddleAnimationDuration.text.floatValue;
     style.lgf_TitleFixedWidth = self.lgf_TitleFixedWidth.text.floatValue;
     style.lgf_TitleLeftRightSpace = self.lgf_TitleLeftRightSpace.text.floatValue;
-    style.lgf_TitleCornerRadius = self.lgf_TitleCornerRadius.text.floatValue;
     style.lgf_LineCornerRadius = self.lgf_LineCornerRadius.text.floatValue;
     style.lgf_PageLeftRightSpace = self.lgf_PageLeftRightSpace.text.floatValue;
     style.lgf_TitleHaveAnimation = self.lgf_TitleHaveAnimation.on;
@@ -555,18 +565,23 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_LineWidthType = self.lgf_LineWidthTypeInt;
     if (self.setlgf_ImageNames.on) {
         style.lgf_ImageBundel = lgf_Bundle(@"LGFFreePTDemo");
+        
         style.lgf_TopImageSpace = self.lgf_TopImageSpacePlusMinus.selected ? -self.lgf_TopImageSpace.text.floatValue : self.lgf_TopImageSpace.text.floatValue;
         style.lgf_TopImageWidth = self.lgf_TopImageWidth.text.floatValue;
         style.lgf_TopImageHeight = self.lgf_TopImageHeight.text.floatValue;
+        
         style.lgf_BottomImageSpace = self.lgf_BottomImageSpacePlusMinus.selected ? -self.lgf_BottomImageSpace.text.floatValue : self.lgf_BottomImageSpace.text.floatValue;
         style.lgf_BottomImageWidth = self.lgf_BottomImageWidth.text.floatValue;
         style.lgf_BottomImageHeight = self.lgf_BottomImageHeight.text.floatValue;
+        
         style.lgf_LeftImageSpace = self.lgf_LeftImageSpacePlusMinus.selected ? -self.lgf_LeftImageSpace.text.floatValue : self.lgf_LeftImageSpace.text.floatValue;
         style.lgf_LeftImageWidth = self.lgf_LeftImageWidth.text.floatValue;
         style.lgf_LeftImageHeight = self.lgf_LeftImageHeight.text.floatValue;
+        
         style.lgf_RightImageSpace = self.lgf_RightImageSpacePlusMinus.selected ? -self.lgf_RightImageSpace.text.floatValue : self.lgf_RightImageSpace.text.floatValue;
         style.lgf_RightImageWidth = self.lgf_RightImageWidth.text.floatValue;
         style.lgf_RightImageHeight = self.lgf_RightImageHeight.text.floatValue;
+        
         style.lgf_SelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian" count:self.titles.count].mutableCopy;
         style.lgf_UnSelectImageNames = [[NSMutableArray new] lgf_CreatDentical:@"tupian_un" count:self.titles.count].mutableCopy;
     } else {

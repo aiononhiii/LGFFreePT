@@ -67,7 +67,6 @@
     style.lgf_TitleFixedWidth = 80.0;
     style.lgf_LineWidth = 10.0;
     style.lgf_LineWidthType = lgf_FixedWith;
-    style.lgf_TitleCornerRadius = 3.0;
     style.lgf_LineHeight = 4.0;
     style.lgf_LineBottom = 0.0;
     style.lgf_LineCornerRadius = 2.0;
@@ -83,7 +82,6 @@
 + (LGFFreePTStyle *)five {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
     style.lgf_LineWidthType = lgf_EqualTitleSTR;// 底部线对准字
-    style.lgf_TitleCornerRadius = 3.0;
     style.lgf_TitleLeftRightSpace = 20.0;
     style.lgf_PageLeftRightSpace = 20.0;
     style.lgf_LineHeight = 4.0;
@@ -118,7 +116,6 @@
     style.lgf_LineWidthType = lgf_EqualTitleSTR;// 底部线对准字
     style.lgf_TitleLeftRightSpace = 10.0;
     style.lgf_PageLeftRightSpace = 10.0;
-    style.lgf_TitleCornerRadius = 3.0;
     style.lgf_LineHeight = 4.0;
     style.lgf_LineBottom = 0.0;
     style.lgf_TitleTransformSX = 1.0;// 控制放大缩小
@@ -149,7 +146,6 @@
     style.lgf_LineWidthType = lgf_EqualTitleSTRAndImage;// 底部线对准字和图片
     style.lgf_TitleLeftRightSpace = 10.0;
     style.lgf_PageLeftRightSpace = 5.0;
-    style.lgf_TitleCornerRadius = 3.0;
     style.lgf_LineHeight = 44.0;
     style.lgf_LineBottom = 0.0;
     style.lgf_LineCornerRadius = 2.0;
@@ -193,7 +189,6 @@
     style.lgf_LineWidthType = lgf_EqualTitleSTR;
     style.lgf_TitleLeftRightSpace = 10.0;
     style.lgf_PageLeftRightSpace = 10.0;
-    style.lgf_TitleCornerRadius = 1.0;
     style.lgf_LineHeight = 2.0;
     style.lgf_LineBottom = 0.0;
     style.lgf_LineCornerRadius = 2.0;
@@ -223,7 +218,6 @@
     style.lgf_LeftImageWidth = 10;
     style.lgf_TitleLeftRightSpace = 10.0;
     style.lgf_PageLeftRightSpace = 10.0;
-    style.lgf_TitleCornerRadius = 1.0;
     style.lgf_LineHeight = 2.0;
     style.lgf_LineBottom = 0.0;
     style.lgf_LineCornerRadius = 1.0;
@@ -250,7 +244,6 @@
     style.lgf_IsShowLine = NO;
     style.lgf_TitleLeftRightSpace = 15.0;
     style.lgf_PageLeftRightSpace = 15.0;
-    style.lgf_TitleCornerRadius = 1.0;
     style.lgf_MainTitleTransformSX = 1.5;
     style.lgf_SubTitleTransformSX = 0.0;
     style.lgf_MainTitleTransformTY = 5.0;
@@ -313,8 +306,6 @@
     style.lgf_LineWidth = style.lgf_TitleFixedWidth;
     style.lgf_LineHeight = 44.0;
     style.lgf_LineColor = LGFPTHexColor(@"FFFFFF");
-    style.lgf_TitleBorderColor = LGFPTHexColor(@"FFFFFF");
-    style.lgf_TitleBorderWidth = 0.5;
     style.lgf_PVTitleViewBackgroundColor = LGFPTHexColor(@"2A48C2");
     style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
     style.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:14];
@@ -396,7 +387,6 @@
 + (LGFFreePTStyle *)nineteen {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
     style.lgf_LineWidthType = lgf_EqualTitleSTR;// 底部线对准字
-    style.lgf_TitleCornerRadius = 3.0;
     style.lgf_TitleLeftRightSpace = 20.0;
     style.lgf_PageLeftRightSpace = 20.0;
     style.lgf_MainTitleTransformSX = 1.3;

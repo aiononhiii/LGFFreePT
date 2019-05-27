@@ -21,19 +21,16 @@
     self.clipsToBounds = YES;
     self.lgf_FreePTLineDelegate = delegate;
     self.lgf_Style = style;
+    // 注意：这个代理放在最下面，对一些 LGFFreePTStyle 配置的属性拥有最终修改权
+    if (self.lgf_FreePTLineDelegate && [self.lgf_FreePTLineDelegate respondsToSelector:@selector(lgf_GetLine:style:)]) {
+        [self.lgf_FreePTLineDelegate lgf_GetLine:self style:style];
+    }
 }
 
 #pragma mark - 懒加载
 - (void)setLgf_Style:(LGFFreePTStyle *)lgf_Style {
     _lgf_Style = lgf_Style;
     if (!lgf_Style.lgf_IsLineNetImage && lgf_Style.lgf_LineImageName.length > 0) NSAssert(lgf_Style.lgf_ImageBundel, @"为了获取正确的图片 - 请设置 (NSBundle *)style.lgf_ImageBundel");
-    // 设置标边框
-    if (lgf_Style.lgf_LineBorderWidth > 0.0) {
-        self.layer.borderWidth = lgf_Style.lgf_LineBorderWidth;
-        self.layer.borderColor = lgf_Style.lgf_LineBorderColor.CGColor;
-        self.clipsToBounds = YES;
-    }
-    self.contentMode = lgf_Style.lgf_LineImageContentMode;
     self.backgroundColor = lgf_Style.lgf_LineColor;
     CGFloat Y = lgf_Style.lgf_PVTitleView.lgfpt_Height - ((lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? lgf_Style.lgf_PVTitleView.lgfpt_Height : (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom));
     CGFloat H = (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? (lgf_Style.lgf_PVTitleView.lgfpt_Height - lgf_Style.lgf_LineBottom) : lgf_Style.lgf_LineHeight;
@@ -44,7 +41,6 @@
     }
     self.lgfpt_Y = Y;
     self.lgfpt_Height = H;
-    self.alpha = lgf_Style.lgf_LineAlpha;
     self.layer.cornerRadius = lgf_Style.lgf_LineCornerRadius;
     if (lgf_Style.lgf_LineImageName.length > 0 && self.subviews.count == 0) {
         if (lgf_Style.lgf_IsLineNetImage) {

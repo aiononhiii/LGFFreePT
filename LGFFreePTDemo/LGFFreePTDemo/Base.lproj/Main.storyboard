@@ -1171,7 +1171,7 @@
                             <rect key="frame" x="0.0" y="94" width="375" height="1100"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="RDL-cd-XUc" firstAttribute="top" secondItem="538-XE-XZ3" secondAttribute="top" constant="94" id="2Ej-46-J7V"/>
                         <constraint firstAttribute="bottom" secondItem="RDL-cd-XUc" secondAttribute="bottom" id="76z-Se-8Qo"/>
@@ -1369,7 +1369,7 @@
                                 <rect key="frame" x="0.0" y="1695" width="375" height="3805"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJO-dW-e4j">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="3630"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="3680"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSM-mz-G8M">
                                                 <rect key="frame" x="0.0" y="720" width="375" height="50"/>
@@ -4359,7 +4359,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r74-p1-uI2">
-                                                <rect key="frame" x="10" y="3590" width="355" height="30"/>
+                                                <rect key="frame" x="10" y="3640" width="355" height="30"/>
                                                 <color key="backgroundColor" red="0.1960784314" green="0.48864397320000003" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="GcB-bL-1ow"/>
@@ -4673,8 +4673,8 @@
                                                     <constraint firstItem="YlB-rx-eAy" firstAttribute="leading" secondItem="JM5-8a-Y8Y" secondAttribute="leading" constant="10" id="veV-8J-C79"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还有部分非主要属性未在这里展示，有需要请参阅 LGFFreePTStyle.h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcQ-uv-Fdg">
-                                                <rect key="frame" x="10" y="3565" width="355" height="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还有部分非主要属性未在这里展示，有需要请参阅 LGFFreePTStyle.h，还有极少一部分效果是用 lgf_GetLGFFreePTTitle/lgf_GetLGFFreePTLine 这两个代理生成的，请查看我代码里这两个代理里的实现" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcQ-uv-Fdg">
+                                                <rect key="frame" x="10" y="3565" width="355" height="75"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="7"/>
                                                 <color key="textColor" white="0.58133370539999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -4937,7 +4937,7 @@
                                             <constraint firstItem="gyE-So-QkN" firstAttribute="top" secondItem="X38-IA-0d5" secondAttribute="bottom" id="5ET-5s-5nK"/>
                                             <constraint firstItem="WP5-Qp-M5U" firstAttribute="trailing" secondItem="gZw-gL-HcQ" secondAttribute="trailing" id="6R2-KT-K9b"/>
                                             <constraint firstItem="iki-pd-hKv" firstAttribute="leading" secondItem="TJO-dW-e4j" secondAttribute="leading" constant="10" id="6gA-kF-wb5"/>
-                                            <constraint firstAttribute="height" constant="3630" id="7Ie-tb-o86"/>
+                                            <constraint firstAttribute="height" constant="3680" id="7Ie-tb-o86"/>
                                             <constraint firstItem="dcQ-uv-Fdg" firstAttribute="leading" secondItem="TJO-dW-e4j" secondAttribute="leading" constant="10" id="7VL-v0-Hfc"/>
                                             <constraint firstItem="u2n-dJ-9ZH" firstAttribute="leading" secondItem="TJO-dW-e4j" secondAttribute="leading" constant="10" id="7ba-p2-aFr"/>
                                             <constraint firstAttribute="trailing" secondItem="e89-Ss-cdL" secondAttribute="trailing" id="85f-gP-ktd"/>

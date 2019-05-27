@@ -19,6 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param imageUrl 网络图片的 Url
  */
 - (void)lgf_GetTitleNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+#pragma mark - 实现这个代理来对 LGFFreePTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
+/**
+ @param lgf_FreePTTitle LGFFreePTTitle 本体
+ @param index 所在的 index
+ @param style LGFFreePTStyle
+ */
+- (void)lgf_GetTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style;
 @end
 @interface LGFFreePTTitle : UIView
 @property (weak, nonatomic) IBOutlet UILabel *lgf_Title;// 标

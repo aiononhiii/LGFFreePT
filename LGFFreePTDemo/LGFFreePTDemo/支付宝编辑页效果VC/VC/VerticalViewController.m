@@ -80,7 +80,7 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
 
 #pragma mark - 头部视图配置
 - (void)setHeader {
-    // 设置头高度（可动态适配）
+    // 设置头高度（可动态适配，我这边只用于示例代码因此是写死的高度）
     self.headerHeight = 454.0 + 10.0;
     // 添加头
     self.headerView.frame = CGRectMake(0.0, -self.headerHeight, lgf_ScreenWidth, self.headerHeight);

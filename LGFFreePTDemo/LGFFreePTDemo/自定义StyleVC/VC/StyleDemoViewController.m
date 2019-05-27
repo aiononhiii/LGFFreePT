@@ -55,7 +55,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
     [demoArray addObject:demo];
     
     [styleDefultDict.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull defultKey, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![[styleDefultDict valueForKey:defultKey] isEqualToString:[styleDict valueForKey:defultKey]] && ![defultKey isEqualToString:@"LGFFreePTSuperViewHeight"] && ![defultKey isEqualToString:@"LGFFreePTSuperViewBorderWidth"] && ![defultKey isEqualToString:@"LGFFreePTSuperViewBorderColor"]) {
+        if (![[styleDefultDict valueForKey:defultKey] isEqualToString:[styleDict valueForKey:defultKey]] && ![defultKey isEqualToString:@"LGFFreePTSuperViewHeight"] && ![defultKey isEqualToString:@"LGFFreePTSuperViewBorderWidth"] && ![defultKey isEqualToString:@"LGFFreePTSuperViewBorderColor"] && ![defultKey isEqualToString:@"lgf_TitleBackgroundColor"] && ![defultKey isEqualToString:@"lgf_TitleBorderColor"] && ![defultKey isEqualToString:@"lgf_TitleBorderWidth"] && ![defultKey isEqualToString:@"lgf_TitleCornerRadius"] && ![defultKey isEqualToString:@"lgf_LineAlpha"]) {
             NSString *demo = @"";
             if ([defultKey isEqualToString:@"setlgf_ImageNames"]) {
                 demo = @"style.lgf_SelectImageNames = @[@\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\", @\"tupian\"].mutableCopy;\nstyle.lgf_UnSelectImageNames = @[@\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\", @\"tupian_un\"].mutableCopy;";

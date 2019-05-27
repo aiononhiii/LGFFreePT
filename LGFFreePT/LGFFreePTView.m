@@ -341,11 +341,21 @@
         [self.lgf_FreePTDelegate lgf_GetNetImage:imageView imageUrl:imageUrl];
     }
 }
+- (void)lgf_GetTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style {
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetLGFFreePTTitle:index:style:)]) {
+        [self.lgf_FreePTDelegate lgf_GetLGFFreePTTitle:lgf_FreePTTitle index:index style:style];
+    }
+}
 
 #pragma mark - LGFFreePTLineDelegate
 - (void)lgf_GetLineNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl {
     if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetNetImage:imageUrl:)]) {
         [self.lgf_FreePTDelegate lgf_GetNetImage:imageView imageUrl:imageUrl];
+    }
+}
+- (void)lgf_GetLine:(UIImageView *)lgf_FreePTLine style:(LGFFreePTStyle *)style {
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetLGFFreePTLine:style:)]) {
+        [self.lgf_FreePTDelegate lgf_GetLGFFreePTLine:lgf_FreePTLine style:style];
     }
 }
 

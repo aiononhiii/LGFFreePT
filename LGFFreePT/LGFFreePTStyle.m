@@ -24,15 +24,11 @@
         // 标配置
         self.lgf_TitleClickAnimationDuration = 0.3;
         self.lgf_TitleScrollToTheMiddleAnimationDuration = 0.25;
-        self.lgf_TitleBackgroundColor = [UIColor clearColor];
         self.lgf_TitleLeftRightSpace = 0.0;
-        self.lgf_TitleCornerRadius = 0.0;
         self.lgf_TitleFixedWidth = 0.0;
         self.lgf_TitleTransformSX = 1.0;
         self.lgf_IsTitleCenter = NO;
         self.lgf_TitleHaveAnimation = YES;
-        self.lgf_TitleBorderColor = [UIColor clearColor];
-        self.lgf_TitleBorderWidth = 0.0;
         
         // 标 title 配置
         self.lgf_TitleSelectColor = [UIColor colorWithRed:0.3 green:0.5 blue:0.8 alpha:1.0];
@@ -59,16 +55,12 @@
         self.lgf_IsShowLine = YES;
         self.lgf_LineCornerRadius = 0.0;
         self.lgf_LineColor = [UIColor blueColor];
-        self.lgf_LineBorderColor = [UIColor clearColor];
-        self.lgf_LineBorderWidth = 0.0;
         self.lgf_LineWidth = 0.0;
         self.lgf_LineHeight = 1.0;
         self.lgf_LineBottom = 0.0;
         self.lgf_LineCenterX = 0.0;
-        self.lgf_LineAlpha = 1.0;
         self.lgf_LineImageName = @"";
         self.lgf_IsLineNetImage = NO;
-        self.lgf_LineImageContentMode = UIViewContentModeScaleToFill;
         
         // 标上下左右图片配置
         self.lgf_SelectImageNames = [NSMutableArray new];
@@ -170,9 +162,6 @@
     if (!_lgf_UnSelectImageNames || _lgf_UnSelectImageNames.count == 0) {
         _lgf_UnSelectImageNames = lgf_SelectImageNames;
     }
-    if (lgf_SelectImageNames.count == 0 || lgf_SelectImageNames.count != self.lgf_Titles.count) {
-        [self lgf_HaveNoImage];
-    }
 }
 
 - (void)setLgf_UnSelectImageNames:(NSMutableArray *)lgf_UnSelectImageNames {
@@ -180,24 +169,6 @@
     if (!_lgf_SelectImageNames || _lgf_SelectImageNames.count == 0) {
         _lgf_SelectImageNames = lgf_UnSelectImageNames;
     }
-    if (lgf_UnSelectImageNames.count == 0 || lgf_UnSelectImageNames.count != self.lgf_Titles.count) {
-        [self lgf_HaveNoImage];
-    }
-}
-
-- (void)lgf_HaveNoImage {
-    self.lgf_TopImageSpace = 0.0;
-    self.lgf_TopImageWidth = 0.0;
-    self.lgf_TopImageHeight = 0.0;
-    self.lgf_BottomImageSpace = 0.0;
-    self.lgf_BottomImageWidth = 0.0;
-    self.lgf_BottomImageHeight = 0.0;
-    self.lgf_LeftImageSpace = 0.0;
-    self.lgf_LeftImageWidth = 0.0;
-    self.lgf_LeftImageHeight = 0.0;
-    self.lgf_RightImageSpace = 0.0;
-    self.lgf_RightImageWidth = 0.0;
-    self.lgf_RightImageHeight = 0.0;
 }
 
 - (void)setLgf_SameSelectImageName:(NSString *)lgf_SameSelectImageName {

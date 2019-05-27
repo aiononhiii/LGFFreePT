@@ -160,14 +160,6 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) BOOL lgf_TitleHaveAnimation;
 // title 左右间距 默认 0.0
 @property (assign, nonatomic) CGFloat lgf_TitleLeftRightSpace;
-// title 背景色
-@property (strong, nonatomic) UIColor *lgf_TitleBackgroundColor;
-// title 边框颜色
-@property (strong, nonatomic) UIColor *lgf_TitleBorderColor;
-// title 边框宽度
-@property (assign, nonatomic) CGFloat lgf_TitleBorderWidth;
-// title 圆角
-@property (assign, nonatomic) CGFloat lgf_TitleCornerRadius;
 // 点击 title 移动动画时间 默认 0.2
 @property (assign, nonatomic) CGFloat lgf_TitleClickAnimationDuration;
 // 点击 title 后移动 title 居中动画时间 默认 0.2
@@ -225,24 +217,16 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_LineCornerRadius;
 // title 底部滚动线 背景图片 默认 无图
 @property (copy, nonatomic) NSString *lgf_LineImageName;
-// title 底部滚动线 背景图片 ContentMode **(非主要属性)**
-@property(nonatomic) UIViewContentMode lgf_LineImageContentMode;
 // 是否是 line 网络图片
 @property (assign, nonatomic) BOOL lgf_IsLineNetImage;
 // title 底部滚动线 颜色 默认 blueColor
 @property (strong, nonatomic) UIColor *lgf_LineColor;
-// title 底部滚动线 透明度 默认 1.0 - 不透明
-@property (assign, nonatomic) CGFloat lgf_LineAlpha;
 // title 底部滚动线 动画宽度设置 默认宽度等于 title 字体宽度 - EqualTitleSTR
 @property (assign, nonatomic) lgf_FreeTitleLineWidthType lgf_LineWidthType;
 // title 底部滚动线 宽度 默认 0 - 设置 LGFTitleLineType 固定宽度(FixedWith)时有效
 @property (assign, nonatomic) CGFloat lgf_LineWidth;
 // title 底部滚动线 高度 默认 1.0 (line_height最大高度为 LGFFreePT 的高度)
 @property (assign, nonatomic) CGFloat lgf_LineHeight;
-// title 底部滚动线 边框颜色
-@property (strong, nonatomic) UIColor *lgf_LineBorderColor;
-// title 底部滚动线 边框宽度
-@property (assign, nonatomic) CGFloat lgf_LineBorderWidth;
 // title 底部滚动线相对于底部位置 默认 0 - 贴于底部
 @property (assign, nonatomic) CGFloat lgf_LineBottom;
 // title 底部滚动线中心点左右偏移 默认 0 - 不偏移

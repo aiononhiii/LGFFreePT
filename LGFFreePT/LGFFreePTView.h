@@ -29,6 +29,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 
+#pragma mark - 实现这个代理来对 LGFFreePTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
+/**
+ @param lgf_FreePTTitle LGFFreePTTitle 本体
+ @param index 所在的 index
+ @param style LGFFreePTStyle
+ */
+- (void)lgf_GetLGFFreePTTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style;
+#pragma mark - 实现这个代理来对 LGFFreePTLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
+/**
+ @param lgf_FreePTLine LGFFreePTLine 本体
+ @param style LGFFreePTStyle
+ */
+- (void)lgf_GetLGFFreePTLine:(UIImageView *)lgf_FreePTLine style:(LGFFreePTStyle *)style;
+
 #pragma mark - 如果我原配的动画满足不了你，那么请使用这个自定义 line 动画代理（自定义配置滚动后 line 的动画）
 /**
  @param style LGFFreePTStyle

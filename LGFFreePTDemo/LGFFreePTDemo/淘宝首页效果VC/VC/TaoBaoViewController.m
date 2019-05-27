@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerTop;
 @property (strong, nonatomic) IBOutlet UIView *headerView;// 头部视图 可添加任意控件
 @property (weak, nonatomic) IBOutlet UIView *pageView;
-// 封装好的控制器
+// 里面的交互不仔细看一下我的代码还是稍微有点绕， 这是封装好的控制器，如果对我的代码不感兴趣，可以直接用这个
 @property (strong, nonatomic) LGFCenterPageVC *pageVC;
 @property (nonatomic, strong) NSMutableArray *titleArray;
 @end
@@ -77,7 +77,9 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
 
 #pragma mark - 内部滚动监听
 - (void)childScroll:(NSNotification *)noti {
-//    CGFloat offsetY = [noti.object[0] floatValue];
+    // noti.object @[@(contentOffset.y), @(选中的子控制器 index)]
+    CGFloat offsetY = [noti.object[0] floatValue];
+    LGFPTLog(@"里面的子控制器上的 contentOffset.y:%f", offsetY);
 //    if (offsetY > -154) {
 //        self.pageVC.lgf_PageTitleViewHeight = 60 + self.pageVC.lgf_NavigationBarHeight - MIN(15, (offsetY + 154));
 //        self.pageVC.lgf_PageTitleSuperViewHeight.constant = self.pageVC.lgf_PageTitleViewHeight - self.pageVC.lgf_NavigationBarHeight;
