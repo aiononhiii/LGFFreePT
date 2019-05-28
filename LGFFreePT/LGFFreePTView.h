@@ -22,21 +22,21 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -  以 contentOffsetX 匹配最精确的选中标回调代理
 - (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex;
 
-#pragma mark -  加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
+#pragma mark -  加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
 /**
  @param imageView 要加载网络图片的 imageView
  @param imageUrl 网络图片的 Url
  */
 - (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 
-#pragma mark - 实现这个代理来对 LGFFreePTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
+#pragma mark - 实现这个代理来对 LGFFreePTTitle 初始化时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等 注意：这些新配置如果和 LGFFreePTStyle 冲突将覆盖 LGFFreePTStyle 的效果
 /**
  @param lgf_FreePTTitle LGFFreePTTitle 本体
  @param index 所在的 index
  @param style LGFFreePTStyle
  */
 - (void)lgf_GetLGFFreePTTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style;
-#pragma mark - 实现这个代理来对 LGFFreePTLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
+#pragma mark - 实现这个代理来对 LGFFreePTLine 初始化时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等 注意：这些新配置如果和 LGFFreePTStyle 冲突将覆盖 LGFFreePTStyle 的效果
 /**
  @param lgf_FreePTLine LGFFreePTLine 本体
  @param style LGFFreePTStyle

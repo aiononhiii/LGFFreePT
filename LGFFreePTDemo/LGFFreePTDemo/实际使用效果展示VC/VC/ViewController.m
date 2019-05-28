@@ -130,6 +130,13 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     [imageView sd_setImageWithURL:imageUrl];
 }
 
+- (void)lgf_GetLGFFreePTTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style {
+    if ([self.type isEqualToString:@"模拟系统 UISegmentedControl"]) {
+        lgf_FreePTTitle.layer.borderColor = [UIColor whiteColor].CGColor;
+        lgf_FreePTTitle.layer.borderWidth = 0.5;
+    }
+}
+
 #pragma mark - 懒加载
 - (NSMutableArray *)chlidVCs {
     if (!_chlidVCs) {

@@ -4673,10 +4673,11 @@
                                                     <constraint firstItem="YlB-rx-eAy" firstAttribute="leading" secondItem="JM5-8a-Y8Y" secondAttribute="leading" constant="10" id="veV-8J-C79"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还有部分非主要属性未在这里展示，有需要请参阅 LGFFreePTStyle.h，还有极少一部分效果是用 lgf_GetLGFFreePTTitle/lgf_GetLGFFreePTLine 这两个代理生成的，请查看我代码里这两个代理里的实现" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcQ-uv-Fdg">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcQ-uv-Fdg">
                                                 <rect key="frame" x="10" y="3565" width="355" height="75"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="7"/>
-                                                <color key="textColor" white="0.58133370539999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <string key="text">还有部分属性例如添加自定义标等未在这里展示，有需要请参阅 LGFFreePTStyle.h 注释使用，还有极少一部分效果是用 lgf_GetLGFFreePTTitle/lgf_GetLGFFreePTLine 这两个代理生成的，请查看我代码里这两个代理里的实现</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" red="0.92831212279999997" green="0.16014145339999999" blue="0.68373535139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJF-om-DXF">

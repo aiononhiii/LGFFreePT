@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol LGFFreePTLineDelegate <NSObject>
 @optional
-#pragma mark - 加载 line 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架
+#pragma mark - 加载 line 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
 /**
  @param imageView 要加载网络图片的 imageView
  @param imageUrl 网络图片的 Url

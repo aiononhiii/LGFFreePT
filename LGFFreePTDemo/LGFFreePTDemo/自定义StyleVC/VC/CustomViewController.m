@@ -327,7 +327,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         lgf_FreePTTitle.layer.borderWidth = self.lgf_TitleBorderWidth.text.floatValue;
         lgf_FreePTTitle.layer.borderColor = lgf_HexColor(self.lgf_TitleBorderColor.text).CGColor;
     }
-    lgf_FreePTTitle.backgroundColor = lgf_HexColor(self.lgf_TitleBackgroundColor.text);
+    if (!style.lgf_StartDebug)lgf_FreePTTitle.backgroundColor = lgf_HexColor(self.lgf_TitleBackgroundColor.text);
     lgf_FreePTTitle.layer.cornerRadius = self.lgf_TitleCornerRadius.text.floatValue;
 }
 
@@ -595,7 +595,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         style.lgf_LineImageName = @"";
     }
     style.lgf_Titles = self.titles;
-    [lgf_Defaults setObject:[NSString stringWithFormat:@"style.lgf_Titles = @[@\"%@\"].copy", [style.lgf_Titles componentsJoinedByString:@"\", @\""]] forKey:@"LGFCustomDataSourceStr"];
+    [lgf_Defaults setObject:[NSString stringWithFormat:@"style.lgf_Titles = @[@\"%@\"].copy;", [style.lgf_Titles componentsJoinedByString:@"\", @\""]] forKey:@"LGFCustomDataSourceStr"];
     
     self.pageSuperViewHeight.constant = self.LGFFreePTSuperViewHeight.text.floatValue;
     self.pageSuperView.layer.borderWidth = self.LGFFreePTSuperViewBorderWidth.text.floatValue;

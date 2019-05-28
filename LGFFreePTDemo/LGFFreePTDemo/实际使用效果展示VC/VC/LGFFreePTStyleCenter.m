@@ -401,6 +401,7 @@
     style.lgf_LineAnimation = lgf_PageLineAnimationCustomize;// 自定义的小乌龟效果
     return style;
 }
+
 + (LGFFreePTStyle *)twenty {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
     style.lgf_LineWidthType = lgf_EqualTitleSTR;
