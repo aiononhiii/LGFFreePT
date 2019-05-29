@@ -38,6 +38,9 @@
     NSAssert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, @"选中图片数组和未选中图片数组count必须一致");
     self.lgf_Style = style;
     self.lgf_PageView = PV;
+    if (self.lgf_PageView) {
+        [self lgf_PageViewConfig];
+    }
     // 部分基础 UI 配置
     self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV.backgroundColor;
     if (@available(iOS 11.0, *)) {
@@ -428,16 +431,17 @@
     }
 }
 
-- (void)setLgf_PageView:(UICollectionView *)lgf_PageView {
-    _lgf_PageView = lgf_PageView;
+- (void)lgf_PageViewConfig {
     if (self.lgf_PageView) {
-        LGFFreePTFlowLayout *layout = [[LGFFreePTFlowLayout alloc] init];
-        layout.lgf_PVAnimationType = self.lgf_Style.lgf_PVAnimationType;
-        [lgf_PageView setCollectionViewLayout:layout];
-        [lgf_PageView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-        lgf_PageView.pagingEnabled = YES;
-        lgf_PageView.scrollsToTop = NO;
-        lgf_PageView.tag = 333333;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LGFFreePTFlowLayout *layout = [[LGFFreePTFlowLayout alloc] init];
+            layout.lgf_PVAnimationType = self.lgf_Style.lgf_PVAnimationType;
+            [self.lgf_PageView setCollectionViewLayout:layout];
+            [self.lgf_PageView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+            self.lgf_PageView.pagingEnabled = YES;
+            self.lgf_PageView.scrollsToTop = NO;
+            self.lgf_PageView.tag = 333333;
+        });
     }
 }
 

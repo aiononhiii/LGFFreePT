@@ -120,7 +120,8 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
 }
 // cell 高度
 - (CGSize)lgf_SizeForItemAtIndexPath:(NSIndexPath *)indexPath VC:(LGFCenterPageChildVC *)VC {
-    return CGSizeMake(lgf_ScreenWidth / 2, (lgf_ScreenWidth / 2) * (indexPath.item % (indexPath.item / 2) == 0 ? 0.8 : 1.0));
+    CGSize size = CGSizeMake((lgf_ScreenWidth / 2.0), ((lgf_ScreenWidth / 2.0) * (indexPath.item % 2 == 0 ? 0.8 : 1.0)));
+    return size;
 }
 // 传入要注册的自定义 cell class
 - (Class)lgf_CenterChildPageCVCellClass:(LGFCenterPageChildVC *)VC {
@@ -129,7 +130,7 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
 // 配置 cell 数据
 - (void)lgf_CenterChildPageVC:(LGFCenterPageChildVC *)VC cell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath {
     TaoBaoCell *bcell = (TaoBaoCell *)cell;
-    if (indexPath.item % (indexPath.item / 2) == 0) {
+    if (indexPath.item % 2 == 0) {
         [bcell.good setImage:lgf_Image(@"taobao_cell_one")];
     } else {
         [bcell.good setImage:lgf_Image(@"taobao_cell_two")];
