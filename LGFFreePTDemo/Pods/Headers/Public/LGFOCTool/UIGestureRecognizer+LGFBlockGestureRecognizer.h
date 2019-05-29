@@ -1,1 +1,0 @@
-../../../LGFOCTool/LGFOCTool/UIGestureRecognizer+LGFCategory/UIGestureRecognizer+LGFBlockGestureRecognizer.h
