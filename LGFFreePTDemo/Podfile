@@ -1,10 +1,9 @@
 platform :ios, '9.0'
 target 'LGFFreePTDemo' do
 
-pod 'LGFOCTool'
+# 为了方便未安装 cocoapods 的朋友运行这份示例代码，我把这些 pod 的代码挪到项目包里的《Pods工具》文件夹下，如果安装了 cocoapods 那么请将下面的两个注释解开重新 pod install，并删除《Pods工具》文件夹下的代码
+#pod 'LGFOCTool'
 
-pod 'IQKeyboardManager'
-
-pod 'YYImage'
+#pod 'IQKeyboardManager'
 
 end
