@@ -58,7 +58,8 @@ typedef NS_ENUM(NSUInteger, lgf_FreePageViewAnimationType) {
     lgf_PageViewAnimationDefult,// 默认分页动画
     lgf_PageViewAnimationTopToBottom,// 从上往下进入的分页动画
     lgf_PageViewAnimationSmallToBig,// 从小到大进入的分页动画
-    lgf_PageViewAnimationNone// 没有分页动画
+    lgf_PageViewAnimationNone,// 没有分页动画
+    lgf_PageViewAnimationCustomize// 自定义分页动画 我将返回你 layoutAttributesForElementsInRect 的所有参数，你也可以自己给外部的你自己创建的子控制器容器 collectionview 自己配置 UICollectionViewFlowLayout
 };
 
 typedef NS_ENUM(NSUInteger, lgf_FreePageLineAnimationType) {

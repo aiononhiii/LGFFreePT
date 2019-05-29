@@ -81,7 +81,9 @@ static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
     // 将带属性的字符串添加到cell.textLabel上.
     [self setAttributedText:attribute];
 }
-
+/**
+ @param texts 高亮关键字数组
+ */
 - (void)lgf_KeywordHighlightTexts:(NSArray *)texts {
     // 获取关键字的位置
     NSArray *ranges = [self rangeOfSubString:texts inString:self.text];
@@ -91,7 +93,7 @@ static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
     [attribute addAttribute:NSFontAttributeName value:self.font range:[self.text rangeOfString:self.text]];
     [ranges enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         // 添加属性(粗体)
-        [attribute addAttribute:NSFontAttributeName value:self.font range:[obj[@"range"] rangeValue]];
+        [attribute addAttribute:NSFontAttributeName value:[UIFont fontWithName:self.font.fontName size:[obj[@"font"] floatValue]] range:[obj[@"range"] rangeValue]];
         // 关键字高亮
         [attribute addAttribute:NSForegroundColorAttributeName value:lgf_HexColor(obj[@"color"]) range:[obj[@"range"] rangeValue]];
     }];
@@ -105,13 +107,12 @@ static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
         NSString *subStr = subStrDict[@"text"];
         NSString *string1 = [string stringByAppendingString:subStr];
         
-        //
         NSString *temp;
         for(int i = 0; i < string.length; i ++) {
             temp = [string1 substringWithRange:NSMakeRange(i, subStr.length)];
             if ([temp isEqualToString:subStr]) {
                 NSRange range = {i, subStr.length};
-                [rangeArray addObject:@{@"range" : [NSValue valueWithRange:range], @"color" : subStrDict[@"color"]}];
+                [rangeArray addObject:@{@"range" : [NSValue valueWithRange:range], @"color" : subStrDict[@"color"], @"font" : (subStrDict[@"font"] ? subStrDict[@"font"] : @(self.font.pointSize))}];
             }
         }
         // @""字符串高亮
@@ -120,7 +121,7 @@ static const char *lgf_IsZeroInsetKey = "lgf_IsZeroInsetKey";
             NSRegularExpression *regularExp = [[NSRegularExpression alloc] initWithPattern:subStr options:NSRegularExpressionCaseInsensitive error:&error];
             [regularExp enumerateMatchesInString:self.text options:NSMatchingReportProgress range:NSMakeRange(0, self.text.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
                 if (result) {
-                    [rangeArray addObject:@{@"range" : [NSValue valueWithRange:result.range], @"color" : subStrDict[@"color"]}];
+                    [rangeArray addObject:@{@"range" : [NSValue valueWithRange:result.range], @"color" : subStrDict[@"color"], @"font" : (subStrDict[@"font"] ? subStrDict[@"font"] : @(self.font.pointSize))}];
                 }
             }];
         }

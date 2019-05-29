@@ -11,7 +11,7 @@
 #import "LGFFreePTMethod.h"
 #import "UIView+LGFFreePT.h"
 
-@interface LGFFreePTView () <UIScrollViewDelegate, LGFFreePTTitleDelegate, LGFFreePTLineDelegate>
+@interface LGFFreePTView () <UIScrollViewDelegate, LGFFreePTTitleDelegate, LGFFreePTLineDelegate, LGFFreePTFlowLayoutDelegate>
 @property (strong, nonatomic) UICollectionView *lgf_PageView;// 外部分页控制器
 @property (assign, nonatomic) NSInteger lgf_UnSelectIndex;// 前一个选中下标
 @property (assign, nonatomic) NSInteger lgf_RealSelectIndex;// 最准确的选中标值
@@ -38,9 +38,6 @@
     NSAssert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, @"选中图片数组和未选中图片数组count必须一致");
     self.lgf_Style = style;
     self.lgf_PageView = PV;
-    if (self.lgf_PageView) {
-        [self lgf_PageViewConfig];
-    }
     // 部分基础 UI 配置
     self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV.backgroundColor;
     if (@available(iOS 11.0, *)) {
@@ -51,6 +48,9 @@
     self.lgf_Style.lgf_PVTitleView = self;
     [SV addSubview:self];
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.lgf_PageView) {
+            [self lgf_PageViewConfig];
+        }
         // 是否有固定 Frame
         if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
             self.frame = self.superview.bounds;
@@ -362,6 +362,13 @@
     }
 }
 
+#pragma mark - LGFFreePTFlowLayoutDelegate
+- (void)lgf_FreePageViewCustomizeAnimation:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout {
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePageViewCustomizeAnimationConfig:flowLayout:)]) {
+        [self.lgf_FreePTDelegate lgf_FreePageViewCustomizeAnimationConfig:attributes flowLayout:flowLayout];
+    }
+}
+
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentOffset"]) {
@@ -433,15 +440,16 @@
 
 - (void)lgf_PageViewConfig {
     if (self.lgf_PageView) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        if ((self.lgf_Style.lgf_PVAnimationType != lgf_PageViewAnimationNone && self.lgf_Style.lgf_PVAnimationType != lgf_PageViewAnimationDefult)) {
             LGFFreePTFlowLayout *layout = [[LGFFreePTFlowLayout alloc] init];
             layout.lgf_PVAnimationType = self.lgf_Style.lgf_PVAnimationType;
+            layout.lgf_FreePTFlowLayoutDelegate = self;
             [self.lgf_PageView setCollectionViewLayout:layout];
-            [self.lgf_PageView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-            self.lgf_PageView.pagingEnabled = YES;
-            self.lgf_PageView.scrollsToTop = NO;
-            self.lgf_PageView.tag = 333333;
-        });
+        }
+        [self.lgf_PageView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        self.lgf_PageView.pagingEnabled = YES;
+        self.lgf_PageView.scrollsToTop = NO;
+        self.lgf_PageView.tag = 333333;
     }
 }
 

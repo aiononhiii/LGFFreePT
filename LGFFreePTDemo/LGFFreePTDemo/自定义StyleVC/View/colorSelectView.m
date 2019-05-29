@@ -18,6 +18,7 @@ lgf_XibViewForM(colorSelectView, @"colorSelectView");
 - (void)lgf_ShowColorSelectView:(UIViewController *)VC selectColor:(NSString *)selectColor {
     self.frame = VC.view.bounds;
     [VC.view addSubview:self];
+    self.colorImage.layer.cornerRadius = (lgf_ScreenWidth * 0.8 - 40) / 2.0;
     self.image = [UIImage imageNamed:@"colorSelect.png"];
     self.hexLabel.text = selectColor;
     self.selectColorView.backgroundColor = lgf_HexColor(selectColor);

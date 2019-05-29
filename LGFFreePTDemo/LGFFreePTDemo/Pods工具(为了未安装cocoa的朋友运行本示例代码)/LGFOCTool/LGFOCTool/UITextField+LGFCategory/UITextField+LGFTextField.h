@@ -35,6 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param text 高亮关键字
  */
 - (void)lgf_KeywordHighlightColor:(UIColor *)color font:(UIFont *)font text:(NSString *)text;
+/**
+ @param texts 高亮关键字数组
+ */
+- (void)lgf_KeywordHighlightTexts:(NSArray *)texts;// @[@{@"text" : @"style", @"color" : @"FFFFFF", @"font" : @"8"}]
 
 #pragma mark - 设置所有选中的文字
 - (void)lgf_SelectAllText;

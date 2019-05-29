@@ -84,6 +84,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param duration 回位动画时长
  */
 - (void)lgf_TitleScrollFollowCustomizeAnimationConfig:(LGFFreePTStyle *)style lgf_TitleButtons:(NSMutableArray <LGFFreePTTitle *> *)lgf_TitleButtons unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex duration:(NSTimeInterval)duration;
+#pragma mark - 自定义分页动画（我这里提供一个配置入口，也可以自己在外面配置 UICollectionViewFlowLayout 原理一样）
+/**
+ @param attributes UICollectionViewLayoutAttributes
+ @param flowLayout UICollectionViewFlowLayout
+ */
+- (void)lgf_FreePageViewCustomizeAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout;
 @end
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;

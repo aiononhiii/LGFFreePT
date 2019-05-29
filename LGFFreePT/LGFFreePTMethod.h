@@ -65,6 +65,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - lgf_TitleScrollFollowLeftRight
 + (void)lgf_TitleScrollFollowLeftRightAnimationConfig:(LGFFreePTStyle *)style lgf_TitleButtons:(NSMutableArray <LGFFreePTTitle *> *)lgf_TitleButtons unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex duration:(NSTimeInterval)duration;
+
+// 我自己原配分页动画(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的代码分享给大家)
+#pragma mark - lgf_PageViewAnimationTopToBottom
++ (void)lgf_FreePageViewTopToBottomAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout;
+
+#pragma mark - lgf_PageViewAnimationSmallToBig
++ (void)lgf_FreePageViewSmallToBigAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout;
 @end
 
 NS_ASSUME_NONNULL_END

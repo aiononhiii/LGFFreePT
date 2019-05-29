@@ -8,6 +8,7 @@
 
 #import "LGFFreePTFlowLayout.h"
 #import "UIView+LGFFreePT.h"
+#import "LGFFreePTMethod.h"
 
 @implementation LGFFreePTFlowLayout
 
@@ -26,30 +27,15 @@
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSArray *attrs = [super layoutAttributesForElementsInRect:rect];
     if (self.lgf_PVAnimationType == lgf_PageViewAnimationTopToBottom) {
-        CGFloat contentOffsetX = self.collectionView.contentOffset.x;
-        CGFloat collectionViewCenterX = self.collectionView.lgfpt_Width * 0.5;
-        for (UICollectionViewLayoutAttributes *attr in attrs) {
-            CGFloat alpha = fabs(1.0 - fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /self.collectionView.lgfpt_Width);
-            CGFloat scale = -fabs(fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /self.collectionView.lgfpt_Width) * 50.0;
-            NSInteger index = fabs(self.collectionView.contentOffset.x / self.collectionView.lgfpt_Width);
-            if ([self.collectionView.panGestureRecognizer translationInView:self.collectionView].x < 0.0) {
-                if (attr.indexPath.item != index) {
-                    attr.alpha = alpha;
-                }
-            } else {
-                if (attr.indexPath.item == index) {
-                    attr.alpha = alpha;
-                }
-            }
-            attr.transform = CGAffineTransformMakeTranslation(0, scale);
-        }
+        [LGFFreePTMethod lgf_FreePageViewTopToBottomAnimationConfig:attrs flowLayout:self];
         return attrs;
     } else if (self.lgf_PVAnimationType == lgf_PageViewAnimationSmallToBig) {
-        CGFloat contentOffsetX = self.collectionView.contentOffset.x;
-        CGFloat collectionViewCenterX = self.collectionView.lgfpt_Width * 0.5;
-        for (UICollectionViewLayoutAttributes *attr in attrs) {
-            CGFloat scale = (1.0 - fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /self.collectionView.lgfpt_Width * 0.8);
-            attr.transform = CGAffineTransformMakeScale(scale, scale);
+        [LGFFreePTMethod lgf_FreePageViewSmallToBigAnimationConfig:attrs flowLayout:self];
+        return attrs;
+    } else if(self.lgf_PVAnimationType == lgf_PageViewAnimationCustomize) {
+        if (self.lgf_FreePTFlowLayoutDelegate && [self.lgf_FreePTFlowLayoutDelegate respondsToSelector:@selector(lgf_FreePageViewCustomizeAnimation:flowLayout:)]) {
+            LGFPTLog(@"自定义分页动画的 contentOffset.x:%f", self.collectionView.contentOffset.x);
+            [self.lgf_FreePTFlowLayoutDelegate lgf_FreePageViewCustomizeAnimation:attrs flowLayout:self];
         }
         return attrs;
     } else {

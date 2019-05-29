@@ -219,4 +219,34 @@
     }];
 }
 
+// 我自己原配分页动画(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的代码分享给大家)
++ (void)lgf_FreePageViewTopToBottomAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout {
+    CGFloat contentOffsetX = flowLayout.collectionView.contentOffset.x;
+    CGFloat collectionViewCenterX = flowLayout.collectionView.lgfpt_Width * 0.5;
+    for (UICollectionViewLayoutAttributes *attr in attributes) {
+        CGFloat alpha = fabs(1.0 - fabs(attr.center.x - contentOffsetX - collectionViewCenterX) / flowLayout.collectionView.lgfpt_Width);
+        CGFloat scale = -fabs(fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /flowLayout.collectionView.lgfpt_Width) * 50.0;
+        NSInteger index = fabs(flowLayout.collectionView.contentOffset.x / flowLayout.collectionView.lgfpt_Width);
+        if ([flowLayout.collectionView.panGestureRecognizer translationInView:flowLayout.collectionView].x < 0.0) {
+            if (attr.indexPath.item != index) {
+                attr.alpha = alpha;
+            }
+        } else {
+            if (attr.indexPath.item == index) {
+                attr.alpha = alpha;
+            }
+        }
+        attr.transform = CGAffineTransformMakeTranslation(0, scale);
+    }
+}
+
++ (void)lgf_FreePageViewSmallToBigAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout {
+    CGFloat contentOffsetX = flowLayout.collectionView.contentOffset.x;
+    CGFloat collectionViewCenterX = flowLayout.collectionView.lgfpt_Width * 0.5;
+    for (UICollectionViewLayoutAttributes *attr in attributes) {
+        CGFloat scale = (1.0 - fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /flowLayout.collectionView.lgfpt_Width * 0.8);
+        attr.transform = CGAffineTransformMakeScale(scale, scale);
+    }
+}
+
 @end

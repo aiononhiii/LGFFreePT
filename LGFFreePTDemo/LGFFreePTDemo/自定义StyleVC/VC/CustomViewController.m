@@ -140,12 +140,12 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     // 枚举类型展示用数据源
     self.lgf_LineAnimationArray = @[@"lgf_PageLineAnimationDefult", @"lgf_PageLineAnimationShortToLong", @"lgf_PageLineAnimationHideShow", @"lgf_PageLineAnimationTortoiseDown", @"lgf_PageLineAnimationTortoiseUp", @"lgf_PageLineAnimationSmallToBig", @"lgf_PageLineAnimationCustomize"];
     self.lgf_TitleScrollFollowTypeArray = @[@"lgf_TitleScrollFollowDefult", @"lgf_TitleScrollFollowLeftRight", @"lgf_TitleScrollFollowCustomize"];
-    self.lgf_PVAnimationTypeArray = @[@"lgf_PageViewAnimationDefult", @"lgf_PageViewAnimationTopToBottom", @"lgf_PageViewAnimationSmallToBig", @"lgf_PageViewAnimationNone"];
+    self.lgf_PVAnimationTypeArray = @[@"lgf_PageViewAnimationDefult", @"lgf_PageViewAnimationTopToBottom", @"lgf_PageViewAnimationSmallToBig", @"lgf_PageViewAnimationNone", @"lgf_PageViewAnimationCustomize"];
     self.lgf_LineWidthTypeArray = @[@"lgf_EqualTitleSTR", @"lgf_EqualTitleSTRAndImage", @"lgf_EqualTitle", @"lgf_FixedWith"];
     
     self.lgf_LineAnimationDescribeArray = @[@"默认效果", @"短到长效果", @"隐藏显示效果", @"底部隐藏效果", @"顶部隐藏效果", @"放大缩小效果", @"自定义效果，需添加自定义代理自行实现"];
     self.lgf_TitleScrollFollowTypeDescribeArray = @[@"结束后居中", @"跟随两边（腾讯新闻效果）", @"自定义效果，需添加自定义代理自行实现"];
-    self.lgf_PVAnimationTypeDescribeArray = @[@"默认效果", @"上下效果", @"放大缩小效果", @"禁止拖拽滚动"];
+    self.lgf_PVAnimationTypeDescribeArray = @[@"默认效果", @"上下效果", @"放大缩小效果", @"禁止拖拽滚动", @"自定义效果，需添加自定义代理自行实现"];
     self.lgf_LineWidthTypeDescribeArray = @[@"对准标文本", @"对准标文本和图片", @"对准标", @"固定宽度，需配置 line 的 lgf_LineWidth"];
    
     if ([lgf_Defaults objectForKey:@"LGFCustomDataSource"]) {
@@ -320,6 +320,26 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [UIView animateWithDuration:duration animations:^{
         [style.lgf_PVTitleView setContentOffset:CGPointMake(offSetx, 0.0)];
     }];
+}
+// 自定义分页动画（非自定义动画无需实现）
+- (void)lgf_FreePageViewCustomizeAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout {
+    CGFloat contentOffsetX = flowLayout.collectionView.contentOffset.x;
+    CGFloat collectionViewCenterX = flowLayout.collectionView.lgfpt_Width * 0.5;
+    for (UICollectionViewLayoutAttributes *attr in attributes) {
+        CGFloat alpha = fabs(1.0 - fabs(attr.center.x - contentOffsetX - collectionViewCenterX) / flowLayout.collectionView.lgfpt_Width);
+        CGFloat scale = -fabs(fabs(attr.center.x - contentOffsetX - collectionViewCenterX) /flowLayout.collectionView.lgfpt_Width) * 50.0;
+        NSInteger index = fabs(flowLayout.collectionView.contentOffset.x / flowLayout.collectionView.lgfpt_Width);
+        if ([flowLayout.collectionView.panGestureRecognizer translationInView:flowLayout.collectionView].x < 0.0) {
+            if (attr.indexPath.item != index) {
+                attr.alpha = alpha;
+            }
+        } else {
+            if (attr.indexPath.item == index) {
+                attr.alpha = alpha;
+            }
+        }
+        attr.transform = CGAffineTransformMakeTranslation(0, scale);
+    }
 }
 // 部分系统属性配置
 - (void)lgf_GetLGFFreePTTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style {
