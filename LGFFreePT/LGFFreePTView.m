@@ -440,12 +440,10 @@
 
 - (void)lgf_PageViewConfig {
     if (self.lgf_PageView) {
-        if ((self.lgf_Style.lgf_PVAnimationType != lgf_PageViewAnimationNone && self.lgf_Style.lgf_PVAnimationType != lgf_PageViewAnimationDefult)) {
-            LGFFreePTFlowLayout *layout = [[LGFFreePTFlowLayout alloc] init];
-            layout.lgf_PVAnimationType = self.lgf_Style.lgf_PVAnimationType;
-            layout.lgf_FreePTFlowLayoutDelegate = self;
-            [self.lgf_PageView setCollectionViewLayout:layout];
-        }
+        LGFFreePTFlowLayout *layout = [[LGFFreePTFlowLayout alloc] init];
+        layout.lgf_PVAnimationType = self.lgf_Style.lgf_PVAnimationType;
+        layout.lgf_FreePTFlowLayoutDelegate = self;
+        [self.lgf_PageView setCollectionViewLayout:layout];
         [self.lgf_PageView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
         self.lgf_PageView.pagingEnabled = YES;
         self.lgf_PageView.scrollsToTop = NO;
