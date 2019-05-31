@@ -121,7 +121,7 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_PageLeftRightSpace;
 
 //-------------------  title 设置
-// 是否支持副 title
+// 是否支持副 title 副标题 lgf_Titles 格式：@[@"11~~~22", @"33~~~44"] 22 和 44 为副标题
 @property (assign, nonatomic) BOOL lgf_IsDoubleTitle;
 // title 固定宽度 默认等于 0.0 如果此属性大于 0.0 那么 title 宽度将为固定值
 // 如果设置此项（lgf_TitleFixedWidth） LGFTitleLineWidthType 将只支持 FixedWith 固定底部线宽度
@@ -165,8 +165,12 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_TitleClickAnimationDuration;
 // 点击 title 后移动 title 居中动画时间 默认 0.2
 @property (assign, nonatomic) CGFloat lgf_TitleScrollToTheMiddleAnimationDuration;
+// title 部分 **(非主要属性)**
+@property (assign, nonatomic) CGFloat lgf_TitleCornerRadius;
+@property (assign, nonatomic) CGFloat lgf_TitleBorderWidth;
+@property (strong, nonatomic) UIColor *lgf_TitleBorderColor;
 //------------------- 特殊 title 设置
-// 要替换的特殊 title 数组（数组中元素 view (改 view 最好为单列，以方便设置 选中状态/动效/动画 等特殊处理) 的 lgf_FreePTSpecialTitleArray（值格式：@"0/80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是障眼法替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
+// 要替换的特殊 title 数组（数组中元素 view (改 view 最好为单列，以方便设置 选中状态/动效/动画 等特殊处理) 的 lgf_FreePTSpecialTitleArray（值格式：@"0~~~80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是障眼法替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
 @property (nonatomic, copy) NSArray <UIView *> *lgf_FreePTSpecialTitleArray;
 
 //-------------------  title 图片设置
@@ -214,8 +218,6 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 //-------------------  title 底部线设置
 // 是否显示 title 底部滚动线 默认 YES 显示
 @property (assign, nonatomic) BOOL lgf_IsShowLine;
-// title 底部线圆角弧度 默认 0 没有弧度
-@property (assign, nonatomic) CGFloat lgf_LineCornerRadius;
 // title 底部滚动线 背景图片 默认 无图
 @property (copy, nonatomic) NSString *lgf_LineImageName;
 // 是否是 line 网络图片
@@ -234,6 +236,11 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_LineCenterX;
 // title 底部滚动线滑动动画 默认 LGFPageLineAnimationDefult 有跟随动画
 @property (assign, nonatomic) lgf_FreePageLineAnimationType lgf_LineAnimation;
+// title 底部滚动线 部分 **(非主要属性)**
+@property (assign, nonatomic) CGFloat lgf_LineCornerRadius;
+@property (assign, nonatomic) CGFloat lgf_LineBorderWidth;
+@property (strong, nonatomic) UIColor *lgf_LineBorderColor;
+@property(nonatomic) UIViewContentMode lgf_LineImageContentMode;
 
 @end
 

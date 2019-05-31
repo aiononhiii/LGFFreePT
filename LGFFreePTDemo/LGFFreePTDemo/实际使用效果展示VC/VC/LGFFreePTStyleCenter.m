@@ -320,9 +320,9 @@
 + (LGFFreePTStyle *)sixteen {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
     specialTitle * sviewOne = [specialTitle lgf];
-    sviewOne.lgf_FreePTSpecialTitleProperty = @"2/100";
+    sviewOne.lgf_FreePTSpecialTitleProperty = @"2~~~100";
     specialImageTitle * sviewTwo = [specialImageTitle lgf];
-    sviewTwo.lgf_FreePTSpecialTitleProperty = @"5/90";
+    sviewTwo.lgf_FreePTSpecialTitleProperty = @"5~~~90";
     style.lgf_FreePTSpecialTitleArray = @[sviewOne, sviewTwo];
     style.lgf_LineWidthType = lgf_FixedWith;
     style.lgf_LineWidth = 10.0;

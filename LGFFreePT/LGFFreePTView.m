@@ -79,15 +79,13 @@
     NSAssert((selectIndex <= (self.lgf_Style.lgf_Titles.count - 1)) && (selectIndex >= 0), @"lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了");
     // 删除一遍所有子控件
     [self lgf_RemoveAllSubViews];
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
         [self lgf_AutoSelectIndex:selectIndex];
-        // 配置标
+        // 添加标
         [self lgf_AddTitles];
         // 添加底部滚动线
         [self lgf_AddLine];
-        
         // 默认选中
         [self setNeedsLayout];
         [self layoutIfNeeded];
@@ -111,7 +109,9 @@
 }
 - (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration isExecutionDelegate:(BOOL)isExecutionDelegate {
     NSAssert((index <= (self.lgf_Style.lgf_Titles.count - 1)) && (index >= 0), @"lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了");
-    if (self.lgf_SelectIndex == index) { return; }
+    if (self.lgf_SelectIndex == index) {
+        return;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
         [self lgf_AutoSelectIndex:index];
@@ -136,7 +136,7 @@
     // 标总长度小于 LGFFreePT 宽度的情况下是否居中
     if (self.lgf_Style.lgf_IsTitleCenter) {
         if (self.contentSize.width < self.lgfpt_Width) {
-            self.lgfpt_X = (self.lgfpt_Width / 2.0) - (self.contentSize.width / 2.0);
+            self.lgfpt_X = (self.lgfpt_Width - self.contentSize.width) / 2.0;
         } else {
             self.lgfpt_X = 0.0;
         }
@@ -153,7 +153,9 @@
 
 #pragma mark - 标点击事件 滚动到指定tag位置
 - (void)lgf_TitleClick:(UITapGestureRecognizer *)sender {
-    if (![self lgf_AutoSelectIndex:sender.view.tag]) return;
+    if (![self lgf_AutoSelectIndex:sender.view.tag]) {
+        return;
+    }
     [self lgf_AdjustUIWhenBtnOnClickExecutionDelegate:YES duration:self.lgf_Style.lgf_TitleClickAnimationDuration autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
     // 获取精确 lgf_RealSelectIndex
     self.lgf_RealSelectIndex = self.lgf_SelectIndex;
@@ -164,13 +166,16 @@
 
 #pragma mark - 标自动滚动
 - (void)lgf_AutoScrollTitle:(NSInteger)selectIndex {
-    if (![self lgf_AutoSelectIndex:selectIndex]) return;
+    if (![self lgf_AutoSelectIndex:selectIndex]) {
+        return;
+    }
     [self lgf_TitleAutoScrollToTheMiddleExecutionDelegate:YES autoScrollDuration:self.lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration];
 }
 
 #pragma mark - 调整title位置 使其滚动到中间
 - (void)lgf_TitleAutoScrollToTheMiddleExecutionDelegate:(BOOL)isExecution autoScrollDuration:(CGFloat)autoScrollDuration {
-    if (self.lgf_SelectIndex > self.lgf_TitleButtons.count - 1 || self.lgf_TitleButtons.count == 0) { return;
+    if (self.lgf_SelectIndex > self.lgf_TitleButtons.count - 1 || self.lgf_TitleButtons.count == 0) {
+        return;
     }
     // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的效果，如果可以能够结合 LGFFreePTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
     if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowDefult) {
@@ -308,7 +313,7 @@
     }];
 }
 
-#pragma mark - 取得要改变的 X 和 Width 核心逻辑部分
+#pragma mark - 取得要改变的 X 和 Width 核心逻辑部分(注意：根据 lgf_LineWidthType 的类型，返回的结果会不一样)
 - (void)lgf_GetXAndW:(void (^)(CGFloat selectX, CGFloat selectWidth, CGFloat unSelectX, CGFloat unSelectWidth))XAndW selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle {
     CGFloat selectX = 0.0;
     CGFloat selectWidth = 0.0;

@@ -1120,27 +1120,21 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VP8-aJ-rgJ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_tabbar" translatesAutoresizingMaskIntoConstraints="NO" id="VWQ-A3-Zc6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="VWQ-A3-Zc6" firstAttribute="top" secondItem="VP8-aJ-rgJ" secondAttribute="top" id="H0N-VO-u30"/>
-                                        <constraint firstItem="VWQ-A3-Zc6" firstAttribute="leading" secondItem="VP8-aJ-rgJ" secondAttribute="leading" id="RtD-Bd-n2e"/>
-                                        <constraint firstAttribute="trailing" secondItem="VWQ-A3-Zc6" secondAttribute="trailing" id="eNz-DE-Jwh"/>
-                                        <constraint firstAttribute="bottom" secondItem="VWQ-A3-Zc6" secondAttribute="bottom" id="zt1-uY-RIG"/>
-                                    </constraints>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="GtG-SK-spf"/>
-                                </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taobao_tabbar" translatesAutoresizingMaskIntoConstraints="NO" id="VWQ-A3-Zc6">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="qm2-Ep-T2N"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="VWQ-A3-Zc6" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="5sK-FO-Utr"/>
                             <constraint firstAttribute="trailing" secondItem="FPN-Px-UUH" secondAttribute="trailing" id="B0X-bF-1g5"/>
+                            <constraint firstAttribute="trailing" secondItem="VWQ-A3-Zc6" secondAttribute="trailing" id="EAU-2Y-CfA"/>
                             <constraint firstItem="SWS-lU-D2y" firstAttribute="top" secondItem="Mam-fY-LMm" secondAttribute="bottom" id="EFI-kN-QUV"/>
                             <constraint firstItem="iLa-l0-vnS" firstAttribute="top" secondItem="cja-g3-dpg" secondAttribute="top" id="Ecb-zM-kgl"/>
                             <constraint firstAttribute="trailing" secondItem="aWP-Yd-GLu" secondAttribute="trailing" id="IFp-mZ-aCx"/>
@@ -1148,12 +1142,14 @@
                             <constraint firstItem="aWP-Yd-GLu" firstAttribute="top" secondItem="cja-g3-dpg" secondAttribute="top" id="NDW-17-2ab"/>
                             <constraint firstItem="FPN-Px-UUH" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="NSa-ea-WPd"/>
                             <constraint firstItem="SWS-lU-D2y" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="RQh-Qp-Kap"/>
-                            <constraint firstItem="xoi-PK-GMQ" firstAttribute="top" secondItem="FPN-Px-UUH" secondAttribute="bottom" id="TrE-fI-0hv"/>
+                            <constraint firstAttribute="bottom" secondItem="FPN-Px-UUH" secondAttribute="bottom" id="TrE-fI-0hv"/>
                             <constraint firstItem="aWP-Yd-GLu" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="XMd-kZ-DWa"/>
                             <constraint firstAttribute="bottom" secondItem="aWP-Yd-GLu" secondAttribute="bottom" id="Z48-Zp-38z"/>
                             <constraint firstAttribute="trailing" secondItem="SWS-lU-D2y" secondAttribute="trailing" id="ajI-p5-k69"/>
                             <constraint firstAttribute="trailing" secondItem="iLa-l0-vnS" secondAttribute="trailing" id="fJC-dO-4J5"/>
+                            <constraint firstItem="xoi-PK-GMQ" firstAttribute="top" secondItem="VWQ-A3-Zc6" secondAttribute="bottom" id="gAC-7y-b3O"/>
                             <constraint firstItem="iLa-l0-vnS" firstAttribute="leading" secondItem="cja-g3-dpg" secondAttribute="leading" id="uME-VZ-YDn"/>
+                            <constraint firstItem="VWQ-A3-Zc6" firstAttribute="top" secondItem="FPN-Px-UUH" secondAttribute="top" id="vbc-V4-RgW"/>
                         </constraints>
                     </view>
                     <connections>

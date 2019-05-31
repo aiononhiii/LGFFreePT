@@ -31,7 +31,7 @@
 - (void)setLgf_Style:(LGFFreePTStyle *)lgf_Style {
     _lgf_Style = lgf_Style;
     if (!lgf_Style.lgf_IsLineNetImage && lgf_Style.lgf_LineImageName.length > 0) NSAssert(lgf_Style.lgf_ImageBundel, @"为了获取正确的图片 - 请设置 (NSBundle *)style.lgf_ImageBundel");
-    self.backgroundColor = lgf_Style.lgf_LineColor;
+    // 坐标配置
     CGFloat Y = lgf_Style.lgf_PVTitleView.lgfpt_Height - ((lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? lgf_Style.lgf_PVTitleView.lgfpt_Height : (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom));
     CGFloat H = (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? (lgf_Style.lgf_PVTitleView.lgfpt_Height - lgf_Style.lgf_LineBottom) : lgf_Style.lgf_LineHeight;
     if (lgf_Style.lgf_LineWidthType == lgf_FixedWith) {
@@ -41,7 +41,7 @@
     }
     self.lgfpt_Y = Y;
     self.lgfpt_Height = H;
-    self.layer.cornerRadius = lgf_Style.lgf_LineCornerRadius;
+    // 添加 line 图片
     if (lgf_Style.lgf_LineImageName.length > 0 && self.subviews.count == 0) {
         if (lgf_Style.lgf_IsLineNetImage) {
             if (self.lgf_FreePTLineDelegate && [self.lgf_FreePTLineDelegate respondsToSelector:@selector(lgf_GetLineNetImage:imageUrl:)]) {
@@ -53,6 +53,18 @@
             [self setImage:[UIImage imageNamed:lgf_Style.lgf_LineImageName inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
     }
+    // 非主要属性配置
+    if (lgf_Style.lgf_LineCornerRadius > 0.0) {
+        self.layer.cornerRadius = lgf_Style.lgf_LineCornerRadius;
+        if (!self.clipsToBounds) self.clipsToBounds = YES;
+    }
+    if (lgf_Style.lgf_TitleBorderWidth > 0.0) {
+        self.layer.borderWidth = lgf_Style.lgf_LineBorderWidth;
+        self.layer.borderColor = lgf_Style.lgf_LineBorderColor.CGColor;
+        if (!self.clipsToBounds) self.clipsToBounds = YES;
+    }
+    self.contentMode = lgf_Style.lgf_LineImageContentMode;
+    self.backgroundColor = lgf_Style.lgf_LineColor;
 }
 
 @end

@@ -60,7 +60,7 @@ lgf_SBViewControllerForM(TaoBaoViewController, @"Main", @"TaoBaoViewController")
     style.lgf_IsDoubleTitle = YES;
     style.lgf_IsExecutedImmediatelyTitleScrollFollow = YES;
     style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
-    [LoveView lgf].lgf_FreePTSpecialTitleProperty = @"1/80";
+    [LoveView lgf].lgf_FreePTSpecialTitleProperty = @"1~~~80";
     style.lgf_FreePTSpecialTitleArray = @[[LoveView lgf]];
     
     self.pageVC = [LGFCenterPageVC lgf];

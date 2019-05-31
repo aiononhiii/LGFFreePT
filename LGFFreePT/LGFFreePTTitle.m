@@ -44,8 +44,8 @@
     
     // 需要显示子标题
     if (title.lgf_Style.lgf_IsDoubleTitle) {
-        title.lgf_Title.text = [titleText componentsSeparatedByString:@"/"].firstObject;
-        title.lgf_SubTitle.text = [titleText componentsSeparatedByString:@"/"].lastObject;
+        title.lgf_Title.text = [titleText componentsSeparatedByString:@"~~~"].firstObject;
+        title.lgf_SubTitle.text = [titleText componentsSeparatedByString:@"~~~"].lastObject;
     } else {
         title.lgf_Title.text = titleText;
     }
@@ -87,7 +87,7 @@
     // 根据特殊 title 数组 和 特殊 title 的 tag 判断某个 index 是否要替换特殊 title
     if (style.lgf_FreePTSpecialTitleArray.count > 0) {
         for (UIView *specialTitle in style.lgf_FreePTSpecialTitleArray) {
-            NSArray *propertyArray = [specialTitle.lgf_FreePTSpecialTitleProperty componentsSeparatedByString:@"/"];
+            NSArray *propertyArray = [specialTitle.lgf_FreePTSpecialTitleProperty componentsSeparatedByString:@"~~~"];
             NSInteger specialTitleIndex = [propertyArray.firstObject integerValue];
             if (index == specialTitleIndex) {
                 [title.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -223,6 +223,17 @@
 - (void)setLgf_Style:(LGFFreePTStyle *)lgf_Style {
     _lgf_Style = lgf_Style;
     
+    // 非主要属性配置
+    if (lgf_Style.lgf_TitleCornerRadius > 0.0) {
+        self.layer.cornerRadius = lgf_Style.lgf_TitleCornerRadius;
+        if (!self.clipsToBounds) self.clipsToBounds = YES;
+    }
+    if (lgf_Style.lgf_TitleBorderWidth > 0.0) {
+        self.layer.borderWidth = lgf_Style.lgf_TitleBorderWidth;
+        self.layer.borderColor = lgf_Style.lgf_TitleBorderColor.CGColor;
+        if (!self.clipsToBounds) self.clipsToBounds = YES;
+    }
+    
     // 标 Label 配置
     self.lgf_Title.textColor = lgf_Style.lgf_UnTitleSelectColor;
     self.lgf_Title.font = lgf_Style.lgf_UnTitleSelectFont;
@@ -265,6 +276,7 @@
     
     // 只要有宽度，允许设置左图片
     if (lgf_Style.lgf_LeftImageWidth > 0.0) {
+        self.lgf_LeftImage.hidden = NO;
         self.lgf_LeftImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_LeftImageSpace.constant = lgf_Style.lgf_LeftImageSpace;
         self.lgf_LeftImageWidth.constant = MIN(lgf_Style.lgf_LeftImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
@@ -288,6 +300,7 @@
     
     // 只要有宽度，允许设置右图片
     if (lgf_Style.lgf_RightImageWidth > 0.0) {
+        self.lgf_RightImage.hidden = NO;
         self.lgf_RightImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_RightImageSpace.constant = lgf_Style.lgf_RightImageSpace;
         self.lgf_RightImageWidth.constant = MIN(lgf_Style.lgf_RightImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
@@ -311,6 +324,7 @@
     
     // 只要有高度，允许设置上图片
     if (lgf_Style.lgf_TopImageHeight > 0.0) {
+        self.lgf_TopImage.hidden = NO;
         self.lgf_TopImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_TopImageSpace.constant = lgf_Style.lgf_TopImageSpace;
         self.lgf_TopImageWidth.constant = MIN(lgf_Style.lgf_TopImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
@@ -334,6 +348,7 @@
     
     // 只要有高度，允许设置下图片
     if (lgf_Style.lgf_BottomImageHeight > 0.0) {
+        self.lgf_BottomImage.hidden = NO;
         self.lgf_BottomImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
         self.lgf_BottomImageSpace.constant = lgf_Style.lgf_BottomImageSpace;
         self.lgf_BottomImageWidth.constant = MIN(lgf_Style.lgf_BottomImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
