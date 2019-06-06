@@ -84,7 +84,7 @@ lgf_SBViewControllerForM(LGFCenterPageChildVC, @"LGFCenterPageVC", @"LGFCenterPa
         [self.lgf_CenterChildPageCV layoutIfNeeded];
         [self.lgf_PanScrollView setContentSize:self.lgf_CenterChildPageCV.contentSize];
         NSLog(@"%f", lgf_CenterChildPageCVRealRect.origin.y);
-        if (self.lgf_CenterChildPageCV.contentSize.height < (self.view.lgf_height - self.lgf_HeaderHeight)) {
+        if (self.lgf_CenterChildPageCV.contentSize.height < self.view.lgf_height) {
             [self.lgf_CenterChildPageCV setContentInset:UIEdgeInsetsMake(self.lgf_HeaderHeight,
                                                                          0,
                                                                          self.view.lgf_height - self.lgf_CenterChildPageCV.contentSize.height - self.lgf_PageTitleViewHeight + self.lgf_PageCVBottom,

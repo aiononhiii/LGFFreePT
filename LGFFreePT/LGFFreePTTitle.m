@@ -10,17 +10,7 @@
 #import "UIView+LGFFreePT.h"
 #import "LGFFreePTMethod.h"
 
-#undef LGFPTRandomColor
-#define LGFPTRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0f green:arc4random_uniform(256)/255.0f blue:arc4random_uniform(256)/255.0f alpha:0.2]
-
 @interface LGFFreePTTitle()
-// 标字体渐变色用数组
-@property (copy, nonatomic) NSArray *lgf_DeltaRGBA;
-@property (copy, nonatomic) NSArray *lgf_SelectColorRGBA;
-@property (copy, nonatomic) NSArray *lgf_UnSelectColorRGBA;
-@property (copy, nonatomic) NSArray *lgf_SubDeltaRGBA;
-@property (copy, nonatomic) NSArray *lgf_SubSelectColorRGBA;
-@property (copy, nonatomic) NSArray *lgf_SubUnSelectColorRGBA;
 @end
 @implementation LGFFreePTTitle
 
@@ -51,17 +41,18 @@
     }
     
     // 获取字体宽度
+    title.lgf_Title.adjustsFontSizeToFitWidth = YES;
     CGSize titleSize = [LGFFreePTMethod lgf_SizeWithString:title.lgf_Title.text font:(title.lgf_Style.lgf_TitleSelectFont.pointSize > title.lgf_Style.lgf_UnTitleSelectFont.pointSize ? title.lgf_Style.lgf_TitleSelectFont : title.lgf_Style.lgf_UnTitleSelectFont) maxSize:CGSizeMake(CGFLOAT_MAX, title.lgf_Style.lgf_PVTitleView.lgfpt_Height)];
     CGSize subTitleSize = CGSizeZero;
     if (title.lgf_Style.lgf_IsDoubleTitle) {
+        title.lgf_SubTitle.adjustsFontSizeToFitWidth = YES;
         subTitleSize = [LGFFreePTMethod lgf_SizeWithString:title.lgf_SubTitle.text font:(title.lgf_Style.lgf_SubTitleSelectFont.pointSize > title.lgf_Style.lgf_UnSubTitleSelectFont.pointSize ? title.lgf_Style.lgf_SubTitleSelectFont : title.lgf_Style.lgf_UnSubTitleSelectFont) maxSize:CGSizeMake(CGFLOAT_MAX, title.lgf_Style.lgf_PVTitleView.lgfpt_Height)];
         title.lgf_SubTitleHeight.constant = subTitleSize.height;
-        title.lgf_TitleCenterY.constant = title.lgf_TitleCenterY.constant - subTitleSize.height / 2.0 - title.lgf_Style.lgf_SubTitleTopSpace / 2;
+        title.lgf_TitleCenterY.constant = title.lgf_TitleCenterY.constant - subTitleSize.height / 2.0 - title.lgf_Style.lgf_SubTitleTopSpace / 2.0;
         title.lgf_SubTitleTop.constant = title.lgf_Style.lgf_SubTitleTopSpace;
-        title.lgf_SubTitleWidth.constant = subTitleSize.width * 1.05;
-        [title layoutIfNeeded];
+        title.lgf_SubTitleWidth.constant = subTitleSize.width;
     }
-    title.lgf_TitleWidth.constant = titleSize.width * 1.05;
+    title.lgf_TitleWidth.constant = titleSize.width;
     title.lgf_TitleHeight.constant = titleSize.height;
     
     // 标 X

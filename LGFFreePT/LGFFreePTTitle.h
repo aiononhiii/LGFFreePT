@@ -72,6 +72,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat lgf_SubTitleCurrentTransformTY;// 子标题上下位移
 @property (assign, nonatomic) CGFloat lgf_SubTitleCurrentTransformTX;// 子标题左右位移
 
+// 标字体渐变色用数组
+@property (copy, nonatomic) NSArray *lgf_DeltaRGBA;
+@property (copy, nonatomic) NSArray *lgf_SelectColorRGBA;
+@property (copy, nonatomic) NSArray *lgf_UnSelectColorRGBA;
+@property (copy, nonatomic) NSArray *lgf_SubDeltaRGBA;
+@property (copy, nonatomic) NSArray *lgf_SubSelectColorRGBA;
+@property (copy, nonatomic) NSArray *lgf_SubUnSelectColorRGBA;
+
 @property (weak, nonatomic) id<LGFFreePTTitleDelegate>lgf_FreePTTitleDelegate;
 
 #pragma mark - 标整体状态改变 核心逻辑部分

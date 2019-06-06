@@ -278,7 +278,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     LGFToastStyle *style = [LGFToastStyle lgf];
     style.lgf_SuperEnabled = YES;
     style.lgf_BackBtnEnabled = YES;
-    style.lgf_ToastMessage = [NSString stringWithFormat:@"第 %ld 页", (long)selectIndex];
+    style.lgf_Duration = 2.0;
+    style.lgf_ToastMessage = [NSString stringWithFormat:@"当前选中:%@(%ld), 当前未选中:%@(%ld)", self.fptView.lgf_Style.lgf_Titles[self.fptView.lgf_SelectIndex], (long)self.fptView.lgf_SelectIndex, self.fptView.lgf_Style.lgf_Titles[self.fptView.lgf_UnSelectIndex], (long)self.fptView.lgf_UnSelectIndex];
     [self.view lgf_ShowMessageStyle:style animated:NO completion:^{
         
     }];

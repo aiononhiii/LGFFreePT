@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#undef LGFPTRandomColor
+#define LGFPTRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0f green:arc4random_uniform(256)/255.0f blue:arc4random_uniform(256)/255.0f alpha:0.2]
 #undef LGFPTBundle
 #define LGFPTBundle [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"LGFFreePT" ofType:@"bundle"]] ?: [NSBundle mainBundle]
 #undef LGFPTRGB

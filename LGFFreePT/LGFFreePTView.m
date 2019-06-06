@@ -13,7 +13,6 @@
 
 @interface LGFFreePTView () <UIScrollViewDelegate, LGFFreePTTitleDelegate, LGFFreePTLineDelegate, LGFFreePTFlowLayoutDelegate>
 @property (strong, nonatomic) UICollectionView *lgf_PageView;// 外部分页控制器
-@property (assign, nonatomic) NSInteger lgf_UnSelectIndex;// 前一个选中下标
 @property (assign, nonatomic) NSInteger lgf_RealSelectIndex;// 最准确的选中标值
 @property (assign, nonatomic) BOOL lgf_IsSelectTitle;// 点击了顶部标
 @property (assign, nonatomic) BOOL lgf_Enabled;// 操作中是否禁用手势
@@ -189,7 +188,7 @@
         }
     }
     if (isExecution && self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SelectFreePTTitle:)]) {
-        LGFPTLog(@"当前选中:%@", self.lgf_Style.lgf_Titles[self.lgf_SelectIndex]);
+        LGFPTLog(@"当前选中:%@(%ld), 当前未选中:%@(%ld)", self.lgf_Style.lgf_Titles[self.lgf_SelectIndex], (long)self.lgf_SelectIndex, self.lgf_Style.lgf_Titles[self.lgf_UnSelectIndex], (long)self.lgf_UnSelectIndex);
         [self.lgf_FreePTDelegate lgf_SelectFreePTTitle:self.lgf_SelectIndex];
     }
 }
@@ -235,9 +234,14 @@
     __block LGFFreePTTitle *unSelectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[unSelectIndex];
     __block LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[selectIndex];
     
-    // 标整体状态改变
-    [unSelectTitle lgf_SetMainTitleTransform:progress isSelectTitle:NO selectIndex:unSelectIndex unselectIndex:selectIndex];
-    [selectTitle lgf_SetMainTitleTransform:progress isSelectTitle:YES selectIndex:unSelectIndex unselectIndex:selectIndex];
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SetAllTitleState:style:selectTitle:unSelectTitle:selectIndex:unSelectIndex:progress:)]) {
+        [self.lgf_FreePTDelegate lgf_SetAllTitleState:self.lgf_TitleButtons style:self.lgf_Style selectTitle:selectTitle unSelectTitle:unSelectTitle selectIndex:selectIndex unSelectIndex:unSelectIndex progress:progress];
+        LGFPTLog(@"自定义标动效状态 progress:%f", progress);
+    } else {
+        // 标整体状态改变
+        [unSelectTitle lgf_SetMainTitleTransform:progress isSelectTitle:NO selectIndex:selectIndex unselectIndex:unSelectIndex];
+        [selectTitle lgf_SetMainTitleTransform:progress isSelectTitle:YES selectIndex:selectIndex unselectIndex:unSelectIndex];
+    }
     
     // 标底部滚动条 更新位置
     if (self.lgf_TitleLine && self.lgf_Style.lgf_IsShowLine) {
@@ -278,9 +282,14 @@
     // 动画时间
     __block CGFloat animatedDuration = self.lgf_Style.lgf_TitleHaveAnimation ? duration : 0.0;
     [UIView animateKeyframesWithDuration:animatedDuration delay:0.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
-        // 标整体状态改变
-        [unSelectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:NO selectIndex:self.lgf_UnSelectIndex unselectIndex:self.lgf_UnSelectIndex];
-        [selectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:YES selectIndex:self.lgf_UnSelectIndex unselectIndex:self.lgf_UnSelectIndex];
+        
+        if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SetAllTitleClickState:style:selectTitle:unSelectTitle:selectIndex:unSelectIndex:progress:)]) {
+            [self.lgf_FreePTDelegate lgf_SetAllTitleClickState:self.lgf_TitleButtons style:self.lgf_Style selectTitle:selectTitle unSelectTitle:unSelectTitle selectIndex:self.lgf_SelectIndex unSelectIndex:self.lgf_UnSelectIndex progress:1.0];
+        } else {
+            // 标整体状态改变
+            [unSelectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:NO selectIndex:self.lgf_SelectIndex unselectIndex:self.lgf_UnSelectIndex];
+            [selectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:YES selectIndex:self.lgf_SelectIndex unselectIndex:self.lgf_UnSelectIndex];
+        }
         
         // 标底部滚动条 更新位置
         if (self.lgf_TitleLine && self.lgf_Style.lgf_IsShowLine) {

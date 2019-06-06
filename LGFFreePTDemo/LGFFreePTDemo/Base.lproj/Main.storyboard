@@ -1175,6 +1175,11 @@
                         <constraint firstAttribute="trailing" secondItem="RDL-cd-XUc" secondAttribute="trailing" id="u0x-5z-708"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" id="eaP-g0-u0P">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="4021.5999999999999" y="122.78860569715144"/>
         </scene>
