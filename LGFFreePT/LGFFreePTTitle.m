@@ -250,6 +250,10 @@
     // 是否需要显示标图片
     if (!lgf_Style.lgf_SelectImageNames || (lgf_Style.lgf_SelectImageNames.count < lgf_Style.lgf_Titles.count) || !lgf_Style.lgf_UnSelectImageNames || (lgf_Style.lgf_UnSelectImageNames.count < lgf_Style.lgf_Titles.count)) {
         self.lgf_IsHaveImage = NO;
+        [self.lgf_TopImage removeFromSuperview];
+        [self.lgf_BottomImage removeFromSuperview];
+        [self.lgf_LeftImage removeFromSuperview];
+        [self.lgf_RightImage removeFromSuperview];
         self.lgf_TopImageHeight.constant = 0.0;
         self.lgf_BottomImageHeight.constant = 0.0;
         self.lgf_LeftImageWidth.constant = 0.0;
@@ -286,6 +290,7 @@
             self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageSpace / 2);
         }
     } else {
+        [self.lgf_LeftImage removeFromSuperview];
         LGFPTLog(@"如果要显示左边图标，请给 left_image_width 赋值");
     }
     
@@ -310,6 +315,7 @@
             self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageSpace / 2.0);
         }
     } else {
+        [self.lgf_RightImage removeFromSuperview];
         LGFPTLog(@"如果要显示右边图标，请给 right_image_width 赋值");
     }
     
@@ -334,6 +340,7 @@
             self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageSpace / 2.0);
         }
     } else {
+        [self.lgf_TopImage removeFromSuperview];
         LGFPTLog(@"如果要显示顶部图标，请给 top_image_height 赋值");
     }
     
@@ -358,6 +365,7 @@
             self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageSpace / 2.0);
         }
     } else {
+        [self.lgf_BottomImage removeFromSuperview];
         LGFPTLog(@"如果要显示底部图标，请给 bottom_image_height 赋值");
     }
 }

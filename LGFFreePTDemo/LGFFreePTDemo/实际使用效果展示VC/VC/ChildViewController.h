@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChildViewController : UIViewController
+@property (assign, nonatomic) NSInteger index;
 lgf_SBViewControllerForH;
 @end
 

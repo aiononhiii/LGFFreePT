@@ -38,6 +38,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     // 添加子控制器
     [self.titles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ChildViewController *vc = [ChildViewController lgf];
+        vc.index = idx;
         [self addChildViewController:vc];
         [vc didMoveToParentViewController:self];
         [self.chlidVCs addObject:vc];
@@ -65,13 +66,22 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
     return collectionView.lgfpt_Size;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    ChildViewController *vc = self.chlidVCs[indexPath.item];
+    if (![cell.subviews containsObject:vc.view]) {
+        vc.view.frame = cell.bounds;
+        vc.index = indexPath.item;
+        vc.view.backgroundColor = lgf_RandomColor;
+        [cell addSubview:vc.view];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = lgf_CVGetCell(collectionView, UICollectionViewCell, indexPath);
-    [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    ChildViewController *vc = self.chlidVCs[indexPath.item];
-    vc.view.frame = cell.bounds;
-    [cell addSubview:vc.view];
-    vc.view.backgroundColor = lgf_RandomColor;
     return cell;
 }
 

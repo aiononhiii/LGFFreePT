@@ -288,6 +288,9 @@
                             <constraint firstItem="eul-eg-STY" firstAttribute="centerX" secondItem="owC-DB-AZf" secondAttribute="centerX" id="ava-Px-9th"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="eul-eg-STY" id="7xG-nK-mII"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCs-tl-8Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

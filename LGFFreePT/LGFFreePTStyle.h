@@ -66,7 +66,6 @@ typedef NS_ENUM(NSUInteger, lgf_FreePageViewAnimationType) {
 
 typedef NS_ENUM(NSUInteger, lgf_FreePageLineAnimationType) {
     lgf_PageLineAnimationDefult,// title 底部线平滑改变大小
-    // 后续推出下面的 仿爱奇艺底部线动画效果 现暂时不可用 请勿设置
     lgf_PageLineAnimationShortToLong,// title 底部线先右边伸出变宽致 title 和下一个 title 的总宽度, 再左边收回恢复到下一个 title 的宽度
     lgf_PageLineAnimationHideShow,// 渐隐效果， title 底部线隐藏，再在下一个 title 的底部出现
     lgf_PageLineAnimationTortoiseDown,// 乌龟的头效果， title 底部线向下隐藏，再在下一个 title 的底部向上出现
