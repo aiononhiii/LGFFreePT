@@ -123,6 +123,8 @@
 @property (nonatomic, copy) NSArray *lgf_TitleScrollFollowTypeDescribeArray;
 @property (nonatomic, copy) NSArray *lgf_PVAnimationTypeDescribeArray;
 @property (nonatomic, copy) NSArray *lgf_LineWidthTypeDescribeArray;
+
+@property (strong, nonatomic) NSMutableArray <LGFFreePTTitle *> *titleArray;
 @end
 
 @implementation CustomViewController
@@ -283,6 +285,26 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 }
 
 #pragma mark - LGFFreePTView Delegate
+
+//- (void)lgf_SetAllTitleState:(NSArray <LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress {
+//    [unSelectTitle lgf_SetMainTitleTransform:progress isSelectTitle:NO selectIndex:selectIndex unselectIndex:unSelectIndex];
+//    [selectTitle lgf_SetMainTitleTransform:progress isSelectTitle:YES selectIndex:selectIndex unselectIndex:unSelectIndex];
+//    if (self.titleArray.count == 0) {
+//        self.titleArray = allTitles.mutableCopy;
+//    }
+//    [allTitles enumerateObjectsUsingBlock:^(LGFFreePTTitle * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (obj != selectTitle) {
+//            CGFloat titleX = self.titleArray[idx].lgfpt_X;
+//            if (obj.lgfpt_X == titleX) {
+//                if (idx < selectIndex) {
+//                    obj.lgfpt_X = titleX - titleX * progress;
+//                } else if (idx > selectIndex) {
+//                    obj.lgfpt_X = titleX + titleX * progress;
+//                }
+//            }
+//        }
+//    }];
+//}
 
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex {
     LGFToastStyle *style = [LGFToastStyle lgf];
@@ -725,5 +747,12 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         _fptView.lgf_FreePTDelegate = self;
     }
     return _fptView;
+}
+
+- (NSMutableArray <LGFFreePTTitle *> *)titleArray {
+    if (!_titleArray) {
+        _titleArray = [NSMutableArray new];
+    }
+    return _titleArray;
 }
 @end

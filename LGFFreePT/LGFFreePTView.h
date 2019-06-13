@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param unSelectIndex 未选中 index
  @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
  */
-- (void)lgf_SetAllTitleState:(NSArray <LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress;
+- (void)lgf_SetAllTitleState:(NSArray<LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress;
 #pragma mark - 实现这个代理来对所有标的点击动效状态进行配置（为了某些标队列特殊物理效果的需求）（注意：实现这个代理后我的默认效果将无效）
 /**
  @param allTitles 所有标数组
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param unSelectIndex 未选中 index
  @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
  */
-- (void)lgf_SetAllTitleClickState:(NSArray <LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress;
+- (void)lgf_SetAllTitleClickState:(NSArray<LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress;
 #pragma mark - 如果我原配的动画满足不了你，那么请使用这个自定义 line 动画代理（自定义配置滚动后 line 的动画）
 /**
  @param style LGFFreePTStyle

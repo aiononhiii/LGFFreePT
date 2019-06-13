@@ -40,7 +40,9 @@
     // 部分基础 UI 配置
     self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV.backgroundColor;
     if (@available(iOS 11.0, *)) {
-        if (self.lgf_PageView) self.lgf_PageView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        if (self.lgf_PageView) {
+            self.lgf_PageView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
     } else {
         SVC.automaticallyAdjustsScrollViewInsets = NO;
     }
@@ -73,7 +75,9 @@
 - (void)lgf_ReloadTitleAndSelectIndex:(NSInteger)selectIndex isExecutionDelegate:(BOOL)isExecutionDelegate isReloadPageCV:(BOOL)isReloadPageCV animated:(BOOL)animated {
     if (self.lgf_PageView) {
         NSAssert(self.lgf_Style.lgf_Titles.count == [self.lgf_PageView.dataSource collectionView:self.lgf_PageView numberOfItemsInSection:0], @"如果关联 lgf_PageView 外部子控制器/ cell 数量必须和 lgf_Titles 标数量保持一致，如果不关联 lgf_PageView 请传 nil");
-        if (isReloadPageCV) [self.lgf_PageView reloadData];
+        if (isReloadPageCV) {
+            [self.lgf_PageView reloadData];
+        }
     }
     NSAssert((selectIndex <= (self.lgf_Style.lgf_Titles.count - 1)) && (selectIndex >= 0), @"lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了");
     // 删除一遍所有子控件
@@ -234,11 +238,11 @@
     __block LGFFreePTTitle *unSelectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[unSelectIndex];
     __block LGFFreePTTitle *selectTitle = (LGFFreePTTitle *)self.lgf_TitleButtons[selectIndex];
     
+    // 标整体状态改变
     if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SetAllTitleState:style:selectTitle:unSelectTitle:selectIndex:unSelectIndex:progress:)]) {
         [self.lgf_FreePTDelegate lgf_SetAllTitleState:self.lgf_TitleButtons style:self.lgf_Style selectTitle:selectTitle unSelectTitle:unSelectTitle selectIndex:selectIndex unSelectIndex:unSelectIndex progress:progress];
         LGFPTLog(@"自定义标动效状态 progress:%f", progress);
     } else {
-        // 标整体状态改变
         [unSelectTitle lgf_SetMainTitleTransform:progress isSelectTitle:NO selectIndex:selectIndex unselectIndex:unSelectIndex];
         [selectTitle lgf_SetMainTitleTransform:progress isSelectTitle:YES selectIndex:selectIndex unselectIndex:unSelectIndex];
     }
@@ -283,10 +287,10 @@
     __block CGFloat animatedDuration = self.lgf_Style.lgf_TitleHaveAnimation ? duration : 0.0;
     [UIView animateKeyframesWithDuration:animatedDuration delay:0.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
         
+        // 标整体状态改变
         if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SetAllTitleClickState:style:selectTitle:unSelectTitle:selectIndex:unSelectIndex:progress:)]) {
             [self.lgf_FreePTDelegate lgf_SetAllTitleClickState:self.lgf_TitleButtons style:self.lgf_Style selectTitle:selectTitle unSelectTitle:unSelectTitle selectIndex:self.lgf_SelectIndex unSelectIndex:self.lgf_UnSelectIndex progress:1.0];
         } else {
-            // 标整体状态改变
             [unSelectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:NO selectIndex:self.lgf_SelectIndex unselectIndex:self.lgf_UnSelectIndex];
             [selectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:YES selectIndex:self.lgf_SelectIndex unselectIndex:self.lgf_UnSelectIndex];
         }
@@ -349,7 +353,9 @@
         unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
         unSelectWidth = self.lgf_Style.lgf_LineWidth;
     }
-    if (XAndW) XAndW(selectX, selectWidth, unSelectX, unSelectWidth);
+    if (XAndW) {
+        XAndW(selectX, selectWidth, unSelectX, unSelectWidth);
+    }
 }
 
 #pragma mark - LGFFreePTTitleDelegate
@@ -403,7 +409,9 @@
 #pragma mark - 销毁
 - (void)dealloc {
     [self lgf_RemoveAllSubViews];
-    if (self.lgf_PageView) [self.lgf_PageView removeObserver:self forKeyPath:@"contentOffset"];
+    if (self.lgf_PageView) {
+        [self.lgf_PageView removeObserver:self forKeyPath:@"contentOffset"];
+    }
     LGFPTLog(@"LGF的分页控件:LGFFreePT --- 已经释放");
 }
 
