@@ -50,6 +50,16 @@ lgf_SBViewControllerForM(VerticalViewController, @"Main", @"VerticalViewControll
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 11.0, *)) {
+        self.collectionViewOne.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.collectionViewTwo.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.collectionViewThree.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.collectionViewFour.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.collectionViewFive.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     self.myDataArray = @[@"转账", @"信用卡还款", @"淘票票电影", @"花呗", @"滴滴出行", @"饿了么外卖", @"蚂蚁庄园", @"蚂蚁森林", @"充值中心", @"我的快递"].mutableCopy;
     
     self.latelyDataArray = @[@"生活缴费", @"城市服务", @"车主服务", @"红包", @"商家服务", @"发票管家", @"借呗", @"更多"].mutableCopy;

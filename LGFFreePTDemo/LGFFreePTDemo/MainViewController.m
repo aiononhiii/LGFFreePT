@@ -27,6 +27,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (@available(iOS 11.0, *)) {
+        self.listCV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.listArray = @[
   @{@"title" : @"普通",
     @"array" : @[@"1", @"22", @"333", @"4444", @"55555", @"666666", @"77", @"88888888"]},

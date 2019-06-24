@@ -428,7 +428,6 @@
 }
 
 #pragma mark - 懒加载
-
 - (BOOL)lgf_AutoSelectIndex:(NSInteger)selectIndex {
     if (self.lgf_SelectIndex == selectIndex) {
         return NO;

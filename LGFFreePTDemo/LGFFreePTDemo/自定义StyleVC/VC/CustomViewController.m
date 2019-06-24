@@ -139,6 +139,12 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 11.0, *)) {
+        self.toolScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     // 枚举类型展示用数据源
     self.lgf_LineAnimationArray = @[@"lgf_PageLineAnimationDefult", @"lgf_PageLineAnimationShortToLong", @"lgf_PageLineAnimationHideShow", @"lgf_PageLineAnimationTortoiseDown", @"lgf_PageLineAnimationTortoiseUp", @"lgf_PageLineAnimationSmallToBig", @"lgf_PageLineAnimationCustomize"];
     self.lgf_TitleScrollFollowTypeArray = @[@"lgf_TitleScrollFollowDefult", @"lgf_TitleScrollFollowLeftRight", @"lgf_TitleScrollFollowCustomize"];
