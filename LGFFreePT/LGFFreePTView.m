@@ -181,7 +181,7 @@
         return;
     }
     // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的效果，如果可以能够结合 LGFFreePTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
-    if (!(self.lgf_Style.lgf_IsTitleCenter && self.contentSize.width < self.lgfpt_Width)) {
+    if (!(self.contentSize.width < self.lgfpt_Width)) {
         if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowDefult) {
             [LGFFreePTMethod lgf_TitleScrollFollowDefultAnimationConfig:self.lgf_Style lgf_TitleButtons:self.lgf_TitleButtons unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex duration:autoScrollDuration];
         } else if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowLeftRight) {
