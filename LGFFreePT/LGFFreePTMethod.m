@@ -27,7 +27,9 @@
     NSArray *rgbaComponents;
     if (numOfcomponents == 4) {
         const CGFloat *components = CGColorGetComponents(color.CGColor);
-        rgbaComponents = [NSArray arrayWithObjects:@(components[0]), @(components[1]), @(components[2]), @(components[3]), nil];
+        rgbaComponents = @[@(components[0]), @(components[1]), @(components[2]), @(components[3])];
+    } else {
+        rgbaComponents = @[];
     }
     return rgbaComponents;
 }

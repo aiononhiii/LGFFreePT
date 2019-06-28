@@ -241,6 +241,7 @@
 		185F09B1228AEE68004CDEDA /* LGFColorSelectImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F09B0228AEE68004CDEDA /* LGFColorSelectImageView.m */; };
 		18694F732297EF7D009364A2 /* customDataSourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18694F722297EF7D009364A2 /* customDataSourceView.m */; };
 		18694F752297EF82009364A2 /* customDataSourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18694F742297EF82009364A2 /* customDataSourceView.xib */; };
+		18800AF022C5E9A500E34E1F /* VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18800AEF22C5E9A500E34E1F /* VC.m */; };
 		18A735132292818800741078 /* TaoBaoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A735112292818800741078 /* TaoBaoCell.m */; };
 		18A735142292818800741078 /* TaoBaoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A735122292818800741078 /* TaoBaoCell.xib */; };
 		18F0F5FC229524DA0068247A /* LoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0F5FB229524DA0068247A /* LoveView.m */; };
@@ -726,6 +727,8 @@
 		18694F712297EF7D009364A2 /* customDataSourceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customDataSourceView.h; sourceTree = "<group>"; };
 		18694F722297EF7D009364A2 /* customDataSourceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = customDataSourceView.m; sourceTree = "<group>"; };
 		18694F742297EF82009364A2 /* customDataSourceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = customDataSourceView.xib; sourceTree = "<group>"; };
+		18800AEE22C5E9A500E34E1F /* VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VC.h; sourceTree = "<group>"; };
+		18800AEF22C5E9A500E34E1F /* VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VC.m; sourceTree = "<group>"; };
 		18A735102292818800741078 /* TaoBaoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaoBaoCell.h; sourceTree = "<group>"; };
 		18A735112292818800741078 /* TaoBaoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaoBaoCell.m; sourceTree = "<group>"; };
 		18A735122292818800741078 /* TaoBaoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaoBaoCell.xib; sourceTree = "<group>"; };
@@ -1784,6 +1787,8 @@
 				18458F7C22756AF9001F1CCC /* LaunchScreen.storyboard */,
 				18458F7F22756AF9001F1CCC /* Info.plist */,
 				18458F8022756AF9001F1CCC /* main.m */,
+				18800AEE22C5E9A500E34E1F /* VC.h */,
+				18800AEF22C5E9A500E34E1F /* VC.m */,
 			);
 			path = LGFFreePTDemo;
 			sourceTree = "<group>";
@@ -2144,6 +2149,7 @@
 				183AD934229E1C86003497AB /* SDWebImagePrefetcher.m in Sources */,
 				18210EEA22925A6100253BA5 /* LGFMJRefreshBackStateFooter.m in Sources */,
 				18210EF222925A6100253BA5 /* LGFMJRefreshStateHeader.m in Sources */,
+				18800AF022C5E9A500E34E1F /* VC.m in Sources */,
 				183AD90A229E1C86003497AB /* UIWebView+LGFClearCookies.m in Sources */,
 				18210EF322925A6100253BA5 /* UIView+LGFMJExtension.m in Sources */,
 				18210EDE22925A6100253BA5 /* LGFCenterPageChildVC.m in Sources */,

@@ -112,8 +112,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;
-@property (strong, nonatomic) LGFFreePTLine * _Nullable lgf_TitleLine;// 底部滚动条(决定开在 .h 方便配合代理实现某些特殊需求)
-@property (strong, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
+@property (weak, nonatomic) UIViewController *lgf_SVC;
+@property (weak, nonatomic) LGFFreePTLine * _Nullable lgf_TitleLine;// 底部滚动条(决定开在 .h 方便配合代理实现某些特殊需求)
+@property (strong, nonatomic) LGFFreePTStyle * _Nullable lgf_Style;// 配置用模型
 @property (strong, nonatomic) NSMutableArray <LGFFreePTTitle *> *lgf_TitleButtons;// 所有标数组
 @property (assign, nonatomic) NSInteger lgf_SelectIndex;// 选中下标
 @property (assign, nonatomic) NSInteger lgf_UnSelectIndex;// 前一个选中下标
@@ -153,7 +154,9 @@ NS_ASSUME_NONNULL_BEGIN
  @param PV 外部分页控件
  @return LGFFreePT
  */
-- (instancetype)lgf_InitWithStyle:(LGFFreePTStyle *)style SVC:(UIViewController *)SVC SV:(UIView *)SV PV:(nullable UICollectionView *)PV;
+- (instancetype)lgf_InitWithStyle:(LGFFreePTStyle * _Nullable)style SVC:(UIViewController *)SVC SV:(UIView *)SV PV:(nullable UICollectionView *)PV;
+#pragma maek - frame纯代码添加 addSubview 需自己调用
+- (instancetype)lgf_InitWithStyle:(LGFFreePTStyle * _Nullable)style SVC:(UIViewController *)SVC PV:(nullable UICollectionView *)PV frame:(CGRect)frame;
 
 @end
 

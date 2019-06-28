@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)lgf_GetLine:(UIImageView *)lgf_FreePTLine style:(LGFFreePTStyle *)style;
 @end
 @interface LGFFreePTLine : UIImageView
-@property (strong, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
+@property (weak, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
 @property (weak, nonatomic) id<LGFFreePTLineDelegate>lgf_FreePTLineDelegate;
 
 #pragma mark - 初始化

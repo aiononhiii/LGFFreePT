@@ -31,30 +31,40 @@
 }
 
 #pragma mark - 初始化配置
-- (instancetype)lgf_InitWithStyle:(LGFFreePTStyle *)style SVC:(UIViewController *)SVC SV:(UIView *)SV PV:(UICollectionView *)PV {
+- (instancetype)lgf_InitWithStyle:(LGFFreePTStyle * _Nullable)style SVC:(UIViewController *)SVC PV:(nullable UICollectionView *)PV frame:(CGRect)frame {
+    return [self lgf_InitWithStyle:style SVC:SVC SV:nil PV:PV frame:frame];
+}
+- (instancetype)lgf_InitWithStyle:(LGFFreePTStyle * _Nullable)style SVC:(UIViewController *)SVC SV:(UIView *)SV PV:(UICollectionView *)PV {
+    return [self lgf_InitWithStyle:style SVC:SVC SV:SV PV:PV frame:CGRectZero];
+}
+- (instancetype)lgf_InitWithStyle:(LGFFreePTStyle * _Nullable)style SVC:(UIViewController *)SVC SV:(UIView *)SV PV:(UICollectionView *)PV frame:(CGRect)frame {
     NSAssert(SVC, @"请在initWithStyle方法中传入父视图控制器! 否则将无法联动控件");
-    NSAssert(SV, @"请在initWithStyle方法中传入父View! 否则将无法联动控件");
     NSAssert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, @"选中图片数组和未选中图片数组count必须一致");
     self.lgf_Style = style;
     self.lgf_PageView = PV;
+    self.lgf_SVC = SVC;
+    self.lgf_Style.lgf_PVTitleView = self;
     // 部分基础 UI 配置
-    self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV.backgroundColor;
+    self.backgroundColor = self.lgf_Style.lgf_PVTitleViewBackgroundColor ? self.lgf_Style.lgf_PVTitleViewBackgroundColor : SV ? SV.backgroundColor : [UIColor whiteColor];
     if (@available(iOS 11.0, *)) {
         if (self.lgf_PageView) {
             self.lgf_PageView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     } else {
-        SVC.automaticallyAdjustsScrollViewInsets = NO;
+        self.lgf_SVC.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.lgf_Style.lgf_PVTitleView = self;
-    [SV addSubview:self];
+    if (SV) { [SV addSubview:self]; };
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.lgf_PageView) {
             [self lgf_PageViewConfig];
         }
         // 是否有固定 Frame
         if (CGRectEqualToRect(self.lgf_Style.lgf_PVTitleViewFrame, CGRectZero)) {
-            self.frame = self.superview.bounds;
+            if (CGRectEqualToRect(frame, CGRectZero)) {
+                self.frame = self.superview.bounds;
+            } else {
+                self.frame = frame;
+            }
         } else {
             self.frame = self.lgf_Style.lgf_PVTitleViewFrame;
         }
@@ -203,8 +213,8 @@
 - (void)lgf_ConvertToProgress:(CGFloat)contentOffsetX {
     CGFloat selectProgress = contentOffsetX / self.lgf_PageView.lgfpt_Width;
     CGFloat progress = selectProgress - floor(selectProgress);
-    NSInteger selectIndex = self.lgf_UnSelectIndex;
-    NSInteger unSelectIndex = self.lgf_SelectIndex;
+    NSInteger selectIndex;
+    NSInteger unSelectIndex;
     if (contentOffsetX >= (self.lgf_PageView.contentSize.width - self.lgf_PageView.lgfpt_Width)) {
         progress = 1.0;
         unSelectIndex = selectProgress - 1;
@@ -414,6 +424,13 @@
     if (self.lgf_PageView) {
         [self.lgf_PageView removeObserver:self forKeyPath:@"contentOffset"];
     }
+    self.lgf_Style = nil;
+    [self.lgf_SVC.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull VC, NSUInteger idx, BOOL * _Nonnull stop) {
+        [VC willMoveToParentViewController:nil];
+        [VC.view removeFromSuperview];
+        [VC removeFromParentViewController];
+    }];
+    [self removeFromSuperview];
     LGFPTLog(@"LGF的分页控件:LGFFreePT --- 已经释放");
 }
 
@@ -422,7 +439,6 @@
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.lgf_TitleButtons enumerateObjectsUsingBlock:^(LGFFreePTTitle * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
-        obj = nil;
     }];
     [self.lgf_TitleLine removeFromSuperview];
     self.lgf_TitleLine = nil;

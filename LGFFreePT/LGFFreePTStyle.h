@@ -130,13 +130,13 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 选中 title 放大缩小倍数 默认 1.0(不放大缩小)
 @property (assign, nonatomic) CGFloat lgf_TitleTransformSX;
 // 选中 title 字体颜色 默认 blackColor 黑色 (对应 lgf_TitleUnSelectColor 两个颜色一样则取消渐变效果)
-@property (strong, nonatomic) UIColor *lgf_TitleSelectColor;
+@property (strong, nonatomic) UIColor * lgf_TitleSelectColor;
 // 未选中 title 字体颜色 默认 lightGrayColor 淡灰色 (对应 lgf_TitleSelectColor 两个颜色一样则取消渐变效果)
-@property (strong, nonatomic) UIColor *lgf_UnTitleSelectColor;
+@property (strong, nonatomic) UIColor * lgf_UnTitleSelectColor;
 // title 选中字体 默认 [UIFont systemFontOfSize:14]
-@property (strong, nonatomic) UIFont *lgf_TitleSelectFont;
+@property (strong, nonatomic) UIFont * _Nullable lgf_TitleSelectFont;
 // title 未选中字体 默认 和选中字体一样
-@property (strong, nonatomic) UIFont *lgf_UnTitleSelectFont;
+@property (strong, nonatomic) UIFont * _Nullable lgf_UnTitleSelectFont;
 // 选中主 title 放大缩小倍数 默认 1.0(不放大缩小)
 @property (assign, nonatomic) CGFloat lgf_MainTitleTransformSX;
 // 选中主 title 上下偏移数 默认 0.0(不上下偏移)
@@ -144,10 +144,10 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 选中主 title 左右偏移数 默认 0.0(不左右偏移)
 @property (assign, nonatomic) CGFloat lgf_MainTitleTransformTX;
 // 副 title 默认和 title 一样
-@property (strong, nonatomic) UIColor *lgf_SubTitleSelectColor;
-@property (strong, nonatomic) UIColor *lgf_UnSubTitleSelectColor;
-@property (strong, nonatomic) UIFont *lgf_SubTitleSelectFont;
-@property (strong, nonatomic) UIFont *lgf_UnSubTitleSelectFont;
+@property (strong, nonatomic) UIColor * lgf_SubTitleSelectColor;
+@property (strong, nonatomic) UIColor * lgf_UnSubTitleSelectColor;
+@property (strong, nonatomic) UIFont * _Nullable lgf_SubTitleSelectFont;
+@property (strong, nonatomic) UIFont * _Nullable lgf_UnSubTitleSelectFont;
 // 副 title 和 主 title 的距离
 @property (assign, nonatomic) CGFloat lgf_SubTitleTopSpace;
 // 选中副 title 放大缩小倍数 默认 1.0(不放大缩小)
@@ -169,21 +169,21 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // title 部分 **(非主要属性)**
 @property (assign, nonatomic) CGFloat lgf_TitleCornerRadius;
 @property (assign, nonatomic) CGFloat lgf_TitleBorderWidth;
-@property (strong, nonatomic) UIColor *lgf_TitleBorderColor;
+@property (strong, nonatomic) UIColor * lgf_TitleBorderColor;
 //------------------- 特殊 title 设置
 // 要替换的特殊 title 数组（数组中元素 view (改 view 最好为单列，以方便设置 选中状态/动效/动画 等特殊处理) 的 lgf_FreePTSpecialTitleArray（值格式：@"0~~~80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是障眼法替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
 @property (nonatomic, copy) NSArray <UIView *> *lgf_FreePTSpecialTitleArray;
 
 //-------------------  title 图片设置
 // 图片Bundle 如果图片不在本控件bundel里请设置
-@property (strong, nonatomic) NSBundle *lgf_ImageBundel;
+@property (strong, nonatomic) NSBundle * _Nullable lgf_ImageBundel;
 // title 图片 ContentMode **(非主要属性)**
 @property(nonatomic) UIViewContentMode lgf_TitleImageContentMode;
 // lgf_SelectImageNames 和 lgf_SameSelectImageName 设置一个就行 如果都设置了默认取 lgf_SameSelectImageName
 // 设置不同图 title 数组（必须和titles数组count保持一致,如果某一个 title 不想设置图 title 名字传空即可）
 // 选中图 title 数组和未选中图 title 数组如果只传了其中一个,将没有选中效果
-@property (strong, nonatomic) NSMutableArray *lgf_SelectImageNames;
-@property (strong, nonatomic) NSMutableArray *lgf_UnSelectImageNames;
+@property (strong, nonatomic) NSMutableArray * _Nullable lgf_SelectImageNames;
+@property (strong, nonatomic) NSMutableArray * _Nullable lgf_UnSelectImageNames;
 // 设置所有图 title 为相同
 @property (copy, nonatomic) NSString *lgf_SameSelectImageName;
 @property (copy, nonatomic) NSString *lgf_SameUnSelectImageName;
@@ -224,7 +224,7 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // 是否是 line 网络图片
 @property (assign, nonatomic) BOOL lgf_IsLineNetImage;
 // title 底部滚动线 颜色 默认 blueColor
-@property (strong, nonatomic) UIColor *lgf_LineColor;
+@property (strong, nonatomic) UIColor * lgf_LineColor;
 // title 底部滚动线 动画宽度设置 默认宽度等于 title 字体宽度 - EqualTitleSTR
 @property (assign, nonatomic) lgf_FreeTitleLineWidthType lgf_LineWidthType;
 // title 底部滚动线 宽度 默认 0 - 设置 LGFTitleLineType 固定宽度(FixedWith)时有效
@@ -240,9 +240,8 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 // title 底部滚动线 部分 **(非主要属性)**
 @property (assign, nonatomic) CGFloat lgf_LineCornerRadius;
 @property (assign, nonatomic) CGFloat lgf_LineBorderWidth;
-@property (strong, nonatomic) UIColor *lgf_LineBorderColor;
+@property (strong, nonatomic) UIColor * lgf_LineBorderColor;
 @property(nonatomic) UIViewContentMode lgf_LineImageContentMode;
-
 @end
 
 NS_ASSUME_NONNULL_END

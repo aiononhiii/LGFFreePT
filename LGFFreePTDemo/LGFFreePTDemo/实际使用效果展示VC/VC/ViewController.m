@@ -43,6 +43,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
         [vc didMoveToParentViewController:self];
         [self.chlidVCs addObject:vc];
     }];
+    [self.pageSuperView addSubview:self.fptView];
     // 刷新title数组
     self.fptView.lgf_Style.lgf_Titles = self.titles;
     if ([self.type isEqualToString:@"默认选中 index 5"]) {
@@ -215,7 +216,7 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
         } else if ([self.type isEqualToString:@"渐隐效果"]) {
             style = [LGFFreePTStyleCenter twentytwo];
         }
-        _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:style SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
+        _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:style SVC:self PV:self.pageCollectionView frame:self.pageSuperView.bounds];
         _fptView.lgf_FreePTDelegate = self;
     }
     return _fptView;

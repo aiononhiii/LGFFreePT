@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *lgf_UnSelectImageNames;// 未选中图片数组
 
 @property (assign, nonatomic) BOOL lgf_IsHaveImage;// 是否有标图片
-@property (strong, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
+@property (weak, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型
 @property (assign, nonatomic) CGFloat lgf_CurrentTransformSX;// 放大缩小倍数
 @property (assign, nonatomic) CGFloat lgf_MainTitleCurrentTransformSX;// 主标题放大缩小倍数
 @property (assign, nonatomic) CGFloat lgf_MainTitleCurrentTransformTY;// 主标题上下位移
