@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;
 @property (weak, nonatomic) UIViewController *lgf_SVC;
-@property (weak, nonatomic) LGFFreePTLine * _Nullable lgf_TitleLine;// 底部滚动条(决定开在 .h 方便配合代理实现某些特殊需求)
+@property (strong, nonatomic) LGFFreePTLine * _Nullable lgf_TitleLine;// 底部滚动条(决定开在 .h 方便配合代理实现某些特殊需求)
 @property (strong, nonatomic) LGFFreePTStyle * _Nullable lgf_Style;// 配置用模型
 @property (strong, nonatomic) NSMutableArray <LGFFreePTTitle *> *lgf_TitleButtons;// 所有标数组
 @property (assign, nonatomic) NSInteger lgf_SelectIndex;// 选中下标
