@@ -92,6 +92,9 @@
     NSAssert((selectIndex <= (self.lgf_Style.lgf_Titles.count - 1)) && (selectIndex >= 0), @"lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了");
     // 删除一遍所有子控件
     [self lgf_RemoveAllSubViews];
+    if (self.lgf_Style.lgf_Titles.count == 0) {
+        return;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         // 初始化选中值
         [self lgf_AutoSelectIndex:selectIndex];
@@ -122,7 +125,7 @@
 }
 - (void)lgf_SelectIndex:(NSInteger)index duration:(CGFloat)duration autoScrollDuration:(CGFloat)autoScrollDuration isExecutionDelegate:(BOOL)isExecutionDelegate {
     NSAssert((index <= (self.lgf_Style.lgf_Titles.count - 1)) && (index >= 0), @"lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了");
-    if (self.lgf_SelectIndex == index) {
+    if (self.lgf_SelectIndex == index || self.lgf_Style.lgf_Titles.count == 0) {
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{

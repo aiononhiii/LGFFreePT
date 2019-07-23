@@ -165,7 +165,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [self setDefultStyle];
     [self addChlidVC];
     // 刷新title数组
-    self.fptView.lgf_Style.lgf_Titles = self.titles;
+    self.fptView.lgf_Style.lgf_Titles = @[];
     [self.fptView lgf_ReloadTitle];
 }
 
@@ -749,7 +749,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 
 - (LGFFreePTView *)fptView {
     if (!_fptView) {
-        _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:[self getNewStyle] SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
+        _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:[self getNewStyle] SVC:self SV:self.pageSuperView PV:nil];
         _fptView.lgf_FreePTDelegate = self;
     }
     return _fptView;
