@@ -1,10 +1,12 @@
 ## LGFFreePT
 可自由添加到指定位置的分页标控件
 
+## Swift 4.2+ 版本已出
+传送门 [LGFSwiftPT](https://github.com/aiononhiii/LGFSwiftPT)
+
 ## 提示
 * 本示例代码仅支持 9.0+, 本控件可以支持到 8.0+
-* 稳定期过后我会出一个 swift4 的版本，如果有问题请反馈给我哈
-
+   
 ## 制作目的
 * 想要把分页标放在视图任意位置
 * 把分页用的子控制器 Page 留给大家自己定义（传给 LGFFreePT 一个自己初始化的 UICollectionView，在自己的控制器里实现其代理，并在 cell 上添加子控制器就行）
