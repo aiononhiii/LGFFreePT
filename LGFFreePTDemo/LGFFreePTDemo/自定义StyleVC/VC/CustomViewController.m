@@ -119,6 +119,10 @@
 @property (nonatomic, copy) NSArray *lgf_TitleScrollFollowTypeArray;
 @property (nonatomic, copy) NSArray *lgf_PVAnimationTypeArray;
 @property (nonatomic, copy) NSArray *lgf_LineWidthTypeArray;
+@property (nonatomic, copy) NSArray *lgf_LineAnimationArray_swift;
+@property (nonatomic, copy) NSArray *lgf_TitleScrollFollowTypeArray_swift;
+@property (nonatomic, copy) NSArray *lgf_PVAnimationTypeArray_swift;
+@property (nonatomic, copy) NSArray *lgf_LineWidthTypeArray_swift;
 @property (nonatomic, copy) NSArray *lgf_LineAnimationDescribeArray;
 @property (nonatomic, copy) NSArray *lgf_TitleScrollFollowTypeDescribeArray;
 @property (nonatomic, copy) NSArray *lgf_PVAnimationTypeDescribeArray;
@@ -151,13 +155,18 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_PVAnimationTypeArray = @[@"lgf_PageViewAnimationDefult", @"lgf_PageViewAnimationTopToBottom", @"lgf_PageViewAnimationSmallToBig", @"lgf_PageViewAnimationNone", @"lgf_PageViewAnimationCustomize"];
     self.lgf_LineWidthTypeArray = @[@"lgf_EqualTitleSTR", @"lgf_EqualTitleSTRAndImage", @"lgf_EqualTitle", @"lgf_FixedWith"];
     
+    self.lgf_LineAnimationArray_swift = @[@"defult", @"shortToLong", @"hideShow", @"tortoiseDown", @"tortoiseUp", @"smallToBig", @"customize"];
+    self.lgf_TitleScrollFollowTypeArray_swift = @[@"defult", @"leftRight", @"customize"];
+    self.lgf_PVAnimationTypeArray_swift = @[@"defult", @"topToBottom", @"smallToBig", @"none", @"customize"];
+    self.lgf_LineWidthTypeArray_swift = @[@"equalTitleSTR", @"equalTitleSTRAndImage", @"equalTitle", @"fixedWith"];
+    
     self.lgf_LineAnimationDescribeArray = @[@"默认效果", @"短到长效果", @"隐藏显示效果", @"底部隐藏效果", @"顶部隐藏效果", @"放大缩小效果", @"自定义效果，需添加自定义代理自行实现"];
     self.lgf_TitleScrollFollowTypeDescribeArray = @[@"结束后居中", @"跟随两边（腾讯新闻效果）", @"自定义效果，需添加自定义代理自行实现"];
     self.lgf_PVAnimationTypeDescribeArray = @[@"默认效果", @"上下效果", @"放大缩小效果", @"禁止拖拽滚动", @"自定义效果，需添加自定义代理自行实现"];
     self.lgf_LineWidthTypeDescribeArray = @[@"对准标文本", @"对准标文本和图片", @"对准标", @"固定宽度，需配置 line 的 lgf_LineWidth"];
    
-    if ([lgf_Defaults objectForKey:@"LGFCustomDataSource"]) {
-        self.titles = [[lgf_Defaults objectForKey:@"LGFCustomDataSource"] componentsSeparatedByString:@"\n"];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"LGFCustomDataSource"]) {
+        self.titles = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LGFCustomDataSource"] componentsSeparatedByString:@"\n"];
     }
     self.naviTitle.text = self.type;
     self.toolScrollView.hidden = NO;
@@ -165,7 +174,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [self setDefultStyle];
     [self addChlidVC];
     // 刷新title数组
-    self.fptView.lgf_Style.lgf_Titles = @[];
+    self.fptView.lgf_Style.lgf_Titles = self.titles;
     [self.fptView lgf_ReloadTitle];
 }
 
@@ -200,7 +209,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 - (IBAction)defultLGFFreePTView:(id)sender {
     [[LGFAlertView lgf] lgf_ShowAlertWithMessage:@"确定要恢复默认吗？" cancel:nil confirm:^{
         [self.fptView removeFromSuperview];
-        [lgf_Defaults removeObjectForKey:@"LGFStyleDict"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"LGFStyleDict"];
         [self setDefultStyle];
         [self.fptView lgf_InitWithStyle:[self getNewStyle] SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
         [self.fptView lgf_ReloadTitle];
@@ -214,7 +223,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     @LGFPTWeak(self);
     view.lgf_DataSourceBlock = ^() {
         @LGFPTStrong(self);
-        self.titles = [[lgf_Defaults objectForKey:@"LGFCustomDataSource"] componentsSeparatedByString:@"\n"];
+        self.titles = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LGFCustomDataSource"] componentsSeparatedByString:@"\n"];
     };
 }
 
@@ -478,7 +487,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 #pragma mark - 自定义style
 - (void)setDefultStyle {
     LGFFreePTStyle *style = [LGFFreePTStyle lgf];
-    NSMutableDictionary *styleDict = [[NSMutableDictionary alloc] initWithDictionary:[lgf_Defaults objectForKey:@"LGFStyleDict"]];
+    NSMutableDictionary *styleDict = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"LGFStyleDict"]];
     self.lgf_UnTitleSelectColor.text = styleDict[@"lgf_UnTitleSelectColor"] ? styleDict[@"lgf_UnTitleSelectColor"] : [style.lgf_UnTitleSelectColor lgf_HexStringWithAlpha];
     self.lgf_TitleSelectColor.text = styleDict[@"lgf_TitleSelectColor"] ? styleDict[@"lgf_TitleSelectColor"] : [style.lgf_TitleSelectColor lgf_HexStringWithAlpha];
     self.lgf_UnSubTitleSelectColor.text = styleDict[@"lgf_UnSubTitleSelectColor"] ? styleDict[@"lgf_UnSubTitleSelectColor"] : [style.lgf_UnSubTitleSelectColor lgf_HexStringWithAlpha];
@@ -656,7 +665,8 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
         style.lgf_LineImageName = @"";
     }
     style.lgf_Titles = self.titles;
-    [lgf_Defaults setObject:[NSString stringWithFormat:@"style.lgf_Titles = @[@\"%@\"].copy;", [style.lgf_Titles componentsJoinedByString:@"\", @\""]] forKey:@"LGFCustomDataSourceStr"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"style.lgf_Titles = @[@\"%@\"].copy;", [style.lgf_Titles componentsJoinedByString:@"\", @\""]] forKey:@"LGFCustomDataSourceStr"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"style.lgf_Titles = [\"%@\"]", [style.lgf_Titles componentsJoinedByString:@"\", \""]] forKey:@"LGFCustomDataSourceStr_swift"];
     
     self.pageSuperViewHeight.constant = self.LGFFreePTSuperViewHeight.text.floatValue;
     self.pageSuperView.layer.borderWidth = self.LGFFreePTSuperViewBorderWidth.text.floatValue;
@@ -724,12 +734,18 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [styleDict setValue:self.lgf_TitleScrollFollowTypeArray[self.lgf_TitleScrollFollowTypeInt] forKey:@"lgf_TitleScrollFollowType"];
     [styleDict setValue:self.lgf_PVAnimationTypeArray[self.lgf_PVAnimationTypeInt] forKey:@"lgf_PVAnimationType"];
     [styleDict setValue:self.lgf_LineWidthTypeArray[self.lgf_LineWidthTypeInt] forKey:@"lgf_LineWidthType"];
+    
+    [styleDict setValue:self.lgf_LineAnimationArray_swift[self.lgf_LineAnimationInt] forKey:@"lgf_LineAnimation_swift"];
+    [styleDict setValue:self.lgf_TitleScrollFollowTypeArray_swift[self.lgf_TitleScrollFollowTypeInt] forKey:@"lgf_TitleScrollFollowType_swift"];
+    [styleDict setValue:self.lgf_PVAnimationTypeArray_swift[self.lgf_PVAnimationTypeInt] forKey:@"lgf_PVAnimationType_swift"];
+    [styleDict setValue:self.lgf_LineWidthTypeArray_swift[self.lgf_LineWidthTypeInt] forKey:@"lgf_LineWidthType_swift"];
+    
     [styleDict setObject:(self.setlgf_ImageNames.on ? @"YES" : @"NO") forKey:@"setlgf_ImageNames"];
     [styleDict setObject:(self.setlgf_LineImageName.on ? @"YES" : @"NO") forKey:@"setlgf_LineImageName"];
     [styleDict setObject:self.LGFFreePTSuperViewHeight.text forKey:@"LGFFreePTSuperViewHeight"];
     [styleDict setObject:self.LGFFreePTSuperViewBorderWidth.text forKey:@"LGFFreePTSuperViewBorderWidth"];
     [styleDict setValue:self.LGFFreePTSuperViewBorderColor.text forKey:@"LGFFreePTSuperViewBorderColor"];
-    [lgf_Defaults setObject:styleDict forKey:name];
+    [[NSUserDefaults standardUserDefaults] setObject:styleDict forKey:name];
 }
 
 #pragma mark - 懒加载

@@ -19,7 +19,7 @@ lgf_XibViewForM(customDataSourceView, @"customDataSourceView");
 }
 
 - (IBAction)saveData:(UIButton *)sender {
-    [lgf_Defaults setObject:self.dataTextView.text forKey:@"LGFCustomDataSource"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.dataTextView.text forKey:@"LGFCustomDataSource"];
     lgf_HaveBlock(self.lgf_DataSourceBlock);
     [self removeFromSuperview];
 }

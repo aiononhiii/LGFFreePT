@@ -14,8 +14,6 @@
 @interface LGFFreePTView () <UIScrollViewDelegate, LGFFreePTTitleDelegate, LGFFreePTLineDelegate, LGFFreePTFlowLayoutDelegate>
 @property (strong, nonatomic) UICollectionView *lgf_PageView;// 外部分页控制器
 @property (assign, nonatomic) NSInteger lgf_RealSelectIndex;// 最准确的选中标值
-@property (assign, nonatomic) BOOL lgf_IsSelectTitle;// 点击了顶部标
-@property (assign, nonatomic) BOOL lgf_Enabled;// 操作中是否禁用手势
 @property (assign, nonatomic) BOOL lgf_FreePTViewEnabled;// 操作中是否禁用手势
 @property (assign, nonatomic) BOOL lgf_PageViewEnabled;// 操作中是否禁用手势
 @end

@@ -246,6 +246,7 @@
 		18A735142292818800741078 /* TaoBaoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A735122292818800741078 /* TaoBaoCell.xib */; };
 		18F0F5FC229524DA0068247A /* LoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0F5FB229524DA0068247A /* LoveView.m */; };
 		18F0F5FE229524E20068247A /* LoveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F0F5FD229524E20068247A /* LoveView.xib */; };
+		2B218879235CAE680038BDE3 /* LGFFreePT.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2B218878235CAE680038BDE3 /* LGFFreePT.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -735,6 +736,7 @@
 		18F0F5FA229524DA0068247A /* LoveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoveView.h; sourceTree = "<group>"; };
 		18F0F5FB229524DA0068247A /* LoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveView.m; sourceTree = "<group>"; };
 		18F0F5FD229524E20068247A /* LoveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoveView.xib; sourceTree = "<group>"; };
+		2B218878235CAE680038BDE3 /* LGFFreePT.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LGFFreePT.podspec; path = ../LGFFreePT.podspec; sourceTree = "<group>"; };
 		7A2DCE3390351753B24B8B2A /* Pods-LGFFreePTDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.release.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A4F4048A1649EACFADD120D2 /* Pods-LGFFreePTDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGFFreePTDemo.debug.xcconfig"; path = "Target Support Files/Pods-LGFFreePTDemo/Pods-LGFFreePTDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1750,6 +1752,7 @@
 		18458F6522756AF8001F1CCC = {
 			isa = PBXGroup;
 			children = (
+				2B218878235CAE680038BDE3 /* LGFFreePT.podspec */,
 				18458FA322756B95001F1CCC /* LGFFreePT */,
 				18458F7022756AF8001F1CCC /* LGFFreePTDemo */,
 				18458F8922756AF9001F1CCC /* LGFFreePTDemoTests */,
@@ -2067,6 +2070,7 @@
 				183AD8FA229E1C86003497AB /* LGFImageAlertView.xib in Resources */,
 				18458FB822756B95001F1CCC /* LGFFreePTTitle.xib in Resources */,
 				18A735142292818800741078 /* TaoBaoCell.xib in Resources */,
+				2B218879235CAE680038BDE3 /* LGFFreePT.podspec in Resources */,
 				183AD8E9229E1C86003497AB /* LGFEmoji.xib in Resources */,
 				18458FBF22756B95001F1CCC /* LGFFreePTLine.xib in Resources */,
 				183AD94C229E1C87003497AB /* IQKeyboardManager.bundle in Resources */,
@@ -2521,14 +2525,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HLNNLAB64S;
+				DEVELOPMENT_TEAM = YU3566C3NH;
 				INFOPLIST_FILE = LGFFreePTDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2540,14 +2544,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HLNNLAB64S;
+				DEVELOPMENT_TEAM = YU3566C3NH;
 				INFOPLIST_FILE = LGFFreePTDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePTDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = LGFFreePTDemo.LGFFreePT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
