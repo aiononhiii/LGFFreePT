@@ -765,7 +765,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 
 - (LGFFreePTView *)fptView {
     if (!_fptView) {
-        _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:[self getNewStyle] SVC:self SV:self.pageSuperView PV:nil];
+        _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:[self getNewStyle] SVC:self SV:self.pageSuperView PV:self.pageCollectionView];
         _fptView.lgf_FreePTDelegate = self;
     }
     return _fptView;
