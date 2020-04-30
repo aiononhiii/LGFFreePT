@@ -452,4 +452,41 @@
     style.lgf_LineAnimation = lgf_PageLineAnimationHideShow;/// 小乌龟反向效果
     return style;
 }
+
++ (LGFFreePTStyle *)twentythree {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_IsTitleCenter = YES;// title 少的时候默认居中
+    style.lgf_TitleFixedWidth = 80.0;
+    style.lgf_LineWidth = 5.0;
+    style.lgf_TitleTransformSX = 2.0;
+    style.lgf_StartDebug = YES;
+    style.lgf_LineWidthType = lgf_FixedWith;
+    style.lgf_LineHeight = 4.0;
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_LineColor = LGFPTHexColor(@"fr134f");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
+    style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
+    return style;
+}
+
++ (LGFFreePTStyle *)twentyfour {
+    LGFFreePTStyle *style = [LGFFreePTStyle lgf];
+    style.lgf_IsTitleCenter = YES;// title 少的时候默认居中
+    style.lgf_TitleFixedWidth = 80.0;
+    style.lgf_TitleTransformSX = 2.0;
+    style.lgf_LineWidth = 5.0;
+    style.lgf_IsHaveCenterLine = true;
+    style.lgf_LineWidthType = lgf_FixedWith;
+    style.lgf_LineHeight = 4.0;
+    style.lgf_TitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_UnTitleSelectFont = [UIFont boldSystemFontOfSize:14];
+    style.lgf_LineColor = LGFPTHexColor(@"fr134f");
+    style.lgf_TitleSelectColor = LGFPTHexColor(@"333333");
+    style.lgf_UnTitleSelectColor = LGFPTHexColor(@"f0f0f0");
+    style.lgf_LineAnimation = lgf_PageLineAnimationDefult;
+    return style;
+}
+
 @end

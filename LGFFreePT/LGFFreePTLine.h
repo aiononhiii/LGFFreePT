@@ -12,18 +12,17 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol LGFFreePTLineDelegate <NSObject>
 @optional
+
 #pragma mark - 加载 line 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
-/**
- @param imageView 要加载网络图片的 imageView
- @param imageUrl 网络图片的 Url
- */
+/// @param imageView 要加载网络图片的 imageView
+/// @param imageUrl 网络图片的 Url
 - (void)lgf_GetLineNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+
 #pragma mark - 实现这个代理来对 LGFFreePTLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
-/**
- @param lgf_FreePTLine LGFFreePTLine 本体
- @param style LGFFreePTStyle
- */
+/// @param lgf_FreePTLine LGFFreePTLine 本体
+/// @param style LGFFreePTStyle
 - (void)lgf_GetLine:(UIImageView *)lgf_FreePTLine style:(LGFFreePTStyle *)style;
+
 @end
 @interface LGFFreePTLine : UIImageView
 @property (weak, nonatomic) LGFFreePTStyle *lgf_Style;// 配置用模型

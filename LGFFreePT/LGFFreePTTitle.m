@@ -32,6 +32,19 @@
         title.lgf_BottomImage.backgroundColor = LGFPTRandomColor;
     }
     
+    // 分割线配置
+    if (title.lgf_Style.lgf_IsHaveCenterLine) {
+        [title.lgf_CenterLine setHidden:index == (title.lgf_Style.lgf_Titles.count - 1)];
+        [title.lgf_CenterLine setBackgroundColor:title.lgf_Style.lgf_CenterLineColor];
+        title.lgf_CenterLineWidth.constant = title.lgf_Style.lgf_CenterLineSize.width;
+        title.lgf_CenterLineHeight.constant = title.lgf_Style.lgf_CenterLineSize.height;
+        title.lgf_CenterLineX.constant = title.lgf_Style.lgf_CenterLineCenter.x - (title.lgf_Style.lgf_CenterLineSize.width / 2.0);
+        title.lgf_CenterLineY.constant = title.lgf_Style.lgf_CenterLineCenter.y;
+        if (title.lgf_FreePTTitleDelegate && [title.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetCenterLine:index:style:X:Y:W:H:)]) {
+            [title.lgf_FreePTTitleDelegate lgf_GetCenterLine:title.lgf_CenterLine index:index style:title.lgf_Style X:title.lgf_CenterLineX Y:title.lgf_CenterLineY W:title.lgf_CenterLineWidth H:title.lgf_CenterLineHeight];
+        }
+    }
+    
     // 需要显示子标题
     if (title.lgf_Style.lgf_IsDoubleTitle) {
         title.lgf_Title.text = [titleText componentsSeparatedByString:@"~~~"].firstObject;
@@ -98,49 +111,51 @@
 
 #pragma mark - 标整体状态改变 核心逻辑部分
 - (void)lgf_SetMainTitleTransform:(CGFloat)progress isSelectTitle:(BOOL)isSelectTitle selectIndex:(NSInteger)selectIndex unselectIndex:(NSInteger)unselectIndex {
-    CGFloat deltaScale = _lgf_Style.lgf_TitleTransformSX - 1.0;
-    CGFloat mainTitleDeltaScale = _lgf_Style.lgf_MainTitleTransformSX - 1.0;
-    CGFloat subTitleDeltaScale = _lgf_Style.lgf_SubTitleTransformSX - 1.0;
+    CGFloat deltaScale = self.lgf_Style.lgf_TitleTransformSX - 1.0;
+    CGFloat mainTitleDeltaScale = self.lgf_Style.lgf_MainTitleTransformSX - 1.0;
+    CGFloat subTitleDeltaScale = self.lgf_Style.lgf_SubTitleTransformSX - 1.0;
     
     if (isSelectTitle) {
-        _lgf_CurrentTransformSX = 1.0 + deltaScale * progress;
-        _lgf_MainTitleCurrentTransformSX = 1.0 + mainTitleDeltaScale * progress;
-        _lgf_MainTitleCurrentTransformTY = _lgf_Style.lgf_MainTitleTransformTY * progress;
-        _lgf_MainTitleCurrentTransformTX = _lgf_Style.lgf_MainTitleTransformTX * progress;
-        _lgf_SubTitleCurrentTransformSX = 1.0 + subTitleDeltaScale * progress;
-        _lgf_SubTitleCurrentTransformTY = _lgf_Style.lgf_SubTitleTransformTY * progress;
-        _lgf_SubTitleCurrentTransformTX = _lgf_Style.lgf_SubTitleTransformTX * progress;
+        self.lgf_CurrentTransformSX = 1.0 + deltaScale * progress;
+        self.lgf_MainTitleCurrentTransformSX = 1.0 + mainTitleDeltaScale * progress;
+        self.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleTransformTY * progress;
+        self.lgf_MainTitleCurrentTransformTX = self.lgf_Style.lgf_MainTitleTransformTX * progress;
+        self.lgf_SubTitleCurrentTransformSX = 1.0 + subTitleDeltaScale * progress;
+        self.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleTransformTY * progress;
+        self.lgf_SubTitleCurrentTransformTX = self.lgf_Style.lgf_SubTitleTransformTX * progress;
     } else {
-        _lgf_CurrentTransformSX = _lgf_Style.lgf_TitleTransformSX - deltaScale * progress;
-        _lgf_MainTitleCurrentTransformSX = _lgf_Style.lgf_MainTitleTransformSX - mainTitleDeltaScale * progress;
-        _lgf_MainTitleCurrentTransformTY = _lgf_Style.lgf_MainTitleTransformTY - _lgf_Style.lgf_MainTitleTransformTY * progress;
-        _lgf_MainTitleCurrentTransformTX = _lgf_Style.lgf_MainTitleTransformTX - _lgf_Style.lgf_MainTitleTransformTX * progress;
-        _lgf_SubTitleCurrentTransformSX = _lgf_Style.lgf_SubTitleTransformSX - subTitleDeltaScale * progress;
-        _lgf_SubTitleCurrentTransformTY = _lgf_Style.lgf_SubTitleTransformTY - _lgf_Style.lgf_SubTitleTransformTY * progress;
-        _lgf_SubTitleCurrentTransformTX = _lgf_Style.lgf_SubTitleTransformTX - _lgf_Style.lgf_SubTitleTransformTX * progress;
+        self.lgf_CurrentTransformSX = self.lgf_Style.lgf_TitleTransformSX - deltaScale * progress;
+        self.lgf_MainTitleCurrentTransformSX = self.lgf_Style.lgf_MainTitleTransformSX - mainTitleDeltaScale * progress;
+        self.lgf_MainTitleCurrentTransformTY = self.lgf_Style.lgf_MainTitleTransformTY - self.lgf_Style.lgf_MainTitleTransformTY * progress;
+        self.lgf_MainTitleCurrentTransformTX = self.lgf_Style.lgf_MainTitleTransformTX - self.lgf_Style.lgf_MainTitleTransformTX * progress;
+        self.lgf_SubTitleCurrentTransformSX = self.lgf_Style.lgf_SubTitleTransformSX - subTitleDeltaScale * progress;
+        self.lgf_SubTitleCurrentTransformTY = self.lgf_Style.lgf_SubTitleTransformTY - self.lgf_Style.lgf_SubTitleTransformTY * progress;
+        self.lgf_SubTitleCurrentTransformTX = self.lgf_Style.lgf_SubTitleTransformTX - self.lgf_Style.lgf_SubTitleTransformTX * progress;
     }
     
-    self.transform = CGAffineTransformMakeScale(_lgf_CurrentTransformSX, _lgf_CurrentTransformSX);
-    _lgf_Title.transform = CGAffineTransformIdentity;
-    _lgf_Title.transform = CGAffineTransformMakeScale(_lgf_MainTitleCurrentTransformSX, _lgf_MainTitleCurrentTransformSX);
-    _lgf_Title.transform = CGAffineTransformTranslate(_lgf_Title.transform, _lgf_MainTitleCurrentTransformTX, _lgf_MainTitleCurrentTransformTY);
+    self.transform = CGAffineTransformMakeScale(self.lgf_CurrentTransformSX, self.lgf_CurrentTransformSX);
+    self.lgf_Title.transform = CGAffineTransformIdentity;
+    self.lgf_Title.transform = CGAffineTransformMakeScale(self.lgf_MainTitleCurrentTransformSX, self.lgf_MainTitleCurrentTransformSX);
+    self.lgf_Title.transform = CGAffineTransformTranslate(self.lgf_Title.transform, self.lgf_MainTitleCurrentTransformTX, self.lgf_MainTitleCurrentTransformTY);
     
-    _lgf_SubTitle.transform = CGAffineTransformIdentity;
-    _lgf_SubTitle.transform = CGAffineTransformMakeScale(_lgf_SubTitleCurrentTransformSX, _lgf_SubTitleCurrentTransformSX);
-    _lgf_SubTitle.transform = CGAffineTransformTranslate(_lgf_SubTitle.transform, _lgf_SubTitleCurrentTransformTX, _lgf_SubTitleCurrentTransformTY);
+    self.lgf_SubTitle.transform = CGAffineTransformIdentity;
+    self.lgf_SubTitle.transform = CGAffineTransformMakeScale(self.lgf_SubTitleCurrentTransformSX, self.lgf_SubTitleCurrentTransformSX);
+    self.lgf_SubTitle.transform = CGAffineTransformTranslate(self.lgf_SubTitle.transform, self.lgf_SubTitleCurrentTransformTX, self.lgf_SubTitleCurrentTransformTY);
+    
+    self.lgf_CenterLine.transform = CGAffineTransformMakeScale(1.0 / self.lgf_CurrentTransformSX ,  1.0 / self.lgf_CurrentTransformSX);
     
     // 标颜色渐变
-    if (_lgf_Style.lgf_TitleSelectColor != _lgf_Style.lgf_UnTitleSelectColor) {
+    if (self.lgf_Style.lgf_TitleSelectColor != self.lgf_Style.lgf_UnTitleSelectColor) {
         NSArray *colors = isSelectTitle ? self.lgf_UnSelectColorRGBA : self.lgf_SelectColorRGBA;
-        _lgf_Title.textColor = [UIColor
+        self.lgf_Title.textColor = [UIColor
                                 colorWithRed:[colors[0] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[0] floatValue] : -[self.lgf_DeltaRGBA[0] floatValue]) * progress
                                 green:[colors[1] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[1] floatValue] : -[self.lgf_DeltaRGBA[1] floatValue]) * progress
                                 blue:[colors[2] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[2] floatValue] : -[self.lgf_DeltaRGBA[2] floatValue]) * progress
                                 alpha:[colors[3] floatValue] - (isSelectTitle ? [self.lgf_DeltaRGBA[3] floatValue] : -[self.lgf_DeltaRGBA[3] floatValue]) * progress];
     }
-    if (_lgf_Style.lgf_IsDoubleTitle && _lgf_Style.lgf_SubTitleSelectColor != _lgf_Style.lgf_UnSubTitleSelectColor) {
+    if (self.lgf_Style.lgf_IsDoubleTitle && self.lgf_Style.lgf_SubTitleSelectColor != self.lgf_Style.lgf_UnSubTitleSelectColor) {
         NSArray *colors = isSelectTitle ? self.lgf_SubUnSelectColorRGBA : self.lgf_SubSelectColorRGBA;
-        _lgf_SubTitle.textColor = [UIColor
+        self.lgf_SubTitle.textColor = [UIColor
                                    colorWithRed:[colors[0] floatValue] - (isSelectTitle ? [self.lgf_SubDeltaRGBA[0] floatValue] : -[self.lgf_SubDeltaRGBA[0] floatValue]) * progress
                                    green:[colors[1] floatValue] - (isSelectTitle ? [self.lgf_SubDeltaRGBA[1] floatValue] : -[self.lgf_SubDeltaRGBA[1] floatValue]) * progress
                                    blue:[colors[2] floatValue] - (isSelectTitle ? [self.lgf_SubDeltaRGBA[2] floatValue] : -[self.lgf_SubDeltaRGBA[2] floatValue]) * progress
@@ -148,63 +163,63 @@
     }
     
     // 字体改变
-    if (![_lgf_Style.lgf_TitleSelectFont isEqual:_lgf_Style.lgf_UnTitleSelectFont]) {
-        _lgf_Title.font = (isSelectTitle == progress > 0.5) ? _lgf_Style.lgf_TitleSelectFont : _lgf_Style.lgf_UnTitleSelectFont;
+    if (![self.lgf_Style.lgf_TitleSelectFont isEqual:self.lgf_Style.lgf_UnTitleSelectFont]) {
+        self.lgf_Title.font = (isSelectTitle == progress > 0.5) ? self.lgf_Style.lgf_TitleSelectFont : self.lgf_Style.lgf_UnTitleSelectFont;
     }
-    if (_lgf_Style.lgf_IsDoubleTitle) {
-        if (![_lgf_Style.lgf_SubTitleSelectFont isEqual:_lgf_Style.lgf_UnSubTitleSelectFont]) {
-            _lgf_SubTitle.font = (isSelectTitle == progress > 0.5) ? _lgf_Style.lgf_SubTitleSelectFont : _lgf_Style.lgf_UnSubTitleSelectFont;
+    if (self.lgf_Style.lgf_IsDoubleTitle) {
+        if (![self.lgf_Style.lgf_SubTitleSelectFont isEqual:self.lgf_Style.lgf_UnSubTitleSelectFont]) {
+            self.lgf_SubTitle.font = (isSelectTitle == progress > 0.5) ? self.lgf_Style.lgf_SubTitleSelectFont : self.lgf_Style.lgf_UnSubTitleSelectFont;
         }
     }
     
     // 图标选中
-    if (_lgf_Style.lgf_SelectImageNames && _lgf_Style.lgf_SelectImageNames.count > 0 && _lgf_Style.lgf_UnSelectImageNames && _lgf_Style.lgf_UnSelectImageNames.count > 0) {
-        NSString *ssImageName = _lgf_Style.lgf_SelectImageNames[selectIndex];
-        NSString *uuImageName = _lgf_Style.lgf_UnSelectImageNames[unselectIndex];
-        NSString *usImageName = _lgf_Style.lgf_UnSelectImageNames[selectIndex];
-        NSString *suImageName = _lgf_Style.lgf_SelectImageNames[unselectIndex];
-        if (_lgf_Style.lgf_LeftImageWidth > 0.0 && _lgf_Style.lgf_LeftImageHeight > 0.0) {
-            if (_lgf_Style.lgf_IsNetImage) {
-                if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                    [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_LeftImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+    if (self.lgf_Style.lgf_SelectImageNames && self.lgf_Style.lgf_SelectImageNames.count > 0 && self.lgf_Style.lgf_UnSelectImageNames && self.lgf_Style.lgf_UnSelectImageNames.count > 0) {
+        NSString *ssImageName = self.lgf_Style.lgf_SelectImageNames[selectIndex];
+        NSString *uuImageName = self.lgf_Style.lgf_UnSelectImageNames[unselectIndex];
+        NSString *usImageName = self.lgf_Style.lgf_UnSelectImageNames[selectIndex];
+        NSString *suImageName = self.lgf_Style.lgf_SelectImageNames[unselectIndex];
+        if (self.lgf_Style.lgf_LeftImageWidth > 0.0 && self.lgf_Style.lgf_LeftImageHeight > 0.0) {
+            if (self.lgf_Style.lgf_IsNetImage) {
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 } else {
-                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                    LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
                 }
             } else {
-                [_lgf_LeftImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:_lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_LeftImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
-        if (_lgf_Style.lgf_RightImageWidth > 0.0 && _lgf_Style.lgf_RightImageHeight > 0.0) {
-            if (_lgf_Style.lgf_IsNetImage) {
-                if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                    [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_RightImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+        if (self.lgf_Style.lgf_RightImageWidth > 0.0 && self.lgf_Style.lgf_RightImageHeight > 0.0) {
+            if (self.lgf_Style.lgf_IsNetImage) {
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 } else {
-                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                    LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
                 }
             } else {
-                [_lgf_RightImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:_lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_RightImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
-        if (_lgf_Style.lgf_TopImageHeight > 0.0 && _lgf_Style.lgf_TopImageWidth > 0.0) {
-            if (_lgf_Style.lgf_IsNetImage) {
-                if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                    [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_TopImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+        if (self.lgf_Style.lgf_TopImageHeight > 0.0 && self.lgf_Style.lgf_TopImageWidth > 0.0) {
+            if (self.lgf_Style.lgf_IsNetImage) {
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 } else {
-                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                    LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
                 }
             } else {
-                [_lgf_TopImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:_lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_TopImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
-        if (_lgf_Style.lgf_BottomImageHeight > 0.0 && _lgf_Style.lgf_BottomImageWidth > 0.0) {
-            if (_lgf_Style.lgf_IsNetImage) {
-                if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                    [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_BottomImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
+        if (self.lgf_Style.lgf_BottomImageHeight > 0.0 && self.lgf_Style.lgf_BottomImageWidth > 0.0) {
+            if (self.lgf_Style.lgf_IsNetImage) {
+                if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                    [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))]];
                 } else {
-                    LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                    LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
                 }
             } else {
-                [_lgf_BottomImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:_lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+                [self.lgf_BottomImage setImage:[UIImage imageNamed:(isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName)) inBundle:self.lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
             }
         }
     }
@@ -226,15 +241,15 @@
     }
     
     // 标 Label 配置
-    _lgf_Title.textColor = lgf_Style.lgf_UnTitleSelectColor;
-    _lgf_Title.font = lgf_Style.lgf_UnTitleSelectFont;
-    _lgf_Title.textAlignment = NSTextAlignmentCenter;
+    self.lgf_Title.textColor = lgf_Style.lgf_UnTitleSelectColor;
+    self.lgf_Title.font = lgf_Style.lgf_UnTitleSelectFont;
+    self.lgf_Title.textAlignment = NSTextAlignmentCenter;
     
     // 副标 Label 配置
     if (lgf_Style.lgf_IsDoubleTitle) {
-        _lgf_SubTitle.textColor = lgf_Style.lgf_UnSubTitleSelectColor;
-        _lgf_SubTitle.font = lgf_Style.lgf_UnSubTitleSelectFont;
-        _lgf_SubTitle.textAlignment = NSTextAlignmentCenter;
+        self.lgf_SubTitle.textColor = lgf_Style.lgf_UnSubTitleSelectColor;
+        self.lgf_SubTitle.font = lgf_Style.lgf_UnSubTitleSelectFont;
+        self.lgf_SubTitle.textAlignment = NSTextAlignmentCenter;
     }
     
     // 如果设置了都是相同标图片, 那么就强制转成全部相同图片
@@ -249,120 +264,120 @@
     
     // 是否需要显示标图片
     if (!lgf_Style.lgf_SelectImageNames || (lgf_Style.lgf_SelectImageNames.count < lgf_Style.lgf_Titles.count) || !lgf_Style.lgf_UnSelectImageNames || (lgf_Style.lgf_UnSelectImageNames.count < lgf_Style.lgf_Titles.count)) {
-        _lgf_IsHaveImage = NO;
-        _lgf_TopImage.hidden = YES;
-        _lgf_BottomImage.hidden = YES;
-        _lgf_LeftImage.hidden = YES;
-        _lgf_RightImage.hidden = YES;
-        _lgf_TopImageHeight.constant = 0.0;
-        _lgf_BottomImageHeight.constant = 0.0;
-        _lgf_LeftImageWidth.constant = 0.0;
-        _lgf_RightImageWidth.constant = 0.0;
-        _lgf_TopImageSpace.constant = 0.0;
-        _lgf_BottomImageSpace.constant = 0.0;
-        _lgf_LeftImageSpace.constant = 0.0;
-        _lgf_RightImageSpace.constant = 0.0;
+        self.lgf_IsHaveImage = NO;
+        self.lgf_TopImage.hidden = YES;
+        self.lgf_BottomImage.hidden = YES;
+        self.lgf_LeftImage.hidden = YES;
+        self.lgf_RightImage.hidden = YES;
+        self.lgf_TopImageHeight.constant = 0.0;
+        self.lgf_BottomImageHeight.constant = 0.0;
+        self.lgf_LeftImageWidth.constant = 0.0;
+        self.lgf_RightImageWidth.constant = 0.0;
+        self.lgf_TopImageSpace.constant = 0.0;
+        self.lgf_BottomImageSpace.constant = 0.0;
+        self.lgf_LeftImageSpace.constant = 0.0;
+        self.lgf_RightImageSpace.constant = 0.0;
         return;
     }
     
-    _lgf_IsHaveImage = YES;
+    self.lgf_IsHaveImage = YES;
     
     if (!lgf_Style.lgf_IsNetImage) NSAssert(lgf_Style.lgf_ImageBundel, @"为了获取正确的图片 - 请设置 (NSBundle *)style.lgf_ImageBundel");
     
     // 只要有宽度，允许设置左图片
     if (lgf_Style.lgf_LeftImageWidth > 0.0) {
-        _lgf_LeftImage.hidden = NO;
-        _lgf_LeftImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
-        _lgf_LeftImageSpace.constant = lgf_Style.lgf_LeftImageSpace;
-        _lgf_LeftImageWidth.constant = MIN(lgf_Style.lgf_LeftImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
-        _lgf_LeftImageHeight.constant = MIN(lgf_Style.lgf_LeftImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
+        self.lgf_LeftImage.hidden = NO;
+        self.lgf_LeftImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
+        self.lgf_LeftImageSpace.constant = lgf_Style.lgf_LeftImageSpace;
+        self.lgf_LeftImageWidth.constant = MIN(lgf_Style.lgf_LeftImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
+        self.lgf_LeftImageHeight.constant = MIN(lgf_Style.lgf_LeftImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_LeftImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_LeftImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             } else {
-                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
             }
         } else {
-            [_lgf_LeftImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_LeftImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
-        _lgf_TitleCenterX.constant = _lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageWidth / 2);
+        self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageWidth / 2);
         if (lgf_Style.lgf_LeftImageSpace > 0.0) {
-            _lgf_TitleCenterX.constant = _lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageSpace / 2);
+            self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageSpace / 2);
         }
     } else {
-        LGFPTLog(@"如果要显示左边图标，请给 left_image_width 赋值");
+        LGFPTLog(@"🤖️:如果要显示左边图标，请给 left_image_width 赋值");
     }
     
     // 只要有宽度，允许设置右图片
     if (lgf_Style.lgf_RightImageWidth > 0.0) {
-        _lgf_RightImage.hidden = NO;
-        _lgf_RightImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
-        _lgf_RightImageSpace.constant = lgf_Style.lgf_RightImageSpace;
-        _lgf_RightImageWidth.constant = MIN(lgf_Style.lgf_RightImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
-        _lgf_RightImageHeight.constant = MIN(lgf_Style.lgf_RightImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
+        self.lgf_RightImage.hidden = NO;
+        self.lgf_RightImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
+        self.lgf_RightImageSpace.constant = lgf_Style.lgf_RightImageSpace;
+        self.lgf_RightImageWidth.constant = MIN(lgf_Style.lgf_RightImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
+        self.lgf_RightImageHeight.constant = MIN(lgf_Style.lgf_RightImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_RightImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_RightImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             } else {
-                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
             }
         } else {
-            [_lgf_RightImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_RightImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
-        _lgf_TitleCenterX.constant = _lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageWidth / 2.0);
+        self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageWidth / 2.0);
         if (lgf_Style.lgf_RightImageSpace > 0.0) {
-            _lgf_TitleCenterX.constant = _lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageSpace / 2.0);
+            self.lgf_TitleCenterX.constant = self.lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageSpace / 2.0);
         }
     } else {
-        LGFPTLog(@"如果要显示右边图标，请给 right_image_width 赋值");
+        LGFPTLog(@"🤖️:如果要显示右边图标，请给 right_image_width 赋值");
     }
     
     // 只要有高度，允许设置上图片
     if (lgf_Style.lgf_TopImageHeight > 0.0) {
-        _lgf_TopImage.hidden = NO;
-        _lgf_TopImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
-        _lgf_TopImageSpace.constant = lgf_Style.lgf_TopImageSpace;
-        _lgf_TopImageWidth.constant = MIN(lgf_Style.lgf_TopImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
-        _lgf_TopImageHeight.constant = MIN(lgf_Style.lgf_TopImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
+        self.lgf_TopImage.hidden = NO;
+        self.lgf_TopImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
+        self.lgf_TopImageSpace.constant = lgf_Style.lgf_TopImageSpace;
+        self.lgf_TopImageWidth.constant = MIN(lgf_Style.lgf_TopImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
+        self.lgf_TopImageHeight.constant = MIN(lgf_Style.lgf_TopImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_TopImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_TopImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             } else {
-                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
             }
         } else {
-            [_lgf_TopImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_TopImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
-        _lgf_TitleCenterY.constant = _lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageHeight / 2.0);
+        self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageHeight / 2.0);
         if (lgf_Style.lgf_TopImageSpace > 0.0) {
-            _lgf_TitleCenterY.constant = _lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageSpace / 2.0);
+            self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageSpace / 2.0);
         }
     } else {
-        LGFPTLog(@"如果要显示顶部图标，请给 top_image_height 赋值");
+        LGFPTLog(@"🤖️:如果要显示顶部图标，请给 top_image_height 赋值");
     }
     
     // 只要有高度，允许设置下图片
     if (lgf_Style.lgf_BottomImageHeight > 0.0) {
-        _lgf_BottomImage.hidden = NO;
-        _lgf_BottomImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
-        _lgf_BottomImageSpace.constant = lgf_Style.lgf_BottomImageSpace;
-        _lgf_BottomImageWidth.constant = MIN(lgf_Style.lgf_BottomImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
-        _lgf_BottomImageHeight.constant = MIN(lgf_Style.lgf_BottomImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
+        self.lgf_BottomImage.hidden = NO;
+        self.lgf_BottomImage.contentMode = lgf_Style.lgf_TitleImageContentMode;
+        self.lgf_BottomImageSpace.constant = lgf_Style.lgf_BottomImageSpace;
+        self.lgf_BottomImageWidth.constant = MIN(lgf_Style.lgf_BottomImageWidth ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Width);
+        self.lgf_BottomImageHeight.constant = MIN(lgf_Style.lgf_BottomImageHeight ?: 0.0, lgf_Style.lgf_PVTitleView.lgfpt_Height);
         if (lgf_Style.lgf_IsNetImage) {
-            if (_lgf_FreePTTitleDelegate && [_lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
-                [_lgf_FreePTTitleDelegate lgf_GetTitleNetImage:_lgf_BottomImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
+            if (self.lgf_FreePTTitleDelegate && [self.lgf_FreePTTitleDelegate respondsToSelector:@selector(lgf_GetTitleNetImage:imageUrl:)]) {
+                [self.lgf_FreePTTitleDelegate lgf_GetTitleNetImage:self.lgf_BottomImage imageUrl:[NSURL URLWithString:lgf_Style.lgf_UnSelectImageNames[self.tag]]];
             } else {
-                LGFPTLog(@"请添加（lgf_GetTitleNetImage:imageUrl:）代理方法");
+                LGFPTLog(@"🤖️:请添加（lgf_GetTitleNetImage:imageUrl:）代理方法, 配置网络图片加载框架");
             }
         } else {
-            [_lgf_BottomImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
+            [self.lgf_BottomImage setImage:[UIImage imageNamed:lgf_Style.lgf_UnSelectImageNames[self.tag] inBundle:lgf_Style.lgf_ImageBundel compatibleWithTraitCollection:nil]];
         }
-        _lgf_TitleCenterY.constant = _lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageHeight / 2.0);
+        self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageHeight / 2.0);
         if (lgf_Style.lgf_BottomImageSpace > 0.0) {
-            _lgf_TitleCenterY.constant = _lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageSpace / 2.0);
+            self.lgf_TitleCenterY.constant = self.lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageSpace / 2.0);
         }
     } else {
-        LGFPTLog(@"如果要显示底部图标，请给 bottom_image_height 赋值");
+        LGFPTLog(@"🤖️:如果要显示底部图标，请给 bottom_image_height 赋值");
     }
 }
 

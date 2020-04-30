@@ -89,6 +89,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *lgf_RightImageHeight;
 @property (weak, nonatomic) IBOutlet UITextField *lgf_LineCornerRadius;
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_TitleHaveAnimation;
+@property (weak, nonatomic) IBOutlet UISwitch *lgf_IsHaveCenterLine;
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_IsShowLine;
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_IsTitleCenter;
 @property (weak, nonatomic) IBOutlet UISwitch *lgf_IsDoubleTitle;
@@ -322,14 +323,14 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
 //}
 
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex {
-    LGFToastStyle *style = [LGFToastStyle lgf];
-    style.lgf_SuperEnabled = YES;
-    style.lgf_BackBtnEnabled = YES;
-    style.lgf_Duration = 2.0;
-    style.lgf_ToastMessage = [NSString stringWithFormat:@"当前选中:%@(%ld), 当前未选中:%@(%ld)", self.fptView.lgf_Style.lgf_Titles[self.fptView.lgf_SelectIndex], (long)self.fptView.lgf_SelectIndex, self.fptView.lgf_Style.lgf_Titles[self.fptView.lgf_UnSelectIndex], (long)self.fptView.lgf_UnSelectIndex];
-    [self.view lgf_ShowMessageStyle:style animated:NO completion:^{
-        
-    }];
+//    LGFToastStyle *style = [LGFToastStyle lgf];
+//    style.lgf_SuperEnabled = YES;
+//    style.lgf_BackBtnEnabled = YES;
+//    style.lgf_Duration = 2.0;
+//    style.lgf_ToastMessage = [NSString stringWithFormat:@"当前选中:%@(%ld), 当前未选中:%@(%ld)", self.fptView.lgf_Style.lgf_Titles[self.fptView.lgf_SelectIndex], (long)self.fptView.lgf_SelectIndex, self.fptView.lgf_Style.lgf_Titles[self.fptView.lgf_UnSelectIndex], (long)self.fptView.lgf_UnSelectIndex];
+//    [self.view lgf_ShowMessageStyle:style animated:NO completion:^{
+//        
+//    }];
 }
 
 // 自定义 line 滚动动画配置代理（非自定义动画无需实现）
@@ -539,8 +540,9 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     self.lgf_RightImageHeight.text = styleDict[@"lgf_RightImageHeight"] ? styleDict[@"lgf_RightImageHeight"] : [NSString stringWithFormat:@"%@", [@(style.lgf_RightImageHeight) lgf_KeepDecimals:2]];
     self.lgf_LineCornerRadius.text = styleDict[@"lgf_LineCornerRadius"] ? styleDict[@"lgf_LineCornerRadius"] : [NSString stringWithFormat:@"%@", [@(style.lgf_LineCornerRadius) lgf_KeepDecimals:2]];
     self.lgf_PageLeftRightSpace.text = styleDict[@"lgf_PageLeftRightSpace"] ? styleDict[@"lgf_PageLeftRightSpace"] : [NSString stringWithFormat:@"%@", [@(style.lgf_PageLeftRightSpace) lgf_KeepDecimals:2]];
-    self.lgf_TitleHaveAnimation.on = style.lgf_TitleHaveAnimation;
+    self.lgf_TitleHaveAnimation.on = styleDict[@"lgf_TitleHaveAnimation"] ? [styleDict[@"lgf_TitleHaveAnimation"] boolValue] : style.lgf_TitleHaveAnimation;
     self.lgf_IsShowLine.on = styleDict[@"lgf_IsShowLine"] ? [styleDict[@"lgf_IsShowLine"] boolValue] : style.lgf_IsShowLine;
+    self.lgf_IsHaveCenterLine.on = styleDict[@"lgf_IsHaveCenterLine"] ? [styleDict[@"lgf_IsHaveCenterLine"] boolValue] : style.lgf_IsHaveCenterLine;
     self.lgf_IsTitleCenter.on = styleDict[@"lgf_IsTitleCenter"] ? [styleDict[@"lgf_IsTitleCenter"] boolValue] : style.lgf_IsTitleCenter;
     self.lgf_IsDoubleTitle.on = styleDict[@"lgf_IsDoubleTitle"] ? [styleDict[@"lgf_IsDoubleTitle"] boolValue] : style.lgf_IsDoubleTitle;
     self.lgf_IsLineAlignSubTitle.on = styleDict[@"lgf_IsLineAlignSubTitle"] ? [styleDict[@"lgf_IsLineAlignSubTitle"] boolValue] : style.lgf_IsLineAlignSubTitle;
@@ -624,6 +626,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     style.lgf_PageLeftRightSpace = self.lgf_PageLeftRightSpace.text.floatValue;
     style.lgf_TitleHaveAnimation = self.lgf_TitleHaveAnimation.on;
     style.lgf_IsShowLine = self.lgf_IsShowLine.on;
+    style.lgf_IsHaveCenterLine = self.lgf_IsHaveCenterLine.on;
     style.lgf_IsTitleCenter = self.lgf_IsTitleCenter.on;
     style.lgf_IsDoubleTitle = self.lgf_IsDoubleTitle.on;
     style.lgf_IsExecutedImmediatelyTitleScrollFollow = self.lgf_IsExecutedImmediatelyTitleScrollFollow.on;
@@ -725,6 +728,7 @@ lgf_SBViewControllerForM(CustomViewController, @"Main", @"CustomViewController")
     [styleDict setObject:self.lgf_PageLeftRightSpace.text forKey:@"lgf_PageLeftRightSpace"];
     [styleDict setObject:(self.lgf_TitleHaveAnimation.on ? @"YES" : @"NO") forKey:@"lgf_TitleHaveAnimation"];
     [styleDict setObject:(self.lgf_IsShowLine.on ? @"YES" : @"NO") forKey:@"lgf_IsShowLine"];
+    [styleDict setObject:(self.lgf_IsHaveCenterLine.on ? @"YES" : @"NO") forKey:@"lgf_IsHaveCenterLine"];
     [styleDict setObject:(self.lgf_IsTitleCenter.on ? @"YES" : @"NO") forKey:@"lgf_IsTitleCenter"];
     [styleDict setObject:(self.lgf_IsDoubleTitle.on ? @"YES" : @"NO") forKey:@"lgf_IsDoubleTitle"];
     [styleDict setObject:(self.lgf_IsLineAlignSubTitle.on ? @"YES" : @"NO") forKey:@"lgf_IsLineAlignSubTitle"];

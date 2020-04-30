@@ -27,6 +27,10 @@
         self.lgf_TitleLeftRightSpace = 0.0;
         self.lgf_TitleFixedWidth = 0.0;
         self.lgf_TitleTransformSX = 1.0;
+        self.lgf_IsHaveCenterLine = false;
+        self.lgf_CenterLineColor = [UIColor blackColor];
+        self.lgf_CenterLineSize = CGSizeMake(1.0, 6.0);
+        self.lgf_CenterLineCenter = CGPointMake(0.0, 0.0);
         self.lgf_IsTitleCenter = NO;
         self.lgf_TitleHaveAnimation = YES;
         self.lgf_TitleCornerRadius = 0.0;
@@ -38,6 +42,7 @@
         self.lgf_UnTitleSelectColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
         self.lgf_TitleSelectFont = [UIFont systemFontOfSize:14.0];
         self.lgf_UnTitleSelectFont = [UIFont systemFontOfSize:14.0];
+        self.lgf_IsZoomExtruding = YES;
         self.lgf_MainTitleTransformSX = 1.0;
         self.lgf_MainTitleTransformTY = 0.0;
         self.lgf_MainTitleTransformTX = 0.0;

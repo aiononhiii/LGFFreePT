@@ -129,6 +129,14 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (assign, nonatomic) CGFloat lgf_TitleFixedWidth;
 // 选中 title 放大缩小倍数 默认 1.0(不放大缩小)
 @property (assign, nonatomic) CGFloat lgf_TitleTransformSX;
+// title 中间是否有分割线
+@property (assign, nonatomic) BOOL lgf_IsHaveCenterLine;
+// title 分割线 颜色
+@property (strong, nonatomic) UIColor * lgf_CenterLineColor;
+// title 分割线 size
+@property (assign, nonatomic) CGSize lgf_CenterLineSize;
+// title 分割线 X/Y 轴偏移
+@property (assign, nonatomic) CGPoint lgf_CenterLineCenter;
 // 选中 title 字体颜色 默认 blackColor 黑色 (对应 lgf_TitleUnSelectColor 两个颜色一样则取消渐变效果)
 @property (strong, nonatomic) UIColor * lgf_TitleSelectColor;
 // 未选中 title 字体颜色 默认 lightGrayColor 淡灰色 (对应 lgf_TitleSelectColor 两个颜色一样则取消渐变效果)
@@ -137,6 +145,8 @@ typedef NS_ENUM(NSUInteger, lgf_FreeTitleLineWidthType) {
 @property (strong, nonatomic) UIFont * _Nullable lgf_TitleSelectFont;
 // title 未选中字体 默认 和选中字体一样
 @property (strong, nonatomic) UIFont * _Nullable lgf_UnTitleSelectFont;
+// 选中 title 放大缩小后紧紧贴着左右（互相挤压）（需配合下面的 lgf_MainTitleTransformSX 使用）（类似汽车之家效果）
+@property (assign, nonatomic) BOOL lgf_IsZoomExtruding;
 // 选中主 title 放大缩小倍数 默认 1.0(不放大缩小)
 @property (assign, nonatomic) CGFloat lgf_MainTitleTransformSX;
 // 选中主 title 上下偏移数 默认 0.0(不上下偏移)

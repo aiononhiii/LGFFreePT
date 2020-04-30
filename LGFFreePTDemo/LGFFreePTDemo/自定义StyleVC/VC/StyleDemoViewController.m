@@ -116,6 +116,7 @@ lgf_SBViewControllerForM(StyleDemoViewController, @"Main", @"StyleDemoViewContro
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineAlpha", [styleDict valueForKey:@"lgf_LineAlpha"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = %@;", @"lgf_LineWidthType", [styleDict valueForKey:@"lgf_LineWidthType"]]];
     }
+    
     if (![styleDict[@"lgf_IsDoubleTitle"] boolValue]) {
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = [UIFont systemFontOfSize:%@];", @"lgf_SubTitleSelectFont", [styleDict valueForKey:@"lgf_SubTitleSelectFont"]]];
         [demoArray removeObject:[NSString stringWithFormat:@"style.%@ = [UIFont systemFontOfSize:%@];", @"lgf_UnSubTitleSelectFont", [styleDict valueForKey:@"lgf_UnSubTitleSelectFont"]]];

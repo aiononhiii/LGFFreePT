@@ -146,7 +146,7 @@
         contentWidth += title.frame.size.width;
     }];
     // 标view 滚动区域配置
-    [self setContentSize:CGSizeMake(contentWidth + self.lgf_Style.lgf_PageLeftRightSpace * 2.0, -self.lgfpt_Height)];
+    [self lgf_AutoFreePTContentSize];
     // 标总长度小于 LGFFreePT 宽度的情况下是否居中
     if (self.lgf_Style.lgf_IsTitleCenter) {
         if (self.contentSize.width < self.lgfpt_Width) {
@@ -191,21 +191,19 @@
     if (self.lgf_SelectIndex > self.lgf_TitleButtons.count - 1 || self.lgf_TitleButtons.count == 0) {
         return;
     }
-    // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的效果，如果可以能够结合 LGFFreePTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
+    // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的效果，如果可以能够结合 LGFFreePTStyle 分享给大家那是极好的（我的动画效果不一定是好的）
     if (!(self.contentSize.width < self.lgfpt_Width)) {
-        if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowDefult) {
-            [LGFFreePTMethod lgf_TitleScrollFollowDefultAnimationConfig:self.lgf_Style lgf_TitleButtons:self.lgf_TitleButtons unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex duration:autoScrollDuration];
-        } else if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowLeftRight) {
-            [LGFFreePTMethod lgf_TitleScrollFollowLeftRightAnimationConfig:self.lgf_Style lgf_TitleButtons:self.lgf_TitleButtons unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex duration:autoScrollDuration];
-        } else if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowCustomize) {
+        if (self.lgf_Style.lgf_TitleScrollFollowType == lgf_TitleScrollFollowCustomize) {
             if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_TitleScrollFollowCustomizeAnimationConfig:lgf_TitleButtons:unSelectIndex:selectIndex:duration:)]) {
-                LGFPTLog(@"自定义回位动画的 contentOffset.x:%f", self.contentOffset.x);
+                LGFPTLog(@"🤖️:自定义回位动画的 contentOffset.x:%f", self.contentOffset.x);
                 [self.lgf_FreePTDelegate lgf_TitleScrollFollowCustomizeAnimationConfig:self.lgf_Style lgf_TitleButtons:self.lgf_TitleButtons unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex duration:autoScrollDuration];
             }
+        } else {
+            [LGFFreePTMethod lgf_AutoTitleScrollFollowAnimationConfig:self.lgf_Style lgf_TitleButtons:self.lgf_TitleButtons unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex duration:autoScrollDuration];
         }
     }
     if (isExecution && self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SelectFreePTTitle:)]) {
-        LGFPTLog(@"当前选中:%@(%ld), 当前未选中:%@(%ld)", self.lgf_Style.lgf_Titles[self.lgf_SelectIndex], (long)self.lgf_SelectIndex, self.lgf_Style.lgf_Titles[self.lgf_UnSelectIndex], (long)self.lgf_UnSelectIndex);
+        LGFPTLog(@"🤖️:当前选中:%@(%ld), 当前未选中:%@(%ld)", self.lgf_Style.lgf_Titles[self.lgf_SelectIndex], (long)self.lgf_SelectIndex, self.lgf_Style.lgf_Titles[self.lgf_UnSelectIndex], (long)self.lgf_UnSelectIndex);
         [self.lgf_FreePTDelegate lgf_SelectFreePTTitle:self.lgf_SelectIndex];
     }
 }
@@ -221,14 +219,8 @@
         unSelectIndex = selectProgress - 1;
         selectIndex = selectProgress;
     } else {
-        if (self.lgf_TitleLine.lgfpt_X < contentOffsetX) {
-            selectIndex = selectProgress + 1;
-            unSelectIndex = selectProgress;
-        } else {
-            progress = 1.0 - progress;
-            unSelectIndex = selectProgress + 1;
-            selectIndex = selectProgress;
-        }
+        selectIndex = selectProgress + 1;
+        unSelectIndex = selectProgress;
     }
     
     // 获取精确 lgf_RealSelectIndex
@@ -254,10 +246,15 @@
     // 标整体状态改变
     if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_SetAllTitleState:style:selectTitle:unSelectTitle:selectIndex:unSelectIndex:progress:)]) {
         [self.lgf_FreePTDelegate lgf_SetAllTitleState:self.lgf_TitleButtons style:self.lgf_Style selectTitle:selectTitle unSelectTitle:unSelectTitle selectIndex:selectIndex unSelectIndex:unSelectIndex progress:progress];
-        LGFPTLog(@"自定义标动效状态 progress:%f", progress);
+        LGFPTLog(@"🤖️:自定义标动效状态 progress:%f", progress);
     } else {
         [unSelectTitle lgf_SetMainTitleTransform:progress isSelectTitle:NO selectIndex:selectIndex unselectIndex:unSelectIndex];
         [selectTitle lgf_SetMainTitleTransform:progress isSelectTitle:YES selectIndex:selectIndex unselectIndex:unSelectIndex];
+    }
+    
+    // 挤压
+    if (self.lgf_Style.lgf_IsZoomExtruding) {
+        [LGFFreePTMethod lgf_ZoomExtruding:self.lgf_TitleButtons style:self.lgf_Style selectTitle:selectTitle unSelectTitle:unSelectTitle selectIndex:self.lgf_SelectIndex unSelectIndex:self.lgf_UnSelectIndex progress:1.0];
     }
     
     // 标底部滚动条 更新位置
@@ -266,23 +263,13 @@
         [self lgf_GetXAndW:^(CGFloat selectX, CGFloat selectWidth, CGFloat unSelectX, CGFloat unSelectWidth) {
             @LGFPTStrong(self);
             // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFFreePTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
-            if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationDefult) {
-                [LGFFreePTMethod lgf_PageLineAnimationDefultScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationShortToLong) {
-                [LGFFreePTMethod lgf_PageLineAnimationShortToLongScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
-                [LGFFreePTMethod lgf_PageLineAnimationHideShowScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
-                [LGFFreePTMethod lgf_PageLineAnimationSmallToBigScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown) {
-                [LGFFreePTMethod lgf_PageLineAnimationTortoiseDownScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseUp) {
-                [LGFFreePTMethod lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
-            } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
+            if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
                 if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeScrollLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:unSelectIndex:selectIndex:line:progress:)]) {
                     [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
-                    LGFPTLog(@"自定义 line 动画 progress:%f", progress);
+                    LGFPTLog(@"🤖️:自定义 line 动画 progress:%f", progress);
                 }
+            } else {
+                [LGFFreePTMethod lgf_AutoScrollLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:unSelectIndex selectIndex:selectIndex line:self.lgf_TitleLine progress:progress];
             }
         } selectTitle:selectTitle unSelectTitle:unSelectTitle];
     }
@@ -308,28 +295,23 @@
             [selectTitle lgf_SetMainTitleTransform:1.0 isSelectTitle:YES selectIndex:self.lgf_SelectIndex unselectIndex:self.lgf_UnSelectIndex];
         }
         
+        // 挤压
+        if (self.lgf_Style.lgf_IsZoomExtruding) {
+            [LGFFreePTMethod lgf_ZoomExtruding:self.lgf_TitleButtons style:self.lgf_Style selectTitle:selectTitle unSelectTitle:unSelectTitle selectIndex:self.lgf_SelectIndex unSelectIndex:self.lgf_UnSelectIndex progress:1.0];
+        }
+        
         // 标底部滚动条 更新位置
         if (self.lgf_TitleLine && self.lgf_Style.lgf_IsShowLine) {
             @LGFPTWeak(self);
             [self lgf_GetXAndW:^(CGFloat selectX, CGFloat selectWidth, CGFloat unSelectX, CGFloat unSelectWidth) {
                 @LGFPTStrong(self);
                 // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFFreePTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
-                if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationDefult) {
-                    [LGFFreePTMethod lgf_PageLineAnimationDefultClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:duration];
-                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationShortToLong) {
-                    [LGFFreePTMethod lgf_PageLineAnimationShortToLongClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:duration];
-                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationHideShow) {
-                    [LGFFreePTMethod lgf_PageLineAnimationHideShowClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:duration];
-                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationSmallToBig) {
-                    [LGFFreePTMethod lgf_PageLineAnimationSmallToBigClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:duration];
-                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseDown) {
-                    [LGFFreePTMethod lgf_PageLineAnimationTortoiseDownClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:duration];
-                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationTortoiseUp) {
-                    [LGFFreePTMethod lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:duration];
-                } else if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
+                if (self.lgf_Style.lgf_LineAnimation == lgf_PageLineAnimationCustomize) {
                     if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_FreePTViewCustomizeClickLineAnimationConfig:selectX:selectWidth:unSelectX:unSelectWidth:unSelectTitle:selectTitle:unSelectIndex:selectIndex:line:duration:)]) {
                         [self.lgf_FreePTDelegate lgf_FreePTViewCustomizeClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:animatedDuration];
                     }
+                } else {
+                    [LGFFreePTMethod lgf_AutoClickLineAnimationConfig:self.lgf_Style selectX:selectX selectWidth:selectWidth unSelectX:unSelectX unSelectWidth:unSelectWidth unSelectTitle:unSelectTitle selectTitle:selectTitle unSelectIndex:self.lgf_UnSelectIndex selectIndex:self.lgf_SelectIndex line:self.lgf_TitleLine duration:animatedDuration];
                 }
             } selectTitle:selectTitle unSelectTitle:unSelectTitle];
         }
@@ -345,26 +327,33 @@
     CGFloat selectWidth = 0.0;
     CGFloat unSelectX = 0.0;
     CGFloat unSelectWidth = 0.0;
-    if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitle) {
-        selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX;
-        selectWidth = selectTitle.lgfpt_Width;
-        unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX;
-        unSelectWidth = unSelectTitle.lgfpt_Width;
-    } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTRAndImage) {
-        selectX = (selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + selectTitle.lgf_LeftImage.lgfpt_X * selectTitle.lgf_CurrentTransformSX);
-        selectWidth = (selectTitle.lgf_RightImage.lgfpt_X + selectTitle.lgf_RightImage.lgfpt_Width - selectTitle.lgf_LeftImage.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
-        unSelectX = (unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + unSelectTitle.lgf_LeftImage.lgfpt_X * unSelectTitle.lgf_CurrentTransformSX);
-        unSelectWidth = (unSelectTitle.lgf_RightImage.lgfpt_X + unSelectTitle.lgf_RightImage.lgfpt_Width - unSelectTitle.lgf_LeftImage.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
-    } else if (self.lgf_Style.lgf_LineWidthType == lgf_EqualTitleSTR) {
-        selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_X : selectTitle.lgf_Title.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
-        selectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_Width : selectTitle.lgf_Title.lgfpt_Width) * selectTitle.lgf_CurrentTransformSX;
-        unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_X : unSelectTitle.lgf_Title.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
-        unSelectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_Width : unSelectTitle.lgf_Title.lgfpt_Width) * unSelectTitle.lgf_CurrentTransformSX;
-    } else if (self.lgf_Style.lgf_LineWidthType == lgf_FixedWith) {
-        selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
-        selectWidth = self.lgf_Style.lgf_LineWidth;
-        unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
-        unSelectWidth = self.lgf_Style.lgf_LineWidth;
+    switch (self.lgf_Style.lgf_LineWidthType) {
+        case lgf_EqualTitle:
+            selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX;
+            selectWidth = selectTitle.lgfpt_Width;
+            unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX;
+            unSelectWidth = unSelectTitle.lgfpt_Width;
+            break;
+        case lgf_EqualTitleSTRAndImage:
+            selectX = (selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + selectTitle.lgf_LeftImage.lgfpt_X * selectTitle.lgf_CurrentTransformSX);
+            selectWidth = (selectTitle.lgf_RightImage.lgfpt_X + selectTitle.lgf_RightImage.lgfpt_Width - selectTitle.lgf_LeftImage.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
+            unSelectX = (unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + unSelectTitle.lgf_LeftImage.lgfpt_X * unSelectTitle.lgf_CurrentTransformSX);
+            unSelectWidth = (unSelectTitle.lgf_RightImage.lgfpt_X + unSelectTitle.lgf_RightImage.lgfpt_Width - unSelectTitle.lgf_LeftImage.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
+            break;
+        case lgf_EqualTitleSTR:
+            selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_X : selectTitle.lgf_Title.lgfpt_X) * selectTitle.lgf_CurrentTransformSX;
+            selectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_Width : selectTitle.lgf_Title.lgfpt_Width) * selectTitle.lgf_CurrentTransformSX;
+            unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_X : unSelectTitle.lgf_Title.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX;
+            unSelectWidth = (self.lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_Width : unSelectTitle.lgf_Title.lgfpt_Width) * unSelectTitle.lgf_CurrentTransformSX;
+            break;
+        case lgf_FixedWith:
+            selectX = selectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (selectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
+            selectWidth = self.lgf_Style.lgf_LineWidth;
+            unSelectX = unSelectTitle.lgfpt_X + self.lgf_Style.lgf_LineCenterX + (unSelectTitle.lgfpt_Width - self.lgf_Style.lgf_LineWidth) / 2.0;
+            unSelectWidth = self.lgf_Style.lgf_LineWidth;
+            break;
+        default:
+            break;
     }
     if (XAndW) {
         XAndW(selectX, selectWidth, unSelectX, unSelectWidth);
@@ -380,6 +369,11 @@
 - (void)lgf_GetTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style {
     if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetLGFFreePTTitle:index:style:)]) {
         [self.lgf_FreePTDelegate lgf_GetLGFFreePTTitle:lgf_FreePTTitle index:index style:style];
+    }
+}
+- (void)lgf_GetCenterLine:(UIView *)centerLine index:(NSInteger)index style:(LGFFreePTStyle *)style X:(NSLayoutConstraint *)X Y:(NSLayoutConstraint *)Y W:(NSLayoutConstraint *)W H:(NSLayoutConstraint *)H {
+    if (self.lgf_FreePTDelegate && [self.lgf_FreePTDelegate respondsToSelector:@selector(lgf_GetCenterLine:index:style:X:Y:W:H:)]) {
+        [self.lgf_FreePTDelegate lgf_GetLGFFreePTCenterLine:centerLine index:index style:style X:X Y:Y W:W H:H];
     }
 }
 
@@ -432,7 +426,16 @@
         [VC removeFromParentViewController];
     }];
     [self removeFromSuperview];
-    LGFPTLog(@"LGF的分页控件:LGFFreePT --- 已经释放");
+    LGFPTLog(@"🤖️:分页控件:LGFFreePT --- 已经释放完毕 ✈️");
+}
+
+#pragma mark - 自动计算 contentSize
+- (void)lgf_AutoFreePTContentSize {
+    CGFloat contentWidth = 0.0;
+    for (LGFFreePTTitle *title in _lgf_TitleButtons) {
+        contentWidth += title.lgfpt_Width;
+    }
+    self.contentSize = CGSizeMake(contentWidth, -self.lgfpt_Height);
 }
 
 #pragma mark - 删除所有子控件

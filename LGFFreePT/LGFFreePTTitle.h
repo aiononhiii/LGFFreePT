@@ -13,19 +13,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LGFFreePTTitleDelegate <NSObject>
 @optional
+
 #pragma mark - 加载 title 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
-/**
- @param imageView 要加载网络图片的 imageView
- @param imageUrl 网络图片的 Url
- */
+/// @param imageView 要加载网络图片的 imageView
+/// @param imageUrl 网络图片的 Url
 - (void)lgf_GetTitleNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
+
 #pragma mark - 实现这个代理来对 LGFFreePTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
-/**
- @param lgf_FreePTTitle LGFFreePTTitle 本体
- @param index 所在的 index
- @param style LGFFreePTStyle
- */
+/// @param lgf_FreePTTitle LGFFreePTTitle 本体
+/// @param index 所在的 index
+/// @param style LGFFreePTStyle
 - (void)lgf_GetTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style;
+
+#pragma mark - 实现这个代理来对 LGFSwiftPTTitle 中的 centerLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius/isHidden等等 LGFSwiftPTStyle 中 lgf_IsHaveCenterLine 需要为true
+/// @param centerLine centerLine 本体
+/// @param index 所在的 index
+/// @param style LGFFreePTStyle
+/// @param X (X - width / 2) 等同于 centerX
+/// @param Y 等同于 centerY
+/// @param W 等同于 width
+/// @param H 等同于 height
+- (void)lgf_GetCenterLine:(UIView *)centerLine index:(NSInteger)index style:(LGFFreePTStyle *)style X:(NSLayoutConstraint *)X Y:(NSLayoutConstraint *)Y W:(NSLayoutConstraint *)W H:(NSLayoutConstraint *)H;
+
 @end
 @interface LGFFreePTTitle : UIView
 @property (weak, nonatomic) IBOutlet UILabel *lgf_Title;// 标
@@ -37,6 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lgf_SubTitleHeight;// 子标高度（子标宽度暂时于标共享取两者MAX值）
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lgf_TitleCenterX;// 标中心X
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lgf_TitleCenterY;// 标中心Y
+
+@property (weak, nonatomic) IBOutlet UIView *lgf_CenterLine;// 分割线
+@property (assign, nonatomic) IBOutlet NSLayoutConstraint *lgf_CenterLineX;
+@property (assign, nonatomic) IBOutlet NSLayoutConstraint *lgf_CenterLineY;
+@property (assign, nonatomic) IBOutlet NSLayoutConstraint *lgf_CenterLineWidth;
+@property (assign, nonatomic) IBOutlet NSLayoutConstraint *lgf_CenterLineHeight;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lgf_TopImageSpace;// 标上图片相对于标距离
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lgf_BottomImageSpace;// 标下图片相对于标距离
@@ -83,21 +98,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id<LGFFreePTTitleDelegate>lgf_FreePTTitleDelegate;
 
 #pragma mark - 标整体状态改变 核心逻辑部分
-/**
- @param progress 外部 progress
- @param isSelectTitle 是否是要选中的 LGFFreePTTitle
- @param selectIndex 选中的 index
- @param unselectIndex 未选中的 index
- */
+/// @param progress 外部 progress
+/// @param isSelectTitle 是否是要选中的 LGFFreePTTitle
+/// @param selectIndex 选中的 index
+/// @param unselectIndex 未选中的 index
 - (void)lgf_SetMainTitleTransform:(CGFloat)progress isSelectTitle:(BOOL)isSelectTitle selectIndex:(NSInteger)selectIndex unselectIndex:(NSInteger)unselectIndex;
 
 #pragma mark - 标初始化
-/**
- @param titleText 标文字
- @param index 在 LGFFreePT 中的位置下标
- @param style 配置用模型
- @return LGFFreePTTitle
- */
+/// @param titleText 标文字
+/// @param index 在 LGFFreePT 中的位置下标
+/// @param style 配置用模型
+/// @return LGFFreePTTitle
 + (instancetype)lgf_AllocTitle:(NSString *)titleText index:(NSInteger)index style:(LGFFreePTStyle *)style delegate:(id<LGFFreePTTitleDelegate>)delegate;
 
 @end

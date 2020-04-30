@@ -22,6 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)lgf_GetColorRGBA:(UIColor *)color;
 
 // 我自己原配的 line 滚动动画逻辑代码(部分重复为了方便观看理解我控件的用法)(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的动效代码分享给大家)
+#pragma mark - lgf_AutoTitleScrollFollowAnimationConfig
++ (void)lgf_AutoTitleScrollFollowAnimationConfig:(LGFFreePTStyle *)style lgf_TitleButtons:(NSMutableArray <LGFFreePTTitle *> *)lgf_TitleButtons unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex duration:(NSTimeInterval)duration;
+#pragma mark - lgf_AutoScrollLineAnimationConfig
++ (void)lgf_AutoScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line progress:(NSTimeInterval)progress;
+#pragma mark - lgf_AutoClickLineAnimationConfig
++ (void)lgf_AutoClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration;
 #pragma mark - lgf_PageLineAnimationDefult
 + (void)lgf_PageLineAnimationDefultScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line progress:(CGFloat)progress;
 
@@ -72,6 +78,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - lgf_PageViewAnimationSmallToBig
 + (void)lgf_FreePageViewSmallToBigAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout;
+
+#pragma mark - lgf_ZoomExtruding
++ (void)lgf_ZoomExtruding:(NSArray <LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress;
 @end
 
 NS_ASSUME_NONNULL_END

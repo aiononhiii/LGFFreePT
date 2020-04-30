@@ -17,98 +17,96 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 #pragma mark -  标动画完全结束后的选中标回调代理
 - (void)lgf_SelectFreePTTitle:(NSInteger)selectIndex;
-
 @optional
+
 #pragma mark -  以 contentOffsetX 匹配最精确的选中标回调代理
 - (void)lgf_RealSelectFreePTTitle:(NSInteger)selectIndex;
 
 #pragma mark -  加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
-/**
- @param imageView 要加载网络图片的 imageView
- @param imageUrl 网络图片的 Url
- */
+/// @param imageView 要加载网络图片的 imageView
+/// @param imageUrl 网络图片的 Url
 - (void)lgf_GetNetImage:(UIImageView *)imageView imageUrl:(NSURL *)imageUrl;
 
 #pragma mark - 实现这个代理来对 LGFFreePTTitle 初始化时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等 注意：这些新配置如果和 LGFFreePTStyle 冲突将覆盖 LGFFreePTStyle 的效果
-/**
- @param lgf_FreePTTitle LGFFreePTTitle 本体
- @param index 所在的 index
- @param style LGFFreePTStyle
- */
+/// @param lgf_FreePTTitle LGFFreePTTitle 本体
+/// @param index 所在的 index
+/// @param style LGFFreePTStyle
 - (void)lgf_GetLGFFreePTTitle:(UIView *)lgf_FreePTTitle index:(NSInteger)index style:(LGFFreePTStyle *)style;
+
+#pragma mark - 实现这个代理来对 LGFSwiftPTTitle 中的 centerLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius/isHidden等等 LGFSwiftPTStyle 中 lgf_IsHaveCenterLine 需要为true
+/// @param centerLine centerLine 本体
+/// @param index 所在的 index
+/// @param style LGFFreePTStyle
+/// @param X (X - width / 2) 等同于 centerX
+/// @param Y 等同于 centerY
+/// @param W 等同于 width
+/// @param H 等同于 height
+- (void)lgf_GetLGFFreePTCenterLine:(UIView *)centerLine index:(NSInteger)index style:(LGFFreePTStyle *)style X:(NSLayoutConstraint *)X Y:(NSLayoutConstraint *)Y W:(NSLayoutConstraint *)W H:(NSLayoutConstraint *)H;
+
 #pragma mark - 实现这个代理来对 LGFFreePTLine 初始化时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等 注意：这些新配置如果和 LGFFreePTStyle 冲突将覆盖 LGFFreePTStyle 的效果
-/**
- @param lgf_FreePTLine LGFFreePTLine 本体
- @param style LGFFreePTStyle
- */
+/// @param lgf_FreePTLine LGFFreePTLine 本体
+/// @param style LGFFreePTStyle
 - (void)lgf_GetLGFFreePTLine:(UIImageView *)lgf_FreePTLine style:(LGFFreePTStyle *)style;
+
 #pragma mark - 实现这个代理来对所有标的滚动动效状态进行配置（为了某些标队列特殊物理效果的需求）（注意：实现这个代理后我的默认效果将无效）
-/**
- @param allTitles 所有标数组
- @param selectTitle 选中标
- @param unSelectTitle 未选中标
- @param selectIndex  选中 index
- @param unSelectIndex 未选中 index
- @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
- */
+/// @param allTitles 所有标数组
+/// @param selectTitle 选中标
+/// @param unSelectTitle 未选中标
+/// @param selectIndex  选中 index
+/// @param unSelectIndex 未选中 index
+/// @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
 - (void)lgf_SetAllTitleState:(NSArray<LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress;
+
 #pragma mark - 实现这个代理来对所有标的点击动效状态进行配置（为了某些标队列特殊物理效果的需求）（注意：实现这个代理后我的默认效果将无效）
-/**
- @param allTitles 所有标数组
- @param selectTitle 选中标
- @param unSelectTitle 未选中标
- @param selectIndex  选中 index
- @param unSelectIndex 未选中 index
- @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
- */
+/// @param allTitles 所有标数组
+/// @param selectTitle 选中标
+/// @param unSelectTitle 未选中标
+/// @param selectIndex  选中 index
+/// @param unSelectIndex 未选中 index
+/// @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
 - (void)lgf_SetAllTitleClickState:(NSArray<LGFFreePTTitle *> *)allTitles style:(LGFFreePTStyle *)style selectTitle:(LGFFreePTTitle *)selectTitle unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectIndex:(NSInteger)selectIndex unSelectIndex:(NSInteger)unSelectIndex progress:(CGFloat)progress;
+
 #pragma mark - 如果我原配的动画满足不了你，那么请使用这个自定义 line 动画代理（自定义配置滚动后 line 的动画）
-/**
- @param style LGFFreePTStyle
- @param selectX 选中标的 X
- @param selectWidth 选中标的 Width
- @param unSelectX 未选中标的 X
- @param unSelectWidth 未选中标的 Width
- @param unSelectTitle 未选中标本体
- @param selectTitle 选中标本体
- @param unSelectIndex 未选中 index
- @param selectIndex 选中 index
- @param line line 本体
- @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计动画吧)
- */
+/// @param style LGFFreePTStyle
+/// @param selectX 选中标的 X
+/// @param selectWidth 选中标的 Width
+/// @param unSelectX 未选中标的 X
+/// @param unSelectWidth 未选中标的 Width
+/// @param unSelectTitle 未选中标本体
+/// @param selectTitle 选中标本体
+/// @param unSelectIndex 未选中 index
+/// @param selectIndex 选中 index
+/// @param line line 本体
+/// @param progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计动画吧)
 - (void)lgf_FreePTViewCustomizeScrollLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line progress:(CGFloat)progress;
 
 #pragma mark - 自定义配置点击后 line 的动画
-/**
- @param style LGFFreePTStyle
- @param selectX 选中标的 X
- @param selectWidth 选中标的 Width
- @param unSelectX 未选中标的 X
- @param unSelectWidth 未选中标的 Width
- @param unSelectTitle 未选中标本体
- @param selectTitle 选中标本体
- @param unSelectIndex 未选中 index
- @param selectIndex 选中 index
- @param line line 本体
- @param duration 点击动画时长
- */
+/// @param style LGFFreePTStyle
+/// @param selectX 选中标的 X
+/// @param selectWidth 选中标的 Width
+/// @param unSelectX 未选中标的 X
+/// @param unSelectWidth 未选中标的 Width
+/// @param unSelectTitle 未选中标本体
+/// @param selectTitle 选中标本体
+/// @param unSelectIndex 未选中 index
+/// @param selectIndex 选中 index
+/// @param line line 本体
+/// @param duration 点击动画时长
 - (void)lgf_FreePTViewCustomizeClickLineAnimationConfig:(LGFFreePTStyle *)style selectX:(CGFloat)selectX selectWidth:(CGFloat)selectWidth unSelectX:(CGFloat)unSelectX unSelectWidth:(CGFloat)unSelectWidth unSelectTitle:(LGFFreePTTitle *)unSelectTitle selectTitle:(LGFFreePTTitle *)selectTitle unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex line:(LGFFreePTLine *)line duration:(NSTimeInterval)duration;
 
 #pragma mark - 自定义配置选中结束后标的回位模式
-/**
- @param style LGFFreePTStyle
- @param lgf_TitleButtons 所有标数组
- @param unSelectIndex 未选中 index
- @param selectIndex 选中 index
- @param duration 回位动画时长
- */
+/// @param style LGFFreePTStyle
+/// @param lgf_TitleButtons 所有标数组
+/// @param unSelectIndex 未选中 index
+/// @param selectIndex 选中 index
+/// @param duration 回位动画时长
 - (void)lgf_TitleScrollFollowCustomizeAnimationConfig:(LGFFreePTStyle *)style lgf_TitleButtons:(NSMutableArray <LGFFreePTTitle *> *)lgf_TitleButtons unSelectIndex:(NSInteger)unSelectIndex selectIndex:(NSInteger)selectIndex duration:(NSTimeInterval)duration;
+
 #pragma mark - 自定义分页动画（我这里提供一个配置入口，也可以自己在外面配置 UICollectionViewFlowLayout 原理一样，自己在外面配置的话记得配置 self.scrollDirection = UICollectionViewScrollDirectionHorizontal; self.minimumInteritemSpacing = 0; self.minimumLineSpacing = 0; self.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);）
-/**
- @param attributes UICollectionViewLayoutAttributes
- @param flowLayout UICollectionViewFlowLayout
- */
+/// @param attributes UICollectionViewLayoutAttributes
+/// @param flowLayout UICollectionViewFlowLayout
 - (void)lgf_FreePageViewCustomizeAnimationConfig:(NSArray *)attributes flowLayout:(UICollectionViewFlowLayout *)flowLayout;
+
 @end
 @interface LGFFreePTView : UIScrollView
 @property (weak, nonatomic) id<LGFFreePTDelegate>lgf_FreePTDelegate;
@@ -158,6 +156,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma maek - frame纯代码添加 addSubview 需自己调用
 - (instancetype)lgf_InitWithStyle:(LGFFreePTStyle * _Nullable)style SVC:(UIViewController *)SVC PV:(nullable UICollectionView *)PV frame:(CGRect)frame;
 
+#pragma mark - 自动计算 contentSize
+- (void)lgf_AutoFreePTContentSize;
 @end
 
 NS_ASSUME_NONNULL_END

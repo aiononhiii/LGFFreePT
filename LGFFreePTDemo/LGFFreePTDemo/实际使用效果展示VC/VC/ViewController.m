@@ -215,6 +215,10 @@ lgf_SBViewControllerForM(ViewController, @"Main", @"ViewController");
             style = [LGFFreePTStyleCenter twentyone];
         } else if ([self.type isEqualToString:@"渐隐效果"]) {
             style = [LGFFreePTStyleCenter twentytwo];
+        } else if ([self.type isEqualToString:@"挤压"]) {
+            style = [LGFFreePTStyleCenter twentythree];
+        } else if ([self.type isEqualToString:@"分割线"]) {
+            style = [LGFFreePTStyleCenter twentyfour];
         }
         _fptView = [[LGFFreePTView lgf] lgf_InitWithStyle:style SVC:self PV:self.pageCollectionView frame:self.pageSuperView.bounds];
         _fptView.lgf_FreePTDelegate = self;
